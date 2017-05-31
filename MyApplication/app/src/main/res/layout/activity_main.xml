@@ -6,19 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.zhangzhiquan.myapplication.MainActivity">
 
-    <com.example.zhangzhiquan.myapplication.widget.MyTextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="click"
-        android:gravity="center"
-        android:background="@android:color/background_dark"
-        android:textColor="@android:color/white"
-        android:id="@+id/myTextView"
-        android:onClick="click"/>
-
-    <com.example.zhangzhiquan.myapplication.widget.OuterRecyclerView
-        android:id="@+id/outer_recycler"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"></com.example.zhangzhiquan.myapplication.widget.OuterRecyclerView>
+        android:layout_height="match_parent"></FrameLayout>
 </RelativeLayout>
