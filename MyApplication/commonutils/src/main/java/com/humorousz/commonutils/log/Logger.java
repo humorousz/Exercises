@@ -22,4 +22,8 @@ public class Logger{
         d(tag,String.valueOf(msg));
     }
 
+    public static void e(String tag,Object msg){
+        d(tag,String.valueOf(msg));
+    }
+
 }

@@ -157,7 +157,9 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract String getLogTitle();
 
-    public abstract String getTitle();
+    public String getTitle() {
+        return null;
+    }
 
     protected boolean logLife(){
         return false;

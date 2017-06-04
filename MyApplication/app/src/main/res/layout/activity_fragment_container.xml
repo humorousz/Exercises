@@ -4,7 +4,7 @@
     android:id="@+id/activity_fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zhangzhiquan.myapplication.fragmentDemo.FragmentContainerActivity">
+    tools:context="com.humorous.zhangzhiquan.myapplication.fragmentDemo.FragmentContainerActivity">
 
     <RadioGroup
         android:id="@+id/radioGroup"

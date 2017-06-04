@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <com.example.zhangzhiquan.myapplication.widget.ViewCard
+    <com.humorous.zhangzhiquan.myapplication.widget.ViewCard
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.example.zhangzhiquan.myapplication.widget.ViewCard>
+        android:layout_height="wrap_content"></com.humorous.zhangzhiquan.myapplication.widget.ViewCard>
 
 
 </LinearLayout>
