@@ -19,7 +19,7 @@ public abstract class BaseItemDecoration extends RecyclerView.ItemDecoration {
     }
 
 
-    private void drawVertical(Canvas canvas, RecyclerView parent) {
+    protected void drawVertical(Canvas canvas, RecyclerView parent) {
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
@@ -37,7 +37,7 @@ public abstract class BaseItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    private void drawHorizontal(Canvas canvas, RecyclerView parent) {
+    protected void drawHorizontal(Canvas canvas, RecyclerView parent) {
         int childCount = parent.getChildCount();
         //from the second item
         for (int i = 1; i < childCount; i++) {

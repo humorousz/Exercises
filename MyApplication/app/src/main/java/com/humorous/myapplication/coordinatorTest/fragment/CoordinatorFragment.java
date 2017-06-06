@@ -27,7 +27,7 @@ import java.util.TimerTask;
  * Created by zhangzhiquan on 2017/4/21.
  */
 
-public class TestFragment extends BaseFragment {
+public class CoordinatorFragment extends BaseFragment {
     private static final String TAG = "HomeFragment";
     private ViewPager mFragmentPager;
     private TabLayout mTablayout;

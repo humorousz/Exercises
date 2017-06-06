@@ -1,5 +1,10 @@
 package com.humorousz.uiutils.helper;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
+
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.commonutils.service.CommonService;
 
 /**
@@ -7,6 +12,7 @@ import com.humorousz.commonutils.service.CommonService;
  */
 
 public class UIUtils {
+    private static final String TAG = "UIUtils";
 
     public static final int dip2px(int dip) {
         if(CommonService.getApplication() == null ){
@@ -24,5 +30,20 @@ public class UIUtils {
         }
         float scale = CommonService.getApplication().getResources().getDisplayMetrics().density;
         return (int)((float)px / scale + 0.5F);
+    }
+
+    public static final int getScreenWidth(){
+        if(CommonService.getApplication() == null){
+            Logger.e(TAG,"not init CommonService in Application");
+            return -1;
+        }
+        return getScreenWidth(CommonService.getApplication());
+    }
+
+    public static final int getScreenWidth(Context context){
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return metrics.widthPixels;
     }
 }

@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.humorous.zhangzhiquan.myapplication.AntFragment">
+    tools:context="com.humorous.myapplication.antTest.AntFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <com.humorous.zhangzhiquan.myapplication.widget.AntView
+
+    <com.humorous.myapplication.antTest.AntView
         android:id="@+id/ant_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

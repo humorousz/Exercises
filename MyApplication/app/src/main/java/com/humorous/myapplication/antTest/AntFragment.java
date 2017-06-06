@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.humorous.myapplication.R;
-import com.humorous.myapplication.antTest.AntView;
 import com.humorousz.uiutils.view.BaseFragment;
 
 
