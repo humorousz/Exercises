@@ -1,4 +1,4 @@
-package com.humorous.zhangzhiquan.myapplication.coordinatorTest.widget;
+package com.humorous.myapplication.coordinatorTest.widget;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

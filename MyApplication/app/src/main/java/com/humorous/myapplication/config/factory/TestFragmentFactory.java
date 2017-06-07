@@ -2,7 +2,7 @@ package com.humorous.myapplication.config.factory;
 
 import com.humorous.myapplication.antTest.AntFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
-import com.humorous.myapplication.coordinatorTest.fragment.TestCordinatorFragment;
+import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 
@@ -27,7 +27,7 @@ public class TestFragmentFactory {
                 fragment = new TestRecyclerFragment();
                 break;
             case TEST_COORDINATOR:
-                fragment = new TestCordinatorFragment();
+                fragment = new TestCoordinatorFragment();
                 break;
         }
         return fragment;
