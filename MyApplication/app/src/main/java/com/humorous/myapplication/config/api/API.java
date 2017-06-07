@@ -20,13 +20,18 @@ public class API {
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.COORDINATOR_TEST);
+        itemModel.setLink(TestProtocol.COORDINATOR_DEMO);
         itemModel.setTitle("上滑悬浮");
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.TOPIC_RECYCLER_TEST);
         itemModel.setTitle("抖音新鲜页滑动渐变");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.COORDINATOR_TEST);
+        itemModel.setTitle("Coordinator练习");
         models.add(itemModel);
 
         return models;

@@ -21,7 +21,7 @@ public class ContainerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         boolean hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);
         if(!hasTitle){
-            getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
         TestFragmentFactory.TYPE type = (TestFragmentFactory.TYPE) getIntent().getSerializableExtra(FRAMGNET_TYPE);
         if(type == null){

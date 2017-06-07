@@ -155,7 +155,9 @@ public abstract class BaseFragment extends Fragment {
     public abstract void initView(View root);
 
 
-    public abstract String getLogTitle();
+    public  String getLogTitle(){
+        return null;
+    }
 
     public String getTitle() {
         return null;
