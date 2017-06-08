@@ -12,11 +12,20 @@ public class TestProtocol {
 
     private static final String BASE ="test://humorous" + TYPE;
 
-    public static final String ANT_TEST = BASE  + TestFragmentFactory.TYPE.ANT;
+    private static final String HAS_TITLE = "&hasTitle="+String.valueOf(Boolean.TRUE);
 
-    public static final String TOPIC_RECYCLER_TEST = BASE + TestFragmentFactory.TYPE.TOPIC_RECYCLER;
+    private static final String HAS_NO_TITLE = "&hasTitle="+String.valueOf(Boolean.FALSE);
 
-    public static final String COORDINATOR_DEMO = BASE + TestFragmentFactory.TYPE.COORDINATOR;
 
-    public static final String COORDINATOR_TEST = BASE +  TestFragmentFactory.TYPE.TEST_COORDINATOR;
+    //芝麻信用效果
+    public static final String ANT_TEST = BASE  + TestFragmentFactory.TYPE.ANT + HAS_TITLE;
+
+    //抖音滑动渐变
+    public static final String TOPIC_RECYCLER_TEST = BASE + TestFragmentFactory.TYPE.TOPIC_RECYCLER + HAS_NO_TITLE;
+
+    //上滑悬浮
+    public static final String COORDINATOR_DEMO = BASE + TestFragmentFactory.TYPE.COORDINATOR + HAS_NO_TITLE;
+
+    //Coordinator练习
+    public static final String COORDINATOR_TEST = BASE +  TestFragmentFactory.TYPE.TEST_COORDINATOR  + HAS_TITLE;
 }

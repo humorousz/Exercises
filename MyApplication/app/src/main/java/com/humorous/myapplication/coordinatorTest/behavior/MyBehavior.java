@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.humorous.myapplication.coordinatorTest.widget.TestTextView;
+
 /**
  * Created by zhangzhiquan on 2017/6/7.
  */
@@ -22,7 +24,7 @@ public class MyBehavior extends CoordinatorLayout.Behavior<Button> {
 
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, Button child, View dependency) {
-        return dependency instanceof TextView;
+        return dependency instanceof TestTextView;
     }
 
 

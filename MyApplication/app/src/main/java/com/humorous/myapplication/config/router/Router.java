@@ -25,7 +25,8 @@ public class Router {
             Uri uri = Uri.parse(link);
             String typeString = uri.getQueryParameter("type");
             TestFragmentFactory.TYPE type = TestFragmentFactory.TYPE.valueOf(typeString);
-            startActivity(context,true,type);
+            Boolean hasTitle = Boolean.valueOf(uri.getQueryParameter("hasTitle"));
+            startActivity(context,hasTitle,type);
         }catch (RuntimeException e){
             Logger.e(TAG,e.getMessage());
         }
