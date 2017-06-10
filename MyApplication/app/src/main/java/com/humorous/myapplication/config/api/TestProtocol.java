@@ -27,5 +27,8 @@ public class TestProtocol {
     public static final String COORDINATOR_DEMO = BASE + TestFragmentFactory.TYPE.COORDINATOR + HAS_NO_TITLE;
 
     //Coordinator练习
-    public static final String COORDINATOR_TEST = BASE +  TestFragmentFactory.TYPE.TEST_COORDINATOR  + HAS_TITLE;
+    public static final String COORDINATOR_TEST = BASE +  TestFragmentFactory.TYPE.TEST_COORDINATOR  + HAS_NO_TITLE;
+
+    //Coordinator 进阶
+    public static final String COORDINATOR_ADVANCE = BASE +  TestFragmentFactory.TYPE.ADVANCE_COORDINATOR  + HAS_NO_TITLE;
 }

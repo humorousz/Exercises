@@ -1,6 +1,7 @@
 package com.humorous.myapplication.coordinatorTest.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,9 @@ public class TestCoordinatorFragment extends BaseFragment {
 
     @Override
     public void initView(View root) {
+        Toolbar toolbar = (Toolbar) root.findViewById(R.id.toolbar);
+        toolbar.setTitle("这里是Title");
+        toolbar.setSubtitle("这里是子标题");
         mText = (TextView) root.findViewById(R.id.textView);
         mBtn = (Button)root.findViewById(R.id.btn);
         mText.setOnClickListener(new View.OnClickListener() {

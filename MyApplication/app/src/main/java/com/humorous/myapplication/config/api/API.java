@@ -34,6 +34,11 @@ public class API {
         itemModel.setTitle("Coordinator练习");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.COORDINATOR_ADVANCE);
+        itemModel.setTitle("Coordinator进阶");
+        models.add(itemModel);
+
         return models;
     }
 }

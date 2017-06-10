@@ -1,6 +1,7 @@
 package com.humorous.myapplication.config.factory;
 
 import com.humorous.myapplication.antTest.AntFragment;
+import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
@@ -12,7 +13,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 
 public class TestFragmentFactory {
     public enum TYPE{
-        ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR
+        ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -28,6 +29,9 @@ public class TestFragmentFactory {
                 break;
             case TEST_COORDINATOR:
                 fragment = new TestCoordinatorFragment();
+                break;
+            case ADVANCE_COORDINATOR:
+                fragment = new AdvancedCoordinatorFragment();
                 break;
         }
         return fragment;
