@@ -1,6 +1,7 @@
 package com.humorous.myapplication.coordinatorTest.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -38,6 +40,10 @@ public class TestCoordinatorFragment extends BaseFragment {
 
             }
         });
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mText.getLayoutParams();
+        if(params.getBehavior() != null){
+            Logger.d(TAG,"haha");
+        }
 
     }
 

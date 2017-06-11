@@ -45,7 +45,7 @@ public class AdvancedCoorBehavior extends CoordinatorLayout.Behavior<View> {
 //        Logger.d(TAG,"Child:"+child.getY());
 //        Logger.d(TAG,"Child Height:"+child.getHeight());
 //        Logger.d(TAG,"------------end-----------");
-        scrollView(child,dy,consumed);
+
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
     }
 
@@ -58,7 +58,15 @@ public class AdvancedCoorBehavior extends CoordinatorLayout.Behavior<View> {
                 ViewCompat.offsetTopAndBottom(child,-scrolly);
                 consumed[1] = dy > cdy ? dy - cdy : 0;
             }
+        }
 
+        if(dy < 0) {
+            int y = (int) Math.abs(child.getY());
+            if(y>0){
+                int scrollY = Math.abs(dy) > y ? y : Math.abs(dy);
+                ViewCompat.offsetTopAndBottom(child,scrollY);
+                consumed[1] = Math.abs(dy) > y ? -y : -Math.abs(dy - y);
+            }
         }
     }
 
@@ -86,15 +94,15 @@ public class AdvancedCoorBehavior extends CoordinatorLayout.Behavior<View> {
         return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
     }
 
-    @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
-        Logger.d(TAG,"layoutDependsOn");
-        return dependency instanceof FrameLayout;
-    }
-
-    @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
-        Logger.d(TAG,"onDependentViewChanged");
-        return super.onDependentViewChanged(parent, child, dependency);
-    }
+//    @Override
+//    public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
+//        Logger.d(TAG,"layoutDependsOn");
+//        return dependency instanceof FrameLayout;
+//    }
+//
+//    @Override
+//    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
+//        Logger.d(TAG,"onDependentViewChanged");
+//        return super.onDependentViewChanged(parent, child, dependency);
+//    }
 }
