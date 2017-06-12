@@ -31,4 +31,7 @@ public class TestProtocol {
 
     //Coordinator 进阶
     public static final String COORDINATOR_ADVANCE = BASE +  TestFragmentFactory.TYPE.ADVANCE_COORDINATOR  + HAS_NO_TITLE;
+
+    //Nested 练习
+    public static final String NESTED_TEST = BASE + TestFragmentFactory.TYPE.NESTED_SCROLLING +  HAS_NO_TITLE;
 }

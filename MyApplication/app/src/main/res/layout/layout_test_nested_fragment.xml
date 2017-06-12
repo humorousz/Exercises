@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.humorous.myapplication.nested.widget.NestedRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.humorous.myapplication.nested.widget.TestImageView
+        android:id="@+id/nested_image"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sssssss"/>
+
+    <FrameLayout
+        android:id="@+id/nested_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/nested_image"></FrameLayout>
+
+</com.humorous.myapplication.nested.widget.NestedRelativeLayout>

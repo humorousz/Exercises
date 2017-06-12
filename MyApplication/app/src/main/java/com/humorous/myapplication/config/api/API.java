@@ -39,6 +39,11 @@ public class API {
         itemModel.setTitle("Coordinator进阶");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.NESTED_TEST);
+        itemModel.setTitle("NestedScrolling");
+        models.add(itemModel);
+
         return models;
     }
 }
