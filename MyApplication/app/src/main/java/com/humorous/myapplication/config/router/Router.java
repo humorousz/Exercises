@@ -6,6 +6,9 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 
+import com.humorous.myapplication.SecondMenuActivity;
+import com.humorous.myapplication.config.api.API;
+import com.humorous.myapplication.config.api.TestProtocol;
 import com.humorous.myapplication.config.factory.TestFragmentFactory;
 import com.humorous.myapplication.container.ContainerActivity;
 
@@ -24,9 +27,14 @@ public class Router {
         try {
             Uri uri = Uri.parse(link);
             String typeString = uri.getQueryParameter("type");
-            TestFragmentFactory.TYPE type = TestFragmentFactory.TYPE.valueOf(typeString);
-            Boolean hasTitle = Boolean.valueOf(uri.getQueryParameter("hasTitle"));
-            startActivity(context,hasTitle,type);
+            if(link.contains(TestProtocol.MENU)){
+                API.SECOND_MENU type = API.SECOND_MENU.valueOf(typeString);
+                startMenuActivity(context,type);
+            }else {
+                TestFragmentFactory.TYPE type = TestFragmentFactory.TYPE.valueOf(typeString);
+                Boolean hasTitle = Boolean.valueOf(uri.getQueryParameter("hasTitle"));
+                startActivity(context,hasTitle,type);
+            }
         }catch (RuntimeException e){
             Logger.e(TAG,e.getMessage());
         }
@@ -42,4 +50,15 @@ public class Router {
         intent.putExtra(ContainerActivity.FRAMGNET_TYPE,type);
         context.startActivity(intent);
     }
+
+    private static void startMenuActivity(Context context, API.SECOND_MENU type){
+        if(context == null){
+            Logger.e(TAG,"context must not be null");
+            return;
+        }
+        Intent intent = new Intent(context, SecondMenuActivity.class);
+        intent.putExtra(SecondMenuActivity.TYPE,type);
+        context.startActivity(intent);
+    }
+
 }

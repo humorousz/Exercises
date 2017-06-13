@@ -11,7 +11,11 @@ import java.util.List;
 
 public class API {
 
-    public static List<HomeItemModel> getAllItem(){
+    public static enum SECOND_MENU {
+        MAIN,COORDINATOR
+    }
+
+    public static List<HomeItemModel> getAllItem() {
         List<HomeItemModel> models = new ArrayList<>(12);
 
         HomeItemModel itemModel = new HomeItemModel();
@@ -25,7 +29,7 @@ public class API {
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.COORDINATOR_TEST);
+        itemModel.setLink(TestProtocol.COORDINATOR_MENU);
         itemModel.setTitle("Behavior练习");
         models.add(itemModel);
 
@@ -47,4 +51,41 @@ public class API {
 
         return models;
     }
+
+    public static List<HomeItemModel> getList(SECOND_MENU type) {
+        switch (type) {
+            case COORDINATOR:
+                return getCoordinator();
+            case MAIN:
+                return getAllItem();
+        }
+        return null;
+
+    }
+
+
+    public static List<HomeItemModel> getCoordinator() {
+
+        List<HomeItemModel> models = new ArrayList<>(12);
+        HomeItemModel itemModel;
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.COORDINATOR_TEST);
+        itemModel.setTitle("Behavior练习");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.COORDINATOR_ADVANCE);
+        itemModel.setTitle("Coordinator练习");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.NESTED_TEST);
+        itemModel.setTitle("NestedScrolling");
+        models.add(itemModel);
+
+        return models;
+    }
+
+
+
 }

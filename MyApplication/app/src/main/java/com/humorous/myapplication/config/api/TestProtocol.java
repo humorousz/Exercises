@@ -34,4 +34,15 @@ public class TestProtocol {
 
     //Nested 练习
     public static final String NESTED_TEST = BASE + TestFragmentFactory.TYPE.NESTED_SCROLLING +  HAS_NO_TITLE;
+
+
+    /**
+     * 二级菜单
+     */
+
+    public static final String MENU = "menu://humorous" + TYPE;
+
+    public static final String COORDINATOR_MENU = MENU + API.SECOND_MENU.COORDINATOR;
+
+
 }

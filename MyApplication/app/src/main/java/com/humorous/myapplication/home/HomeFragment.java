@@ -20,6 +20,14 @@ import com.humorousz.uiutils.widget.GridItemDecoration;
 public class HomeFragment extends BaseFragment {
     private static final String TAG = "HomeFragment";
     private RecyclerView mRecyclerView;
+    private API.SECOND_MENU type;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        type = (API.SECOND_MENU) getArguments().getSerializable("type");
+    }
+
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_home_fragment,container,false);
@@ -28,7 +36,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView(View root) {
         mRecyclerView = (RecyclerView) root.findViewById(R.id.recycler_home);
-        mRecyclerView.setAdapter(new HomeAdapter(getContext(),API.getAllItem()));
+        mRecyclerView.setAdapter(new HomeAdapter(getContext(),API.getList(type)));
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         mRecyclerView.addItemDecoration(new GridItemDecoration());
     }
@@ -36,6 +44,15 @@ public class HomeFragment extends BaseFragment {
     @Override
     public String getLogTitle() {
         return TAG;
+    }
+
+    public static HomeFragment newInstance(API.SECOND_MENU type) {
+        
+        Bundle args = new Bundle();
+        args.putSerializable("type",type);
+        HomeFragment fragment = new HomeFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }

@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".container.ContainerActivity"></activity>
+        <activity android:name=".container.ContainerActivity" />
+        <activity android:name=".SecondMenuActivity"></activity>
     </application>
 
 </manifest>
