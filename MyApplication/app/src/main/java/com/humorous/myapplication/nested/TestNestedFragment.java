@@ -27,7 +27,7 @@ public class TestNestedFragment extends BaseFragment {
     @Override
     public void initView(View root) {
         FragmentTransaction tr = getChildFragmentManager().beginTransaction();
-        tr.add(R.id.nested_container,new TestListFragment());
+        tr.add(R.id.nested_content,new TestListFragment());
         tr.commit();
 
     }
