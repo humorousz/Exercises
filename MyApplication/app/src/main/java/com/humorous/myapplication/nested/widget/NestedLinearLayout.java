@@ -87,7 +87,7 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingP
     @Override
     public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
         if (!consumed) {
-            fling((int) velocityY);
+            animateScroll(velocityY, computeDuration(0),true);
         } else {
             animateScroll(velocityY, computeDuration(velocityY));
         }
@@ -112,6 +112,7 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingP
         velocityY = Math.abs(velocityY);
         if (velocityY > 0) {
             duration = 3 * Math.round(1000 * (distance / velocityY));
+            Logger.d(TAG,"duration:"+duration);
         } else {
             final float distanceRatio = (float) distance / getHeight();
             duration = (int) ((distanceRatio + 1) * 150);
@@ -177,7 +178,11 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingP
         invalidate();
     }
 
-    public void animateScroll(float velocityY, final int duration) {
+    public void animateScroll(float velocityY,final int duration){
+        animateScroll(velocityY,duration,false);
+    }
+
+    public void animateScroll(float velocityY, final int duration,boolean down) {
         final int currentOffset = getScrollY();
         final int topHeight = mTop.getHeight();
         if (mOffsetAnimator == null) {
@@ -200,6 +205,9 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingP
             mOffsetAnimator.start();
         } else {
             mOffsetAnimator.setIntValues(currentOffset, 0);
+            if(down){
+                mOffsetAnimator.start();
+            }
         }
     }
 

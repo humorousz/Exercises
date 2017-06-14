@@ -46,7 +46,7 @@ public class API {
 
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.COORDINATOR_MENU);
-        itemModel.setTitle("Coordinator练习");
+        itemModel.setTitle("Coordinator相关");
         models.add(itemModel);
 
 
