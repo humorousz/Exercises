@@ -11,8 +11,19 @@ import java.util.List;
 
 public class API {
 
-    public static enum SECOND_MENU {
+    public enum SECOND_MENU {
         MAIN,COORDINATOR
+    }
+
+    public static List<HomeItemModel> getList(SECOND_MENU type) {
+        switch (type) {
+            case COORDINATOR:
+                return getCoordinator();
+            case MAIN:
+                return getAllItem();
+        }
+        return null;
+
     }
 
     public static List<HomeItemModel> getAllItem() {
@@ -29,38 +40,17 @@ public class API {
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.COORDINATOR_MENU);
-        itemModel.setTitle("Behavior练习");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.COORDINATOR_ADVANCE);
-        itemModel.setTitle("Coordinator练习");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.NESTED_TEST);
-        itemModel.setTitle("NestedScrolling");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.COORDINATOR_DEMO);
         itemModel.setTitle("上滑悬浮");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.COORDINATOR_MENU);
+        itemModel.setTitle("Coordinator练习");
+        models.add(itemModel);
+
 
         return models;
-    }
-
-    public static List<HomeItemModel> getList(SECOND_MENU type) {
-        switch (type) {
-            case COORDINATOR:
-                return getCoordinator();
-            case MAIN:
-                return getAllItem();
-        }
-        return null;
-
     }
 
 
