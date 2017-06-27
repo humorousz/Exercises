@@ -73,6 +73,10 @@ public class API {
         itemModel.setTitle("NestedScrolling");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.NESTED_SCROLL_VIEW);
+        itemModel.setTitle("NestedScrollView");
+        models.add(itemModel);
         return models;
     }
 

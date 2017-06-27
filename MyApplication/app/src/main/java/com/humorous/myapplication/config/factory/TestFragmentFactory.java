@@ -5,6 +5,7 @@ import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFr
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
+import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 
@@ -14,7 +15,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 
 public class TestFragmentFactory {
     public enum TYPE{
-        ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR,NESTED_SCROLLING
+        ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR,NESTED_SCROLLING,NESTED_SCROLL_VIEW
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -36,6 +37,10 @@ public class TestFragmentFactory {
                 break;
             case NESTED_SCROLLING:
                 fragment = new TestNestedFragment();
+                break;
+            case NESTED_SCROLL_VIEW:
+                fragment = new NestScrollViewFragment();
+                break;
         }
         return fragment;
     }

@@ -35,6 +35,9 @@ public class TestProtocol {
     //Nested 练习
     public static final String NESTED_TEST = BASE + TestFragmentFactory.TYPE.NESTED_SCROLLING +  HAS_NO_TITLE;
 
+    //NestedScrollView 练习
+    public static final String NESTED_SCROLL_VIEW = BASE + TestFragmentFactory.TYPE.NESTED_SCROLL_VIEW + HAS_NO_TITLE;
+
 
     /**
      * 二级菜单
