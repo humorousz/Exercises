@@ -27,6 +27,8 @@
         android:layout_height="100dp"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="300dp"
-        android:background="#3366CC" />
+        android:text="ssss"
+        android:gravity="center_horizontal|bottom"
+        android:background="@drawable/textview_bg" />
 
 </android.support.design.widget.CoordinatorLayout>
