@@ -2,6 +2,7 @@ package com.humorous.myapplication.application;
 
 import android.app.Application;
 
+import com.humorous.myapplication.exceptionTest.CatchExceptionHandler;
 import com.humorousz.commonutils.service.CommonService;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
 
@@ -22,6 +23,8 @@ public class TestApplication extends Application{
         mInstance = this;
         CommonService.getService().init(this);
         ImageLoaderHelper.init(getApplicationContext());
+        CatchExceptionHandler.getInstance().init(this);
+//        Thread.setDefaultUncaughtExceptionHandler(CatchExceptionHandler.getInstance());
     }
 
 }

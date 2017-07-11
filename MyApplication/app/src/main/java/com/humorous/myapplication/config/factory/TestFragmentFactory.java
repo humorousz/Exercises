@@ -4,6 +4,7 @@ import com.humorous.myapplication.antTest.AntFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
+import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
@@ -15,7 +16,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 
 public class TestFragmentFactory {
     public enum TYPE{
-        ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR,NESTED_SCROLLING,NESTED_SCROLL_VIEW
+        ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR,NESTED_SCROLLING,NESTED_SCROLL_VIEW,EXCEPTION
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -40,6 +41,9 @@ public class TestFragmentFactory {
                 break;
             case NESTED_SCROLL_VIEW:
                 fragment = new NestScrollViewFragment();
+                break;
+            case EXCEPTION:
+                fragment = new UncaughtExceptionFragment();
                 break;
         }
         return fragment;

@@ -49,6 +49,11 @@ public class API {
         itemModel.setTitle("Coordinator相关");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.EXCEPTION_TEST);
+        itemModel.setTitle("异常捕获器练习");
+        models.add(itemModel);
+
 
         return models;
     }
