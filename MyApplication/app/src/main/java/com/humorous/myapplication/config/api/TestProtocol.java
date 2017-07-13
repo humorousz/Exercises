@@ -41,6 +41,9 @@ public class TestProtocol {
     //UncaughtException 练习
     public static final String EXCEPTION_TEST = BASE + TestFragmentFactory.TYPE.EXCEPTION + HAS_NO_TITLE;
 
+    //DrawerLayout 练习
+    public static final String DRAWER_LAYOUT = BASE + TestFragmentFactory.TYPE.DRAWER_LAYOUT + HAS_NO_TITLE;
+
 
     /**
      * 二级菜单

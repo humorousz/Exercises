@@ -50,9 +50,14 @@ public class API {
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.EXCEPTION_TEST);
-        itemModel.setTitle("异常捕获器练习");
+        itemModel.setLink(TestProtocol.DRAWER_LAYOUT);
+        itemModel.setTitle("DrawerLayout练习");
         models.add(itemModel);
+
+//        itemModel = new HomeItemModel();
+//        itemModel.setLink(TestProtocol.EXCEPTION_TEST);
+//        itemModel.setTitle("异常捕获器练习");
+//        models.add(itemModel);
 
 
         return models;
