@@ -55,4 +55,9 @@ public class HomeFragment extends BaseFragment {
         return fragment;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
 }

@@ -21,6 +21,10 @@ public class ContainerActivity extends AppCompatActivity {
     BaseFragment mFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(savedInstanceState != null){
+            String FRAGMENTS_TAG = "android:support:fragments";
+            savedInstanceState.remove(FRAGMENTS_TAG);
+        }
         super.onCreate(savedInstanceState);
         boolean hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);
         TestFragmentFactory.TYPE type = (TestFragmentFactory.TYPE) getIntent().getSerializableExtra(FRAMGNET_TYPE);

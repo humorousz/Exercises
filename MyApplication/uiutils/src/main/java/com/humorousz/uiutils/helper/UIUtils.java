@@ -46,4 +46,19 @@ public class UIUtils {
         wm.getDefaultDisplay().getMetrics(metrics);
         return metrics.widthPixels;
     }
+
+    public static final int getScreenHeight(){
+        if(CommonService.getApplication() == null){
+            Logger.e(TAG,"not init CommonService in Application");
+            return -1;
+        }
+        return getScreenHeight(CommonService.getApplication());
+    }
+
+    public static final int getScreenHeight(Context context){
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return metrics.heightPixels;
+    }
 }

@@ -2,6 +2,7 @@ package com.humorous.myapplication.nested.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.NestedScrollingParentHelper;
 import android.support.v4.view.ViewCompat;
@@ -211,4 +212,15 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingP
         }
     }
 
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        super.onRestoreInstanceState(null);
+        Logger.d(TAG,"onRestoreInstanceState");
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Logger.d(TAG,"onSaveInstanceState");
+        return super.onSaveInstanceState();
+    }
 }

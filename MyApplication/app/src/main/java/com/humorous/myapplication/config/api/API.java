@@ -54,6 +54,11 @@ public class API {
         itemModel.setTitle("DrawerLayout练习");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.FRAME_ANIMTOR);
+        itemModel.setTitle("帧动画");
+        models.add(itemModel);
+
 //        itemModel = new HomeItemModel();
 //        itemModel.setLink(TestProtocol.EXCEPTION_TEST);
 //        itemModel.setTitle("异常捕获器练习");

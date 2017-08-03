@@ -44,6 +44,9 @@ public class TestProtocol {
     //DrawerLayout 练习
     public static final String DRAWER_LAYOUT = BASE + TestFragmentFactory.TYPE.DRAWER_LAYOUT + HAS_NO_TITLE;
 
+    //帧动画 练习
+    public static final String FRAME_ANIMTOR = BASE + TestFragmentFactory.TYPE.FRAME_ANIMTOR + HAS_NO_TITLE;
+
 
     /**
      * 二级菜单

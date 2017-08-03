@@ -32,4 +32,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25+'
     compile 'com.android.support:design:25+'
     compile project(':commonutils')
+    compile 'com.facebook.fresco:animated-webp:0.12.0'
 }
