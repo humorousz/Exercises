@@ -6,7 +6,7 @@ import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
 import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
-import com.humorous.myapplication.frameAnimtor.AnimtorFragment;
+import com.humorous.myapplication.frameAnimtor.AnimatorFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
@@ -51,7 +51,7 @@ public class TestFragmentFactory {
                 fragment = new DrawerLayoutFragment();
                 break;
             case FRAME_ANIMTOR:
-                fragment = new AnimtorFragment();
+                fragment = new AnimatorFragment();
                 break;
         }
         return fragment;
