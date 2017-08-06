@@ -62,6 +62,7 @@ public class SelectGiftView extends LinearLayout {
         mData.add(new GiftInfo("香蕉","banana.webp"));
         mData.add(new GiftInfo("邮轮","ship.webp"));
         mData.add(new GiftInfo("星星 ","star.webp"));
+        mData.add(new GiftInfo("心动","animation_out.webp"));
     }
 
     private static class GiftInfo{
@@ -85,6 +86,7 @@ public class SelectGiftView extends LinearLayout {
             textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             textView.setTextSize(15);
             textView.setPadding(40,40,40,40);
+            textView.setTextColor(getResources().getColorStateList(R.color.text));
             textView.setGravity(Gravity.CENTER);
             return new ViewHolder(textView);
         }
@@ -99,7 +101,7 @@ public class SelectGiftView extends LinearLayout {
                 @Override
                 public void onClick(View v) {
                     if(mListener != null){
-                        mListener.onGiftItemClick(info.path);
+                        mListener.onGiftItemClick(info.path,info.name);
                     }
                 }
             });
@@ -121,6 +123,6 @@ public class SelectGiftView extends LinearLayout {
 
 
     public interface OnGiftItemClick{
-        void onGiftItemClick(String path);
+        void onGiftItemClick(String path,String name);
     }
 }

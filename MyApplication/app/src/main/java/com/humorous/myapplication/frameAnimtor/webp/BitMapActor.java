@@ -5,10 +5,13 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
+import android.os.SystemClock;
 import android.view.SurfaceHolder;
 
 import com.facebook.animated.webp.WebPImage;
+import com.facebook.imagepipeline.animated.base.AnimatedImage;
 import com.humorous.myapplication.frameAnimtor.BaseActor;
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.UIUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -21,8 +24,8 @@ import java.io.InputStream;
 
 public class BitMapActor extends BaseActor implements SurfaceHolder.Callback {
     private static final String TAG = "BitMapActor";
-    private WebPImage mWebPImage;
-    private SurfaceHolder mHoler;
+    private AnimatedImage mWebPImage;
+    private SurfaceHolder mHolder;
     private DrawThread mThread;
     private String mFilePath;
 
@@ -30,8 +33,8 @@ public class BitMapActor extends BaseActor implements SurfaceHolder.Callback {
         super(context);
         mFilePath = filePath;
         mWebPImage = createWebP();
-        mHoler = this.getHolder();
-        mHoler.addCallback(this);
+        mHolder = this.getHolder();
+        mHolder.addCallback(this);
         setZOrderOnTop(true);
         this.setFocusable(true);
         this.setFocusableInTouchMode(true);
@@ -85,27 +88,40 @@ public class BitMapActor extends BaseActor implements SurfaceHolder.Callback {
     private class DrawThread extends Thread{
         int count = 0;
         boolean stop = false;
+        private long duration = 0;
+        long lastTime = 0;
         @Override
         public void run() {
             super.run();
+            for(int i=0;i<mWebPImage.getFrameCount();i++){
+                Logger.d(TAG,i+" dur:"+mWebPImage.getFrame(i).getDurationMs());
+            }
             if(mListener != null){
                 mListener.onStartAnim();
             }
             Bitmap bitmap = Bitmap.createBitmap(mWebPImage.getWidth(),mWebPImage.getHeight(), Bitmap.Config.ARGB_8888);
             try {
+                int lastCount = 0;
+                long stateTime = 0;
                 while (!stop && count < mWebPImage.getFrameCount() && mWebPImage != null) {
+                    lastTime = SystemClock.uptimeMillis();
                     mWebPImage.getFrame(count).renderFrame(mWebPImage.getWidth(), mWebPImage.getHeight(), bitmap);
-                    Canvas canvasStart = mHoler.lockCanvas();
+                    Canvas canvasStart = mHolder.lockCanvas();
                     if (bitmap == null || canvasStart == null)
                         break;
-                    doDrawMatchParent(canvasStart, bitmap, UIUtils.getScreenWidth(), UIUtils.getScreenHeight());
-                    mHoler.unlockCanvasAndPost(canvasStart);
-                    Thread.sleep(mWebPImage.getFrame(count).getDurationMs());
-                    count++;
+                    if(lastCount != count){
+                        doDrawMatchParent(canvasStart, bitmap, UIUtils.getScreenWidth(), UIUtils.getScreenHeight());
+                    }
+                    mHolder.unlockCanvasAndPost(canvasStart);
+                    duration = (SystemClock.uptimeMillis() - lastTime);
+                    stateTime += duration;
+                    if(stateTime >= mWebPImage.getFrame(count).getDurationMs()){
+                        lastCount = count;
+                        count++;
+                        stateTime = 0;
+                    }
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }finally {
+            } finally {
                 if(bitmap != null){
                     bitmap.recycle();
                 }

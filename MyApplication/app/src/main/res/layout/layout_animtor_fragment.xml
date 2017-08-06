@@ -7,6 +7,12 @@
         android:id="@+id/anmi_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
+    <TextView
+        android:id="@+id/tv_gift_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"/>
     <Button
         android:id="@+id/sendBtn"
         android:layout_width="match_parent"
