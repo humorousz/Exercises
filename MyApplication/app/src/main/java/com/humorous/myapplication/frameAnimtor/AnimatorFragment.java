@@ -36,6 +36,7 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
     private TextView mGiftCount;
     private Queue<Pair<String,String>> paths;
     private boolean isRunning;
+    private boolean isDestoryView = false;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_animtor_fragment,container,false);
@@ -43,6 +44,7 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
 
     @Override
     public void initView(View root) {
+        isDestoryView = false;
         this.container = (FrameLayout) root.findViewById(R.id.anmi_container);
         this.mSendBtn = (Button) root.findViewById(R.id.sendBtn);
         this.mGiftCount = (TextView) root.findViewById(R.id.tv_gift_count);
@@ -86,7 +88,22 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
             container.removeView(mActor);
             mActor = null;
         }
-        takeTask();
+        if(!isDestoryView){
+            takeTask();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isDestoryView = true;
+        if(paths != null){
+            paths.clear();
+        }
+        if(mPop != null){
+            mPop.dismiss();
+            mPop = null;
+        }
     }
 
     private Handler mHandler = new Handler(Looper.getMainLooper()){

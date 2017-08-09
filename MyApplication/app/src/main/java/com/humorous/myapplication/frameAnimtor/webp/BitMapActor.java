@@ -5,7 +5,9 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
+import android.graphics.Rect;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.facebook.animated.webp.WebPImage;
@@ -93,9 +95,6 @@ public class BitMapActor extends BaseActor implements SurfaceHolder.Callback {
         @Override
         public void run() {
             super.run();
-            for(int i=0;i<mWebPImage.getFrameCount();i++){
-                Logger.d(TAG,i+" dur:"+mWebPImage.getFrame(i).getDurationMs());
-            }
             if(mListener != null){
                 mListener.onStartAnim();
             }
@@ -110,7 +109,7 @@ public class BitMapActor extends BaseActor implements SurfaceHolder.Callback {
                     if (bitmap == null || canvasStart == null)
                         break;
                     if(lastCount != count){
-                        doDrawMatchParent(canvasStart, bitmap, UIUtils.getScreenWidth(), UIUtils.getScreenHeight());
+                        doDrawBottom(canvasStart, bitmap, UIUtils.getScreenWidth(), UIUtils.getScreenHeight());
                     }
                     mHolder.unlockCanvasAndPost(canvasStart);
                     duration = (SystemClock.uptimeMillis() - lastTime);

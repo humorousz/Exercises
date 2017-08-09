@@ -20,8 +20,10 @@ public class MainActivity extends FragmentActivity {
     BaseFragment mFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Logger.d(TAG,"onCreate");
-        Logger.d(TAG,"isNull:"+(savedInstanceState == null));
+        if(savedInstanceState != null){
+            String FRAGMENTS_TAG = "android:support:fragments";
+            savedInstanceState.remove(FRAGMENTS_TAG);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFragment = HomeFragment.newInstance(API.SECOND_MENU.MAIN);

@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.UIUtils;
 
 /**
@@ -47,6 +48,15 @@ public abstract class BaseActor extends SurfaceView implements SurfaceHolder.Cal
         paint.setColor(0xffffffff);
         paint.setAntiAlias(true);
         doDraw(canvas,bitmap,null,new Rect(0,0,width,height),paint);
+    }
+    protected void doDrawBottom(Canvas canvas,Bitmap bitmap,int width,int height){
+        Paint paint = new Paint();//实例化画笔
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setColor(0xffffffff);
+        paint.setAntiAlias(true);
+        int h = bitmap.getWidth() * height / width;
+        int begin = h < bitmap.getHeight() ? bitmap.getHeight() - h : 0;
+        doDraw(canvas, bitmap, new Rect(0, begin, bitmap.getWidth(), h+begin), new Rect(0, 0, width, height), paint);
     }
 
     protected void doDraw(Canvas canvas, Bitmap bitmap,Rect src,Rect dst,Paint paint){
