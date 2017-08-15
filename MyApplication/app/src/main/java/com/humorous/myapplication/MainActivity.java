@@ -32,6 +32,11 @@ public class MainActivity extends FragmentActivity {
         tr.add(R.id.container,mFragment);
         tr.commit();
         Logger.d(TAG,Thread.currentThread().hashCode());
+        testFunc();
+    }
+
+
+    private void testFunc(){
     }
 
     @Override
