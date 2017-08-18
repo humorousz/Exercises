@@ -104,11 +104,11 @@ public class BitMapActor extends BaseActor implements SurfaceHolder.Callback {
                 long stateTime = 0;
                 while (!stop && count < mWebPImage.getFrameCount() && mWebPImage != null) {
                     lastTime = SystemClock.uptimeMillis();
-                    mWebPImage.getFrame(count).renderFrame(mWebPImage.getWidth(), mWebPImage.getHeight(), bitmap);
                     Canvas canvasStart = mHolder.lockCanvas();
                     if (bitmap == null || canvasStart == null)
                         break;
                     if(lastCount != count){
+                        mWebPImage.getFrame(count).renderFrame(mWebPImage.getWidth(), mWebPImage.getHeight(), bitmap);
                         doDrawBottom(canvasStart, bitmap, UIUtils.getScreenWidth(), UIUtils.getScreenHeight());
                     }
                     mHolder.unlockCanvasAndPost(canvasStart);
