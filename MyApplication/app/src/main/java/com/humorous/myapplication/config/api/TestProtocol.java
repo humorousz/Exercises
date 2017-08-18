@@ -47,6 +47,9 @@ public class TestProtocol {
     //帧动画 练习
     public static final String FRAME_ANIMTOR = BASE + TestFragmentFactory.TYPE.FRAME_ANIMTOR + HAS_NO_TITLE;
 
+    //demoRoom 练习
+    public static final String DEMO_ROOM = BASE + TestFragmentFactory.TYPE.DEMO_ROOM + HAS_NO_TITLE;
+
 
     /**
      * 二级菜单

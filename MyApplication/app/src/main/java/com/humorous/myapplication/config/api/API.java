@@ -59,6 +59,11 @@ public class API {
         itemModel.setTitle("帧动画");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.DEMO_ROOM);
+        itemModel.setTitle("demo房间");
+        models.add(itemModel);
+
 //        itemModel = new HomeItemModel();
 //        itemModel.setLink(TestProtocol.EXCEPTION_TEST);
 //        itemModel.setTitle("异常捕获器练习");
