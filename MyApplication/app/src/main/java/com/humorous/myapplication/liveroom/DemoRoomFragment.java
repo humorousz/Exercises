@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.humorous.myapplication.R;
+import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorView;
 import com.humorousz.uiutils.view.BaseFragment;
 
@@ -14,9 +16,12 @@ import com.humorousz.uiutils.view.BaseFragment;
  * Created by zhangzhiquan on 2017/8/19.
  */
 
-public class DemoRoomFragment extends BaseFragment {
+public class DemoRoomFragment extends BaseFragment implements View.OnClickListener {
     IntoRoomAnimatorView intoRoomAnimatorView;
     FrameLayout mContainer;
+    Button mSendBtn;
+    IntoRoomAnimatorController mController;
+    int count = 0;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layoyt_fragment_demo_room,container,false);
@@ -25,19 +30,27 @@ public class DemoRoomFragment extends BaseFragment {
     @Override
     public void initView(View root) {
         mContainer = (FrameLayout) root.findViewById(R.id.into_room_container);
+        mSendBtn = (Button) root.findViewById(R.id.sendBtn);
+        mSendBtn.setOnClickListener(this);
+        mController = new IntoRoomAnimatorController(getContext(),mContainer);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        intoRoomAnimatorView = new IntoRoomAnimatorView(getContext());
-        mContainer.addView(intoRoomAnimatorView);
-        intoRoomAnimatorView.setData("张智全 进入了房间");
-        mContainer.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                intoRoomAnimatorView.setData("张智全 又进入了房间");
-            }
-        },6000);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(mController != null){
+            mController.release();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        mController.addTask("humorous "+count+" come");
+        count++;
     }
 }

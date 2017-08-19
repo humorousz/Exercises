@@ -75,7 +75,9 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
         if(mListener != null){
             mListener.onStart();
         }
-        isRunning = true;
+        if(animation == inAnimation){
+            isRunning = true;
+        }
     }
 
     @Override
@@ -83,12 +85,12 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
         if(animation == inAnimation){
             mTextContainer.startAnimation(outAnimation);
         }else if(animation == outAnimation){
+            isRunning = false;
             AnimationDrawable anim = (AnimationDrawable) mStar.getDrawable();
             anim.stop();
             if(mListener != null){
                 mListener.onEnd();
             }
-            isRunning = false;
         }
     }
 
