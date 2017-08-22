@@ -24,7 +24,7 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
     private FrameLayout mTextContainer;
     private ImageView mStar;
     private Context mContext;
-    private Animation inAnimation,outAnimation;
+    private Animation inAnimation,outAnimation,waitAnimation;
     private OnAnimationStateListener mListener;
     private boolean isRunning;
     public IntoRoomAnimatorView(Context context) {
@@ -53,6 +53,9 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
         outAnimation = AnimationUtils.loadAnimation(mContext,R.anim.into_out);
         outAnimation.setFillAfter(true);
         outAnimation.setAnimationListener(this);
+        waitAnimation = AnimationUtils.loadAnimation(mContext,R.anim.into_wait);
+        waitAnimation.setFillAfter(true);
+        waitAnimation.setAnimationListener(this);
         mStar.setImageResource(R.drawable.aa);
         mStar.clearAnimation();
     }
@@ -83,7 +86,7 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
     @Override
     public void onAnimationEnd(Animation animation) {
         if(animation == inAnimation){
-            mTextContainer.startAnimation(outAnimation);
+           mTextContainer.startAnimation(waitAnimation);
         }else if(animation == outAnimation){
             isRunning = false;
             AnimationDrawable anim = (AnimationDrawable) mStar.getDrawable();
@@ -91,6 +94,8 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
             if(mListener != null){
                 mListener.onEnd();
             }
+        }else  if(animation == waitAnimation){
+            mTextContainer.startAnimation(outAnimation);
         }
     }
 

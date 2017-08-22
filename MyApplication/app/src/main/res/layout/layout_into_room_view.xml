@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,13 +16,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/into_bg"
-            android:text="fdfdfdfdfdfd" />
+            tools:text="xxxx 进入直播间"
+            android:textSize="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/white"/>
 
         <ImageView
             android:id="@+id/star_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="right"/>
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="left|center_vertical"/>
     </FrameLayout>
 
 </LinearLayout>

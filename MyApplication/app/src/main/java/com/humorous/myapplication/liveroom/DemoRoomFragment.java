@@ -18,7 +18,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 
 public class DemoRoomFragment extends BaseFragment implements View.OnClickListener {
     IntoRoomAnimatorView intoRoomAnimatorView;
-    FrameLayout mContainer;
+    ViewGroup mContainer;
     Button mSendBtn;
     IntoRoomAnimatorController mController;
     int count = 0;
@@ -29,7 +29,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void initView(View root) {
-        mContainer = (FrameLayout) root.findViewById(R.id.into_room_container);
+        mContainer = (ViewGroup) root.findViewById(R.id.into_room_container);
         mSendBtn = (Button) root.findViewById(R.id.sendBtn);
         mSendBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);

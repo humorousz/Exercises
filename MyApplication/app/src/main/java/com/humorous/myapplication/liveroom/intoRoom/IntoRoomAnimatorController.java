@@ -1,9 +1,19 @@
 package com.humorous.myapplication.liveroom.intoRoom;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.ViewGroup;
 
+import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.uiutils.helper.UIUtils;
+import com.humorousz.uiutils.span.ChatBoxNetworkSpan;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -30,7 +40,7 @@ public class IntoRoomAnimatorController implements IntoRoomAnimatorView.OnAnimat
 
     public void addTask(CharSequence sequence) {
         Logger.d(TAG,"addTask");
-        mQueue.offer(sequence);
+        mQueue.offer(getSpan(sequence));
         takeTask();
     }
 
@@ -62,6 +72,24 @@ public class IntoRoomAnimatorController implements IntoRoomAnimatorView.OnAnimat
             mQueue.clear();
         }
         mQueue = null;
+    }
+
+    private CharSequence getSpan(CharSequence str){
+        SpannableStringBuilder ssb = new SpannableStringBuilder();
+        ChatBoxNetworkSpan span = new ChatBoxNetworkSpan();
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ic_pointer);
+        int btmWidth = bitmap.getWidth();
+        int btmHeight = bitmap.getHeight();
+
+        BitmapDrawable bitmapD  = new BitmapDrawable(bitmap);
+        int finalWidth = (int) (btmWidth * (UIUtils.dip2px(16) / (float) btmHeight));
+        bitmapD.setBounds(0, 0, finalWidth, (UIUtils.dip2px(16) ));
+        span.setDrawable(bitmapD);
+        SpannableString spString = new SpannableString("a ");
+        spString.setSpan(span,0,1,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        ssb.append(spString);
+        ssb.append(str);
+        return ssb;
     }
 
     @Override
