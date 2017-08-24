@@ -25,8 +25,9 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
     private FrameLayout mTextContainer;
     private ImageView mStar;
     private Context mContext;
-    private Animation inAnimation,outAnimation,waitAnimation;
+    private Animation inAnimation,outAnimation;
     private OnAnimationStateListener mListener;
+    Interpolator interpolator;
     private boolean isCancel;
     private boolean isRunning;
     public IntoRoomAnimatorView(Context context) {
@@ -55,13 +56,9 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
         outAnimation = AnimationUtils.loadAnimation(mContext,R.anim.into_out);
         outAnimation.setFillAfter(true);
         outAnimation.setAnimationListener(this);
-        waitAnimation = AnimationUtils.loadAnimation(mContext,R.anim.into_wait);
-        waitAnimation.setFillAfter(true);
-        waitAnimation.setAnimationListener(this);
         mStar.setImageResource(R.drawable.aa);
         mStar.clearAnimation();
-        Interpolator interpolator = new EaseCubicInterpolator(0f,1.16f,0.45f,0.8f);
-        inAnimation.setInterpolator(interpolator);
+        interpolator = new EaseCubicInterpolator(0f,1.17f,0f,0.9f);
     }
 
     public void setData(CharSequence data){
@@ -71,6 +68,8 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
         AnimationDrawable anim = (AnimationDrawable) mStar.getDrawable();
         anim.start();
         isCancel = false;
+        Interpolator interpolator = new EaseCubicInterpolator(0f,1.17f,0f,0.9f);
+        inAnimation.setInterpolator(interpolator);
         mTextContainer.startAnimation(inAnimation);
     }
 
@@ -99,7 +98,7 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
     public void onAnimationEnd(Animation animation) {
         if(animation == inAnimation){
             if(!isCancel){
-                mTextContainer.startAnimation(waitAnimation);
+                mTextContainer.startAnimation(outAnimation);
             }
         }else if(animation == outAnimation){
             isRunning = false;
@@ -107,10 +106,6 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
             anim.stop();
             if(mListener != null){
                 mListener.onEnd();
-            }
-        }else  if(animation == waitAnimation){
-            if(!isCancel){
-                mTextContainer.startAnimation(outAnimation);
             }
         }
     }
