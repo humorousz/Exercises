@@ -19,15 +19,17 @@
             tools:text="xxxx 进入直播间"
             android:textSize="15dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
 
         <ImageView
             android:id="@+id/star_img"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_gravity="left|center_vertical"/>
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="right|center_vertical"/>
     </FrameLayout>
 
 </LinearLayout>

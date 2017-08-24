@@ -9,12 +9,19 @@
         android:background="#33000000"
         android:id="@+id/into_room_container"
         android:layout_width="match_parent"
-        android:layout_height="50dp"></FrameLayout>
+        android:layout_height="30dp"></FrameLayout>
 
     <Button
         android:id="@+id/sendBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="土豪进场"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/clearBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清空动画"
         android:layout_marginTop="5dp"/>
 </LinearLayout>

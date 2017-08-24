@@ -9,13 +9,13 @@
 
     <padding android:left="8dp"
         android:right="16dp"
-        android:top="5dp"
-        android:bottom="5dp"/>
+        android:top="1dp"
+        android:bottom="1dp"/>
 
     <solid android:color="@color/colorAccent"/>
 
     <gradient
-        android:startColor="#ffcd25"
-        android:endColor="#ffb217"/>
+        android:endColor="#ffcd25"
+        android:startColor="#ffb217"/>
 
 </shape>

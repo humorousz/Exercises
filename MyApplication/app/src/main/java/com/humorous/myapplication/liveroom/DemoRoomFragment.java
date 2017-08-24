@@ -19,7 +19,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 public class DemoRoomFragment extends BaseFragment implements View.OnClickListener {
     IntoRoomAnimatorView intoRoomAnimatorView;
     ViewGroup mContainer;
-    Button mSendBtn;
+    Button mSendBtn,mClearBtn;
     IntoRoomAnimatorController mController;
     int count = 0;
     @Override
@@ -32,6 +32,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mContainer = (ViewGroup) root.findViewById(R.id.into_room_container);
         mSendBtn = (Button) root.findViewById(R.id.sendBtn);
         mSendBtn.setOnClickListener(this);
+        mClearBtn = (Button) root.findViewById(R.id.clearBtn);
+        mClearBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
     }
 
@@ -50,7 +52,13 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        mController.addTask("humorous "+count+" come");
-        count++;
+        if(v == mSendBtn){
+            mController.addTask("humorous "+count+" come");
+            count++;
+        }else {
+            mController.clear();
+            count = 0;
+        }
+
     }
 }
