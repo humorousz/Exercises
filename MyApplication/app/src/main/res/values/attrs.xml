@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LF_LoadingImageView">
+        <attr name="src" format="reference"></attr>
+        <attr name="frontColor" format="reference"></attr>
+        <attr name="backColor" format="reference"></attr>
+    </declare-styleable>
+</resources>

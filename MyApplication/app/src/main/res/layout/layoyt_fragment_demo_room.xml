@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center">
 
@@ -31,4 +32,15 @@
         android:layout_height="wrap_content"
         android:text="调整位置"
         android:layout_marginTop="5dp"/>
+
+    <com.humorous.myapplication.liveroom.weidget.LoadingImageView
+        android:id="@+id/id_gift_star_view"
+        android:layout_marginTop="10dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@drawable/lf_star_full_new"
+        android:layout_gravity="center"
+        app:backColor="@color/color_bffd9500"
+        app:frontColor="@color/color_bffd9500"
+        app:src="@drawable/lf_star_full_new"/>
 </LinearLayout>

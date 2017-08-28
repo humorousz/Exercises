@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorView;
+import com.humorous.myapplication.liveroom.weidget.LoadingImageView;
 import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 
@@ -22,6 +23,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     ViewGroup mContainer;
     Button mSendBtn,mClearBtn,mMoveBtn;
     IntoRoomAnimatorController mController;
+    LoadingImageView mLoadingImage;
     int count = 0;
     boolean up = true;
     @Override
@@ -39,11 +41,14 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mMoveBtn = (Button) root.findViewById(R.id.moveBtn);
         mMoveBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
+        mLoadingImage = (LoadingImageView) root.findViewById(R.id.id_gift_star_view);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        mLoadingImage.setWaterLevelRatio(0.5f);
     }
 
     @Override
