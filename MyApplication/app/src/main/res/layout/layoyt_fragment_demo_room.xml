@@ -24,4 +24,11 @@
         android:layout_height="wrap_content"
         android:text="清空动画"
         android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/moveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="调整位置"
+        android:layout_marginTop="5dp"/>
 </LinearLayout>

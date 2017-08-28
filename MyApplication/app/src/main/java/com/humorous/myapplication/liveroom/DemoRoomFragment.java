@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorView;
+import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -19,9 +20,10 @@ import com.humorousz.uiutils.view.BaseFragment;
 public class DemoRoomFragment extends BaseFragment implements View.OnClickListener {
     IntoRoomAnimatorView intoRoomAnimatorView;
     ViewGroup mContainer;
-    Button mSendBtn,mClearBtn;
+    Button mSendBtn,mClearBtn,mMoveBtn;
     IntoRoomAnimatorController mController;
     int count = 0;
+    boolean up = true;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layoyt_fragment_demo_room,container,false);
@@ -34,6 +36,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mSendBtn.setOnClickListener(this);
         mClearBtn = (Button) root.findViewById(R.id.clearBtn);
         mClearBtn.setOnClickListener(this);
+        mMoveBtn = (Button) root.findViewById(R.id.moveBtn);
+        mMoveBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
     }
 
@@ -55,9 +59,17 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         if(v == mSendBtn){
             mController.addTask("humorous "+count+" come");
             count++;
-        }else {
+        }else if(v == mClearBtn) {
             mController.clear();
             count = 0;
+        }else if(v == mMoveBtn){
+            if(up){
+                mContainer.setTranslationY(mContainer.getTranslationY() - UIUtils.dip2px(5));
+            }else {
+                mContainer.setTranslationY(mContainer.getTranslationY() + UIUtils.dip2px(5) );
+            }
+
+            up = !up;
         }
 
     }
