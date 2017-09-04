@@ -12,15 +12,17 @@ import java.util.List;
 public class API {
 
     public enum SECOND_MENU {
-        MAIN,COORDINATOR
+        MAIN,UI,ANIM
     }
 
     public static List<HomeItemModel> getList(SECOND_MENU type) {
         switch (type) {
-            case COORDINATOR:
-                return getCoordinator();
+            case UI:
+                return getUI();
             case MAIN:
                 return getAllItem();
+            case ANIM:
+                return getAnim();
         }
         return null;
 
@@ -29,34 +31,16 @@ public class API {
     public static List<HomeItemModel> getAllItem() {
         List<HomeItemModel> models = new ArrayList<>(12);
 
-        HomeItemModel itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.ANT_TEST);
-        itemModel.setTitle("芝麻信用效果");
+        HomeItemModel itemModel;
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.UI_MENU);
+        itemModel.setTitle("UI相关");
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.TOPIC_RECYCLER_TEST);
-        itemModel.setTitle("抖音新鲜页滑动渐变");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.COORDINATOR_DEMO);
-        itemModel.setTitle("上滑悬浮");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.COORDINATOR_MENU);
-        itemModel.setTitle("Coordinator相关");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.DRAWER_LAYOUT);
-        itemModel.setTitle("DrawerLayout练习");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.FRAME_ANIMTOR);
-        itemModel.setTitle("帧动画");
+        itemModel.setLink(TestProtocol.ANIM_MENU);
+        itemModel.setTitle("动画练习");
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
@@ -74,10 +58,20 @@ public class API {
     }
 
 
-    public static List<HomeItemModel> getCoordinator() {
+    public static List<HomeItemModel> getUI() {
 
         List<HomeItemModel> models = new ArrayList<>(12);
         HomeItemModel itemModel;
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.TOPIC_RECYCLER_TEST);
+        itemModel.setTitle("抖音新鲜页滑动渐变");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.COORDINATOR_DEMO);
+        itemModel.setTitle("上滑悬浮");
+        models.add(itemModel);
+
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.COORDINATOR_TEST);
         itemModel.setTitle("Behavior练习");
@@ -97,7 +91,30 @@ public class API {
         itemModel.setLink(TestProtocol.NESTED_SCROLL_VIEW);
         itemModel.setTitle("NestedScrollView");
         models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.DRAWER_LAYOUT);
+        itemModel.setTitle("DrawerLayout练习");
+        models.add(itemModel);
+
         return models;
+    }
+
+    public static List<HomeItemModel> getAnim() {
+        List<HomeItemModel> models = new ArrayList<>(12);
+        HomeItemModel itemModel;
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.ANT_TEST);
+        itemModel.setTitle("芝麻信用效果");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.FRAME_ANIMTOR);
+        itemModel.setTitle("帧动画");
+        models.add(itemModel);
+
+        return models;
+
     }
 
 

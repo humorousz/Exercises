@@ -57,7 +57,9 @@ public class TestProtocol {
 
     public static final String MENU = "menu://humorous" + TYPE;
 
-    public static final String COORDINATOR_MENU = MENU + API.SECOND_MENU.COORDINATOR;
+    public static final String UI_MENU = MENU + API.SECOND_MENU.UI;
+
+    public static final String ANIM_MENU = MENU + API.SECOND_MENU.ANIM;
 
 
 }
