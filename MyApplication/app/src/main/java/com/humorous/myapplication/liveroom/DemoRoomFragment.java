@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -24,6 +26,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     Button mSendBtn,mClearBtn,mMoveBtn;
     IntoRoomAnimatorController mController;
     LoadingImageView mLoadingImage;
+    Animation inAnimation;
     int count = 0;
     boolean up = true;
     @Override
@@ -42,6 +45,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mMoveBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
         mLoadingImage = (LoadingImageView) root.findViewById(R.id.id_gift_star_view);
+        inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.into_scale);
+        mLoadingImage.startAnimation(inAnimation);
 
     }
 
@@ -67,6 +72,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         }else if(v == mClearBtn) {
             mController.clear();
             count = 0;
+//            mLoadingImage.clearAnimation();
+            inAnimation.cancel();
         }else if(v == mMoveBtn){
             if(up){
                 mContainer.setTranslationY(mContainer.getTranslationY() - UIUtils.dip2px(5));

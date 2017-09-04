@@ -65,6 +65,7 @@ public class SelectGiftView extends LinearLayout {
         mData.add(new GiftInfo("心动","animation_out.webp"));
         mData.add(new GiftInfo("香蕉","banana.webp"));
         mData.add(new GiftInfo("星星 ","star.webp"));
+        mData.add(new GiftInfo("超跑 ","newcar.webp"));
     }
 
     private static class GiftInfo{

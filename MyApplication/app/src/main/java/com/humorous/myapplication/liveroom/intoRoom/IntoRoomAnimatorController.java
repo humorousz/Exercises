@@ -115,7 +115,7 @@ public class IntoRoomAnimatorController implements IntoRoomAnimatorView.OnAnimat
         SpannableString spString = new SpannableString("a ");
         spString.setSpan(span,0,1,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         ssb.append(spString);
-        ssb.append(setSpanColor(str, Color.parseColor("#ffd855")));
+        ssb.append(setSpanColor(str, Color.parseColor("#fff7c0")));
         return ssb;
     }
 

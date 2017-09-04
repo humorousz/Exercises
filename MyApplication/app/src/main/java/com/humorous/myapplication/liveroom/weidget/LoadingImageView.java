@@ -26,6 +26,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.UIUtils;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class LoadingImageView extends ImageView {
     private Canvas bitmapCanvas;
     private Paint mBorderPaint;
     private AnimatorSet mAnimatorSet;
-    private Rect rect;
+    private Rect rect,rect2;
     private WindowManager window;
 
 
@@ -204,7 +205,16 @@ public class LoadingImageView extends ImageView {
             bitmapCanvas = new Canvas(mBitmap);
         }
 
-        bitmapCanvas.drawBitmap(mSrc, null, rect, mImagePaint);
+        if(rect2 == null){
+            rect2 = new Rect(0,0,mSrc.getWidth(),mSrc.getHeight());
+            int left = (getWidth()- mSrc.getWidth()/3*2)/2;
+            int top = (getHeight()-mSrc.getHeight()/3*2)/2;
+            rect = new Rect(left-UIUtils.dip2px(4),top-UIUtils.dip2px(1) ,left + rect2.width()/3*2,top+rect2.height()/3*2);
+            Logger.d("MRZ","src:"+" width:"+ rect2.width()+" height:"+rect2.height());
+            Logger.d("MRZ","screen:"+" width"+rect.width()+" height:"+rect.height());
+            Logger.d("MRZ","dp:"+UIUtils.px2dip(12));
+        }
+        bitmapCanvas.drawBitmap(mSrc, rect2, rect, mImagePaint);
 
 
         if (mWaveShader != null) {
@@ -223,21 +233,21 @@ public class LoadingImageView extends ImageView {
                     (DEFAULT_WATER_LEVEL_RATIO - mWaterLevelRatio) * getHeight());
             mShaderMatrix.postRotate(rotation, getWidth() / 2, getHeight() / 2);
             mWaveShader.setLocalMatrix(mShaderMatrix);
-            float borderWidth = 0;
+            float borderWidth = 10;
 
 
             if (borderWidth > 0) {
                 bitmapCanvas.drawRect(
-                        borderWidth / 2f+UIUtils.dip2px(9),
                         borderWidth / 2f,
-                        getWidth()- UIUtils.dip2px(13) - borderWidth / 2f - 0.5f,
-                        getHeight() - borderWidth / 2f - 0.5f-UIUtils.dip2px(10),
+                        borderWidth / 2f,
+                        getWidth() - borderWidth / 2f - 0.5f,
+                        getHeight() - borderWidth / 2f - 0.5f,
                         mBorderPaint);
             }
 
 
-            bitmapCanvas.drawRect(borderWidth+UIUtils.dip2px(9), borderWidth, getWidth()- UIUtils.dip2px(13) - borderWidth,
-                    getHeight() - borderWidth-UIUtils.dip2px(10), mViewPaint);
+            bitmapCanvas.drawRect(borderWidth, borderWidth, getWidth()- borderWidth,
+                    getHeight() , mViewPaint);
 
 
         } else {

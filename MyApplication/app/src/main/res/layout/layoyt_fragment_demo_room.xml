@@ -40,7 +40,15 @@
         android:layout_height="42dp"
         android:src="@drawable/lf_star_full_new"
         android:layout_gravity="center"
-        app:backColor="@color/color_bffd9500"
-        app:frontColor="@color/color_bffd9500"
-        app:src="@drawable/lf_star_full_new"/>
+        app:backColor="@color/color_ffffca"
+        app:frontColor="@color/color_ffffca"
+        app:src="@drawable/star_area"/>
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="3dp"
+        android:layout_marginLeft="2.5dp"
+        android:layout_marginRight="2.5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/doc_bg"/>
 </LinearLayout>
