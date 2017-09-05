@@ -62,6 +62,12 @@ public class API {
 
         List<HomeItemModel> models = new ArrayList<>(12);
         HomeItemModel itemModel;
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.TEXT_SPAN);
+        itemModel.setTitle("Span 练习");
+        models.add(itemModel);
+
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.TOPIC_RECYCLER_TEST);
         itemModel.setTitle("抖音新鲜页滑动渐变");
