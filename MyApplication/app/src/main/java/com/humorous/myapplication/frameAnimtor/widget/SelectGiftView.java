@@ -56,6 +56,7 @@ public class SelectGiftView extends LinearLayout {
 
     private void initData(){
         mData = new ArrayList<>(12);
+        mData.add(new GiftInfo("奢华蛋糕","cake.webp"));
         mData.add(new GiftInfo("跑车","car.webp"));
         mData.add(new GiftInfo("新年快乐","newyear.webp"));
         mData.add(new GiftInfo("人民币","rmb.webp"));

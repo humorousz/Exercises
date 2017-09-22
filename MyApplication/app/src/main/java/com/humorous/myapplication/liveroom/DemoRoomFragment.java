@@ -13,6 +13,7 @@ import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorView;
 import com.humorous.myapplication.liveroom.weidget.LoadingImageView;
+import com.humorous.myapplication.liveroom.weidget.MinePopupWindow;
 import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 
@@ -23,7 +24,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 public class DemoRoomFragment extends BaseFragment implements View.OnClickListener {
     IntoRoomAnimatorView intoRoomAnimatorView;
     ViewGroup mContainer;
-    Button mSendBtn,mClearBtn,mMoveBtn;
+    Button mSendBtn,mClearBtn,mMoveBtn,mPopBtn;
     IntoRoomAnimatorController mController;
     LoadingImageView mLoadingImage;
     Animation inAnimation;
@@ -43,6 +44,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mClearBtn.setOnClickListener(this);
         mMoveBtn = (Button) root.findViewById(R.id.moveBtn);
         mMoveBtn.setOnClickListener(this);
+        mPopBtn = (Button) root.findViewById(R.id.popBtn);
+        mPopBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
         mLoadingImage = (LoadingImageView) root.findViewById(R.id.id_gift_star_view);
         inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.into_scale);
@@ -82,6 +85,9 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
             }
 
             up = !up;
+        }else if(v == mPopBtn){
+            MinePopupWindow popupWindow = new MinePopupWindow(getActivity(),mPopBtn);
+            popupWindow.showPopupWindow(mPopBtn);
         }
 
     }

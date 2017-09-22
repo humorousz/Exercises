@@ -6,6 +6,12 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <Button
+        android:id="@+id/popBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="弹出pop"
+        android:layout_marginBottom="5dp"/>
     <FrameLayout
         android:background="#33000000"
         android:id="@+id/into_room_container"
