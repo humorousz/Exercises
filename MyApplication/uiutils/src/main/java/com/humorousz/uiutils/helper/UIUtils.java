@@ -15,12 +15,14 @@ public class UIUtils {
     private static final String TAG = "UIUtils";
 
     public static final int dip2px(int dip) {
-        if(CommonService.getApplication() == null ){
-            return -1;
-        }
-        float scale = CommonService.getApplication().getResources().getDisplayMetrics().density;
+        return dip2px(CommonService.getApplication(),dip);
+    }
+
+    public static final int dip2px(Context context,int dip){
+        float scale = context.getApplicationContext().getResources().getDisplayMetrics().density;
         return (int)((float)dip * scale + 0.5F);
     }
+
 
 
 

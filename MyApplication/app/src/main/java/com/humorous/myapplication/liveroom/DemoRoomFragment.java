@@ -26,7 +26,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     ViewGroup mContainer;
     Button mSendBtn,mClearBtn,mMoveBtn,mPopBtn;
     IntoRoomAnimatorController mController;
-    LoadingImageView mLoadingImage;
     Animation inAnimation;
     int count = 0;
     boolean up = true;
@@ -47,16 +46,14 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mPopBtn = (Button) root.findViewById(R.id.popBtn);
         mPopBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
-        mLoadingImage = (LoadingImageView) root.findViewById(R.id.id_gift_star_view);
         inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.into_scale);
-        mLoadingImage.startAnimation(inAnimation);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mLoadingImage.setWaterLevelRatio(0.5f);
+
     }
 
     @Override
@@ -75,7 +72,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         }else if(v == mClearBtn) {
             mController.clear();
             count = 0;
-//            mLoadingImage.clearAnimation();
             inAnimation.cancel();
         }else if(v == mMoveBtn){
             if(up){

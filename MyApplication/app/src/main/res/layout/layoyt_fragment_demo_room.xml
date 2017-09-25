@@ -39,29 +39,10 @@
         android:text="调整位置"
         android:layout_marginTop="5dp"/>
 
-    <com.humorous.myapplication.liveroom.weidget.LoadingImageView
-        android:id="@+id/id_gift_star_view"
-        android:layout_marginTop="10dp"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:src="@drawable/lf_star_full_new"
-        android:layout_gravity="center"
-        app:backColor="@color/color_ffffca"
-        app:frontColor="@color/color_ffffca"
-        app:src="@drawable/star_area"/>
-
-    <View
-        android:layout_width="4dp"
-        android:layout_height="3dp"
-        android:layout_marginLeft="2.5dp"
-        android:layout_marginRight="2.5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/doc_bg"/>
-
-
     <com.humorousz.uiutils.widget.CommonTipsView
-        android:layout_width="180dp"
-        android:layout_height="100dp"
+        android:id="@+id/commonTips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="我好帅"
-        app:arrow_gravity="left|bottom"/>
+        app:arrow_gravity="bottom|right"/>
 </LinearLayout>
