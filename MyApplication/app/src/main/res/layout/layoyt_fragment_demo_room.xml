@@ -57,4 +57,11 @@
         android:layout_marginRight="2.5dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/doc_bg"/>
+
+
+    <com.humorousz.uiutils.widget.CommonTipsView
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:text="我好帅"
+        app:arrow_gravity="left|bottom"/>
 </LinearLayout>
