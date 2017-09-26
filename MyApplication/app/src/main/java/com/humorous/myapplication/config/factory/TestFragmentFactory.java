@@ -8,6 +8,7 @@ import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
 import com.humorous.myapplication.frameAnimtor.AnimatorFragment;
 import com.humorous.myapplication.liveroom.DemoRoomFragment;
+import com.humorous.myapplication.liveroom.DemoUIFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
@@ -22,7 +23,7 @@ public class TestFragmentFactory {
     public enum TYPE{
         ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR
         ,NESTED_SCROLLING,NESTED_SCROLL_VIEW,EXCEPTION,DRAWER_LAYOUT,FRAME_ANIMTOR
-        ,DEMO_ROOM,TEXT_SPAN
+        ,DEMO_ROOM,TEXT_SPAN,DEMO_UI
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -62,6 +63,9 @@ public class TestFragmentFactory {
                 break;
             case TEXT_SPAN:
                 fragment = new TextSpanFragment();
+                break;
+            case DEMO_UI:
+                fragment = new DemoUIFragment();
                 break;
         }
         return fragment;

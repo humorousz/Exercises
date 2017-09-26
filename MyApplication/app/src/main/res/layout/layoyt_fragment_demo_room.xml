@@ -43,6 +43,6 @@
         android:id="@+id/commonTips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="我好帅"
+        android:text="我好帅a"
         app:arrow_gravity="bottom|right"/>
 </LinearLayout>

@@ -46,6 +46,10 @@ public class API {
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.DEMO_ROOM);
         itemModel.setTitle("demo房间");
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.DEMO_UI);
+        itemModel.setTitle("demoUI");
         models.add(itemModel);
 
 //        itemModel = new HomeItemModel();

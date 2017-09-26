@@ -52,6 +52,9 @@ public class TestProtocol {
 
     public static final String TEXT_SPAN = BASE + TestFragmentFactory.TYPE.TEXT_SPAN + HAS_NO_TITLE;
 
+    //demoUI 练习
+    public static final String DEMO_UI = BASE + TestFragmentFactory.TYPE.DEMO_UI + HAS_NO_TITLE;
+
 
     /**
      * 二级菜单
