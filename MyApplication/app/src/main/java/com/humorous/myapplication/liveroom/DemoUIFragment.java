@@ -60,18 +60,16 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
         }
         switch (gravity){
             case 1:
-                commonTipsView.setArrowGravity(Gravity.LEFT);
+                commonTipsView.setArrowGravity(Gravity.BOTTOM|Gravity.LEFT);
                 break;
             case 2:
-                commonTipsView.setArrowGravity(Gravity.CENTER);
+                commonTipsView.setArrowGravity(Gravity.BOTTOM|Gravity.CENTER);
                 break;
             case 3:
-                commonTipsView.setArrowGravity(Gravity.RIGHT);
+                commonTipsView.setArrowGravity(Gravity.BOTTOM|Gravity.RIGHT);
                 break;
         }
-        if(editText != null){
-            commonTipsView.setText(editText.getText());
-        }
+        commonTipsView.setText(editText.getText().toString());
 
     }
 }
