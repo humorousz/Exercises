@@ -1,5 +1,6 @@
 package com.humorous.myapplication.liveroom;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.humorous.myapplication.R;
@@ -22,6 +24,7 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
     private EditText editText;
     private LinearLayout mTipsContainer;
     private CommonTipsView commonTipsView;
+    private ImageView mImage;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_fragment_demo_ui,container,false);
@@ -33,7 +36,11 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
         mbtn = (Button) root.findViewById(R.id.middle_btn);
         rbtn = (Button) root.findViewById(R.id.right_btn);
         editText = (EditText) root.findViewById(R.id.tip_edit);
+        mImage = (ImageView) root.findViewById(R.id.image);
         mTipsContainer = (LinearLayout) root.findViewById(R.id.commonTipsView);
+        mImage.setImageResource(R.drawable.light);
+        AnimationDrawable anim = (AnimationDrawable) mImage.getDrawable();
+        anim.start();
         lbtn.setOnClickListener(this);
         mbtn.setOnClickListener(this);
         rbtn.setOnClickListener(this);

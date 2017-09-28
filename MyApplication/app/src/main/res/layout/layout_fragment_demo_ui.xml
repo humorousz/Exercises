@@ -42,5 +42,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="输入文字在点上边按钮，弹出tips"/>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="i am first"
+            android:layout_marginBottom="-5dp"
+            android:gravity="center_horizontal"
+            android:background="#99000000"/>
+        <TextView
+            android:id="@+id/second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="i am first"
+            android:layout_below="@id/first"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:background="#aa000000"/>
+    </RelativeLayout>
+
+
 
 </LinearLayout>
