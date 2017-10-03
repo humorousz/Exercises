@@ -60,7 +60,7 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
     }
 
     private void clearView(){
-        mContainer.removeAllViews();
+        mContainer.removeView(mineLotteryView);
         mineLotteryView = null;
     }
     private void startAnim(List<MineLotteryData> message){

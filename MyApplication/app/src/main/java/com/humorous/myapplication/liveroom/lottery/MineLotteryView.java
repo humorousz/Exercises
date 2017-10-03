@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class MineLotteryView extends RelativeLayout implements Animation.AnimationListener {
-    private ImageView mLightImage, mLotteryImage;
+    private ImageView mLightImage, mLotteryImage,mStartImage;
     private Context mContext;
     private List<MineLotteryData> mData;
     private LinearLayout mLotteryContainer;
@@ -47,7 +47,7 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
         mLightImage = (ImageView) findViewById(R.id.lottery_bg_light);
         mLotteryContainer = (LinearLayout) findViewById(R.id.lottery_num_container);
         mLotteryImage = (ImageView) findViewById(R.id.lottery_img);
-        mLightImage.setImageResource(R.drawable.lottery_light_bg);
+        mStartImage = (ImageView) findViewById(R.id.lottery_bg_start);
 
         inAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_in);
         numInAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_in);
@@ -61,9 +61,6 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
         outAnim.setStartOffset(1000);
         numOutAnim.setStartOffset(1000);
 
-        AnimationDrawable anim = (AnimationDrawable) mLightImage.getDrawable();
-        anim.start();
-
     }
 
     public void setOnAnimationStateListener(OnAnimationStateListener listener) {
@@ -76,6 +73,12 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
         if (mData == null) {
             return;
         }
+        mStartImage.setImageResource(R.drawable.lottery_star_bg);
+        mLightImage.setImageResource(R.drawable.lottery_light_bg);
+        AnimationDrawable anim = (AnimationDrawable) mLightImage.getDrawable();
+        AnimationDrawable animStart = (AnimationDrawable) mStartImage.getDrawable();
+        anim.start();
+        animStart.start();
         step = 1;
         setLotteryImage();
         startAnimation(inAnim);
@@ -124,6 +127,8 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
             if (mListener != null) {
                 mListener.onEnd();
             }
+            mLightImage.setImageDrawable(null);
+            mStartImage.setImageDrawable(null);
         } else if (numInAnim == animation && !isCancel) {
             startNextStepAnim();
         } else if (numOutAnim == animation && !isCancel) {

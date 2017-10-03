@@ -14,6 +14,11 @@
         android:layout_height="match_parent"
         android:src="@drawable/lottery_tag"/>
 
+    <ImageView
+        android:id="@+id/lottery_bg_start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
         android:id="@+id/lottery_num_container"
         android:layout_width="match_parent"
