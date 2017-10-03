@@ -18,22 +18,22 @@ import java.util.List;
  * Created by zhangzhiquan on 2017/10/2.
  */
 
-public class MineLotteryView extends RelativeLayout implements Animation.AnimationListener{
-    private ImageView mLightImage,mLotteryImage;
+public class MineLotteryView extends RelativeLayout implements Animation.AnimationListener {
+    private ImageView mLightImage, mLotteryImage;
     private Context mContext;
     private List<MineLotteryData> mData;
     private LinearLayout mLotteryContainer;
-    private Animation inAnim,outAnim,numInAnim,numOutAnim;
+    private Animation inAnim, outAnim, numInAnim, numOutAnim;
     private int step = 0;
     private OnAnimationStateListener mListener;
     private boolean isCancel;
 
     public MineLotteryView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public MineLotteryView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public MineLotteryView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -42,18 +42,18 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
         initView();
     }
 
-    private void initView(){
-        LayoutInflater.from(mContext).inflate(R.layout.layout_mine_lottery_view,this);
+    private void initView() {
+        LayoutInflater.from(mContext).inflate(R.layout.layout_mine_lottery_view, this);
         mLightImage = (ImageView) findViewById(R.id.lottery_bg_light);
         mLotteryContainer = (LinearLayout) findViewById(R.id.lottery_num_container);
         mLotteryImage = (ImageView) findViewById(R.id.lottery_img);
         mLightImage.setImageResource(R.drawable.lottery_light_bg);
-        AnimationDrawable anim = (AnimationDrawable) mLightImage.getDrawable();
-        anim.start();
-        inAnim =  AnimationUtils.loadAnimation(getContext(),R.anim.lottery_in);
-        numInAnim = AnimationUtils.loadAnimation(getContext(),R.anim.lottery_in);
-        outAnim = AnimationUtils.loadAnimation(getContext(),R.anim.lottery_out);
-        numOutAnim = AnimationUtils.loadAnimation(getContext(),R.anim.lottery_out);
+
+        inAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_in);
+        numInAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_in);
+        outAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_out);
+        numOutAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_out);
+
         inAnim.setAnimationListener(this);
         numInAnim.setAnimationListener(this);
         outAnim.setAnimationListener(this);
@@ -61,35 +61,39 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
         outAnim.setStartOffset(1000);
         numOutAnim.setStartOffset(1000);
 
+        AnimationDrawable anim = (AnimationDrawable) mLightImage.getDrawable();
+        anim.start();
+
     }
 
-    public void setOnAnimationStateListener(OnAnimationStateListener listener){
+    public void setOnAnimationStateListener(OnAnimationStateListener listener) {
         mListener = listener;
     }
-    public void setData(List<MineLotteryData> mineLotteryData){
+
+    public void setData(List<MineLotteryData> mineLotteryData) {
         mData = mineLotteryData;
         isCancel = false;
-        if(mData == null) {
+        if (mData == null) {
             return;
         }
-        step++;
+        step = 1;
         setLotteryImage();
         startAnimation(inAnim);
     }
 
-    public void stopAnim(){
+    public void stopAnim() {
         isCancel = true;
         clearAnimation();
         mLotteryContainer.clearAnimation();
     }
 
-    private void setLotteryImage(){
-        if(step > mData.size())
+    private void setLotteryImage() {
+        if (step > mData.size())
             return;
-        MineLotteryData data = mData.get(step-1);
+        MineLotteryData data = mData.get(step - 1);
         int r = 0;
-        switch (data.getLottery()){
-            case  10:
+        switch (data.getLottery()) {
+            case 10:
                 r = R.drawable.lottery_10;
                 break;
             case 100:
@@ -107,22 +111,22 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
 
     @Override
     public void onAnimationStart(Animation animation) {
-        if(mListener != null && animation == inAnim){
+        if (mListener != null && animation == inAnim) {
             mListener.onStart();
         }
     }
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        if(inAnim == animation && !isCancel){
+        if (inAnim == animation && !isCancel) {
             startNextStepAnim();
-        }else if(outAnim == animation){
-            if(mListener != null){
+        } else if (outAnim == animation) {
+            if (mListener != null) {
                 mListener.onEnd();
             }
-        }else if(numInAnim == animation && !isCancel){
+        } else if (numInAnim == animation && !isCancel) {
             startNextStepAnim();
-        }else if(numOutAnim == animation && !isCancel){
+        } else if (numOutAnim == animation && !isCancel) {
             step++;
             setLotteryImage();
             mLotteryContainer.startAnimation(numInAnim);
@@ -134,16 +138,17 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
 
     }
 
-    private void startNextStepAnim(){
-        if(mData.size() <= step){
+    private void startNextStepAnim() {
+        if (mData.size() <= step) {
             startAnimation(outAnim);
-        }else {
+        } else {
             mLotteryContainer.startAnimation(numOutAnim);
         }
     }
 
-    public interface OnAnimationStateListener{
+    public interface OnAnimationStateListener {
         void onStart();
+
         void onEnd();
     }
 }

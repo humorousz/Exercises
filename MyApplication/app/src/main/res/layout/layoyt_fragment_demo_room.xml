@@ -36,7 +36,7 @@
         android:id="@+id/moveBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="调整位置"
+        android:text="幸运礼物"
         android:layout_marginTop="5dp"/>
     <FrameLayout
         android:id="@+id/luck_container"

@@ -96,7 +96,9 @@ public class IntoRoomAnimatorController implements IntoRoomAnimatorView.OnAnimat
             mAnimatorView.stopAnim();
             Logger.d(TAG,"stop Anim");
         }
-        mAnimatorView.setVisibility(View.INVISIBLE);
+        if(mAnimatorView != null){
+            mAnimatorView.setVisibility(View.INVISIBLE);
+        }
         isRunning = false;
     }
 

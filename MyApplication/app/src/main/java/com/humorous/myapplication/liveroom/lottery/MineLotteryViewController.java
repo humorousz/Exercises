@@ -66,6 +66,7 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
         if(mineLotteryView == null){
             mineLotteryView = new MineLotteryView(mContainer.getContext());
             mContainer.addView(mineLotteryView);
+            mineLotteryView.setOnAnimationStateListener(this);
         }
         if(mineLotteryView.getVisibility() == View.INVISIBLE){
             mineLotteryView.setVisibility(View.VISIBLE);

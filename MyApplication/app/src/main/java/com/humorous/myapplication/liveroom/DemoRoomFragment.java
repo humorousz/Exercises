@@ -32,6 +32,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     ViewGroup mContainer;
     Button mSendBtn,mClearBtn,mMoveBtn,mPopBtn;
     IntoRoomAnimatorController mController;
+    MineLotteryViewController mLotteryController;
     Animation inAnimation;
     ViewGroup mLotteryContainer;
     MineLotteryViewController mineLotteryViewController;
@@ -57,12 +58,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.into_scale);
         mLotteryContainer = (ViewGroup) root.findViewById(R.id.luck_container);
         mineLotteryViewController = new MineLotteryViewController(mLotteryContainer);
-        MineLotteryData data = new MineLotteryData(1,100,10,1,1000);
-        MineLotteryData data2 = new MineLotteryData(1,100,100,1,1000);
-        List<MineLotteryData> list = new ArrayList<>();
-        list.add(data);
-        list.add(data2);
-        mineLotteryViewController.addTask(list);
 
 
 
@@ -90,15 +85,21 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         }else if(v == mClearBtn) {
             mController.clear();
             count = 0;
-            inAnimation.cancel();
+            mineLotteryViewController.clear();
         }else if(v == mMoveBtn){
-            if(up){
-                mContainer.setTranslationY(mContainer.getTranslationY() - UIUtils.dip2px(5));
-            }else {
-                mContainer.setTranslationY(mContainer.getTranslationY() + UIUtils.dip2px(5) );
-            }
-
-            up = !up;
+//            if(up){
+//                mContainer.setTranslationY(mContainer.getTranslationY() - UIUtils.dip2px(5));
+//            }else {
+//                mContainer.setTranslationY(mContainer.getTranslationY() + UIUtils.dip2px(5) );
+//            }
+//
+//            up = !up;
+            MineLotteryData data = new MineLotteryData(1,100,10,1,1000);
+            MineLotteryData data2 = new MineLotteryData(1,100,100,1,1000);
+            List<MineLotteryData> list = new ArrayList<>();
+            list.add(data);
+            list.add(data2);
+            mineLotteryViewController.addTask(list);
         }else if(v == mPopBtn){
             MinePopupWindow popupWindow = new MinePopupWindow(getActivity(),mPopBtn);
             popupWindow.showPopupWindow(mPopBtn);
