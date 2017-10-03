@@ -38,11 +38,9 @@
         android:layout_height="wrap_content"
         android:text="调整位置"
         android:layout_marginTop="5dp"/>
-
-    <com.humorousz.uiutils.widget.CommonTipsView
-        android:id="@+id/commonTips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我好帅a"
-        app:arrow_gravity="bottom|right"/>
+    <FrameLayout
+        android:id="@+id/luck_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="50dp"></FrameLayout>
 </LinearLayout>

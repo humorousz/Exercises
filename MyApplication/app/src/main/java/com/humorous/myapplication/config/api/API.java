@@ -36,17 +36,17 @@ public class API {
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.UI_MENU);
         itemModel.setTitle("UI相关");
-//        models.add(itemModel);
+        models.add(itemModel);
 
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.ANIM_MENU);
         itemModel.setTitle("动画练习");
-//        models.add(itemModel);
+        models.add(itemModel);
 
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.DEMO_ROOM);
         itemModel.setTitle("demo房间");
-//        models.add(itemModel);
+        models.add(itemModel);
 
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.DEMO_UI);

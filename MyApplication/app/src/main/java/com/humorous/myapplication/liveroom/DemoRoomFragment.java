@@ -12,10 +12,16 @@ import android.widget.FrameLayout;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorView;
+import com.humorous.myapplication.liveroom.lottery.MineLotteryData;
+import com.humorous.myapplication.liveroom.lottery.MineLotteryView;
+import com.humorous.myapplication.liveroom.lottery.MineLotteryViewController;
 import com.humorous.myapplication.liveroom.weidget.LoadingImageView;
 import com.humorous.myapplication.liveroom.weidget.MinePopupWindow;
 import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhangzhiquan on 2017/8/19.
@@ -27,6 +33,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     Button mSendBtn,mClearBtn,mMoveBtn,mPopBtn;
     IntoRoomAnimatorController mController;
     Animation inAnimation;
+    ViewGroup mLotteryContainer;
+    MineLotteryViewController mineLotteryViewController;
     int count = 0;
     boolean up = true;
     @Override
@@ -47,6 +55,16 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mPopBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
         inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.into_scale);
+        mLotteryContainer = (ViewGroup) root.findViewById(R.id.luck_container);
+        mineLotteryViewController = new MineLotteryViewController(mLotteryContainer);
+        MineLotteryData data = new MineLotteryData(1,100,10,1,1000);
+        MineLotteryData data2 = new MineLotteryData(1,100,100,1,1000);
+        List<MineLotteryData> list = new ArrayList<>();
+        list.add(data);
+        list.add(data2);
+        mineLotteryViewController.addTask(list);
+
+
 
     }
 
