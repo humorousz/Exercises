@@ -1,6 +1,5 @@
 package com.humorous.myapplication.liveroom.lottery;
 
-import android.view.View;
 import android.view.ViewGroup;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,10 +45,10 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
 
     public void clear(){
         clearTask();
-        if(isRunning){
+        if(isRunning && mineLotteryView != null){
             mineLotteryView.stopAnim();
         }
-        mineLotteryView.setVisibility(View.INVISIBLE);
+        clearView();
         isRunning = false;
     }
 
@@ -59,18 +58,20 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
             startAnim(mQueue.poll());
         }
     }
+
+    private void clearView(){
+        mContainer.removeAllViews();
+        mineLotteryView = null;
+    }
     private void startAnim(List<MineLotteryData> message){
         isRunning = true;
         if(mContainer == null)
             return;
-        if(mineLotteryView == null){
-            mineLotteryView = new MineLotteryView(mContainer.getContext());
-            mContainer.addView(mineLotteryView);
-            mineLotteryView.setOnAnimationStateListener(this);
-        }
-        if(mineLotteryView.getVisibility() == View.INVISIBLE){
-            mineLotteryView.setVisibility(View.VISIBLE);
-        }
+        if(mineLotteryView != null)
+            clearView();
+        mineLotteryView = new MineLotteryView(mContainer.getContext());
+        mContainer.addView(mineLotteryView);
+        mineLotteryView.setOnAnimationStateListener(this);
         mineLotteryView.setData(message);
     }
 
@@ -83,6 +84,7 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
     @Override
     public void onEnd() {
         isRunning = false;
+        clearView();
         takeTask();
     }
 }
