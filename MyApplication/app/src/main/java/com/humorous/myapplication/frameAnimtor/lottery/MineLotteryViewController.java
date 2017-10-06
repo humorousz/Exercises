@@ -1,6 +1,10 @@
-package com.humorous.myapplication.liveroom.lottery;
+package com.humorous.myapplication.frameAnimtor.lottery;
 
+import android.app.FragmentManager;
 import android.view.ViewGroup;
+
+import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -14,10 +18,18 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
     private Queue<List<MineLotteryData>> mQueue;
     private MineLotteryView mineLotteryView;
     private boolean isRunning;
+    private   LotteryDialog dialog;
 
+    private FragmentManager manager;
     public MineLotteryViewController(ViewGroup container){
         this.mContainer = container;
         mQueue = new LinkedList<>();
+    }
+
+    public MineLotteryViewController(ViewGroup container,FragmentManager manager){
+        this.mContainer = container;
+        mQueue = new LinkedList<>();
+        this.manager = manager;
     }
 
 
@@ -60,6 +72,10 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
     }
 
     private void clearView(){
+        if(dialog != null){
+            dialog.dismiss();
+            dialog = null;
+        }
         mContainer.removeView(mineLotteryView);
         mineLotteryView = null;
     }
@@ -69,10 +85,13 @@ public class MineLotteryViewController implements MineLotteryView.OnAnimationSta
             return;
         if(mineLotteryView != null)
             clearView();
+        dialog = new LotteryDialog();
         mineLotteryView = new MineLotteryView(mContainer.getContext());
-        mContainer.addView(mineLotteryView);
+        dialog.setLotteryView(mineLotteryView);
+//        mContainer.addView(mineLotteryView);
         mineLotteryView.setOnAnimationStateListener(this);
         mineLotteryView.setData(message);
+        dialog.show(manager,"adf");
     }
 
 

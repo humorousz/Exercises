@@ -1,4 +1,4 @@
-package com.humorous.myapplication.liveroom.lottery;
+package com.humorous.myapplication.frameAnimtor.lottery;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -27,6 +27,7 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
     private int step = 0;
     private OnAnimationStateListener mListener;
     private boolean isCancel;
+    private boolean isStop;
 
     public MineLotteryView(Context context) {
         this(context, null);
@@ -116,6 +117,7 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
     public void onAnimationStart(Animation animation) {
         if (mListener != null && animation == inAnim) {
             mListener.onStart();
+            isStop = false;
         }
     }
 
@@ -129,6 +131,7 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
             }
             mLightImage.setImageDrawable(null);
             mStartImage.setImageDrawable(null);
+            isStop = true;
         } else if (numInAnim == animation && !isCancel) {
             startNextStepAnim();
         } else if (numOutAnim == animation && !isCancel) {
@@ -149,6 +152,18 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
         } else {
             mLotteryContainer.startAnimation(numOutAnim);
         }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        if(!isStop){
+            if (mListener != null) {
+                mListener.onEnd();
+            }
+            mLightImage.setImageDrawable(null);
+            mStartImage.setImageDrawable(null);
+        }
+        super.onDetachedFromWindow();
     }
 
     public interface OnAnimationStateListener {

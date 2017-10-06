@@ -1,4 +1,4 @@
-package com.humorous.myapplication.liveroom.lottery;
+package com.humorous.myapplication.frameAnimtor.lottery;
 
 /**
  * Created by zhangzhiquan on 2017/10/2.

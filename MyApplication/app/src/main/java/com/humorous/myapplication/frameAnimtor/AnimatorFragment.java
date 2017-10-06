@@ -1,5 +1,7 @@
 package com.humorous.myapplication.frameAnimtor;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,12 +15,17 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorous.myapplication.frameAnimtor.lottery.LotteryDialog;
+import com.humorous.myapplication.frameAnimtor.lottery.MineLotteryData;
+import com.humorous.myapplication.frameAnimtor.lottery.MineLotteryViewController;
 import com.humorous.myapplication.frameAnimtor.webp.BitMapActor;
 import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorousz.uiutils.view.BaseFragment;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 
@@ -37,6 +44,7 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
     private Queue<Pair<String,String>> paths;
     private boolean isRunning;
     private boolean isDestoryView = false;
+    MineLotteryViewController mineLotteryViewController;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_animtor_fragment,container,false);
@@ -50,6 +58,8 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
         this.mGiftCount = (TextView) root.findViewById(R.id.tv_gift_count);
         mSendBtn.setOnClickListener(this);
         paths = new LinkedList<>();
+        mineLotteryViewController
+                = new MineLotteryViewController(container,getActivity().getFragmentManager());
     }
 
 
@@ -80,6 +90,13 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
         mActor = new BitMapActor(getContext(),path);
         mActor.setAnimStateListener(this);
         container.addView(mActor);
+
+        MineLotteryData data = new MineLotteryData(1,100,10,1,1000);
+        MineLotteryData data2 = new MineLotteryData(1,100,100,1,1000);
+        List<MineLotteryData> list = new ArrayList<>();
+        list.add(data);
+        list.add(data2);
+        mineLotteryViewController.addTask(list);
     }
 
     private void clearAnim(){

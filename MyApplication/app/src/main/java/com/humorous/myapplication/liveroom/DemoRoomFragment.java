@@ -7,17 +7,11 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorView;
-import com.humorous.myapplication.liveroom.lottery.MineLotteryData;
-import com.humorous.myapplication.liveroom.lottery.MineLotteryView;
-import com.humorous.myapplication.liveroom.lottery.MineLotteryViewController;
-import com.humorous.myapplication.liveroom.weidget.LoadingImageView;
 import com.humorous.myapplication.liveroom.weidget.MinePopupWindow;
-import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 
 import java.util.ArrayList;
@@ -32,10 +26,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     ViewGroup mContainer;
     Button mSendBtn,mClearBtn,mMoveBtn,mPopBtn;
     IntoRoomAnimatorController mController;
-    MineLotteryViewController mLotteryController;
     Animation inAnimation;
     ViewGroup mLotteryContainer;
-    MineLotteryViewController mineLotteryViewController;
     int count = 0;
     boolean up = true;
     @Override
@@ -57,7 +49,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
         inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.into_scale);
         mLotteryContainer = (ViewGroup) root.findViewById(R.id.luck_container);
-        mineLotteryViewController = new MineLotteryViewController(mLotteryContainer);
 
 
 
@@ -85,7 +76,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         }else if(v == mClearBtn) {
             mController.clear();
             count = 0;
-            mineLotteryViewController.clear();
         }else if(v == mMoveBtn){
 //            if(up){
 //                mContainer.setTranslationY(mContainer.getTranslationY() - UIUtils.dip2px(5));
@@ -94,12 +84,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
 //            }
 //
 //            up = !up;
-            MineLotteryData data = new MineLotteryData(1,100,10,1,1000);
-            MineLotteryData data2 = new MineLotteryData(1,100,100,1,1000);
-            List<MineLotteryData> list = new ArrayList<>();
-            list.add(data);
-            list.add(data2);
-            mineLotteryViewController.addTask(list);
         }else if(v == mPopBtn){
             MinePopupWindow popupWindow = new MinePopupWindow(getActivity(),mPopBtn);
             popupWindow.showPopupWindow(mPopBtn);
