@@ -19,7 +19,6 @@ import java.util.List;
 
 public class LotteryDialog extends DialogFragment {
     ViewGroup mContainer;
-    MineLotteryViewController mController;
     View root;
     View lotteryView;
 
@@ -29,9 +28,6 @@ public class LotteryDialog extends DialogFragment {
         setStyle(style, theme);
     }
 
-    public void setController(MineLotteryViewController controller){
-        mController = controller;
-    }
     public void setLotteryView(View v){
         lotteryView = v;
     }
@@ -49,13 +45,5 @@ public class LotteryDialog extends DialogFragment {
         return root;
     }
 
-    public void setController(){
-        MineLotteryData data = new MineLotteryData(1,100,10,1,1000);
-        MineLotteryData data2 = new MineLotteryData(1,100,100,1,1000);
-        List<MineLotteryData> list = new ArrayList<>();
-        list.add(data);
-        list.add(data2);
-        mController.addTask(list);
-    }
 
 }
