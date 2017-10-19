@@ -93,9 +93,11 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
 
         MineLotteryData data = new MineLotteryData(1,100,10,1,1000);
         MineLotteryData data2 = new MineLotteryData(1,100,100,1,1000);
+        MineLotteryData data3 = new MineLotteryData(1,100,500,1,1000);
         List<MineLotteryData> list = new ArrayList<>();
         list.add(data);
         list.add(data2);
+        list.add(data3);
         mineLotteryViewController.addTask(list);
     }
 

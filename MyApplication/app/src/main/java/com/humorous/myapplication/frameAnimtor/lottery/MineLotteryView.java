@@ -52,15 +52,15 @@ public class MineLotteryView extends RelativeLayout implements Animation.Animati
 
         inAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_in);
         numInAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_in);
-        outAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_out);
+        outAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_num_out);
         numOutAnim = AnimationUtils.loadAnimation(getContext(), R.anim.lottery_out);
 
         inAnim.setAnimationListener(this);
         numInAnim.setAnimationListener(this);
         outAnim.setAnimationListener(this);
         numOutAnim.setAnimationListener(this);
-        outAnim.setStartOffset(1000);
-        numOutAnim.setStartOffset(1000);
+        outAnim.setStartOffset(500);
+        numOutAnim.setStartOffset(150);
 
     }
 
