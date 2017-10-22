@@ -50,6 +50,7 @@ public class TestProtocol {
     //demoRoom 练习
     public static final String DEMO_ROOM = BASE + TestFragmentFactory.TYPE.DEMO_ROOM + HAS_NO_TITLE;
 
+    //span 练习
     public static final String TEXT_SPAN = BASE + TestFragmentFactory.TYPE.TEXT_SPAN + HAS_NO_TITLE;
 
     //demoUI 练习

@@ -1,14 +1,18 @@
 package com.humorous.myapplication.textSpan;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Layout;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.style.AlignmentSpan;
 import android.text.style.BulletSpan;
+import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.QuoteSpan;
@@ -19,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -27,7 +32,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 
 public class TextSpanFragment extends BaseFragment {
     private static final String TAG = "TextSpanFragment";
-    private TextView mText;
+    private TextView mText,mClickSpanText;
     private ImageView mImageView;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,8 +47,10 @@ public class TextSpanFragment extends BaseFragment {
             @Override
             public void run() {
                 setSpan();
+                setClickSpan();
             }
         });
+        mClickSpanText = (TextView)root.findViewById(R.id.click_span_text);
     }
 
     @Override
@@ -92,6 +99,30 @@ public class TextSpanFragment extends BaseFragment {
         SpannableString spannableString = new SpannableString(mText.getText());
         spannableString.setSpan(span,5,10, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         return  spannableString;
+    }
+
+    private void setClickSpan(){
+        SpannableStringBuilder ssb = new SpannableStringBuilder();
+        for(int i=0;i<8;i++){
+            if(i > 0)
+                ssb.append(",");
+            ssb.append(makeClickSpan("这是第"+i+"句话"));
+        }
+        mClickSpanText.setMovementMethod(PraiseMovementMethod.getInstance(Color.BLUE,Color.TRANSPARENT));
+        mClickSpanText.setText(ssb);
+    }
+
+
+    private CharSequence makeClickSpan(final String string){
+        PraiseClickSpan span = new PraiseClickSpan() {
+            @Override
+            public void onClick(View widget) {
+                ToastUtil.showToast(getContext(),string);
+            }
+        };
+        SpannableString spannableString = new SpannableString(string);
+        spannableString.setSpan(span,0,string.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return spannableString;
     }
 
     class TextRoundSpan implements LeadingMarginSpan.LeadingMarginSpan2{
