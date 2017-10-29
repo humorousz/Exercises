@@ -69,6 +69,11 @@ public class API {
         HomeItemModel itemModel;
 
         itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.VECTOR_DRAWABLE);
+        itemModel.setTitle("Vector练习");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.TEXT_SPAN);
         itemModel.setTitle("Span 练习");
         models.add(itemModel);

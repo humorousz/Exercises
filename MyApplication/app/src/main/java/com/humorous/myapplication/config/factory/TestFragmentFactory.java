@@ -13,6 +13,7 @@ import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
+import com.humorous.myapplication.vectorDrawableTest.VectorTestFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -23,7 +24,7 @@ public class TestFragmentFactory {
     public enum TYPE{
         ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR
         ,NESTED_SCROLLING,NESTED_SCROLL_VIEW,EXCEPTION,DRAWER_LAYOUT,FRAME_ANIMTOR
-        ,DEMO_ROOM,TEXT_SPAN,DEMO_UI
+        ,DEMO_ROOM,TEXT_SPAN,DEMO_UI,VECTOR_DRAWABLE
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -66,6 +67,9 @@ public class TestFragmentFactory {
                 break;
             case DEMO_UI:
                 fragment = new DemoUIFragment();
+                break;
+            case VECTOR_DRAWABLE:
+                fragment = new VectorTestFragment();
                 break;
         }
         return fragment;
