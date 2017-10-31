@@ -3,7 +3,6 @@ package com.humorous.myapplication.vectorDrawableTest;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Looper;
 import android.os.MessageQueue;
@@ -16,17 +15,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
-import com.humorousz.commonutils.log.Logger;
 
 /**
+ *
  * Created by zhangzhiquan on 2017/10/30.
  */
 
 public class GuardView extends RelativeLayout implements Animator.AnimatorListener{
     private static final String TAG = "GuardView";
     private static final int ANIM_BG_TIME = 200; //背景出现时间
-    private static final int ANIM_BG_ROTATION = 2000; //光线旋转时间
+    private static final int ANIM_BG_ROTATION = 3000; //光线旋转时间
     private static final int DELAY_TIME = 500; //延时时间
+    private static final int ICON_UP = 320; //头像抬起时间
+    private static final int ICON_DOWN = 120; //头像下降时间
+    private static final int WING_UP = 200; // 翅膀展开时间
     private Context mContext;
     private ImageView mLightBg;
     private ImageView mStarBg;
@@ -79,16 +81,6 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mTypeIconStar = (ImageView) findViewById(R.id.guard_type_icon_star);
         mAroundLightView =  (AroundLightView) findViewById(R.id.guard_around_light);
     }
-//    @Override
-//    protected void onAttachedToWindow() {
-//        super.onAttachedToWindow();
-//        postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                startBgAnim();
-//            }
-//        },DELAY_TIME);
-//    }
 
     private ObjectAnimator mBgScaleX,mBgScaleY;
     private AnimatorSet mBgAnimatorSet ;
@@ -121,34 +113,43 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         float end = height * -1;
         float start = height * 0.3f ;
         mUserIconUp = ObjectAnimator.ofFloat(mIconContainer,"translationY",start,end);
-        mUserIconUp.setDuration(320);
+        mUserIconUp.setDuration(ICON_UP);
         mUserIconUp.addListener(this);
         mIconContainer.setVisibility(VISIBLE);
-        mUserIconUp.addListener(this);
         mUserIconUp.start();
     }
 
 
     private ObjectAnimator mUserIconDown;
-    private void startIconAnimDown(){
-        mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
-        mUserIconDown.setDuration(120);
-        mUserIconDown.start();
-    }
-
     private ObjectAnimator mLeftWingAnim;
+    private ObjectAnimator mRightWingAnim;
+    private ObjectAnimator mPlantAnim;
     private void startWingAndPlantAnim(){
+        mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
+        mUserIconDown.setDuration(ICON_DOWN);
+        mUserIconDown.addListener(this);
+
         int w = View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED);
         int h = View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED);
         mLeftWing.measure(w, h);
-        mLeftWing.setPivotX(0);
-        mLeftWing.setPivotY(mLeftWing.getY());
-        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-180,0);
-        mLeftWingAnim.setDuration(200);
-        mLeftWing.setVisibility(VISIBLE);
-        mLeftWingAnim.start();
+        mLeftWing.setPivotX(mLeftWing.getWidth());
+        mLeftWing.setPivotY(mLeftWing.getHeight()/3*2);
+        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-90,0);
+        mLeftWingAnim.setDuration(WING_UP);
+
+        mRightWing.measure(w,h);
+        mRightWing.setPivotX(0);
+        mRightWing.setPivotY(mRightWing.getHeight()/3*2);
+        mRightWingAnim = ObjectAnimator.ofFloat(mRightWing,"rotation",90,0);
+        mRightWingAnim.setDuration(WING_UP);
+
+        mPlantAnim = ObjectAnimator.ofFloat(mPlant,"alpha",0,1);
+        mPlantAnim.setDuration(WING_UP/2);
+
+        mUserIconDown.start();
+
     }
 
     @Override
@@ -162,8 +163,14 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             startBgAnimRotation();
             startIconAnimUp();
         }else if(animation == mUserIconUp){
-            startIconAnimDown();
             startWingAndPlantAnim();
+        }else if(animation == mUserIconDown){
+            mLeftWing.setVisibility(VISIBLE);
+            mRightWing.setVisibility(VISIBLE);
+            mPlant.setVisibility(VISIBLE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim,mPlantAnim);
+            animatorSet.start();
         }
     }
 
