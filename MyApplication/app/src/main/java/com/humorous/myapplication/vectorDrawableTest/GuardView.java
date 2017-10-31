@@ -136,6 +136,21 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mUserIconDown.start();
     }
 
+    private ObjectAnimator mLeftWingAnim;
+    private void startWingAndPlantAnim(){
+        int w = View.MeasureSpec.makeMeasureSpec(0,
+                View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0,
+                View.MeasureSpec.UNSPECIFIED);
+        mLeftWing.measure(w, h);
+        mLeftWing.setPivotX(0);
+        mLeftWing.setPivotY(mLeftWing.getY());
+        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-180,0);
+        mLeftWingAnim.setDuration(200);
+        mLeftWing.setVisibility(VISIBLE);
+        mLeftWingAnim.start();
+    }
+
     @Override
     public void onAnimationStart(Animator animation) {
 
@@ -148,6 +163,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             startIconAnimUp();
         }else if(animation == mUserIconUp){
             startIconAnimDown();
+            startWingAndPlantAnim();
         }
     }
 
