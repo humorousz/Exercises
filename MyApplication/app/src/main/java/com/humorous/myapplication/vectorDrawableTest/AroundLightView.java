@@ -12,6 +12,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 
 /**
@@ -37,7 +39,7 @@ public class AroundLightView extends View {
 
     private int mRectFWidth;
     private int mRectFHeight;
-    private int mRoundRadius = 40;
+    private int mRoundRadius = 50;
     private float mPointX,mPointY;
     private float mTotalEndV;
     public AroundLightView(Context context) {
@@ -55,18 +57,18 @@ public class AroundLightView extends View {
     private void init(){
         mPaint= new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(4);
+        mPaint.setStrokeWidth(5);
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.BLACK);
+        mPaint.setColor(Color.WHITE);
         mAnimatorV = 1.0f;
-        mTotalEndV = 80f;
+        mTotalEndV = 100f;
         mEndValue = mTotalEndV;
         mSubPath = new Path();
         final ValueAnimator animator = ObjectAnimator.ofFloat(1.0f,0.0f);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-//                mAnimatorV = (float) animator.getAnimatedValue();
+                mAnimatorV = (float) animator.getAnimatedValue();
                 invalidate();
             }
         });
@@ -114,14 +116,14 @@ public class AroundLightView extends View {
             mRectFWidth = getMeasuredWidth();
             mRectFHeight = getMeasuredHeight();
             mRectF = new RectF(getPaddingLeft(), getPaddingTop()
-                    , mRectFWidth - getPaddingLeft() - getPaddingRight()
-                    , mRectFHeight - getPaddingTop() - getPaddingBottom());
+                    , mRectFWidth - getPaddingRight()
+                    , mRectFHeight - getPaddingBottom());
             mParentPath = new Path();
-            mParentPath.addRoundRect(mRectF,30,30,Path.Direction.CW);
+            mParentPath.addRoundRect(mRectF,mRoundRadius,mRoundRadius,Path.Direction.CW);
             mPathMeasure = new PathMeasure();
             mPathMeasure.setPath(mParentPath,false);
-            mPointX = (mRectF.right - mRectF.left)/2;
-            mPointY = (mRectF.bottom - mRectF.top)/2;
+            mPointX = (getMeasuredWidth() - getPaddingLeft() - getPaddingRight())/2 + getPaddingLeft();
+            mPointY = (getMeasuredHeight() - getPaddingTop() - getPaddingBottom() )/2 + getPaddingBottom();
 
         }
         float start = mPathMeasure.getLength() * mAnimatorV;
@@ -129,8 +131,8 @@ public class AroundLightView extends View {
         mSubPath.reset();
         mSubPath.lineTo(0,0);
         mPathMeasure.getSegment(start, end, mSubPath, true);
-//        canvas.rotate(180f,mPointX,mPointY);
-        canvas.drawPath(mParentPath,mPaint);
+        canvas.rotate(180f,mPointX,mPointY);
+        canvas.drawPath(mSubPath,mPaint);
 
     }
 }
