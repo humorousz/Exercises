@@ -1,20 +1,32 @@
 package com.humorous.myapplication.vectorDrawableTest;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Looper;
+import android.os.MessageQueue;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.commonutils.log.Logger;
 
 /**
  * Created by zhangzhiquan on 2017/10/30.
  */
 
-public class GuardView extends RelativeLayout {
+public class GuardView extends RelativeLayout implements Animator.AnimatorListener{
+    private static final String TAG = "GuardView";
+    private static final int ANIM_BG_TIME = 200; //背景出现时间
+    private static final int ANIM_BG_ROTATION = 2000; //光线旋转时间
+    private static final int DELAY_TIME = 500; //延时时间
     private Context mContext;
     private ImageView mLightBg;
     private ImageView mStarBg;
@@ -42,9 +54,14 @@ public class GuardView extends RelativeLayout {
         super(context, attrs, defStyleAttr);
         mContext = context;
         init();
-        setAllViewGone();
+        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+            @Override
+            public boolean queueIdle() {
+                startBgAnim();
+                return false;
+            }
+        });
     }
-
     private void init(){
         LayoutInflater inflater = LayoutInflater.from(mContext);
         inflater.inflate(R.layout.layout_gurad_view,this,true);
@@ -62,11 +79,85 @@ public class GuardView extends RelativeLayout {
         mTypeIconStar = (ImageView) findViewById(R.id.guard_type_icon_star);
         mAroundLightView =  (AroundLightView) findViewById(R.id.guard_around_light);
     }
+//    @Override
+//    protected void onAttachedToWindow() {
+//        super.onAttachedToWindow();
+//        postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startBgAnim();
+//            }
+//        },DELAY_TIME);
+//    }
 
-    private void setAllViewGone(){
-        int count = getChildCount();
-        for(int i = 0; i < count;i++){
-            getChildAt(i).setVisibility(INVISIBLE);
+    private ObjectAnimator mBgScaleX,mBgScaleY;
+    private AnimatorSet mBgAnimatorSet ;
+    private void startBgAnim(){
+        mBgScaleX = ObjectAnimator.ofFloat(mLightBg,"scaleX",0,1);
+        mBgScaleY = ObjectAnimator.ofFloat(mLightBg,"scaleY",0,1);
+        mBgAnimatorSet = new AnimatorSet();
+        mBgAnimatorSet.playTogether(mBgScaleX,mBgScaleY);
+        mBgAnimatorSet.addListener(this);
+        mBgAnimatorSet.setDuration(ANIM_BG_TIME);
+        mLightBg.setVisibility(VISIBLE);
+        mBgAnimatorSet.start();
+    }
+
+    private ObjectAnimator mBgRotation;
+    private void startBgAnimRotation(){
+        mBgRotation = ObjectAnimator.ofFloat(mLightBg,"rotation",0,180);
+        mBgRotation.setDuration(ANIM_BG_ROTATION);
+        mBgRotation.start();
+    }
+
+    private ObjectAnimator mUserIconUp;
+    private void startIconAnimUp(){
+        int w = View.MeasureSpec.makeMeasureSpec(0,
+                View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0,
+                View.MeasureSpec.UNSPECIFIED);
+        mIconContainer.measure(w, h);
+        int height = mIconContainer.getMeasuredHeight();
+        float end = height * -1;
+        float start = height * 0.3f ;
+        mUserIconUp = ObjectAnimator.ofFloat(mIconContainer,"translationY",start,end);
+        mUserIconUp.setDuration(320);
+        mUserIconUp.addListener(this);
+        mIconContainer.setVisibility(VISIBLE);
+        mUserIconUp.addListener(this);
+        mUserIconUp.start();
+    }
+
+
+    private ObjectAnimator mUserIconDown;
+    private void startIconAnimDown(){
+        mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
+        mUserIconDown.setDuration(120);
+        mUserIconDown.start();
+    }
+
+    @Override
+    public void onAnimationStart(Animator animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animation) {
+        if(animation == mBgAnimatorSet){
+            startBgAnimRotation();
+            startIconAnimUp();
+        }else if(animation == mUserIconUp){
+            startIconAnimDown();
         }
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+
     }
 }
