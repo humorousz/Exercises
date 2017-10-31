@@ -122,8 +122,8 @@ public class AroundLightView extends View {
             mParentPath.addRoundRect(mRectF,mRoundRadius,mRoundRadius,Path.Direction.CW);
             mPathMeasure = new PathMeasure();
             mPathMeasure.setPath(mParentPath,false);
-            mPointX = (getMeasuredWidth() - getPaddingLeft() - getPaddingRight())/2 + getPaddingLeft();
-            mPointY = (getMeasuredHeight() - getPaddingTop() - getPaddingBottom() )/2 + getPaddingBottom();
+            mPointX = (getMeasuredWidth() - getPaddingLeft() - getPaddingRight()) / 2 + getPaddingLeft();
+            mPointY = (getMeasuredHeight() - getPaddingTop() - getPaddingBottom()) / 2 + getPaddingBottom();
 
         }
         float start = mPathMeasure.getLength() * mAnimatorV;
