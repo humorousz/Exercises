@@ -3,6 +3,7 @@ package com.humorous.myapplication.vectorDrawableTest;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Looper;
 import android.os.MessageQueue;
@@ -25,10 +26,11 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private static final String TAG = "GuardView";
     private static final int ANIM_BG_TIME = 200; //背景出现时间
     private static final int ANIM_BG_ROTATION = 3000; //光线旋转时间
-    private static final int DELAY_TIME = 500; //延时时间
+    private static final int STAR_DELAY_TIME = 200; //背景大星星的延时出场时间
     private static final int ICON_UP = 320; //头像抬起时间
     private static final int ICON_DOWN = 120; //头像下降时间
     private static final int WING_UP = 200; // 翅膀展开时间
+    private static final int STAR_BG_TIME = 500;//星星背景时间
     private Context mContext;
     private ImageView mLightBg;
     private ImageView mStarBg;
@@ -111,7 +113,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mIconContainer.measure(w, h);
         int height = mIconContainer.getMeasuredHeight();
         float end = height * -1;
-        float start = height * 0.3f ;
+        float start = height * 0.5f ;
         mUserIconUp = ObjectAnimator.ofFloat(mIconContainer,"translationY",start,end);
         mUserIconUp.setDuration(ICON_UP);
         mUserIconUp.addListener(this);
@@ -125,6 +127,8 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private ObjectAnimator mRightWingAnim;
     private ObjectAnimator mPlantScaleX;
     private ObjectAnimator mPlantScaleY;
+    private ObjectAnimator mStarBgAnim;
+    private ObjectAnimator mBigStarBgAnim;
     private void startWingAndPlantAnim(){
         mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
         mUserIconDown.setDuration(ICON_DOWN);
@@ -151,13 +155,31 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mPlantScaleX.setDuration(WING_UP/2);
         mPlantScaleY.setDuration(WING_UP/2);
 
+        mStarBgAnim = ObjectAnimator.ofFloat(mStarBg,"alpha",1,0);
+        mBigStarBgAnim = ObjectAnimator.ofFloat(mBigStarBg,"alpha",1,0);
+
+        mStarBgAnim.setDuration(STAR_BG_TIME);
+        mBigStarBgAnim.setDuration(STAR_BG_TIME);
+
+        mStarBgAnim.setRepeatCount(ValueAnimator.INFINITE);
+        mStarBgAnim.setRepeatMode(ValueAnimator.REVERSE);
+        mBigStarBgAnim.setRepeatCount(ValueAnimator.INFINITE);
+        mBigStarBgAnim.setRepeatMode(ValueAnimator.REVERSE);
+        mStarBgAnim.addListener(this);
+
         mUserIconDown.start();
 
     }
 
     @Override
     public void onAnimationStart(Animator animation) {
-
+        if(animation == mStarBgAnim) {
+            if (mBigStarBg.getVisibility() != VISIBLE) {
+                mBigStarBg.setVisibility(VISIBLE);
+                mBigStarBgAnim.setStartDelay(STAR_DELAY_TIME);
+                mBigStarBgAnim.start();
+            }
+        }
     }
 
     @Override
@@ -171,8 +193,9 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             mLeftWing.setVisibility(VISIBLE);
             mRightWing.setVisibility(VISIBLE);
             mPlant.setVisibility(VISIBLE);
+            mStarBg.setVisibility(VISIBLE);
             AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim,mPlantScaleX,mPlantScaleY);
+            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim,mPlantScaleX,mPlantScaleY,mStarBgAnim);
             animatorSet.start();
         }
     }
