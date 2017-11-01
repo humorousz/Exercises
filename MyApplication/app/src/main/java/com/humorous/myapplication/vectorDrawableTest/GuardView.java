@@ -123,7 +123,8 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private ObjectAnimator mUserIconDown;
     private ObjectAnimator mLeftWingAnim;
     private ObjectAnimator mRightWingAnim;
-    private ObjectAnimator mPlantAnim;
+    private ObjectAnimator mPlantScaleX;
+    private ObjectAnimator mPlantScaleY;
     private void startWingAndPlantAnim(){
         mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
         mUserIconDown.setDuration(ICON_DOWN);
@@ -136,17 +137,19 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mLeftWing.measure(w, h);
         mLeftWing.setPivotX(mLeftWing.getWidth());
         mLeftWing.setPivotY(mLeftWing.getHeight()/3*2);
-        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-90,0);
+        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-100,0);
         mLeftWingAnim.setDuration(WING_UP);
 
         mRightWing.measure(w,h);
         mRightWing.setPivotX(0);
         mRightWing.setPivotY(mRightWing.getHeight()/3*2);
-        mRightWingAnim = ObjectAnimator.ofFloat(mRightWing,"rotation",90,0);
+        mRightWingAnim = ObjectAnimator.ofFloat(mRightWing,"rotation",100,0);
         mRightWingAnim.setDuration(WING_UP);
 
-        mPlantAnim = ObjectAnimator.ofFloat(mPlant,"alpha",0,1);
-        mPlantAnim.setDuration(WING_UP/2);
+        mPlantScaleX = ObjectAnimator.ofFloat(mPlant,"scaleX",0,1);
+        mPlantScaleY = ObjectAnimator.ofFloat(mPlant,"scaleY",0,1);
+        mPlantScaleX.setDuration(WING_UP/2);
+        mPlantScaleY.setDuration(WING_UP/2);
 
         mUserIconDown.start();
 
@@ -169,7 +172,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             mRightWing.setVisibility(VISIBLE);
             mPlant.setVisibility(VISIBLE);
             AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim,mPlantAnim);
+            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim,mPlantScaleX,mPlantScaleY);
             animatorSet.start();
         }
     }

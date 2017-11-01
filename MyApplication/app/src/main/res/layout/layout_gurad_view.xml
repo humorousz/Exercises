@@ -51,8 +51,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/guard_left_wing"
             android:visibility="invisible"
-            tools:visibility="visible"
-            tools:rotation="-30"/>
+            tools:visibility="visible"/>
 
         <ImageView
             android:id="@+id/right_wing"
@@ -70,7 +69,7 @@
         <ImageView
             android:id="@+id/plant"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_alignBottom="@+id/icon_container"
             android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
