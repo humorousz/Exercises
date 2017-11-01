@@ -30,7 +30,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private static final int ICON_UP = 320; //头像抬起时间
     private static final int ICON_DOWN = 120; //头像下降时间
     private static final int WING_UP = 200; // 翅膀展开时间
-    private static final int STAR_BG_TIME = 500;//星星背景时间
+    private static final int STAR_BG_TIME = 400;//星星背景时间
     private Context mContext;
     private ImageView mLightBg;
     private ImageView mStarBg;
@@ -129,7 +129,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private ObjectAnimator mPlantScaleY;
     private ObjectAnimator mStarBgAnim;
     private ObjectAnimator mBigStarBgAnim;
-    private void startWingAndPlantAnim(){
+    private ObjectAnimator mUserNameTextAnim;
+    private ObjectAnimator mUserDescTextAnim;
+    private ObjectAnimator mTypeIconContainerAnim;
+    private void lastAnim(){
         mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
         mUserIconDown.setDuration(ICON_DOWN);
         mUserIconDown.addListener(this);
@@ -167,8 +170,34 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mBigStarBgAnim.setRepeatMode(ValueAnimator.REVERSE);
         mStarBgAnim.addListener(this);
 
+        mUserNameTextAnim = ObjectAnimator.ofFloat(mUserNameText,"alpha",0,1);
+        mUserNameTextAnim.setDuration(200);
+        mUserDescTextAnim = ObjectAnimator.ofFloat(mUserDescText,"alpha",0,1);
+        mUserDescTextAnim.setDuration(200);
+
+        mTypeIconContainerAnim = ObjectAnimator.ofFloat(mTypeIconContainer,"alpha",0,1);
+        mTypeIconContainerAnim.addListener(this);
+        mTypeIconContainerAnim.setDuration(200);
+
         mUserIconDown.start();
 
+    }
+
+    private ObjectAnimator mTypeIconStarScaleX,mTypeIconStarScaleY;
+    private void startIconStarAnim(){
+        mTypeIconStarScaleX = ObjectAnimator.ofFloat(mTypeIconStar,"scaleX",1,0);
+        mTypeIconStarScaleY = ObjectAnimator.ofFloat(mTypeIconStar,"scaleY",1,0);
+        mTypeIconStarScaleX.setDuration(600);
+        mTypeIconStarScaleY.setDuration(600);
+        mTypeIconStarScaleX.setRepeatCount(ValueAnimator.INFINITE);
+        mTypeIconStarScaleY.setRepeatCount(ValueAnimator.INFINITE);
+        mTypeIconStarScaleX.setRepeatMode(ValueAnimator.REVERSE);
+        mTypeIconStarScaleY.setRepeatMode(ValueAnimator.REVERSE);
+
+        mTypeIconStar.setVisibility(VISIBLE);
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(mTypeIconStarScaleX,mTypeIconStarScaleY);
+        set.start();
     }
 
     @Override
@@ -188,15 +217,22 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             startBgAnimRotation();
             startIconAnimUp();
         }else if(animation == mUserIconUp){
-            startWingAndPlantAnim();
+            lastAnim();
         }else if(animation == mUserIconDown){
             mLeftWing.setVisibility(VISIBLE);
             mRightWing.setVisibility(VISIBLE);
             mPlant.setVisibility(VISIBLE);
             mStarBg.setVisibility(VISIBLE);
+            mUserNameText.setVisibility(VISIBLE);
+            mUserDescText.setVisibility(VISIBLE);
+            mTypeIconContainer.setVisibility(VISIBLE);
             AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim,mPlantScaleX,mPlantScaleY,mStarBgAnim);
+            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim
+                    ,mPlantScaleX,mPlantScaleY,mStarBgAnim
+                    ,mUserNameTextAnim,mUserDescTextAnim,mTypeIconContainerAnim);
             animatorSet.start();
+        }else if(animation == mTypeIconContainerAnim){
+            startIconStarAnim();
         }
     }
 

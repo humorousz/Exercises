@@ -137,7 +137,9 @@
                 android:layout_height="15dp"
                 android:src="@drawable/guard_right_star"
                 android:layout_gravity="right|top"
-                android:layout_marginTop="2dp"/>
+                android:layout_marginTop="2dp"
+                android:visibility="invisible"
+                tools:visibility="visible"/>
             <com.humorous.myapplication.vectorDrawableTest.AroundLightView
                 android:id="@+id/guard_around_light"
                 android:layout_width="90dp"
