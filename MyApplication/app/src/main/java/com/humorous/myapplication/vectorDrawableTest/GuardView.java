@@ -25,12 +25,15 @@ import com.humorous.myapplication.R;
 public class GuardView extends RelativeLayout implements Animator.AnimatorListener{
     private static final String TAG = "GuardView";
     private static final int ANIM_BG_TIME = 200; //背景出现时间
-    private static final int ANIM_BG_ROTATION = 3000; //光线旋转时间
+    private static final int ANIM_BG_ROTATION = 2500; //光线旋转时间
     private static final int STAR_DELAY_TIME = 200; //背景大星星的延时出场时间
     private static final int ICON_UP = 320; //头像抬起时间
     private static final int ICON_DOWN = 120; //头像下降时间
     private static final int WING_UP = 200; // 翅膀展开时间
     private static final int STAR_BG_TIME = 400;//星星背景时间
+    private static final int TEXT_AND_ICON_TIME = 200;//名称和icon的时间
+    private static final int ITEM_QUIT_TIME = 400;
+    private static final int ITEM_DELAY_TIME = 1500;
     private Context mContext;
     private ImageView mLightBg;
     private ImageView mStarBg;
@@ -42,9 +45,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private TextView  mUserNameText;
     private TextView  mUserDescText;
     private ViewGroup mTypeIconContainer;
-    private ImageView mTypeIcon;
     private ImageView mTypeIconStar;
     private AroundLightView mAroundLightView;
+    private ViewGroup mItemContainer;
+    private GuardStateListener mListener;
 
     public GuardView(Context context) {
         this(context,null);
@@ -66,6 +70,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             }
         });
     }
+
+    public void setGuardStateListener(GuardStateListener listener){
+        mListener = listener;
+    }
     private void init(){
         LayoutInflater inflater = LayoutInflater.from(mContext);
         inflater.inflate(R.layout.layout_gurad_view,this,true);
@@ -79,9 +87,9 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mUserNameText = (TextView) findViewById(R.id.text_user);
         mUserDescText = (TextView) findViewById(R.id.text_desc);
         mTypeIconContainer = (ViewGroup) findViewById(R.id.guard_type_icon_container);
-        mTypeIcon = (ImageView) findViewById(R.id.guard_type_icon);
         mTypeIconStar = (ImageView) findViewById(R.id.guard_type_icon_star);
         mAroundLightView =  (AroundLightView) findViewById(R.id.guard_around_light);
+        mItemContainer = (ViewGroup) findViewById(R.id.item_container);
     }
 
     private ObjectAnimator mBgScaleX,mBgScaleY;
@@ -171,13 +179,13 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mStarBgAnim.addListener(this);
 
         mUserNameTextAnim = ObjectAnimator.ofFloat(mUserNameText,"alpha",0,1);
-        mUserNameTextAnim.setDuration(200);
+        mUserNameTextAnim.setDuration(TEXT_AND_ICON_TIME);
         mUserDescTextAnim = ObjectAnimator.ofFloat(mUserDescText,"alpha",0,1);
-        mUserDescTextAnim.setDuration(200);
+        mUserDescTextAnim.setDuration(TEXT_AND_ICON_TIME);
 
         mTypeIconContainerAnim = ObjectAnimator.ofFloat(mTypeIconContainer,"alpha",0,1);
         mTypeIconContainerAnim.addListener(this);
-        mTypeIconContainerAnim.setDuration(200);
+        mTypeIconContainerAnim.setDuration(TEXT_AND_ICON_TIME);
 
         mUserIconDown.start();
 
@@ -200,9 +208,55 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         set.start();
     }
 
+
+    private AnimatorSet mItemQuitAnimSet;
+    private void quitAnim(){
+        ValueAnimator animator = ValueAnimator.ofFloat(1,0);
+        animator.addListener(this);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float curValue = (float) animation.getAnimatedValue();
+                mItemContainer.setScaleX(curValue);
+                mItemContainer.setScaleY(curValue);
+            }
+        });
+        animator.setDuration(ITEM_QUIT_TIME);
+        animator.setStartDelay(ITEM_DELAY_TIME);
+
+        ValueAnimator bgAnimator = ValueAnimator.ofFloat(1,0);
+        bgAnimator.addListener(this);
+        bgAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float curValue = (float) animation.getAnimatedValue();
+                mLightBg.setScaleX(curValue);
+                mLightBg.setScaleY(curValue);
+
+                mStarBg.setScaleX(curValue);
+                mStarBg.setScaleY(curValue);
+
+                mBigStarBg.setScaleX(curValue);
+                mBigStarBg.setScaleY(curValue);
+            }
+        });
+        bgAnimator.setDuration(ITEM_QUIT_TIME/2);
+        bgAnimator.setStartDelay(ITEM_DELAY_TIME + 200);
+
+
+        mItemQuitAnimSet = new AnimatorSet();
+        mItemQuitAnimSet.addListener(this);
+        mItemQuitAnimSet.playTogether(animator,bgAnimator);
+        mItemQuitAnimSet.start();
+
+    }
+
     @Override
     public void onAnimationStart(Animator animation) {
-        if(animation == mStarBgAnim) {
+
+        if(mListener != null && animation == mBgAnimatorSet){
+            mListener.onStart();
+        }else if(animation == mStarBgAnim) {
             if (mBigStarBg.getVisibility() != VISIBLE) {
                 mBigStarBg.setVisibility(VISIBLE);
                 mBigStarBgAnim.setStartDelay(STAR_DELAY_TIME);
@@ -214,9 +268,9 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     @Override
     public void onAnimationEnd(Animator animation) {
         if(animation == mBgAnimatorSet){
-            startBgAnimRotation();
             startIconAnimUp();
         }else if(animation == mUserIconUp){
+            startBgAnimRotation();
             lastAnim();
         }else if(animation == mUserIconDown){
             mLeftWing.setVisibility(VISIBLE);
@@ -233,6 +287,9 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             animatorSet.start();
         }else if(animation == mTypeIconContainerAnim){
             startIconStarAnim();
+            quitAnim();
+        }else if(mListener != null && animation == mItemQuitAnimSet){
+            mListener.onEnd();
         }
     }
 
@@ -244,5 +301,18 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     @Override
     public void onAnimationRepeat(Animator animation) {
 
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if(mListener != null){
+            mListener.onEnd();
+        }
+    }
+
+    public interface GuardStateListener{
+        void onStart();
+        void onEnd();
     }
 }
