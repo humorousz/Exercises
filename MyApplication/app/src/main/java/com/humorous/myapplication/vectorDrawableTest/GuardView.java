@@ -192,6 +192,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     }
 
     private ObjectAnimator mTypeIconStarScaleX,mTypeIconStarScaleY;
+    private AnimatorSet mIconStarSet;
     private void startIconStarAnim(){
         mTypeIconStarScaleX = ObjectAnimator.ofFloat(mTypeIconStar,"scaleX",1,0);
         mTypeIconStarScaleY = ObjectAnimator.ofFloat(mTypeIconStar,"scaleY",1,0);
@@ -203,15 +204,16 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mTypeIconStarScaleY.setRepeatMode(ValueAnimator.REVERSE);
 
         mTypeIconStar.setVisibility(VISIBLE);
-        AnimatorSet set = new AnimatorSet();
-        set.playTogether(mTypeIconStarScaleX,mTypeIconStarScaleY);
-        set.start();
+        mIconStarSet = new AnimatorSet();
+        mIconStarSet.playTogether(mTypeIconStarScaleX,mTypeIconStarScaleY);
+        mIconStarSet.start();
     }
 
 
     private AnimatorSet mItemQuitAnimSet;
+    private  ValueAnimator animator,bgAnimator;
     private void quitAnim(){
-        ValueAnimator animator = ValueAnimator.ofFloat(1,0);
+        animator = ValueAnimator.ofFloat(1,0);
         animator.addListener(this);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -224,7 +226,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         animator.setDuration(ITEM_QUIT_TIME);
         animator.setStartDelay(ITEM_DELAY_TIME);
 
-        ValueAnimator bgAnimator = ValueAnimator.ofFloat(1,0);
+        bgAnimator = ValueAnimator.ofFloat(1,0);
         bgAnimator.addListener(this);
         bgAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -251,11 +253,18 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
 
     }
 
+    private void clearAnim(){
+        mStarBgAnim.cancel();
+        mBigStarBgAnim.cancel();
+        mTypeIconStarScaleX.cancel();
+        mTypeIconStarScaleY.cancel();
+    }
+
     @Override
     public void onAnimationStart(Animator animation) {
 
         if(mListener != null && animation == mBgAnimatorSet){
-            mListener.onStart();
+            mListener.onStartAnim();
         }else if(animation == mStarBgAnim) {
             if (mBigStarBg.getVisibility() != VISIBLE) {
                 mBigStarBg.setVisibility(VISIBLE);
@@ -288,8 +297,11 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         }else if(animation == mTypeIconContainerAnim){
             startIconStarAnim();
             quitAnim();
-        }else if(mListener != null && animation == mItemQuitAnimSet){
-            mListener.onEnd();
+        }else if(animation == mItemQuitAnimSet){
+            clearAnim();
+            if(mListener != null){
+                mListener.onEndAnim();
+            }
         }
     }
 
@@ -307,12 +319,12 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if(mListener != null){
-            mListener.onEnd();
+            mListener.onStartAnim();
         }
     }
 
     public interface GuardStateListener{
-        void onStart();
-        void onEnd();
+        void onStartAnim();
+        void onEndAnim();
     }
 }

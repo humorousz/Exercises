@@ -5,8 +5,17 @@
     android:background="@color/color_8cfd9500"
     android:gravity="center">
 
-    <com.humorous.myapplication.vectorDrawableTest.GuardView
+    <!--<com.humorous.myapplication.vectorDrawableTest.GuardView-->
+        <!--android:id="@+id/guard_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"></com.humorous.myapplication.vectorDrawableTest.GuardView>-->
+
+    <Button
+        android:id="@+id/guard_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"></com.humorous.myapplication.vectorDrawableTest.GuardView>
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="来个守护"
+        />
 </FrameLayout>

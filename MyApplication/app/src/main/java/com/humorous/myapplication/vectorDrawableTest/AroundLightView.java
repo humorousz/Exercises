@@ -42,6 +42,8 @@ public class AroundLightView extends View {
     private int mRoundRadius = 50;
     private float mPointX,mPointY;
     private float mTotalEndV;
+    ValueAnimator animator;
+    ValueAnimator animator2;
     public AroundLightView(Context context) {
         this(context,null);
     }
@@ -64,7 +66,7 @@ public class AroundLightView extends View {
         mTotalEndV = 100f;
         mEndValue = mTotalEndV;
         mSubPath = new Path();
-        final ValueAnimator animator = ObjectAnimator.ofFloat(1.0f,0.0f);
+        animator = ObjectAnimator.ofFloat(1.0f,0.0f);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -72,7 +74,7 @@ public class AroundLightView extends View {
                 invalidate();
             }
         });
-        final ValueAnimator animator2 = ObjectAnimator.ofFloat(0,mTotalEndV,0,0,mTotalEndV,0);
+        animator2 = ObjectAnimator.ofFloat(0,mTotalEndV,0,0,mTotalEndV,0);
         animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -86,21 +88,6 @@ public class AroundLightView extends View {
         animator2.setRepeatCount(ValueAnimator.INFINITE);
         animator.setStartDelay(DELAY_TIME);
         animator2.setStartDelay(DELAY_TIME);
-        post(new Runnable() {
-            @Override
-            public void run() {
-                animator.start();
-                animator2.start();
-//                AnimatorSet set = new AnimatorSet();
-//                set.setDuration(1000);
-//                set.setInterpolator(new AccelerateDecelerateInterpolator());
-//                set.playTogether(animator,animator2);
-//                set.start();
-            }
-        });
-
-
-
     }
 
     @Override
@@ -133,6 +120,20 @@ public class AroundLightView extends View {
         mPathMeasure.getSegment(start, end, mSubPath, true);
         canvas.rotate(180f,mPointX,mPointY);
         canvas.drawPath(mSubPath,mPaint);
+    }
 
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        animator.start();
+        animator2.start();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        animator.cancel();
+        animator2.cancel();
     }
 }
