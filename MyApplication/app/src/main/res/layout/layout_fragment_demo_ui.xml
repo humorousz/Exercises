@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -47,27 +48,11 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/first"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="i am first"
-            android:layout_marginBottom="-5dp"
-            android:gravity="center_horizontal"
-            android:background="#99000000"/>
-        <TextView
-            android:id="@+id/second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="i am first"
-            android:layout_below="@id/first"
-            android:gravity="center_horizontal"
-            android:textColor="@android:color/white"
-            android:background="#aa000000"/>
-    </RelativeLayout>
+    <com.humorousz.uiutils.widget.CommonTipsView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我好帅啊啊啊啊啊啊啊啊"
+        app:arrow_gravity="top|right"/>
 
 
 

@@ -42,5 +42,7 @@
         <attr name="android:textSize"/>
         <attr name="tips_color" format="reference|color"/>
         <attr name="android:gravity"/>
+        <attr name="arrow_margin_left" format="dimension"/>
+        <attr name="arrow_margin_right" format="dimension"/>
     </declare-styleable>
 </resources>

@@ -32,6 +32,8 @@ public class CommonTipsView extends LinearLayout{
     private String mText ;
     private int mTextSize = 15;
     private int  mTipsColor;
+    private int mArrowMarginLeft;
+    private int mArrowMarginRight;
 
     public CommonTipsView(Context context) {
         this(context,null);
@@ -57,9 +59,9 @@ public class CommonTipsView extends LinearLayout{
         mTextSize = a.getDimensionPixelSize(R.styleable.CommonTipsView_android_textSize, mTextSize);
         mTipsColor = a.getColor(R.styleable.CommonTipsView_tips_color, mContext.getResources().getColor(R.color.common_tips_color));
         mTextGravity = a.getInt(R.styleable.CommonTipsView_android_gravity, Gravity.LEFT);
+        mArrowMarginLeft = a.getDimensionPixelSize(R.styleable.CommonTipsView_arrow_margin_left,0);
+        mArrowMarginRight = a.getDimensionPixelSize(R.styleable.CommonTipsView_arrow_margin_right,0);
         a.recycle();
-        Logger.d(TAG, "gravity:" + mTextGravity);
-        Logger.d(TAG, "text size:"+UIUtils.px2dip(15));
     }
 
     private void initView(){
@@ -94,10 +96,12 @@ public class CommonTipsView extends LinearLayout{
         LinearLayout.LayoutParams layoutParams = (LayoutParams) mArrowImage.getLayoutParams();
         if((Gravity.VERTICAL_GRAVITY_MASK & mArrowGravity) == Gravity.BOTTOM){
             if((Gravity.HORIZONTAL_GRAVITY_MASK & mArrowGravity) == Gravity.LEFT){
-                layoutParams.setMargins(UIUtils.dip2px(mContext,MARGIN_DIP),0,0,0);
+                int leftMargin = mArrowMarginLeft == 0? UIUtils.dip2px(mContext,MARGIN_DIP):mArrowMarginLeft;
+                layoutParams.setMargins(leftMargin,0,mArrowMarginRight,0);
                 mBottomArrowContainer.setGravity(Gravity.LEFT);
             }else if((Gravity.HORIZONTAL_GRAVITY_MASK & mArrowGravity) == Gravity.RIGHT){
-                layoutParams.setMargins(0,0,UIUtils.dip2px(mContext,MARGIN_DIP),0);
+                int rightMargin = mArrowMarginRight == 0? UIUtils.dip2px(mContext,MARGIN_DIP):mArrowMarginRight;
+                layoutParams.setMargins(mArrowMarginLeft,0,rightMargin,0);
                 mBottomArrowContainer.setGravity(Gravity.RIGHT);
             }else {
                 layoutParams.setMargins(0,0,0,0);
@@ -107,10 +111,12 @@ public class CommonTipsView extends LinearLayout{
         }else {
             mArrowImage.setRotation(180);
             if((Gravity.HORIZONTAL_GRAVITY_MASK & mArrowGravity) == Gravity.LEFT){
-                layoutParams.setMargins(UIUtils.dip2px(mContext,MARGIN_DIP),0,0,0);
+                int leftMargin = mArrowMarginLeft == 0? UIUtils.dip2px(mContext,MARGIN_DIP):mArrowMarginLeft;
+                layoutParams.setMargins(leftMargin,0,mArrowMarginRight,0);
                 mTopArrowContainer.setGravity(Gravity.LEFT);
             }else if((Gravity.HORIZONTAL_GRAVITY_MASK & mArrowGravity) == Gravity.RIGHT){
-                layoutParams.setMargins(0,0,UIUtils.dip2px(mContext,MARGIN_DIP),0);
+                int rightMargin = mArrowMarginRight == 0? UIUtils.dip2px(mContext,MARGIN_DIP):mArrowMarginRight;
+                layoutParams.setMargins(mArrowMarginLeft,0,rightMargin,0);
                 mTopArrowContainer.setGravity(Gravity.RIGHT);
             }else {
                 layoutParams.setMargins(0,0,0,0);
