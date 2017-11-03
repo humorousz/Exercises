@@ -49,6 +49,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private AroundLightView mAroundLightView;
     private ViewGroup mItemContainer;
     private GuardStateListener mListener;
+    private boolean isEndAnim = false;
 
     public GuardView(Context context) {
         this(context,null);
@@ -94,6 +95,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
 
     private ObjectAnimator mBgScaleX,mBgScaleY;
     private AnimatorSet mBgAnimatorSet ;
+
+    /**
+     * 背景出现动画
+     */
     private void startBgAnim(){
         mBgScaleX = ObjectAnimator.ofFloat(mLightBg,"scaleX",0,1);
         mBgScaleY = ObjectAnimator.ofFloat(mLightBg,"scaleY",0,1);
@@ -106,6 +111,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     }
 
     private ObjectAnimator mBgRotation;
+
+    /**
+     * 背景旋转动画
+     */
     private void startBgAnimRotation(){
         mBgRotation = ObjectAnimator.ofFloat(mLightBg,"rotation",0,180);
         mBgRotation.setDuration(ANIM_BG_ROTATION);
@@ -113,6 +122,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     }
 
     private ObjectAnimator mUserIconUp;
+
+    /**
+     * 头像升起动画
+     */
     private void startIconAnimUp(){
         int w = View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED);
@@ -140,6 +153,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private ObjectAnimator mUserNameTextAnim;
     private ObjectAnimator mUserDescTextAnim;
     private ObjectAnimator mTypeIconContainerAnim;
+
+    /**
+     * 最后动画的组合：头像下降，翅膀展开，植物、名称、Icon等出现
+     */
     private void lastAnim(){
         mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
         mUserIconDown.setDuration(ICON_DOWN);
@@ -193,6 +210,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
 
     private ObjectAnimator mTypeIconStarScaleX,mTypeIconStarScaleY;
     private AnimatorSet mIconStarSet;
+
+    /**
+     * Icon右上角星星闪烁动画
+     */
     private void startIconStarAnim(){
         mTypeIconStarScaleX = ObjectAnimator.ofFloat(mTypeIconStar,"scaleX",1,0);
         mTypeIconStarScaleY = ObjectAnimator.ofFloat(mTypeIconStar,"scaleY",1,0);
@@ -212,6 +233,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
 
     private AnimatorSet mItemQuitAnimSet;
     private  ValueAnimator animator,bgAnimator;
+
+    /**
+     * 退出动画
+     */
     private void quitAnim(){
         animator = ValueAnimator.ofFloat(1,0);
         animator.addListener(this);
@@ -303,6 +328,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         }else if(animation == mItemQuitAnimSet){
             clearAnim();
             if(mListener != null){
+                isEndAnim = true;
                 mListener.onEndAnim();
             }
         }
@@ -321,8 +347,8 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if(mListener != null){
-            mListener.onStartAnim();
+        if(!isEndAnim && mListener != null){
+            mListener.onEndAnim();
         }
     }
 
