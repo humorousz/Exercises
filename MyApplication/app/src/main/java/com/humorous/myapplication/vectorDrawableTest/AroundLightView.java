@@ -27,6 +27,7 @@ import com.humorousz.uiutils.helper.UIUtils;
 public class AroundLightView extends View implements Animator.AnimatorListener {
     private static final int ANIM_TIME = 600;
     private static final int DELAY_TIME = 400;
+    private static final int COUNT = 2;
     // 路径measure
     private PathMeasure mPathMeasure ;
     //整体路径
@@ -48,9 +49,11 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
     private int mRoundRadius = 50;
     private float mPointX,mPointY;
     private float mTotalEndV;
-    ValueAnimator animator;
-    ValueAnimator animator2;
-    AnimatorSet mAnimatorSet;
+    private ValueAnimator animator;
+    private ValueAnimator animator2;
+    private AnimatorSet mAnimatorSet;
+    private int step = 0;
+    private boolean isRemove = false;
     public AroundLightView(Context context) {
         this(context,null);
     }
@@ -90,11 +93,9 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
         });
         animator.setDuration(ANIM_TIME);
         animator2.setDuration(ANIM_TIME);
-//        animator.setInterpolator(new AccelerateDecelerateInterpolator());
         mAnimatorSet = new AnimatorSet();
         mAnimatorSet.playTogether(animator,animator2);
         mAnimatorSet.addListener(this);
-        mAnimatorSet.start();
     }
 
     @Override
@@ -136,15 +137,13 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        animator.start();
-        animator2.start();
+        mAnimatorSet.start();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        animator.cancel();
-        animator2.cancel();
+        isRemove = true;
         mAnimatorSet.cancel();
     }
 
@@ -155,9 +154,12 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
 
     @Override
     public void onAnimationEnd(Animator animation) {
-        mAnimatorSet.playTogether(animator,animator2);
-        mAnimatorSet.setStartDelay(DELAY_TIME);
-        mAnimatorSet.start();
+        if(step < COUNT && !isRemove){
+            step++;
+            mAnimatorSet.playTogether(animator,animator2);
+            mAnimatorSet.setStartDelay(DELAY_TIME);
+            mAnimatorSet.start();
+        }
     }
 
     @Override

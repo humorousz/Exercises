@@ -11,14 +11,6 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_gravity="center"></com.humorous.myapplication.vectorDrawableTest.GuardView>-->
 
-    <com.humorous.myapplication.vectorDrawableTest.AroundLightView
-        android:layout_width="90dp"
-        android:layout_height="36dp"
-        android:layout_gravity="bottom|left"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:padding="1dp"/>
-
     <Button
         android:id="@+id/guard_btn"
         android:layout_width="wrap_content"
