@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.commonutils.log.Logger;
 
 /**
  *
@@ -350,8 +351,9 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if(!isEndAnim && mListener != null){
-            mListener.onEndAnim();
+        if(!isEndAnim){
+            Logger.d(TAG,"not cancel");
+            clearAnim();
         }
     }
 
