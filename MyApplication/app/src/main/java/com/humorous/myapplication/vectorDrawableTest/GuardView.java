@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +27,7 @@ import com.humorous.myapplication.R;
 public class GuardView extends RelativeLayout implements Animator.AnimatorListener{
     private static final String TAG = "GuardView";
     private static final int ANIM_BG_TIME = 200; //背景出现时间
-    private static final int ANIM_BG_ROTATION = 2500; //光线旋转时间
+    private static final int ANIM_BG_ROTATION = 3000; //光线旋转时间
     private static final int STAR_DELAY_TIME = 200; //背景大星星的延时出场时间
     private static final int ICON_UP = 320; //头像抬起时间
     private static final int ICON_DOWN = 120; //头像下降时间
@@ -33,7 +35,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private static final int STAR_BG_TIME = 400;//星星背景时间
     private static final int TEXT_AND_ICON_TIME = 200;//名称和icon的时间
     private static final int ITEM_QUIT_TIME = 400;
-    private static final int ITEM_DELAY_TIME = 1500;
+    private static final int ITEM_DELAY_TIME = 1700;
     private Context mContext;
     private ImageView mLightBg;
     private ImageView mStarBg;
@@ -116,7 +118,8 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
      * 背景旋转动画
      */
     private void startBgAnimRotation(){
-        mBgRotation = ObjectAnimator.ofFloat(mLightBg,"rotation",0,180);
+        mBgRotation = ObjectAnimator.ofFloat(mLightBg,"rotation",0,270);
+        mBgRotation.setInterpolator(new LinearInterpolator());
         mBgRotation.setDuration(ANIM_BG_ROTATION);
         mBgRotation.start();
     }
