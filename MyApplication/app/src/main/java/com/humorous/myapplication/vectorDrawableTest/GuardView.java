@@ -286,10 +286,18 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
      * 取消反复执行的动画，防止内存泄漏
      */
     private void clearAnim(){
-        mStarBgAnim.cancel();
-        mBigStarBgAnim.cancel();
-        mTypeIconStarScaleX.cancel();
-        mTypeIconStarScaleY.cancel();
+        if (mStarBgAnim!=null){
+            mStarBgAnim.cancel();
+        }
+        if(mBigStarBgAnim != null){
+            mBigStarBgAnim.cancel();
+        }
+        if(mTypeIconStarScaleX != null){
+            mTypeIconStarScaleX.cancel();
+        }
+        if(mTypeIconStarScaleY != null){
+            mTypeIconStarScaleY.cancel();
+        }
     }
 
     @Override

@@ -53,6 +53,8 @@ public class GuardController implements GuardView.GuardStateListener {
     }
 
     public void clear(){
+        if(mQueue.isEmpty())
+            return;
         synchronized (mQueue){
             mQueue.clear();
         }

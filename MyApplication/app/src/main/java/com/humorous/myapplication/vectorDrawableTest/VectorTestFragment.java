@@ -16,7 +16,7 @@ import com.humorousz.uiutils.view.BaseFragment;
  */
 
 public class VectorTestFragment extends BaseFragment {
-    private Button button;
+    private Button button,clearBtn;
     private GuardController mController;
 
     @Override
@@ -32,6 +32,13 @@ public class VectorTestFragment extends BaseFragment {
             public void onClick(View v) {
                 GuardMessage msg = new GuardMessage("a","d",GuardMessage.GUARD_MONTH);
                 mController.addTask(msg);
+            }
+        });
+        clearBtn = (Button) root.findViewById(R.id.guard_clear_btn);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mController.clear();
             }
         });
         ViewGroup viewGroup = (ViewGroup) root.findViewById(R.id.guard_container);
