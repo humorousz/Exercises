@@ -81,7 +81,7 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
                 invalidate();
             }
         });
-        animator2 = ObjectAnimator.ofFloat(0,mTotalEndV,0,0,mTotalEndV,0);
+        animator2 = ObjectAnimator.ofFloat(0,mTotalEndV,0,0,0,mTotalEndV,0);
         animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
