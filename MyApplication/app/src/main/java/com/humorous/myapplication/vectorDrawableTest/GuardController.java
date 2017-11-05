@@ -46,7 +46,6 @@ public class GuardController implements GuardView.GuardStateListener {
             return;
         }
         isRunning = true;
-        mGuardView = null;
         mGuardView = new GuardView(mParent.getContext());
         mGuardView.setGuardStateListener(this);
         mGuardView.setGuardMessage(msg);
@@ -71,6 +70,7 @@ public class GuardController implements GuardView.GuardStateListener {
     public void onEndAnim() {
         if(mParent != null && mGuardView != null){
             mParent.removeView(mGuardView);
+            mGuardView = null;
         }
         isRunning = false;
         takeTask();
