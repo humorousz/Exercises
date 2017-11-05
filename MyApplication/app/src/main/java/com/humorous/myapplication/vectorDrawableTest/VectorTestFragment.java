@@ -15,10 +15,10 @@ import com.humorousz.uiutils.view.BaseFragment;
  * Created by zhangzhiquan on 2017/10/29.
  */
 
-public class VectorTestFragment extends BaseFragment implements GuardView.GuardStateListener {
+public class VectorTestFragment extends BaseFragment {
     private Button button;
-    private GuardView mGuardView;
-    private  FrameLayout layout;
+    private GuardController mController;
+
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_fragment_vector,container,false);
@@ -26,31 +26,15 @@ public class VectorTestFragment extends BaseFragment implements GuardView.GuardS
 
     @Override
     public void initView(final View root) {
-        layout = (FrameLayout) root;
         button = (Button) root.findViewById(R.id.guard_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               addGuardView();
+                GuardMessage msg = new GuardMessage("a","d",GuardMessage.GUARD_MONTH);
+                mController.addTask(msg);
             }
         });
-    }
-
-    private void addGuardView(){
-        mGuardView = new GuardView(getContext());
-        mGuardView.setGuardStateListener(this);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.gravity = Gravity.CENTER;
-        layout.addView(mGuardView);
-    }
-    @Override
-    public void onStartAnim() {
-
-    }
-
-    @Override
-    public void onEndAnim() {
-        layout.removeView(mGuardView);
-        mGuardView = null;
+        ViewGroup viewGroup = (ViewGroup) root.findViewById(R.id.guard_container);
+        mController = new GuardController(viewGroup);
     }
 }

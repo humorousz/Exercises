@@ -4,13 +4,12 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:gravity="center">
-
-    <!--<com.humorous.myapplication.vectorDrawableTest.GuardView-->
-        <!--android:id="@+id/guard_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"></com.humorous.myapplication.vectorDrawableTest.GuardView>-->
-
+    <LinearLayout
+        android:id="@+id/guard_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+    </LinearLayout>
     <Button
         android:id="@+id/guard_btn"
         android:layout_width="wrap_content"
