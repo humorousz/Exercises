@@ -16,7 +16,7 @@ import com.humorousz.uiutils.view.BaseFragment;
  */
 
 public class VectorTestFragment extends BaseFragment {
-    private Button button,clearBtn;
+    private Button button,clearBtn,yearBtn;
     private GuardController mController;
     private static final String LINK = "http://scimg.jb51.net/touxiang/201708/2017080816125160.jpg";
 
@@ -40,6 +40,14 @@ public class VectorTestFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 mController.clear();
+            }
+        });
+        yearBtn = (Button) root.findViewById(R.id.guard_year_btn);
+        yearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GuardMessage msg = new GuardMessage("zhangzhiquan",LINK,GuardMessage.GUARD_YEAR);
+                mController.addTask(msg);
             }
         });
         ViewGroup viewGroup = (ViewGroup) root.findViewById(R.id.guard_container);

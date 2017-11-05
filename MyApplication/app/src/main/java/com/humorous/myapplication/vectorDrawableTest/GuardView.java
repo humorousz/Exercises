@@ -44,6 +44,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private ImageView mRightWing;
     private ImageView mPlant;
     private ImageView mUserIcon;
+    private ImageView mGuardTypeIcon;
     private ViewGroup mIconContainer;
     private TextView  mUserNameText;
     private TextView  mUserDescText;
@@ -75,6 +76,10 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mMsg = msg;
         mUserNameText.setText(msg.getName());
         ImageLoaderHelper.displayCircleImage(msg.getLink(),mUserIcon);
+        if(mMsg.getType()== GuardMessage.GUARD_YEAR){
+            mLightBg.setImageResource(R.drawable.guard_bg_year);
+            mGuardTypeIcon.setImageResource(R.drawable.guard_icon_year);
+        }
     }
 
     @Override
@@ -99,6 +104,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mTypeIconStar = (ImageView) findViewById(R.id.guard_type_icon_star);
         mItemContainer = (ViewGroup) findViewById(R.id.item_container);
         mUserIcon = (ImageView) findViewById(R.id.user_icon);
+        mGuardTypeIcon =  (ImageView) findViewById(R.id.guard_type_icon);
     }
 
     private ObjectAnimator mBgScaleX,mBgScaleY;

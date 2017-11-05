@@ -12,11 +12,18 @@
         android:gravity="center">
     </LinearLayout>
     <Button
+        android:id="@+id/guard_year_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:text="来个年守护"
+        />
+    <Button
         android:id="@+id/guard_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:text="来个守护"
+        android:text="来个月守护"
         />
     <Button
         android:id="@+id/guard_clear_btn"
