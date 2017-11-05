@@ -49,6 +49,7 @@ public class GuardController implements GuardView.GuardStateListener {
         mGuardView = null;
         mGuardView = new GuardView(mParent.getContext());
         mGuardView.setGuardStateListener(this);
+        mGuardView.setGuardMessage(msg);
         mParent.addView(mGuardView);
     }
 

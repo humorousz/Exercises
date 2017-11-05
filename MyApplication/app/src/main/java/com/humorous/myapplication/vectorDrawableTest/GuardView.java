@@ -5,13 +5,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.os.Looper;
-import android.os.MessageQueue;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,6 +16,7 @@ import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.uiutils.helper.ImageLoaderHelper;
 
 /**
  *
@@ -35,8 +33,9 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private static final int WING_UP = 200; // 翅膀展开时间
     private static final int STAR_BG_TIME = 400;//星星背景时间
     private static final int TEXT_AND_ICON_TIME = 200;//名称和icon的时间
-    private static final int ITEM_QUIT_TIME = 400;
-    private static final int ITEM_DELAY_TIME = 1700;
+    private static final int ITEM_QUIT_TIME = 400; //退出时间
+    private static final int ITEM_DELAY_TIME = 1700; //退出前等待时间
+    private static final int STAR_BLINK_TIME = 600; //icon星星闪烁时间
     private Context mContext;
     private ImageView mLightBg;
     private ImageView mStarBg;
@@ -44,15 +43,16 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private ImageView mLeftWing;
     private ImageView mRightWing;
     private ImageView mPlant;
+    private ImageView mUserIcon;
     private ViewGroup mIconContainer;
     private TextView  mUserNameText;
     private TextView  mUserDescText;
     private ViewGroup mTypeIconContainer;
     private ImageView mTypeIconStar;
-    private AroundLightView mAroundLightView;
     private ViewGroup mItemContainer;
     private GuardStateListener mListener;
     private boolean isEndAnim = false;
+    private GuardMessage mMsg;
 
     public GuardView(Context context) {
         this(context,null);
@@ -66,18 +66,23 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         super(context, attrs, defStyleAttr);
         mContext = context;
         init();
-        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
-            @Override
-            public boolean queueIdle() {
-                startBgAnim();
-                return false;
-            }
-        });
     }
 
     public void setGuardStateListener(GuardStateListener listener){
         mListener = listener;
     }
+    public void setGuardMessage(GuardMessage msg){
+        mMsg = msg;
+        mUserNameText.setText(msg.getName());
+        ImageLoaderHelper.displayCircleImage(msg.getLink(),mUserIcon);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        startBgAnim();
+    }
+
     private void init(){
         LayoutInflater inflater = LayoutInflater.from(mContext);
         inflater.inflate(R.layout.layout_gurad_view,this,true);
@@ -92,8 +97,8 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mUserDescText = (TextView) findViewById(R.id.text_desc);
         mTypeIconContainer = (ViewGroup) findViewById(R.id.guard_type_icon_container);
         mTypeIconStar = (ImageView) findViewById(R.id.guard_type_icon_star);
-        mAroundLightView =  (AroundLightView) findViewById(R.id.guard_around_light);
         mItemContainer = (ViewGroup) findViewById(R.id.item_container);
+        mUserIcon = (ImageView) findViewById(R.id.user_icon);
     }
 
     private ObjectAnimator mBgScaleX,mBgScaleY;
@@ -221,8 +226,8 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private void startIconStarAnim(){
         mTypeIconStarScaleX = ObjectAnimator.ofFloat(mTypeIconStar,"scaleX",1,0);
         mTypeIconStarScaleY = ObjectAnimator.ofFloat(mTypeIconStar,"scaleY",1,0);
-        mTypeIconStarScaleX.setDuration(600);
-        mTypeIconStarScaleY.setDuration(600);
+        mTypeIconStarScaleX.setDuration(STAR_BLINK_TIME);
+        mTypeIconStarScaleY.setDuration(STAR_BLINK_TIME);
         mTypeIconStarScaleX.setRepeatCount(ValueAnimator.INFINITE);
         mTypeIconStarScaleY.setRepeatCount(ValueAnimator.INFINITE);
         mTypeIconStarScaleX.setRepeatMode(ValueAnimator.REVERSE);

@@ -13,9 +13,6 @@ import android.graphics.PathMeasure;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 
 import com.humorousz.uiutils.helper.UIUtils;
 
@@ -96,12 +93,6 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
         mAnimatorSet = new AnimatorSet();
         mAnimatorSet.playTogether(animator,animator2);
         mAnimatorSet.addListener(this);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
     }
 
     @Override

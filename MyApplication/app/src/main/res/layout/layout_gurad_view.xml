@@ -91,6 +91,11 @@
                 android:layout_height="80dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/guard_icon_bg" />
+            <ImageView
+                android:id="@+id/user_icon"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"/>
         </FrameLayout>
         <TextView
             android:id="@+id/text_user"
@@ -98,7 +103,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/icon_container"
             android:layout_centerHorizontal="true"
-            android:text="写个名字比较好"
+            android:gravity="center_horizontal"
+            tools:text="写个名字比较好"
+            android:maxLines="1"
             android:textColor="@android:color/white"
             android:textSize="15dp"
             android:layout_marginTop="3dp"

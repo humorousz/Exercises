@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 /**
  * Created by zhangzhiquan on 2017/5/29.
@@ -24,6 +25,16 @@ public class ImageLoaderHelper {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        loadImage(url,imageView,options);
+    }
+
+    public static void displayCircleImage(String url,ImageView imageView){
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .displayer(new RoundedBitmapDisplayer(150))
                 .build();
         loadImage(url,imageView,options);
     }
