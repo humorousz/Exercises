@@ -44,12 +44,12 @@
         <ImageView
             android:id="@+id/left_wing"
             android:layout_width="40dp"
-            android:layout_height="100dp"
+            android:layout_height="65dp"
             android:layout_alignBottom="@+id/icon_container"
             android:layout_marginRight="-25dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             android:layout_toLeftOf="@+id/icon_container"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/guard_left_wing"
             android:visibility="invisible"
             tools:visibility="visible"/>
@@ -57,12 +57,12 @@
         <ImageView
             android:id="@+id/right_wing"
             android:layout_width="40dp"
-            android:layout_height="100dp"
+            android:layout_height="65dp"
             android:layout_alignBottom="@+id/icon_container"
             android:layout_marginLeft="-25dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             android:layout_toRightOf="@+id/icon_container"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/guard_right_wing"
             android:visibility="invisible"
             tools:visibility="visible"/>
