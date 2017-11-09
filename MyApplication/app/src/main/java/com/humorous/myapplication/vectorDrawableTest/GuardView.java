@@ -148,7 +148,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
                 View.MeasureSpec.UNSPECIFIED);
         mIconContainer.measure(w, h);
         int height = mIconContainer.getMeasuredHeight();
-        float end = height * -1;
+        float end = height * 0.7f * -1;
         float start = height * 0.5f ;
         mUserIconUp = ObjectAnimator.ofFloat(mIconContainer,"translationY",start,end);
         mUserIconUp.setDuration(ICON_UP);
@@ -184,13 +184,13 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mLeftWing.measure(w, h);
         mLeftWing.setPivotX(mLeftWing.getWidth());
         mLeftWing.setPivotY(mLeftWing.getHeight()/3*2);
-        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-100,0);
+        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-180,0);
         mLeftWingAnim.setDuration(WING_UP);
 
         mRightWing.measure(w,h);
         mRightWing.setPivotX(0);
         mRightWing.setPivotY(mRightWing.getHeight()/3*2);
-        mRightWingAnim = ObjectAnimator.ofFloat(mRightWing,"rotation",100,0);
+        mRightWingAnim = ObjectAnimator.ofFloat(mRightWing,"rotation",180,0);
         mRightWingAnim.setDuration(WING_UP);
 
         mPlantScaleX = ObjectAnimator.ofFloat(mPlant,"scaleX",0,1);

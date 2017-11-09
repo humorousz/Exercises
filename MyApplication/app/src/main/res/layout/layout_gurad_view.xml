@@ -43,7 +43,7 @@
 
         <ImageView
             android:id="@+id/left_wing"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="100dp"
             android:layout_alignBottom="@+id/icon_container"
             android:layout_marginRight="-25dp"
@@ -56,7 +56,7 @@
 
         <ImageView
             android:id="@+id/right_wing"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="100dp"
             android:layout_alignBottom="@+id/icon_container"
             android:layout_marginLeft="-25dp"
@@ -70,7 +70,7 @@
         <ImageView
             android:id="@+id/plant"
             android:layout_width="wrap_content"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignBottom="@+id/icon_container"
             android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
