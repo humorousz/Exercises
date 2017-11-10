@@ -219,7 +219,13 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mTypeIconContainerAnim.addListener(this);
         mTypeIconContainerAnim.setDuration(TEXT_AND_ICON_TIME);
 
-        mUserIconDown.start();
+        mLeftWing.setVisibility(VISIBLE);
+        mRightWing.setVisibility(VISIBLE);
+        mPlant.setVisibility(VISIBLE);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(mLeftWingAnim,mRightWingAnim
+                ,mPlantScaleX,mPlantScaleY,mUserIconDown);
+        animatorSet.start();
 
     }
 
@@ -322,15 +328,16 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
                 mBigStarBgAnim.setStartDelay(STAR_DELAY_TIME);
                 mBigStarBgAnim.start();
             }
-        } else if(animation == mUserIconDown){
-            mLeftWing.setVisibility(VISIBLE);
-            mRightWing.setVisibility(VISIBLE);
-            mPlant.setVisibility(VISIBLE);
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim
-                    ,mPlantScaleX,mPlantScaleY);
-            animatorSet.start();
         }
+//        else if(animation == mUserIconDown){
+//            mLeftWing.setVisibility(VISIBLE);
+//            mRightWing.setVisibility(VISIBLE);
+//            mPlant.setVisibility(VISIBLE);
+//            AnimatorSet animatorSet = new AnimatorSet();
+//            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim
+//                    ,mPlantScaleX,mPlantScaleY);
+//            animatorSet.start();
+//        }
     }
 
     @Override

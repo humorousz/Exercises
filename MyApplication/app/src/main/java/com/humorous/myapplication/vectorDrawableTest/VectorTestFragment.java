@@ -31,7 +31,7 @@ public class VectorTestFragment extends BaseFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GuardMessage msg = new GuardMessage("zhangzhiquan",LINK,GuardMessage.GUARD_MONTH);
+                GuardMessage msg = new GuardMessage("哈哈哈哈啊哈",LINK,GuardMessage.GUARD_MONTH);
                 mController.addTask(msg);
             }
         });
