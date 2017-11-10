@@ -146,11 +146,11 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
                 View.MeasureSpec.UNSPECIFIED);
         int h = View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED);
-        mIconContainer.measure(w, h);
-        int height = mIconContainer.getMeasuredHeight();
-        float end = height * 0.7f * -1;
-        float start = height * 0.5f ;
-        mUserIconUp = ObjectAnimator.ofFloat(mIconContainer,"translationY",start,end);
+        mItemContainer.measure(w, h);
+        int height = mItemContainer.getMeasuredHeight();
+        float end = height * 0.2f * -1;
+        float start = height * 0.2f ;
+        mUserIconUp = ObjectAnimator.ofFloat(mItemContainer,"translationY",start,end);
         mUserIconUp.setDuration(ICON_UP);
         mUserIconUp.addListener(this);
         mIconContainer.setVisibility(VISIBLE);
@@ -173,7 +173,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
      * 最后动画的组合：头像下降，翅膀展开，植物、名称、Icon等出现
      */
     private void lastAnim(){
-        mUserIconDown = ObjectAnimator.ofFloat(mIconContainer,"translationY",mIconContainer.getTranslationY(),0);
+        mUserIconDown = ObjectAnimator.ofFloat(mItemContainer,"translationY",mItemContainer.getTranslationY(),0);
         mUserIconDown.setDuration(ICON_DOWN);
         mUserIconDown.addListener(this);
 
@@ -183,14 +183,14 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
                 View.MeasureSpec.UNSPECIFIED);
         mLeftWing.measure(w, h);
         mLeftWing.setPivotX(mLeftWing.getWidth());
-        mLeftWing.setPivotY(mLeftWing.getHeight()/3*2);
-        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-180,0);
+        mLeftWing.setPivotY(mLeftWing.getHeight());
+        mLeftWingAnim = ObjectAnimator.ofFloat(mLeftWing,"rotation",-100,0);
         mLeftWingAnim.setDuration(WING_UP);
 
         mRightWing.measure(w,h);
         mRightWing.setPivotX(0);
-        mRightWing.setPivotY(mRightWing.getHeight()/3*2);
-        mRightWingAnim = ObjectAnimator.ofFloat(mRightWing,"rotation",180,0);
+        mRightWing.setPivotY(mRightWing.getHeight());
+        mRightWingAnim = ObjectAnimator.ofFloat(mRightWing,"rotation",100,0);
         mRightWingAnim.setDuration(WING_UP);
 
         mPlantScaleX = ObjectAnimator.ofFloat(mPlant,"scaleX",0,1);
@@ -322,6 +322,14 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
                 mBigStarBgAnim.setStartDelay(STAR_DELAY_TIME);
                 mBigStarBgAnim.start();
             }
+        } else if(animation == mUserIconDown){
+            mLeftWing.setVisibility(VISIBLE);
+            mRightWing.setVisibility(VISIBLE);
+            mPlant.setVisibility(VISIBLE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim
+                    ,mPlantScaleX,mPlantScaleY);
+            animatorSet.start();
         }
     }
 
@@ -341,8 +349,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
             mUserDescText.setVisibility(VISIBLE);
             mTypeIconContainer.setVisibility(VISIBLE);
             AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(mLeftWingAnim,mRightWingAnim
-                    ,mPlantScaleX,mPlantScaleY,mStarBgAnim
+            animatorSet.playTogether(mStarBgAnim
                     ,mUserNameTextAnim,mUserDescTextAnim,mTypeIconContainerAnim);
             animatorSet.start();
         }else if(animation == mTypeIconContainerAnim){
