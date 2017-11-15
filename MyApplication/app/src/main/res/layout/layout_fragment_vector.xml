@@ -3,11 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="center"
-        android:src="@mipmap/guard_parent_bg"/>
+
     <LinearLayout
         android:id="@+id/guard_container"
         android:layout_width="match_parent"

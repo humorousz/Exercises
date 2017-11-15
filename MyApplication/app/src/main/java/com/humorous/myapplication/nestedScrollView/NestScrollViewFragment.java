@@ -25,7 +25,7 @@ public class NestScrollViewFragment extends BaseFragment {
 
     @Override
     public void initView(View root) {
-        mReyclerView = (RecyclerView) root.findViewById(R.id.recycler);
+        mReyclerView = root.findViewById(R.id.recycler);
         mReyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         mReyclerView.addItemDecoration(new LinearItemDecoration());
         mReyclerView.setAdapter(adapter);
