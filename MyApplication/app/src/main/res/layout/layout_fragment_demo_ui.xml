@@ -52,7 +52,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="我好帅啊啊啊啊啊啊啊啊"
-        app:arrow_gravity="top|right"/>
+        app:arrow_gravity="top|right"
+        android:visibility="gone"/>
+
+    <com.humorous.myapplication.liveroom.weidget.BreathingLampView
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center"
+        app:smallRadius="15dp"
+        app:bigRadius="17dp"
+        app:hollowRadius="14dp"
+        app:circleColor="#FFE400"
+        app:animationTime="500"
+        app:repeatCount="3"
+        android:visibility="gone"/>
 
 
 
