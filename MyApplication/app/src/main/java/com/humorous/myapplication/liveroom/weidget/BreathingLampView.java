@@ -99,7 +99,10 @@ public class BreathingLampView extends View {
         mAlphaAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                setAlpha((Float) valueAnimator.getAnimatedValue());
+                int r = mCircleColor >> 16 & 0xff;
+                int g = mCircleColor >> 8  & 0xff;
+                int b = mCircleColor & 0xff;
+                mPaint.setColor(Color.argb((int) (0xff *(Float) valueAnimator.getAnimatedValue()),r,g,b ));
             }
         });
         mRadiusAnimator = ValueAnimator.ofFloat(mSmallRadius,mBigRadius,mBigRadius,mSmallRadius);

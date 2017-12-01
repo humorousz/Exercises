@@ -56,11 +56,11 @@
         android:visibility="gone"/>
 
     <com.humorous.myapplication.liveroom.weidget.BreathingLampView
-        android:layout_width="39dp"
-        android:layout_height="39dp"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
         android:layout_gravity="center"
         app:smallRadius="15dp"
-        app:bigRadius="17dp"
+        app:bigRadius="22dp"
         app:hollowRadius="14dp"
         app:circleColor="#FFE400"
         app:animationTime="500"
