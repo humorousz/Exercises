@@ -6,4 +6,13 @@
         <attr name="frontColor" format="reference"></attr>
         <attr name="backColor" format="reference"></attr>
     </declare-styleable>
+    
+    <declare-styleable name="BreathingLampView">
+        <attr name="smallRadius" format="dimension|reference"/>
+        <attr name="bigRadius" format="dimension|reference"/>
+        <attr name="hollowRadius" format="dimension|reference"/>
+        <attr name="circleColor" format="color|reference"/>
+        <attr name="animationTime" format="integer"/>
+        <attr name="repeatCount" format="integer"/>
+    </declare-styleable>
 </resources>
