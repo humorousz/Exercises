@@ -74,6 +74,11 @@ public class API {
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.SHARE_ELEMENT);
+        itemModel.setTitle("共享元素");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.TEXT_SPAN);
         itemModel.setTitle("Span 练习");
         models.add(itemModel);

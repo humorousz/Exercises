@@ -55,8 +55,12 @@ public class TestProtocol {
 
     //demoUI 练习
     public static final String DEMO_UI = BASE + TestFragmentFactory.TYPE.DEMO_UI + HAS_NO_TITLE;
-    //demoUI 练习
+
+    //translate动画
     public static final String VECTOR_DRAWABLE = BASE + TestFragmentFactory.TYPE.VECTOR_DRAWABLE + HAS_NO_TITLE;
+
+    //共享元素
+    public static final String SHARE_ELEMENT = BASE + TestFragmentFactory.TYPE.SHARE_ELEMENT + HAS_TITLE;
 
 
     /**

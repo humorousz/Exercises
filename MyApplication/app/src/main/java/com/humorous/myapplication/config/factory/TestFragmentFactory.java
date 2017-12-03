@@ -11,6 +11,8 @@ import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
+import com.humorous.myapplication.shareElement.ShareElementFragmentA;
+import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
 import com.humorous.myapplication.vectorDrawableTest.VectorTestFragment;
@@ -24,7 +26,7 @@ public class TestFragmentFactory {
     public enum TYPE{
         ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR
         ,NESTED_SCROLLING,NESTED_SCROLL_VIEW,EXCEPTION,DRAWER_LAYOUT,FRAME_ANIMTOR
-        ,DEMO_ROOM,TEXT_SPAN,DEMO_UI,VECTOR_DRAWABLE
+        ,DEMO_ROOM,TEXT_SPAN,DEMO_UI,VECTOR_DRAWABLE,SHARE_ELEMENT,SHARE_ELEMENT_B
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -70,6 +72,12 @@ public class TestFragmentFactory {
                 break;
             case VECTOR_DRAWABLE:
                 fragment = new VectorTestFragment();
+                break;
+            case SHARE_ELEMENT:
+                fragment = new ShareElementFragmentA();
+                break;
+            case SHARE_ELEMENT_B:
+                fragment = new ShareElementFragmentB();
                 break;
         }
         return fragment;

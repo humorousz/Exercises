@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical">
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:text="点我"
+        android:transitionName="share_btn"
+        android:gravity="center"
+        android:textSize="11dp"/>
+
+    <ImageView
+        android:id="@+id/share_b_img"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/sssssss"
+        android:scaleType="fitCenter"
+        android:transitionName="share_img"/>
+
+</LinearLayout>
