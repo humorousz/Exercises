@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    tools:text="星星榜TOP50"
+    android:singleLine="true"
+    android:gravity="center_horizontal"
+    android:textColor="@android:color/white"
+    tools:background="@color/color_bffd9500"
+    android:textSize="12dp">
+</TextView>

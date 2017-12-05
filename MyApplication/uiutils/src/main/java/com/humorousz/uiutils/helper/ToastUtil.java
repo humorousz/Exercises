@@ -9,11 +9,11 @@ import android.widget.Toast;
 
 public class ToastUtil {
     private static Toast mToast;
-    public static void showToast(Context context,String msg){
+    public static void showToast(Context context,CharSequence msg){
         showToast(context,msg,false);
     }
 
-    public static void showToast(Context context,String msg,boolean isLong){
+    public static void showToast(Context context,CharSequence msg,boolean isLong){
         if(mToast != null){
             mToast.cancel();
         }

@@ -1,6 +1,8 @@
 package com.humorous.myapplication.liveroom;
 
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,10 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher;
+import com.humorousz.uiutils.helper.ToastUtil;
+import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.CommonTipsView;
+
+import java.util.ArrayList;
 
 /**
  * Created by zhangzhiquan on 2017/9/26.
@@ -25,6 +33,7 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
     private LinearLayout mTipsContainer;
     private CommonTipsView commonTipsView;
     private ImageView mImage;
+    private VerticalTextViewSwitcher mTextSwitcher;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_fragment_demo_ui,container,false);
@@ -44,6 +53,7 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
         lbtn.setOnClickListener(this);
         mbtn.setOnClickListener(this);
         rbtn.setOnClickListener(this);
+        initSwitcher(root);
     }
 
     @Override
@@ -78,5 +88,38 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
         }
         commonTipsView.setText(editText.getText().toString());
 
+    }
+
+    private void initSwitcher(View root){
+        mTextSwitcher = root.findViewById(R.id.verticalTextView);
+        mTextSwitcher.setOnMakeViewListener(new VerticalTextViewSwitcher.OnMakeView() {
+            @Override
+            public TextView makeView() {
+                TextView t = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.switcher_textview,null);
+                Drawable drawable = getResources().getDrawable(R.drawable.go_to);
+                drawable.setBounds(0,0,drawable.getIntrinsicWidth() * 2 / 3,drawable.getIntrinsicHeight() * 2 / 3);
+                t.setCompoundDrawables(null,null,drawable,null);
+                return t;
+            }
+        });
+        final ArrayList<CharSequence> list = new ArrayList<>();
+        list.add("星星排行榜a");
+        list.add("星星排行榜b");
+        list.add("榜c");
+        list.add("星榜d");
+        list.add("星星排行榜e");
+        list.add("星榜f");
+        list.add("星星排行榜g");
+        list.add("星星排行榜h");
+        mTextSwitcher.setOnItemClickListener(new VerticalTextViewSwitcher.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                ToastUtil.showToast(getContext(),list.get(position));
+            }
+        });
+        mTextSwitcher.setTextStillTime(2000);//设置停留时长间隔
+        mTextSwitcher.setAnimTime(300);//设置进入和退出的时间间隔
+        mTextSwitcher.setTextList(list);
+        mTextSwitcher.startAutoScroll();
     }
 }

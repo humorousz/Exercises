@@ -47,7 +47,8 @@
         android:id="@+id/image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
     <com.humorousz.uiutils.widget.CommonTipsView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,6 +68,20 @@
         app:repeatCount="3"
         android:visibility="gone"/>
 
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:background="@drawable/switcer_bg"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+        <com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher
+            android:id="@+id/verticalTextView"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+    </FrameLayout>
 
 
 </LinearLayout>
