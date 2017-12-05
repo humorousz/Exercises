@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.uiutils.helper.ToastUtil;
+import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -34,6 +36,14 @@ public class TestCoordinatorFragment extends BaseFragment {
         toolbar.setSubtitle("这里是子标题");
         mText = (TextView) root.findViewById(R.id.textView);
         mBtn = (Button)root.findViewById(R.id.btn);
+        mBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int[] pos = new int[2];
+                mBtn.getLocationInWindow(pos);
+                ToastUtil.showToast(getContext(),"pos x:"+mBtn.getLeft()+" y:"+mBtn.getTop());
+            }
+        });
         mText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
