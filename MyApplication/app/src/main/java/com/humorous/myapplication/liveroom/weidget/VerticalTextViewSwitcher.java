@@ -157,15 +157,21 @@ public class VerticalTextViewSwitcher extends TextSwitcher implements ViewSwitch
             t.setClickable(true);
             view = t;
         }
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (itemClickListener != null && textList.size() > 0 && currentId != -1) {
-                    itemClickListener.onItemClick(currentId % textList.size());
+        if(itemClickListener != null){
+            view.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (itemClickListener != null && textList.size() > 0 && currentId != -1) {
+                        itemClickListener.onItemClick(currentId % textList.size());
+                    }
                 }
-            }
-        });
+            });
+        }
         return view;
+    }
+
+    public int getCurrentPosition(){
+       return  currentId % textList.size();
     }
 
     /**

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher;
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
@@ -98,28 +99,34 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
                 TextView t = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.switcher_textview,null);
                 Drawable drawable = getResources().getDrawable(R.drawable.go_to);
                 drawable.setBounds(0,0,drawable.getIntrinsicWidth() * 2 / 3,drawable.getIntrinsicHeight() * 2 / 3);
+                t.setCompoundDrawablePadding(UIUtils.dip2px(4));
                 t.setCompoundDrawables(null,null,drawable,null);
+                Logger.d("MAKEVIEW","mmmm");
                 return t;
             }
         });
         final ArrayList<CharSequence> list = new ArrayList<>();
         list.add("星星排行榜a");
+        list.add("星星排行榜");
+        list.add("星星排行");
+        list.add("星星排行榜");
         list.add("星星排行榜b");
-        list.add("榜c");
-        list.add("星榜d");
-        list.add("星星排行榜e");
-        list.add("星榜f");
-        list.add("星星排行榜g");
-        list.add("星星排行榜h");
-        mTextSwitcher.setOnItemClickListener(new VerticalTextViewSwitcher.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                ToastUtil.showToast(getContext(),list.get(position));
-            }
-        });
+//        mTextSwitcher.setOnItemClickListener(new VerticalTextViewSwitcher.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                ToastUtil.showToast(getContext(),list.get(position));
+//            }
+//        });
         mTextSwitcher.setTextStillTime(2000);//设置停留时长间隔
         mTextSwitcher.setAnimTime(300);//设置进入和退出的时间间隔
         mTextSwitcher.setTextList(list);
         mTextSwitcher.startAutoScroll();
+        View v = root.findViewById(R.id.switcher_container);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.showToast(getContext(),list.get(mTextSwitcher.getCurrentPosition()));
+            }
+        });
     }
 }
