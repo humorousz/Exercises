@@ -11,6 +11,7 @@ import com.humorous.myapplication.config.api.API;
 import com.humorous.myapplication.home.HomeFragment;
 
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.view.BaseFragment;
 
 public class MainActivity extends FragmentActivity {
@@ -26,6 +27,7 @@ public class MainActivity extends FragmentActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StatusBarCompat.compat(this);
         mFragment = HomeFragment.newInstance(API.SECOND_MENU.MAIN);
         mContainer = (FrameLayout) findViewById(R.id.container);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();

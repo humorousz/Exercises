@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.config.factory.TestFragmentFactory;
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 
@@ -33,6 +34,7 @@ public class ContainerActivity extends AppCompatActivity {
             finish();
         }
         setContentView(R.layout.activity_container);
+        StatusBarCompat.compat(this);
         if(!hasTitle){
             Logger.d(TAG,"no title");
             getSupportActionBar().hide();
