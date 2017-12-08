@@ -26,7 +26,7 @@ public class StatusBarCompat {
 
         //需要设置这个 flag 才能调用 setStatusBar Color 来设置状态栏颜色
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.RED);
+        window.setStatusBarColor(activity.getResources().getColor(R.color.colorPrimary));
         ViewGroup mContentView =  activity.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
         if (mChildView != null) {
