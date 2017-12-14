@@ -12,6 +12,7 @@ import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorView;
 import com.humorous.myapplication.liveroom.weidget.MinePopupWindow;
+import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 
 import java.util.ArrayList;
@@ -19,15 +20,14 @@ import java.util.List;
 
 /**
  * Created by zhangzhiquan on 2017/8/19.
+ * @author zhangzhiquan
  */
 
 public class DemoRoomFragment extends BaseFragment implements View.OnClickListener {
-    IntoRoomAnimatorView intoRoomAnimatorView;
     ViewGroup mContainer;
     Button mSendBtn,mClearBtn,mMoveBtn,mPopBtn;
     IntoRoomAnimatorController mController;
     Animation inAnimation;
-    ViewGroup mLotteryContainer;
     int count = 0;
     boolean up = true;
     @Override
@@ -48,7 +48,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mPopBtn.setOnClickListener(this);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
         inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.into_scale);
-        mLotteryContainer = (ViewGroup) root.findViewById(R.id.luck_container);
 
 
 
@@ -77,13 +76,12 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
             mController.clear();
             count = 0;
         }else if(v == mMoveBtn){
-//            if(up){
-//                mContainer.setTranslationY(mContainer.getTranslationY() - UIUtils.dip2px(5));
-//            }else {
-//                mContainer.setTranslationY(mContainer.getTranslationY() + UIUtils.dip2px(5) );
-//            }
-//
-//            up = !up;
+            if(up){
+                mContainer.setTranslationY(mContainer.getTranslationY() - UIUtils.dip2px(5));
+            }else {
+                mContainer.setTranslationY(mContainer.getTranslationY() + UIUtils.dip2px(5) );
+            }
+
         }else if(v == mPopBtn){
             MinePopupWindow popupWindow = new MinePopupWindow(getActivity(),mPopBtn);
             popupWindow.showPopupWindow(mPopBtn);
