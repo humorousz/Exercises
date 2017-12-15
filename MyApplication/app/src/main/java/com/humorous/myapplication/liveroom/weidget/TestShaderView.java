@@ -60,7 +60,7 @@ public class TestShaderView extends View {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mTranslateAnimator.setInterpolator(new DecelerateInterpolator());
-        mTranslateAnimator.setDuration(2000);
+        mTranslateAnimator.setDuration(500);
         mTranslateAnimator.setRepeatCount(5);
         mTranslateAnimator.start();
     }
@@ -70,15 +70,16 @@ public class TestShaderView extends View {
         super.onDraw(canvas);
         // 设置shader
         if(mShader == null){
-            mShader = new LinearGradient(0,0,canvas.getWidth()/2, canvas.getHeight() ,
-                    new int[] {Color.parseColor("#01000000"),Color.parseColor("#11000000"),Color.parseColor("#01000000")},
-                    null,Shader.TileMode.CLAMP);
+            mShader = new LinearGradient(0,0,canvas.getWidth()/4, canvas.getHeight() ,
+                    new int[] {Color.parseColor("#22000000"),Color.parseColor("#55000000"),Color.parseColor("#22000000")},
+                    null,Shader.TileMode.REPEAT);
         }
         mPaint.setShader(mShader);
         Matrix matrix = new Matrix();
-        matrix.setSkew(-0.5f,0,canvas.getWidth()/2,canvas.getHeight()/2);
+//        matrix.setSkew(-0.5f,0,canvas.getWidth()/2,canvas.getHeight()/2);
+//        canvas.translate(mTranslate,0);
+        matrix.setTranslate(0,mTranslate);
         canvas.setMatrix(matrix);
-        canvas.translate(mTranslate,0);
-        canvas.drawRect(0, 0, canvas.getWidth()/16, canvas.getHeight(), mPaint);
+        canvas.drawRect(0,-2000, canvas.getWidth(), canvas.getHeight()*10, mPaint);
     }
 }
