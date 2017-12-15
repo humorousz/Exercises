@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@android:color/holo_red_dark">
+    android:gravity="center">
 
     <Button
         android:id="@+id/popBtn"
@@ -42,5 +41,6 @@
 
     <com.humorous.myapplication.liveroom.weidget.TestShaderView
         android:layout_width="200dp"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:background="@android:color/white"/>
 </LinearLayout>
