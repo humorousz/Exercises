@@ -147,7 +147,6 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
     public void onAnimationEnd(Animator animation) {
         if(step < COUNT && !isRemove){
             step++;
-            mAnimatorSet.playTogether(animator,animator2);
             mAnimatorSet.setStartDelay(DELAY_TIME);
             mAnimatorSet.start();
         }

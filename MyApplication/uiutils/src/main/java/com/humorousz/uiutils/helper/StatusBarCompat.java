@@ -15,11 +15,15 @@ import com.humorousz.uiutils.R;
 
 /**
  * Created by zhangzhiquan on 2017/12/7.
+ * @author zhangzhiquan
  */
 
 public class StatusBarCompat {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void compat(Activity activity){
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
+            return;
+        }
         Window window = activity.getWindow();
 //        //设置透明状态栏,这样才能让 ContentView 向上
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

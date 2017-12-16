@@ -15,7 +15,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 
+import com.humorous.myapplication.R;
 import com.humorousz.uiutils.helper.UIUtils;
 
 
@@ -28,7 +30,7 @@ public class TestShaderView extends View {
     private Paint mPaint;
     private Shader mShader;
     private ValueAnimator mTranslateAnimator;
-    private float mTranslate = 1000;
+    private float mTranslate = 0;
 
     public TestShaderView(Context context) {
         this(context,null);
@@ -40,12 +42,17 @@ public class TestShaderView extends View {
 
     public TestShaderView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                init();
+            }
+        });
     }
 
     private void init(){
         mPaint = new Paint();
-        mTranslateAnimator = ValueAnimator.ofFloat(0, UIUtils.dip2px(250));
+        mTranslateAnimator = ValueAnimator.ofFloat(-getWidth()*2,0);
         mTranslateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -54,15 +61,15 @@ public class TestShaderView extends View {
                 invalidate();
             }
         });
+        mTranslateAnimator.setDuration(2000);
+        mTranslateAnimator.setRepeatMode(ValueAnimator.RESTART);
+        mTranslateAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mTranslateAnimator.start();
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        mTranslateAnimator.setInterpolator(new DecelerateInterpolator());
-        mTranslateAnimator.setDuration(500);
-        mTranslateAnimator.setRepeatCount(5);
-        mTranslateAnimator.start();
     }
 
     @Override
@@ -70,16 +77,16 @@ public class TestShaderView extends View {
         super.onDraw(canvas);
         // 设置shader
         if(mShader == null){
-            mShader = new LinearGradient(0,0,canvas.getWidth()/4, canvas.getHeight() ,
-                    new int[] {Color.parseColor("#22000000"),Color.parseColor("#55000000"),Color.parseColor("#22000000")},
-                    null,Shader.TileMode.REPEAT);
+            mShader = new LinearGradient(0,0,getWidth(),0,
+                    new int[] {Color.TRANSPARENT,Color.parseColor("#02000000"),Color.parseColor("#05000000"),Color.parseColor("#02000000"),Color.TRANSPARENT},
+                    new float[]{0.1f,0.15f,0.2f,0.3f,0.4f},Shader.TileMode.REPEAT);
         }
         mPaint.setShader(mShader);
         Matrix matrix = new Matrix();
-//        matrix.setSkew(-0.5f,0,canvas.getWidth()/2,canvas.getHeight()/2);
-//        canvas.translate(mTranslate,0);
-        matrix.setTranslate(0,mTranslate);
+        matrix.setSkew(-0.5f,0);
         canvas.setMatrix(matrix);
-        canvas.drawRect(0,-2000, canvas.getWidth(), canvas.getHeight()*10, mPaint);
+        canvas.translate(mTranslate,0);
+        canvas.drawColor(getResources().getColor(R.color.color_8cfd9500));
+        canvas.drawRect(canvas.getWidth()*-2,0,canvas.getWidth()*4,canvas.getHeight(), mPaint);
     }
 }
