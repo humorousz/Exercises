@@ -1,4 +1,4 @@
-package com.humorous.myapplication.liveroom.weidget;
+package com.humorous.myapplication.shader.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -42,6 +42,7 @@ public class TestShaderView extends View {
 
     public TestShaderView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mPaint = new Paint();
         post(new Runnable() {
             @Override
             public void run() {
@@ -51,7 +52,6 @@ public class TestShaderView extends View {
     }
 
     private void init(){
-        mPaint = new Paint();
         mTranslateAnimator = ValueAnimator.ofFloat(-getWidth()*2,0);
         mTranslateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

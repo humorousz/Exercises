@@ -11,6 +11,7 @@ import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
+import com.humorous.myapplication.shader.ShaderTestFragment;
 import com.humorous.myapplication.shareElement.ShareElementFragmentA;
 import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
@@ -20,6 +21,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 
 /**
  * Created by zhangzhiquan on 2017/6/5.
+ * @author zhangzhiquan
  */
 
 public class TestFragmentFactory {
@@ -27,6 +29,7 @@ public class TestFragmentFactory {
         ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR
         ,NESTED_SCROLLING,NESTED_SCROLL_VIEW,EXCEPTION,DRAWER_LAYOUT,FRAME_ANIMTOR
         ,DEMO_ROOM,TEXT_SPAN,DEMO_UI,VECTOR_DRAWABLE,SHARE_ELEMENT,SHARE_ELEMENT_B
+        ,SHADER
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -78,6 +81,9 @@ public class TestFragmentFactory {
                 break;
             case SHARE_ELEMENT_B:
                 fragment = new ShareElementFragmentB();
+                break;
+            case SHADER:
+                fragment = new ShaderTestFragment();
                 break;
         }
         return fragment;

@@ -134,6 +134,11 @@ public class API {
         itemModel.setTitle("帧动画");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.SHADER);
+        itemModel.setTitle("Shader练习");
+        models.add(itemModel);
+
         return models;
 
     }

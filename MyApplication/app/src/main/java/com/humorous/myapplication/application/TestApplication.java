@@ -8,6 +8,7 @@ import com.humorousz.uiutils.helper.ImageLoaderHelper;
 
 /**
  * Created by zhangzhiquan on 2017/5/31.
+ * @author zhangzhiquan
  */
 
 public class TestApplication extends Application{
