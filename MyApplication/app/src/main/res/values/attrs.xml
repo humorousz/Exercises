@@ -23,5 +23,13 @@
             <flag name="restart" value="1" />
             <flag name="reverse" value="2" />
         </attr>
+        <attr name="animMode">
+            <flag name="left_right" value="1"/>
+            <flag name="right_left" value="2"/>
+        </attr>
+        <attr name="shape">
+            <flag name="rectangle" value="1"/>
+            <flag name="circle" value="2"/>
+        </attr>
     </declare-styleable>
 </resources>
