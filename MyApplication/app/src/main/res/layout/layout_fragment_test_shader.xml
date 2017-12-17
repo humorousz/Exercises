@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nested_scroll_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/sssssss">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,13 +50,12 @@
             <ImageView
                 android:id="@+id/shade_image"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
-            <com.humorous.myapplication.shader.widget.MaskLoadingView
+                android:layout_height="100dp"
+                android:layout_gravity="center"/>
+            <com.humorous.myapplication.shader.widget.MaskCircleView
                 android:id="@+id/image_mask"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:animMode="left_right"
-                app:shape="circle"/>
+                android:layout_height="match_parent" />
         </FrameLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

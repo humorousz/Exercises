@@ -26,6 +26,7 @@ import java.lang.annotation.RetentionPolicy;
  */
 
 public class MaskLoadingView extends View {
+    private static final String TAG = "MaskLoadingView";
     private Paint mPaint;
     private Shader mShader;
     private ValueAnimator mTranslateAnimator;
@@ -72,7 +73,6 @@ public class MaskLoadingView extends View {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs, defStyleAttr);
         mPaint = new Paint();
-
     }
 
 
