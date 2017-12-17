@@ -39,7 +39,7 @@
         android:text="幸运礼物"
         android:layout_marginTop="5dp"/>
 
-    <com.humorous.myapplication.shader.widget.TestShaderView
+    <com.humorous.myapplication.shader.widget.MaskLoadingView
         android:layout_width="250dp"
         android:layout_height="150dp"
         android:background="@android:color/white"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nested_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,11 +9,14 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal">
-        <com.humorous.myapplication.shader.widget.TestShaderView
+        <com.humorous.myapplication.shader.widget.MaskLoadingView
             android:id="@+id/test_shader"
             android:layout_width="250dp"
             android:layout_height="200dp"
             android:layout_marginTop="10dp"
+            app:repeatCount="-1"
+            app:duration="1500"
+            app:repeatMode="restart"
             android:background="@color/color_bffd9500"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
