@@ -315,6 +315,14 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         if(mTypeIconStarScaleY != null){
             mTypeIconStarScaleY.cancel();
         }
+        mBgAnimatorSet.removeAllListeners();
+        mUserIconUp.removeAllListeners();
+        mUserIconDown.removeAllListeners();
+        mStarBgAnim.removeAllListeners();
+        mTypeIconContainerAnim.removeAllListeners();
+        animator.removeAllListeners();
+        bgAnimator.removeAllListeners();
+        mItemQuitAnimSet.removeAllListeners();
     }
 
     @Override
