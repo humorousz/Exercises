@@ -175,7 +175,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
     private void lastAnim(){
         mUserIconDown = ObjectAnimator.ofFloat(mItemContainer,"translationY",mItemContainer.getTranslationY(),0);
         mUserIconDown.setDuration(ICON_DOWN);
-        mUserIconDown.addListener(this);
+//        mUserIconDown.addListener(this);
 
         int w = View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED);
@@ -222,12 +222,14 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         mLeftWing.setVisibility(VISIBLE);
         mRightWing.setVisibility(VISIBLE);
         mPlant.setVisibility(VISIBLE);
-        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet = new AnimatorSet();
         animatorSet.playTogether(mLeftWingAnim,mRightWingAnim
                 ,mPlantScaleX,mPlantScaleY,mUserIconDown);
+        animatorSet.addListener(this);
         animatorSet.start();
 
     }
+    AnimatorSet animatorSet;
 
     private ObjectAnimator mTypeIconStarScaleX,mTypeIconStarScaleY;
     private AnimatorSet mIconStarSet;
@@ -347,7 +349,7 @@ public class GuardView extends RelativeLayout implements Animator.AnimatorListen
         }else if(animation == mUserIconUp){
             startBgAnimRotation();
             lastAnim();
-        }else if(animation == mUserIconDown){
+        }else if(animation == animatorSet){
             mLeftWing.setVisibility(VISIBLE);
             mRightWing.setVisibility(VISIBLE);
             mPlant.setVisibility(VISIBLE);

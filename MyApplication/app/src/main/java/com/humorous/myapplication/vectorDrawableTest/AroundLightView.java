@@ -136,6 +136,7 @@ public class AroundLightView extends View implements Animator.AnimatorListener {
         super.onDetachedFromWindow();
         isRemove = true;
         mAnimatorSet.cancel();
+        mAnimatorSet.removeAllListeners();
     }
 
     @Override
