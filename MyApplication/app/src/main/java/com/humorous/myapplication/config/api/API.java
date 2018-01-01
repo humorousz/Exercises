@@ -69,11 +69,6 @@ public class API {
         HomeItemModel itemModel;
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.VECTOR_DRAWABLE);
-        itemModel.setTitle("Vector练习");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.SHARE_ELEMENT);
         itemModel.setTitle("共享元素");
         models.add(itemModel);
@@ -137,6 +132,11 @@ public class API {
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.SHADER);
         itemModel.setTitle("Shader练习");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.VECTOR_DRAWABLE);
+        itemModel.setTitle("属性动画");
         models.add(itemModel);
 
         return models;

@@ -24,7 +24,6 @@ import com.humorousz.uiutils.view.BaseFragment;
 public class ShaderTestFragment  extends BaseFragment{
     private MaskLoadingView mTestMask;
     private ImageView mImage;
-    private MaskCircleView mImageMask;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_fragment_test_shader,container,false);
@@ -40,7 +39,6 @@ public class ShaderTestFragment  extends BaseFragment{
 
         mImage = root.findViewById(R.id.shade_image);
         ImageLoaderHelper.displayCircleImage("drawable://"+R.drawable.sssssss,mImage);
-        mImageMask = root.findViewById(R.id.image_mask);
         int[] image_colors = new int[]{Color.TRANSPARENT, Color.parseColor("#02ffffff"), Color.parseColor("#ffffff"), Color.parseColor("#02ffffff"), Color.TRANSPARENT};
         float[] image_position = new float[]{0.4f, 0.45f, 0.5f, 0.55f, 0.6f};
 //        mImageMask.setColors(image_colors);
