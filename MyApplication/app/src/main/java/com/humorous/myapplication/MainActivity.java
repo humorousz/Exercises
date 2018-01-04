@@ -1,8 +1,13 @@
 package com.humorous.myapplication;
 
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.PersistableBundle;
+import android.os.RemoteException;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
@@ -37,8 +42,38 @@ public class MainActivity extends FragmentActivity {
         testFunc();
     }
 
+    ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            IMyAidlInterface binder =  IMyAidlInterface.Stub.asInterface(service);
+//            for(int i = 0 ;i < 5 ; i++){
+//                Thread thread = new Thread(Thread.currentThread().getThreadGroup(),()->{
+//                    try {
+//                        binder.testLog();
+//                    } catch (RemoteException e) {
+//                        e.printStackTrace();
+//                    }
+//                },"Thread"+i);
+//                thread.start();
+//            }
+            try {
+                binder.testLog();
+                binder.testLog();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     private void testFunc(){
+        Intent intent = new Intent(this,MainService.class);
+        bindService(intent,serviceConnection,BIND_AUTO_CREATE);
     }
 
     @Override

@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.humorous.myapplication">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:name=".application.TestApplication"
         android:allowBackup="true"
@@ -22,7 +22,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".container.ContainerActivity" />
-        <activity android:name=".SecondMenuActivity"></activity>
+        <activity android:name=".SecondMenuActivity" />
+
+        <service
+            android:name=".MainService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":TestProcess"></service>
     </application>
 
 </manifest>
