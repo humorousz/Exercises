@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 
 import com.humorous.myapplication.SecondMenuActivity;
-import com.humorous.myapplication.config.api.API;
+import com.humorous.myapplication.config.api.Api;
 import com.humorous.myapplication.config.api.TestProtocol;
 import com.humorous.myapplication.config.factory.TestFragmentFactory;
 import com.humorous.myapplication.container.ContainerActivity;
@@ -28,7 +28,7 @@ public class Router {
             Uri uri = Uri.parse(link);
             String typeString = uri.getQueryParameter("type");
             if(link.contains(TestProtocol.MENU)){
-                API.SECOND_MENU type = API.SECOND_MENU.valueOf(typeString);
+                Api.SECOND_MENU type = Api.SECOND_MENU.valueOf(typeString);
                 startMenuActivity(context,type);
             }else {
                 TestFragmentFactory.TYPE type = TestFragmentFactory.TYPE.valueOf(typeString);
@@ -51,7 +51,7 @@ public class Router {
         context.startActivity(intent);
     }
 
-    private static void startMenuActivity(Context context, API.SECOND_MENU type){
+    private static void startMenuActivity(Context context, Api.SECOND_MENU type){
         if(context == null){
             Logger.e(TAG,"context must not be null");
             return;

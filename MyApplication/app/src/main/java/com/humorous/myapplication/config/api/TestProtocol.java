@@ -98,6 +98,10 @@ public class TestProtocol {
      */
     public static final String SHADER = BASE + TestFragmentFactory.TYPE.SHADER + HAS_TITLE;
 
+    /**
+     * RxJava 练习
+     */
+    public static final String RXJAVA = BASE + TestFragmentFactory.TYPE.RXJAVA + HAS_TITLE;
 
     /**
      * 二级菜单
@@ -105,9 +109,11 @@ public class TestProtocol {
 
     public static final String MENU = "menu://humorous" + TYPE;
 
-    public static final String UI_MENU = MENU + API.SECOND_MENU.UI;
+    public static final String UI_MENU = MENU + Api.SECOND_MENU.UI;
 
-    public static final String ANIM_MENU = MENU + API.SECOND_MENU.ANIM;
+    public static final String ANIM_MENU = MENU + Api.SECOND_MENU.ANIM;
+
+    public static final String OTHER_MENU = MENU + Api.SECOND_MENU.OTHER;
 
 
 }

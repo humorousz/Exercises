@@ -6,13 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zhangzhiquan on 2017/6/5.
+ * @author  Created by zhangzhiquan on 2017/6/5.
  */
 
-public class API {
+public class Api {
 
     public enum SECOND_MENU {
-        MAIN,UI,ANIM
+        /**
+         * 主菜单
+         */
+        MAIN,
+        /**
+         * UI相关
+         */
+        UI,
+        /**
+         * 动画相关
+         */
+        ANIM,
+        /**
+         * 普通练习
+         */
+        OTHER
     }
 
     public static List<HomeItemModel> getList(SECOND_MENU type) {
@@ -23,6 +38,10 @@ public class API {
                 return getAllItem();
             case ANIM:
                 return getAnim();
+            case OTHER:
+                return getOther();
+            default:
+                break;
         }
         return null;
 
@@ -43,21 +62,11 @@ public class API {
         itemModel.setTitle("动画练习");
         models.add(itemModel);
 
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.DEMO_ROOM);
-        itemModel.setTitle("demo房间");
-        models.add(itemModel);
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.DEMO_UI);
-        itemModel.setTitle("demoUI");
+        itemModel.setLink(TestProtocol.OTHER_MENU);
+        itemModel.setTitle("练习");
         models.add(itemModel);
-
-//        itemModel = new HomeItemModel();
-//        itemModel.setLink(TestProtocol.EXCEPTION_TEST);
-//        itemModel.setTitle("异常捕获器练习");
-//        models.add(itemModel);
-
 
         return models;
     }
@@ -141,6 +150,33 @@ public class API {
 
         return models;
 
+    }
+
+    public static List<HomeItemModel> getOther(){
+        List<HomeItemModel> models = new ArrayList<>(12);
+        HomeItemModel itemModel;
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.DEMO_ROOM);
+        itemModel.setTitle("demo房间");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.DEMO_UI);
+        itemModel.setTitle("demoUI");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.RXJAVA);
+        itemModel.setTitle("RxJava");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.EXCEPTION_TEST);
+        itemModel.setTitle("异常捕获器练习");
+        models.add(itemModel);
+
+
+        return models;
     }
 
 

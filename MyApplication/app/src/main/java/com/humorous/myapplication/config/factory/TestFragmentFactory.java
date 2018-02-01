@@ -11,6 +11,7 @@ import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
+import com.humorous.myapplication.rxjava.test.RxTestFragment;
 import com.humorous.myapplication.shader.ShaderTestFragment;
 import com.humorous.myapplication.shareElement.ShareElementFragmentA;
 import com.humorous.myapplication.shareElement.ShareElementFragmentB;
@@ -26,10 +27,24 @@ import com.humorousz.uiutils.view.BaseFragment;
 
 public class TestFragmentFactory {
     public enum TYPE{
-        ANT,COORDINATOR,TOPIC_RECYCLER,TEST_COORDINATOR,ADVANCE_COORDINATOR
-        ,NESTED_SCROLLING,NESTED_SCROLL_VIEW,EXCEPTION,DRAWER_LAYOUT,FRAME_ANIMTOR
-        ,DEMO_ROOM,TEXT_SPAN,DEMO_UI,VECTOR_DRAWABLE,SHARE_ELEMENT,SHARE_ELEMENT_B
-        ,SHADER
+        ANT,
+        COORDINATOR,
+        TOPIC_RECYCLER,
+        TEST_COORDINATOR,
+        ADVANCE_COORDINATOR,
+        NESTED_SCROLLING,
+        NESTED_SCROLL_VIEW,
+        EXCEPTION,
+        DRAWER_LAYOUT,
+        FRAME_ANIMTOR,
+        DEMO_ROOM,
+        TEXT_SPAN,
+        DEMO_UI,
+        VECTOR_DRAWABLE,
+        SHARE_ELEMENT,
+        SHARE_ELEMENT_B,
+        SHADER,
+        RXJAVA
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -84,6 +99,11 @@ public class TestFragmentFactory {
                 break;
             case SHADER:
                 fragment = new ShaderTestFragment();
+                break;
+            case RXJAVA:
+                fragment = new RxTestFragment();
+                break;
+            default:
                 break;
         }
         return fragment;
