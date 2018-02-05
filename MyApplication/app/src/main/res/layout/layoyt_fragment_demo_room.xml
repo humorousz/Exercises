@@ -1,46 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".container.ContainerActivity"
+    android:background="@drawable/shader_bg">
     <Button
-        android:id="@+id/popBtn"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_come"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="弹出pop"
-        android:layout_marginBottom="5dp"/>
+        android:text="进场"/>
+    <Button
+        android:id="@+id/btn_msg"
+        android:layout_toRightOf="@id/btn_come"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="消息" />
+
+    <com.humorous.myapplication.liveroom.weidget.ChatBox
+        android:id="@+id/chat_box"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/chat_box_margin_bottom"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/chat_box_margin_left"
+        android:layout_marginRight="@dimen/chat_box_margin_right"
+        android:layout_height="@dimen/chat_box_height"/>
+
     <FrameLayout
-        android:background="#33000000"
         android:id="@+id/into_room_container"
+        android:layout_above="@id/chat_box"
         android:layout_width="match_parent"
         android:layout_height="30dp"></FrameLayout>
 
-    <Button
-        android:id="@+id/sendBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="土豪进场"
-        android:layout_marginTop="5dp"/>
-
-    <Button
-        android:id="@+id/clearBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="清空动画"
-        android:layout_marginTop="5dp"/>
-
-    <Button
-        android:id="@+id/moveBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="幸运礼物"
-        android:layout_marginTop="5dp"/>
-
-    <com.humorous.myapplication.shader.widget.MaskLoadingView
-        android:layout_width="250dp"
-        android:layout_height="150dp"
-        android:background="@android:color/white"/>
-</LinearLayout>
+</RelativeLayout>

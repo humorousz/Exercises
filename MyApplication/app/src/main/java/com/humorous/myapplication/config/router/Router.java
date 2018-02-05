@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 
 import com.humorous.myapplication.SecondMenuActivity;
@@ -21,6 +22,9 @@ import com.humorousz.commonutils.log.Logger;
 public class Router {
     private static final String TAG = "Router";
     public static void jumpTo(Context context,String link){
+        long startTime;
+        startTime = System.currentTimeMillis();
+        Logger.i(TAG,"jumpTo begin");
         if(TextUtils.isEmpty(link)){
             return;
         }
@@ -38,6 +42,9 @@ public class Router {
         }catch (RuntimeException e){
             Logger.e(TAG,e.getMessage());
         }
+
+        Logger.i(TAG,"jumpTo end spend "+(System.currentTimeMillis() - startTime));
+
 
     }
     private static void startActivity(Context context,boolean hasTitle,TestFragmentFactory.TYPE type){

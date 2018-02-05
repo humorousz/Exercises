@@ -7,7 +7,7 @@
     <color name="color_8cfd9500">#8cfd9500</color>
     <color name="color_ffffca">#99fcba20</color>
     <color name="chat_newmsg_tip_color">#FFFF00</color>
-    <color name="chat_newmsg_tip_bg_color">#CCffffff</color>
+    <color name="chat_newmsg_tip_bg_color">#55000000</color>
     <color name="chat_item_text_user_color">#99FFFFFF</color>
     <color name="chat_item_text_content_color">#FFFFFF</color>
 </resources>
