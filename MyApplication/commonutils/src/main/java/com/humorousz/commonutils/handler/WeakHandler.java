@@ -1,4 +1,4 @@
-package com.humorousz.commonutils;
+package com.humorousz.commonutils.handler;
 
 import android.os.Handler;
 import android.os.Message;
@@ -28,11 +28,7 @@ public class WeakHandler<T extends WeakHandler.WeakHandlerCallBack> extends Hand
     }
 
 
-    public interface WeakHandlerCallBack{
-        /**
-         * 处理消息
-         * @param message
-         */
-        void handleMessage(Message message);
+    public interface WeakHandlerCallBack extends HandlerCallback{
+
     }
 }

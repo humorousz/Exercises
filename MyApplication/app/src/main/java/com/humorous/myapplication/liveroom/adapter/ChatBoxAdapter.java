@@ -1,5 +1,6 @@
 package com.humorous.myapplication.liveroom.adapter;
 
+import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,8 @@ import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.liveroom.module.IChatMessage;
-import com.humorousz.commonutils.WeakHandler;
+import com.humorousz.commonutils.handler.HandlerCallback;
+import com.humorousz.commonutils.handler.NormalHandler;
 import com.humorousz.commonutils.log.Logger;
 
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
     private List<IChatMessage> mLiveCommentItem = new ArrayList<>();
     private List<IChatMessage> mCacheList = new ArrayList<>();
 
-    private WeakHandler handler = new WeakHandler<>(new WeakHandler.WeakHandlerCallBack() {
+    private Handler handler = new NormalHandler(new HandlerCallback(){
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == MSG_REFRESH) {
