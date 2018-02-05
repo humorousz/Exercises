@@ -3,4 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="shader_test_margin_top">40dp</dimen>
+    <dimen name="chat_newmsg_tip_width">95dip</dimen>
+    <dimen name="chat_newmsg_tip_height">22dip</dimen>
+    <dimen name="chat_newmsg_tip_textsize">12dip</dimen>
+    <dimen name="chat_newmsg_tip_triangle_size">15dip</dimen>
+    <dimen name="chat_newmsg_tip_triangle_margintop">8dip</dimen>
+    <dimen name="chat_tips_margin">16dip</dimen>
+    <dimen name="chat_item_text_size">15dip</dimen>
+    <dimen name="chat_item_padding_bottom">2dip</dimen>
+    <dimen name="chat_item_padding_padding_right">11dip</dimen>
 </resources>
