@@ -17,6 +17,11 @@
         android:layout_height="wrap_content"
         android:text="消息" />
 
+    <com.humorousz.uiutils.widget.AnimatedImageView
+        android:id="@+id/webp_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <com.humorous.myapplication.liveroom.weidget.ChatBox
         android:id="@+id/chat_box"
         android:layout_alignParentBottom="true"
@@ -31,5 +36,16 @@
         android:layout_above="@id/chat_box"
         android:layout_width="match_parent"
         android:layout_height="30dp"></FrameLayout>
+
+    <ImageView
+        android:id="@+id/image_gift"
+        android:layout_width="@dimen/icon_cell_size"
+        android:layout_height="@dimen/icon_cell_size"
+        android:padding="@dimen/icon_cell_padding"
+        android:src="@drawable/icon_gift"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="70dp"
+        android:layout_marginBottom="10dp"/>
 
 </RelativeLayout>

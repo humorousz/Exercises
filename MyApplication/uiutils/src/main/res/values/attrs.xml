@@ -45,4 +45,8 @@
         <attr name="arrow_margin_left" format="dimension"/>
         <attr name="arrow_margin_right" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="AnimatedImageView">
+        <attr name="loopCount" format="integer"/>
+    </declare-styleable>
 </resources>
