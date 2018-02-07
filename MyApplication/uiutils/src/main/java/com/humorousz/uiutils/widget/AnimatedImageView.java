@@ -248,6 +248,12 @@ public class AnimatedImageView extends AppCompatImageView {
         }
     }
 
+    public void stopAnimation(){
+        if(mAnimatedSrcDrawable != null) {
+            mAnimatedSrcDrawable.stop();
+        }
+    }
+
     public void setOnFinishedListener(OnFinishedListener listener) {
         mFinishedListener = listener;
     }

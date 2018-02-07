@@ -157,7 +157,7 @@ public class FrameSequenceDrawable extends Drawable implements Animatable, Runna
     private static final int STATE_READY_TO_SWAP = 4;
     private int mState;
     private int mCurrentLoop;
-    private int mLoopBehavior = LOOP_DEFAULT;
+    private int mLoopBehavior = LOOP_FINITE;
     private int mLoopCount = 1;
     private long mLastSwap;
     private long mNextSwap;

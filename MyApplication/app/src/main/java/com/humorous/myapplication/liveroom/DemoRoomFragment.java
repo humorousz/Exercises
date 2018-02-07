@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
+import com.humorous.myapplication.liveroom.controller.GiftAnimationController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.module.DefaultChatMessage;
 import com.humorous.myapplication.liveroom.weidget.ChatBox;
-import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.AnimatedImageView;
 
@@ -29,6 +29,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     private ChatBox mChatBox;
     private SendGiftPopupWindow mPop;
     private AnimatedImageView mWebPImage;
+    private GiftAnimationController mGiftController;
     private View mRoot;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         setClickListener(R.id.btn_come);
         setClickListener(R.id.btn_msg);
         setClickListener(R.id.image_gift);
+        mGiftController = new GiftAnimationController(mWebPImage);
     }
 
 
@@ -104,7 +106,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         if(mPop == null){
             SelectGiftView view = new SelectGiftView(getContext());
             view.setOnGiftItemClickListener(this);
-            ViewGroup group = (ViewGroup) getActivity().findViewById(android.R.id.content);
+            ViewGroup group = getActivity().findViewById(android.R.id.content);
             View tiedView = group.getChildAt(0);
             mPop= new SendGiftPopupWindow(getContext(),view,tiedView);
         }
@@ -113,7 +115,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onGiftItemClick(String path, String name) {
-        Logger.d(TAG,"path:"+path+" name:"+name);
-        mWebPImage.setImageResourceFromAssets(path);
+        mGiftController.addTask(path,name);
     }
 }
