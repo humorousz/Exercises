@@ -16,8 +16,8 @@ import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.AnimatedImageView;
 
 /**
- * Created by zhangzhiquan on 2017/8/19.
  * @author zhangzhiquan
+ * @date 2017/8/19
  */
 
 public class DemoRoomFragment extends BaseFragment implements View.OnClickListener,SelectGiftView.OnGiftItemClick {

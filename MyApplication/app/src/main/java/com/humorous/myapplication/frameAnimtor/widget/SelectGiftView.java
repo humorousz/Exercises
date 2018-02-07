@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.widget.GridItemDecoration;
 
 import java.util.ArrayList;
@@ -48,9 +49,8 @@ public class SelectGiftView extends LinearLayout {
 
     private void initView(){
         View root = LayoutInflater.from(mContext).inflate(R.layout.layout_animtor_send_view,this);
-        mRecycler  = (RecyclerView) root.findViewById(R.id.recycler_send_gift);
+        mRecycler  = root.findViewById(R.id.recycler_send_gift);
         mRecycler.setLayoutManager(new GridLayoutManager(mContext,3));
-        mRecycler.addItemDecoration(new GridItemDecoration());
         mRecycler.setAdapter(new Adapter(mData));
     }
 

@@ -4,10 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_send_gift"
-        android:layout_marginTop="350dp"
+    <LinearLayout
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#C0FF3E"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gift_panel_margin_top"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/gift_panel_margin"
+        android:layout_marginRight="@dimen/gift_panel_margin"
+        android:layout_marginBottom="@dimen/gift_panel_margin"
+        android:background="@drawable/gift_panel_bg"
+        android:padding="@dimen/gift_panel_padding">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="礼物"
+            android:textSize="@dimen/text_middle"
+            android:gravity="center_horizontal"
+            android:textColor="#ffff00"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_send_gift"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/gift_recycler_padding_top"/>
+    </LinearLayout>
 </merge>

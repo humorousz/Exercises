@@ -23,4 +23,16 @@
     <dimen name="icon_cell_size">35dp</dimen>
     <dimen name="icon_cell_padding">5dp</dimen>
     <!--底部按钮相关 end -->
+
+    <!--礼物面板 begin -->
+    <dimen name="gift_panel_margin_top">345dp</dimen>
+    <dimen name="gift_panel_margin">10dp</dimen>
+    <dimen name="gift_panel_padding">10dp</dimen>
+    <dimen name="gift_recycler_padding_top">5dp</dimen>
+    <!--礼物面板 end -->
+
+    <!--Text size -->
+    <dimen name="text_middle">15dp</dimen>
+    <!-- -->
+
 </resources>
