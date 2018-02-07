@@ -98,7 +98,11 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     }
 
     public void addNewMessage(){
-        mChatBox.addNewChat(new DefaultChatMessage("humorousMan","我是第"+messageCount+"条测试消息"));
+        addNewMessage("humorousMan","我是第"+messageCount+"条测试消息");
+    }
+
+    public void addNewMessage(String user,String content){
+        mChatBox.addNewChat(new DefaultChatMessage(user,content));
         messageCount++;
     }
 
@@ -116,5 +120,6 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onGiftItemClick(String path, String name) {
         mGiftController.addTask(path,name);
+        addNewMessage("大土豪 humorous","赠送了一个"+name);
     }
 }

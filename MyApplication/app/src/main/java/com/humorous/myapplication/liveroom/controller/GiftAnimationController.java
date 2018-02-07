@@ -1,6 +1,7 @@
 package com.humorous.myapplication.liveroom.controller;
 
 import android.util.Pair;
+import android.view.View;
 
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.widget.AnimatedImageView;
@@ -51,6 +52,7 @@ public class GiftAnimationController implements AnimatedImageView.OnFinishedList
     }
     private void startAnim(String path){
         isRunning = true;
+        mImageView.setVisibility(View.VISIBLE);
         mImageView.setOnFinishedListener(this);
         mImageView.setImageResourceFromAssets(path);
         Logger.d(TAG,"startAnim");
@@ -67,6 +69,7 @@ public class GiftAnimationController implements AnimatedImageView.OnFinishedList
     @Override
     public void onFinished() {
         Logger.d(TAG,"onFinished");
+        mImageView.setVisibility(View.INVISIBLE);
         playNext();
     }
 }
