@@ -18,6 +18,8 @@ import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.AnimatedImageView;
 import com.humorousz.uiutils.widget.InputDialog;
 
+import java.util.Random;
+
 /**
  * @author zhangzhiquan
  * @date 2017/8/19
@@ -36,6 +38,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     private GiftAnimationController mGiftController;
     private InputDialog mInputDialog;
     private AutoController mAutoController;
+    private String[] mUserNames,mUserContent;
     private View mRoot;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +59,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         setClickListener(R.id.btn_auto);
         mGiftController = new GiftAnimationController(mWebPImage);
         mAutoController = new AutoController(this);
+        mUserNames = getResources().getStringArray(R.array.user_name);
+        mUserContent = getResources().getStringArray(R.array.user_content);
     }
 
 
@@ -180,13 +185,22 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         ToastUtil.showToast(getContext(),"文字超出长度限制了 哈尼！");
     }
 
+
+    private Random mNameRandom;
+    private Random mContentRandom;
     /**
      * 自动发言
      * 具体如何发言，可自行实现
      */
     @Override
     public void autoSendMessage() {
-        addNewMessage("humorousMan","我是第"+messageCount+"条测试消息");
+        if(mNameRandom == null){
+            mNameRandom = new Random();
+            mContentRandom = new Random();
+        }
+        int mNameIndex = mNameRandom.nextInt(mUserNames.length);
+        int mContentIndex = mContentRandom.nextInt(mUserContent.length);
+        addNewMessage(mUserNames[mNameIndex],mUserContent[mContentIndex]);
     }
 
     /**

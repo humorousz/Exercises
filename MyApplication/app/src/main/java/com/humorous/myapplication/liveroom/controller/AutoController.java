@@ -11,6 +11,7 @@ public class AutoController {
     private volatile boolean isRunning = false;
     private volatile boolean isDestroy = false;
     private Thread mMessageThread;
+    private static final int DELAY_TIME = 500;
     public AutoController(OnAutoListener listener){
         if(listener == null){
             throw new NullPointerException("Listener can not be null");
@@ -27,7 +28,7 @@ public class AutoController {
             return true;
         }
         if(mMessageThread == null){
-            mMessageThread = new Thread(new ConsumerRunnable("message",1000));
+            mMessageThread = new Thread(new ConsumerRunnable("message",DELAY_TIME));
             mMessageThread.start();
         }
         isRunning = true;
