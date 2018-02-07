@@ -20,7 +20,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 public class ContainerActivity extends AppCompatActivity {
     private static final String TAG = "ContainerActivity";
     public static final String HAS_TITLE = "hasTitle";
-    public static final String FRAMGNET_TYPE = "type";
+    public static final String FRAGMENT_TYPE = "type";
     public static final String LANDSCAPE = "landscape";
     FrameLayout mContainer;
     BaseFragment mFragment;
@@ -36,7 +36,7 @@ public class ContainerActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         boolean hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);
-        TestFragmentFactory.TYPE type = (TestFragmentFactory.TYPE) getIntent().getSerializableExtra(FRAMGNET_TYPE);
+        TestFragmentFactory.TYPE type = (TestFragmentFactory.TYPE) getIntent().getSerializableExtra(FRAGMENT_TYPE);
         if(type == null){
             ToastUtil.showToast(this,"no fragment type");
             finish();

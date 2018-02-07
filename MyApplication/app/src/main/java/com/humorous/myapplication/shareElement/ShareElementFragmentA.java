@@ -50,7 +50,7 @@ public class ShareElementFragmentA extends BaseFragment implements View.OnClickL
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             Intent intent =  new Intent(getActivity(), ContainerActivity.class);
             intent.putExtra(ContainerActivity.HAS_TITLE,true);
-            intent.putExtra(ContainerActivity.FRAMGNET_TYPE, TestFragmentFactory.TYPE.SHARE_ELEMENT_B);
+            intent.putExtra(ContainerActivity.FRAGMENT_TYPE, TestFragmentFactory.TYPE.SHARE_ELEMENT_B);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), Pair.create((View)mClickBtn, "share_btn"),Pair.create((View)mShareImg,"share_img"));
             getActivity().startActivity(intent,options.toBundle());
 //            getActivity().startActivity(intent);

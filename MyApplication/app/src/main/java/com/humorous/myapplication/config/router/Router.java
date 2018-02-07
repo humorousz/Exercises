@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
 
 
 import com.humorous.myapplication.SecondMenuActivity;
@@ -55,7 +54,7 @@ public class Router {
         }
         Intent intent =  new Intent(context, ContainerActivity.class);
         intent.putExtra(ContainerActivity.HAS_TITLE,hasTitle);
-        intent.putExtra(ContainerActivity.FRAMGNET_TYPE,type);
+        intent.putExtra(ContainerActivity.FRAGMENT_TYPE,type);
         intent.putExtra(ContainerActivity.LANDSCAPE,landscape);
 
         context.startActivity(intent);
