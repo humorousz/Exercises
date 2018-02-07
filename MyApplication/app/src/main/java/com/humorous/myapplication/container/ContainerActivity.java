@@ -1,10 +1,9 @@
 package com.humorous.myapplication.container;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.humorous.myapplication.R;
@@ -14,10 +13,15 @@ import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 
+/**
+ * @author zhangzhiquan
+ */
+
 public class ContainerActivity extends AppCompatActivity {
     private static final String TAG = "ContainerActivity";
     public static final String HAS_TITLE = "hasTitle";
     public static final String FRAMGNET_TYPE = "type";
+    public static final String LANDSCAPE = "landscape";
     FrameLayout mContainer;
     BaseFragment mFragment;
     @Override
@@ -25,6 +29,10 @@ public class ContainerActivity extends AppCompatActivity {
         if(savedInstanceState != null){
             String FRAGMENTS_TAG = "android:support:fragments";
             savedInstanceState.remove(FRAGMENTS_TAG);
+        }
+        Boolean land = getIntent().getBooleanExtra(LANDSCAPE,false);
+        if(!land){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         super.onCreate(savedInstanceState);
         boolean hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);

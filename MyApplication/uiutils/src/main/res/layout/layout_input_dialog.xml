@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_input_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/chat_input_layout_height"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/input_edit_bg"
+    android:focusable="false"
+    android:focusableInTouchMode="false">
+
+    <RelativeLayout
+        android:id="@+id/group_edit_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/chat_input_text_marginLeft"
+        android:layout_marginRight="@dimen/chat_input_text_marginRight"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
+
+        <FrameLayout
+            android:id="@+id/quizzes_send_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/input_send_bg">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center"
+                android:src="@drawable/input_send" />
+        </FrameLayout>
+
+        <EditText
+            android:id="@+id/et_comment_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="0dp"
+            android:layout_toLeftOf="@id/quizzes_send_btn"
+            android:background="@android:color/white"
+            android:gravity="left|center_vertical"
+            android:imeOptions="flagNoExtractUi|actionSend"
+            android:inputType="text"
+            android:maxLength="300"
+            android:paddingLeft="@dimen/chat_input_text_padding_Left"
+            android:paddingRight="@dimen/chat_input_text_padding_Right"
+            android:singleLine="true"
+            android:textColor="#DB000000"
+            android:textColorHint="#4D000000"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/chat_input_text_textSize" />
+
+        <TextView
+            android:id="@+id/tv_comment_sum_left"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/chat_input_text_num_height"
+            android:layout_centerVertical="true"
+            android:layout_margin="0dp"
+            android:layout_marginRight="@dimen/chat_input_text_marginLeft"
+            android:layout_toLeftOf="@id/quizzes_send_btn"
+            android:gravity="center"
+            android:paddingLeft="@dimen/chat_input_text_num_padding"
+            android:paddingRight="@dimen/chat_input_text_num_padding"
+            android:singleLine="true"
+            android:text="60"
+            android:textColor="#99000000"
+            android:textSize="@dimen/chat_input_text_num_textsize" />
+    </RelativeLayout>
+</RelativeLayout>

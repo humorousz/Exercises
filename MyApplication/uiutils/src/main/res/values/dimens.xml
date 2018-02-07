@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="chat_input_text_marginLeft">9dip</dimen>
+    <dimen name="chat_input_layout_height">35dip</dimen>
+    <dimen name="chat_input_text_height">27dip</dimen>
+    <dimen name="chat_input_text_marginRight">3.8dip</dimen>
+    <dimen name="chat_input_text_padding_Left">9dip</dimen>
+    <dimen name="chat_input_text_padding_Right">38dip</dimen>
+    <dimen name="chat_input_text_textSize">13dip</dimen>
+    <dimen name="chat_input_text_num_width">18dip</dimen>
+    <dimen name="chat_input_text_num_height">14dip</dimen>
+    <dimen name="chat_input_text_num_bg_radius">7dip</dimen>
+    <dimen name="chat_input_text_num_padding">5dip</dimen>
+    <dimen name="chat_input_text_num_textsize">9dip</dimen>
+</resources>

@@ -12,15 +12,17 @@ import com.humorous.myapplication.liveroom.controller.GiftAnimationController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.module.DefaultChatMessage;
 import com.humorous.myapplication.liveroom.weidget.ChatBox;
+import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.AnimatedImageView;
+import com.humorousz.uiutils.widget.InputDialog;
 
 /**
  * @author zhangzhiquan
  * @date 2017/8/19
  */
 
-public class DemoRoomFragment extends BaseFragment implements View.OnClickListener,SelectGiftView.OnGiftItemClick {
+public class DemoRoomFragment extends BaseFragment implements View.OnClickListener,SelectGiftView.OnGiftItemClick,InputDialog.OnSendMessageListener {
     private static final String TAG = "DemoRoomFragment";
     private ViewGroup mContainer;
     private IntoRoomAnimatorController mController;
@@ -30,6 +32,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     private SendGiftPopupWindow mPop;
     private AnimatedImageView mWebPImage;
     private GiftAnimationController mGiftController;
+    private InputDialog mInputDialog;
     private View mRoot;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         setClickListener(R.id.btn_come);
         setClickListener(R.id.btn_msg);
         setClickListener(R.id.image_gift);
+        setClickListener(R.id.tv_chat);
         mGiftController = new GiftAnimationController(mWebPImage);
     }
 
@@ -79,6 +83,9 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.image_gift:
                 openGiftBox();
+                break;
+            case R.id.tv_chat:
+                openInputDialog();
                 break;
             default:
                 break;
@@ -117,9 +124,38 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mPop.show();
     }
 
+    private void openInputDialog(){
+        if(mInputDialog == null){
+            mInputDialog = new InputDialog(getActivity(), "快来聊两句吧");
+            mInputDialog.setOnSendMessageListener(this);
+        }
+        mInputDialog.show();
+    }
+
     @Override
     public void onGiftItemClick(String path, String name) {
         mGiftController.addTask(path,name);
         addNewMessage("大土豪 humorous","赠送了一个"+name);
+    }
+
+    /**
+     * 发送消息
+     *
+     * @param message
+     */
+    @Override
+    public void sendMessage(String message) {
+        addNewMessage("humorousz",message);
+    }
+
+    /**
+     * 消息超过长度限制
+     *
+     * @param max
+     * @param real
+     */
+    @Override
+    public void overMax(int max, int real) {
+        ToastUtil.showToast(getContext(),"文字超出长度限制了 哈尼！");
     }
 }

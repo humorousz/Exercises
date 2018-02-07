@@ -37,15 +37,41 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"></FrameLayout>
 
-    <ImageView
-        android:id="@+id/image_gift"
-        android:layout_width="@dimen/icon_cell_size"
-        android:layout_height="@dimen/icon_cell_size"
-        android:padding="@dimen/icon_cell_padding"
-        android:src="@drawable/icon_gift"
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="70dp"
-        android:layout_marginBottom="10dp"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        tools:background="#FF0000">
+
+        <TextView
+            android:id="@+id/tv_chat"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="4"
+            android:background="@drawable/room_bg_chat"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:text="快来聊两句吧"
+            android:textColor="#CCFFFFFF"
+            android:textSize="@dimen/chat_input_text_textSize" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="2" />
+
+        <ImageView
+            android:id="@+id/image_gift"
+            android:layout_width="@dimen/icon_cell_size"
+            android:layout_height="@dimen/icon_cell_size"
+            android:padding="@dimen/icon_cell_padding"
+            android:src="@drawable/icon_gift"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

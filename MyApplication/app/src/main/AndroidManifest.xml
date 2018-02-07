@@ -21,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".container.ContainerActivity" />
+        <activity android:name=".container.ContainerActivity"
+            android:windowSoftInputMode="adjustNothing">
+        </activity>
         <activity android:name=".SecondMenuActivity" />
 
         <service

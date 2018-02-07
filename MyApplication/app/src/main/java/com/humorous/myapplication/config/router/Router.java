@@ -37,7 +37,8 @@ public class Router {
             }else {
                 TestFragmentFactory.TYPE type = TestFragmentFactory.TYPE.valueOf(typeString);
                 Boolean hasTitle = Boolean.valueOf(uri.getQueryParameter("hasTitle"));
-                startActivity(context,hasTitle,type);
+                Boolean landscape = uri.getBooleanQueryParameter("couldLandscape",false);
+                startActivity(context,hasTitle,landscape,type);
             }
         }catch (RuntimeException e){
             Logger.e(TAG,e.getMessage());
@@ -47,7 +48,7 @@ public class Router {
 
 
     }
-    private static void startActivity(Context context,boolean hasTitle,TestFragmentFactory.TYPE type){
+    private static void startActivity(Context context,boolean hasTitle,boolean landscape,TestFragmentFactory.TYPE type){
         if(context == null){
             Logger.e(TAG,"context must not be null");
             return;
@@ -55,6 +56,8 @@ public class Router {
         Intent intent =  new Intent(context, ContainerActivity.class);
         intent.putExtra(ContainerActivity.HAS_TITLE,hasTitle);
         intent.putExtra(ContainerActivity.FRAMGNET_TYPE,type);
+        intent.putExtra(ContainerActivity.LANDSCAPE,landscape);
+
         context.startActivity(intent);
     }
 
