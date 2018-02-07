@@ -10,7 +10,7 @@ import android.widget.PopupWindow;
 
 
 /**
- * Created by zhangzhiquan on 2017/8/3.
+ * @author Created by zhangzhiquan on 2017/8/3.
  */
 
 public class SendGiftPopupWindow extends PopupWindow {

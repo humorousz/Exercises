@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
+import com.humorous.myapplication.liveroom.controller.AutoController;
 import com.humorous.myapplication.liveroom.controller.GiftAnimationController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.module.DefaultChatMessage;
@@ -22,7 +23,8 @@ import com.humorousz.uiutils.widget.InputDialog;
  * @date 2017/8/19
  */
 
-public class DemoRoomFragment extends BaseFragment implements View.OnClickListener,SelectGiftView.OnGiftItemClick,InputDialog.OnSendMessageListener {
+public class DemoRoomFragment extends BaseFragment implements View.OnClickListener,SelectGiftView.OnGiftItemClick,
+        InputDialog.OnSendMessageListener,AutoController.OnAutoListener,SelectGiftView.OnSpaceClick {
     private static final String TAG = "DemoRoomFragment";
     private ViewGroup mContainer;
     private IntoRoomAnimatorController mController;
@@ -33,6 +35,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     private AnimatedImageView mWebPImage;
     private GiftAnimationController mGiftController;
     private InputDialog mInputDialog;
+    private AutoController mAutoController;
     private View mRoot;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +53,9 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         setClickListener(R.id.btn_msg);
         setClickListener(R.id.image_gift);
         setClickListener(R.id.tv_chat);
+        setClickListener(R.id.btn_auto);
         mGiftController = new GiftAnimationController(mWebPImage);
+        mAutoController = new AutoController(this);
     }
 
 
@@ -87,18 +92,33 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
             case R.id.tv_chat:
                 openInputDialog();
                 break;
+            case R.id.btn_auto:
+                if(mAutoController.startAuto()){
+                    mAutoController.stopAuto();
+                }
+                break;
+
             default:
                 break;
         }
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAutoController.destroy();
+    }
+
     public void userComeIn(){
-        mController.addTask("humorous "+userComeInCount+" come");
-        userComeInCount++;
+        mRoot.post(()->{
+            mController.addTask("humorous "+userComeInCount+" come");
+            userComeInCount++;
+        });
     }
 
     private void clearCount(){
+        mAutoController.stopAuto();
         mController.clear();
         userComeInCount = 0;
         messageCount = 0;
@@ -117,6 +137,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         if(mPop == null){
             SelectGiftView view = new SelectGiftView(getContext());
             view.setOnGiftItemClickListener(this);
+            view.setSpaceListener(this);
             ViewGroup group = getActivity().findViewById(android.R.id.content);
             View tiedView = group.getChildAt(0);
             mPop= new SendGiftPopupWindow(getContext(),view,tiedView);
@@ -157,5 +178,29 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void overMax(int max, int real) {
         ToastUtil.showToast(getContext(),"文字超出长度限制了 哈尼！");
+    }
+
+    /**
+     * 自动发言
+     * 具体如何发言，可自行实现
+     */
+    @Override
+    public void autoSendMessage() {
+        addNewMessage("humorousMan","我是第"+messageCount+"条测试消息");
+    }
+
+    /**
+     * 自动用户进场
+     */
+    @Override
+    public void autoComeInUser() {
+        userComeIn();
+    }
+
+    @Override
+    public void clickGiftPanelSpace() {
+        if(mPop != null){
+            mPop.dismiss();
+        }
     }
 }

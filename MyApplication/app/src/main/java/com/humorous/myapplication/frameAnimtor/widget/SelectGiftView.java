@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.widget.GridItemDecoration;
 
@@ -19,15 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zhangzhiquan on 2017/8/3.
+ * @author Created by zhangzhiquan on 2017/8/3.
  */
 
-public class SelectGiftView extends LinearLayout {
+public class SelectGiftView extends LinearLayout implements View.OnClickListener {
+    private static final String TAG = "SelectGiftView";
     private static String Path = "f3/";
     private Context mContext;
     private RecyclerView mRecycler;
     private List<GiftInfo> mData;
     private OnGiftItemClick mListener;
+    private OnSpaceClick mSpaceListener;
     public SelectGiftView(Context context) {
         this(context,null);
     }
@@ -39,12 +42,17 @@ public class SelectGiftView extends LinearLayout {
     public SelectGiftView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+        setOnClickListener(this);
         initData();
         initView();
     }
 
     public void setOnGiftItemClickListener(OnGiftItemClick listener){
         mListener = listener;
+    }
+
+    public void setSpaceListener(OnSpaceClick mSpaceListener) {
+        this.mSpaceListener = mSpaceListener;
     }
 
     private void initView(){
@@ -67,6 +75,18 @@ public class SelectGiftView extends LinearLayout {
         mData.add(new GiftInfo("香蕉","banana.webp"));
         mData.add(new GiftInfo("星星 ","star.webp"));
         mData.add(new GiftInfo("超跑 ","newcar.webp"));
+    }
+
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        if(mSpaceListener != null){
+            mSpaceListener.clickGiftPanelSpace();
+        }
     }
 
     private static class GiftInfo{
@@ -127,6 +147,15 @@ public class SelectGiftView extends LinearLayout {
 
 
     public interface OnGiftItemClick{
+        /**
+         * 点击礼物item
+         * @param path
+         * @param name
+         */
         void onGiftItemClick(String path,String name);
+    }
+
+    public interface OnSpaceClick{
+        void clickGiftPanelSpace();
     }
 }

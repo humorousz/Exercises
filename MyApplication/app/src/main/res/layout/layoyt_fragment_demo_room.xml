@@ -17,6 +17,13 @@
         android:layout_height="wrap_content"
         android:text="消息" />
 
+    <Button
+        android:id="@+id/btn_auto"
+        android:layout_toRightOf="@id/btn_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="自动" />
+
     <com.humorousz.uiutils.widget.AnimatedImageView
         android:id="@+id/webp_image"
         android:layout_width="match_parent"
