@@ -41,7 +41,9 @@ public class AutoController {
 
     public void destroy(){
         isDestroy = true;
-        mMessageThread.interrupt();
+        if(mMessageThread != null){
+            mMessageThread.interrupt();
+        }
     }
 
     private class ConsumerRunnable implements Runnable{

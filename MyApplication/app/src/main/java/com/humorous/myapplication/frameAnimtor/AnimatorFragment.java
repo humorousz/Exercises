@@ -17,6 +17,8 @@ import com.humorous.myapplication.frameAnimtor.webp.BitMapActor;
 import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorousz.uiutils.widget.animation.AnimationImageView;
+import com.humorousz.uiutils.widget.animation.FrescoSequence;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -37,6 +39,7 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
     private Queue<Pair<String,String>> paths;
     private boolean isRunning;
     private boolean isDestoryView = false;
+    private AnimationImageView webpImage;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_animtor_fragment,container,false);
@@ -48,6 +51,7 @@ public class AnimatorFragment extends BaseFragment implements  BaseActor.AnimSta
         this.container = (FrameLayout) root.findViewById(R.id.anmi_container);
         this.mSendBtn = (Button) root.findViewById(R.id.sendBtn);
         this.mGiftCount = (TextView) root.findViewById(R.id.tv_gift_count);
+        this.webpImage = root.findViewById(R.id.webp_image);
         mSendBtn.setOnClickListener(this);
         paths = new LinkedList<>();
     }
