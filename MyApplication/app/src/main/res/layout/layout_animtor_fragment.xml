@@ -20,8 +20,9 @@
         android:layout_gravity="bottom"
         android:text="送礼"/>
 
-    <com.humorousz.uiutils.widget.animation.AnimationImageView
+    <com.humrousz.sequence.AnimationImageView
         android:id="@+id/webp_image"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

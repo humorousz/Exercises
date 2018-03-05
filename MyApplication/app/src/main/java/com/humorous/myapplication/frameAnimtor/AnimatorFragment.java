@@ -17,9 +17,7 @@ import com.humorous.myapplication.frameAnimtor.webp.BitMapActor;
 import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorousz.uiutils.view.BaseFragment;
-import com.humorousz.uiutils.widget.animation.AnimationImageView;
-import com.humorousz.uiutils.widget.animation.FrescoSequence;
-
+import com.humrousz.sequence.AnimationImageView;
 import java.util.LinkedList;
 import java.util.Queue;
 

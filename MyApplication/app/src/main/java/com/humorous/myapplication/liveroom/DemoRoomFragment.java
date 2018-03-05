@@ -15,8 +15,8 @@ import com.humorous.myapplication.liveroom.module.DefaultChatMessage;
 import com.humorous.myapplication.liveroom.weidget.ChatBox;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
-import com.humorousz.uiutils.widget.AnimatedImageView;
 import com.humorousz.uiutils.widget.InputDialog;
+import com.humrousz.sequence.AnimationImageView;
 
 import java.util.Random;
 
@@ -34,7 +34,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     private int messageCount = 0;
     private ChatBox mChatBox;
     private SendGiftPopupWindow mPop;
-    private AnimatedImageView mWebPImage;
+    private AnimationImageView mWebPImage;
     private GiftAnimationController mGiftController;
     private InputDialog mInputDialog;
     private AutoController mAutoController;

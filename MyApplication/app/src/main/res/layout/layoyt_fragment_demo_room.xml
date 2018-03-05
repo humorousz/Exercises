@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".container.ContainerActivity"
     android:background="@drawable/shader_bg">
     <Button
@@ -24,8 +25,10 @@
         android:layout_height="wrap_content"
         android:text="自动" />
 
-    <com.humorousz.uiutils.widget.AnimatedImageView
+    <com.humrousz.sequence.AnimationImageView
         android:id="@+id/webp_image"
+        android:scaleType="centerCrop"
+        app:loopCount="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -4,7 +4,8 @@ import android.util.Pair;
 import android.view.View;
 
 import com.humorousz.commonutils.log.Logger;
-import com.humorousz.uiutils.widget.AnimatedImageView;
+import com.humrousz.sequence.AnimationImageView;
+import com.humrousz.sequence.AnimationSequenceDrawable;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -15,13 +16,13 @@ import java.util.Queue;
  * 礼物效果控制器
  */
 
-public class GiftAnimationController implements AnimatedImageView.OnFinishedListener {
+public class GiftAnimationController implements AnimationImageView.OnFinishedListener {
     private static final String TAG = "GiftAnimationController";
     private Queue<Pair<String,String>> mQueue;
-    private AnimatedImageView mImageView;
+    private AnimationImageView mImageView;
     private boolean isRunning;
     private Object mLock = new Object();
-    public GiftAnimationController(AnimatedImageView imageView){
+    public GiftAnimationController(AnimationImageView imageView){
         if(imageView == null){
             throw new NullPointerException("AnimatedImageView should not be null");
         }
