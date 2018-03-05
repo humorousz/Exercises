@@ -48,16 +48,6 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             IMyAidlInterface binder =  IMyAidlInterface.Stub.asInterface(service);
-//            for(int i = 0 ;i < 5 ; i++){
-//                Thread thread = new Thread(Thread.currentThread().getThreadGroup(),()->{
-//                    try {
-//                        binder.testLog();
-//                    } catch (RemoteException e) {
-//                        e.printStackTrace();
-//                    }
-//                },"Thread"+i);
-//                thread.start();
-//            }
             try {
                 binder.testLog();
                 binder.testLog();
@@ -74,8 +64,8 @@ public class MainActivity extends FragmentActivity {
     };
 
     private void testFunc(){
-        Intent intent = new Intent(this,MainService.class);
-        bindService(intent,serviceConnection,BIND_AUTO_CREATE);
+//        Intent intent = new Intent(this,MainService.class);
+//        bindService(intent,serviceConnection,BIND_AUTO_CREATE);
     }
 
     @Override
