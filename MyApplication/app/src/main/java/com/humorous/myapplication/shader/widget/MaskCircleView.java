@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.humorousz.commonutils.log.Logger;
 
 /**
  * Created by zhangzhiquan on 2017/12/17.
@@ -78,11 +77,12 @@ public class MaskCircleView extends View {
             }
             mShader = new LinearGradient(0, getHeight()/2, getWidth(), getHeight()/2, mColors, mPositions, Shader.TileMode.CLAMP);
             matrix.setTranslate(-getWidth(),0);
+        }else {
+            matrix.setTranslate(mCurrentPos,0);
         }
-        matrix.setTranslate(mCurrentPos,0);
         mShader.setLocalMatrix(matrix);
         mPaint.setShader(mShader);
-        canvas.rotate(-50,getWidth()/2,getHeight()/2);
+        canvas.rotate(-40,getWidth()/2,getHeight()/2);
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,mPaint);
     }
 }
