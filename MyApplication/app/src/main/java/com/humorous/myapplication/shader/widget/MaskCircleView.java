@@ -5,17 +5,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.humorousz.commonutils.log.Logger;
+
 /**
  * Created by zhangzhiquan on 2017/12/17.
  */
 
 public class MaskCircleView extends View {
+    private static final String TAG = "MaskCircleView";
     private Paint mPaint;
     private Shader mShader;
     private int[] mColors;
@@ -40,7 +44,7 @@ public class MaskCircleView extends View {
         super.onAttachedToWindow();
         post(()->{
             animator = ValueAnimator.ofFloat(-getWidth(),getWidth());
-            animator.setDuration(1500);
+            animator.setDuration(3000);
             animator.setRepeatMode(ValueAnimator.RESTART);
             animator.setRepeatCount(ValueAnimator.INFINITE);
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -61,19 +65,22 @@ public class MaskCircleView extends View {
             animator.cancel();
         }
     }
-
+    Matrix matrix = new Matrix();
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mShader == null) {
             if (mColors == null) {
-                mColors = new int[]{Color.TRANSPARENT,Color.parseColor("#04ffffff"), Color.parseColor("#33ffffff"), Color.parseColor("#04ffffff"), Color.TRANSPARENT};
+                mColors = new int[]{Color.TRANSPARENT,Color.parseColor("#04000000"), Color.parseColor("#33000000"), Color.parseColor("#04000000"), Color.TRANSPARENT};
             }
             if (mPositions == null) {
                 mPositions = new float[]{0.3f, 0.4f, 0.5f, 0.6f, 0.7f};
             }
+            mShader = new LinearGradient(0, getHeight()/2, getWidth(), getHeight()/2, mColors, mPositions, Shader.TileMode.CLAMP);
+            matrix.setTranslate(-getWidth(),0);
         }
-        mShader = new LinearGradient(mCurrentPos, getHeight()/2, mCurrentPos+getWidth(), getHeight()/2, mColors, mPositions, Shader.TileMode.CLAMP);
+        matrix.setTranslate(mCurrentPos,0);
+        mShader.setLocalMatrix(matrix);
         mPaint.setShader(mShader);
         canvas.rotate(-50,getWidth()/2,getHeight()/2);
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,mPaint);

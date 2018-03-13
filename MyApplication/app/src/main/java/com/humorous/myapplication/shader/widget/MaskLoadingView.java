@@ -6,14 +6,20 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 import com.humorous.myapplication.R;
+import com.humorousz.commonutils.log.Logger;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -30,6 +36,8 @@ public class MaskLoadingView extends View {
     private Paint mPaint;
     private Shader mShader;
     private ValueAnimator mTranslateAnimator;
+    private Matrix mMatrix;
+    private RectF mRectF;
     private float mTranslate = 0;
     private int[] mColors;
     private float[] mPositions;
@@ -37,7 +45,6 @@ public class MaskLoadingView extends View {
     private int repeatMode;
     private int repeatCount;
     private int animMode;
-    private int shape;
     private boolean isNullPosition = false;
     private MaskLoadingCallBack mListener;
 
@@ -73,13 +80,13 @@ public class MaskLoadingView extends View {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs, defStyleAttr);
         mPaint = new Paint();
+        mMatrix = new Matrix();
     }
 
 
     private void initAttrs(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MaskLoadingView, defStyleAttr, 0);
         repeatCount = a.getInt(R.styleable.MaskLoadingView_repeatCount, -1);
-        shape = a.getInt(R.styleable.MaskLoadingView_shape,RECTANGLE);
         animMode = a.getInt(R.styleable.MaskLoadingView_animMode, LEFT_TO_RIGHT);
         mDuration = a.getInt(R.styleable.MaskLoadingView_duration, 2000);
         repeatMode = a.getInt(R.styleable.MaskLoadingView_repeatMode, 1);
@@ -149,7 +156,6 @@ public class MaskLoadingView extends View {
             mTranslateAnimator.cancel();
         }
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -162,12 +168,14 @@ public class MaskLoadingView extends View {
                 if (mPositions == null && !isNullPosition) {
                     mPositions = new float[]{0.3f, 0.4f, 0.5f, 0.6f, 0.7f};
                 }
-                mShader = new LinearGradient(0, 0, getWidth(), getHeight(), mColors, mPositions, Shader.TileMode.REPEAT);
+                mShader = new LinearGradient(0, 0, getWidth(), getHeight(), mColors, mPositions, Shader.TileMode.CLAMP);
             }
-            mPaint.setShader(mShader);
+            mRectF = new RectF(0, 0, getWidth(), canvas.getHeight());
         }
-        canvas.translate(mTranslate,0);
-        canvas.drawRect(0,0,getWidth(),canvas.getHeight(), mPaint);
+        mMatrix.setTranslate(mTranslate,0);
+        mShader.setLocalMatrix(mMatrix);
+        mPaint.setShader(mShader);
+        canvas.drawRoundRect(mRectF,150,150, mPaint);
     }
 
 
