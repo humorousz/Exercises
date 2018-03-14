@@ -78,16 +78,6 @@ public class Api {
         HomeItemModel itemModel;
 
         itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.SHARE_ELEMENT);
-        itemModel.setTitle("共享元素");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.TEXT_SPAN);
-        itemModel.setTitle("Span 练习");
-        models.add(itemModel);
-
-        itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.TOPIC_RECYCLER_TEST);
         itemModel.setTitle("抖音新鲜页滑动渐变");
         models.add(itemModel);
@@ -95,6 +85,22 @@ public class Api {
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.COORDINATOR_DEMO);
         itemModel.setTitle("上滑悬浮");
+        models.add(itemModel);
+
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.NESTED_TEST);
+        itemModel.setTitle("NestedScrolling");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.SHARE_ELEMENT);
+        itemModel.setTitle("共享元素");
+        models.add(itemModel);
+
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.TEXT_SPAN);
+        itemModel.setTitle("Span 练习");
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
@@ -107,10 +113,6 @@ public class Api {
         itemModel.setTitle("Coordinator练习");
         models.add(itemModel);
 
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.NESTED_TEST);
-        itemModel.setTitle("NestedScrolling");
-        models.add(itemModel);
 
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.NESTED_SCROLL_VIEW);
@@ -128,14 +130,10 @@ public class Api {
     public static List<HomeItemModel> getAnim() {
         List<HomeItemModel> models = new ArrayList<>(12);
         HomeItemModel itemModel;
-        itemModel = new HomeItemModel();
-        itemModel.setLink(TestProtocol.ANT_TEST);
-        itemModel.setTitle("芝麻信用效果");
-        models.add(itemModel);
 
         itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.FRAME_ANIMTOR);
-        itemModel.setTitle("帧动画");
+        itemModel.setTitle("送礼");
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
@@ -148,6 +146,10 @@ public class Api {
         itemModel.setTitle("属性动画");
         models.add(itemModel);
 
+        itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.ANT_TEST);
+        itemModel.setTitle("芝麻信用效果");
+        models.add(itemModel);
         return models;
 
     }

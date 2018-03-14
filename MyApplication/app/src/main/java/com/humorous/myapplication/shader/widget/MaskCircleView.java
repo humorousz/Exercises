@@ -70,7 +70,7 @@ public class MaskCircleView extends View {
         super.onDraw(canvas);
         if (mShader == null) {
             if (mColors == null) {
-                mColors = new int[]{Color.TRANSPARENT,Color.parseColor("#04000000"), Color.parseColor("#33000000"), Color.parseColor("#04000000"), Color.TRANSPARENT};
+                mColors = new int[]{Color.TRANSPARENT,Color.parseColor("#04DAA520"), Color.parseColor("#55DAA520"), Color.parseColor("#04DAA520"), Color.TRANSPARENT};
             }
             if (mPositions == null) {
                 mPositions = new float[]{0.3f, 0.4f, 0.5f, 0.6f, 0.7f};
@@ -82,7 +82,7 @@ public class MaskCircleView extends View {
         }
         mShader.setLocalMatrix(matrix);
         mPaint.setShader(mShader);
-        canvas.rotate(-40,getWidth()/2,getHeight()/2);
+        canvas.rotate(-30,getWidth()/2,getHeight()/2);
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,mPaint);
     }
 }

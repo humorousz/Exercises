@@ -1,9 +1,11 @@
 package com.humorous.myapplication.liveroom.intoRoom;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorous.myapplication.shader.widget.MaskLoadingView;
 import com.humorousz.commonutils.log.Logger;
 
 /**
@@ -22,14 +25,15 @@ import com.humorousz.commonutils.log.Logger;
 public class IntoRoomAnimatorView extends LinearLayout implements Animation.AnimationListener {
     private static final String TAG = "IntoRoomAnimatorView";
     private TextView mTextView;
-    private FrameLayout mTextContainer;
+    private ViewGroup mTextContainer;
     private ImageView mStar;
     private Context mContext;
     private Animation inAnimation,outAnimation;
     private OnAnimationStateListener mListener;
-    Interpolator interpolator;
+    private Interpolator interpolator;
     private boolean isCancel;
     private boolean isRunning;
+    private MaskLoadingView mTestMask;
     public IntoRoomAnimatorView(Context context) {
         this(context,null);
     }
@@ -47,7 +51,7 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
 
     private void init(){
         LayoutInflater.from(mContext).inflate(R.layout.layout_into_room_view,this);
-        mTextContainer = (FrameLayout) findViewById(R.id.text_container);
+        mTextContainer = findViewById(R.id.text_container);
         mStar = (ImageView) findViewById(R.id.star_img);
         mTextView = (TextView) findViewById(R.id.text_into);
         inAnimation = AnimationUtils.loadAnimation(mContext,R.anim.into_right_to_left);
@@ -59,6 +63,11 @@ public class IntoRoomAnimatorView extends LinearLayout implements Animation.Anim
         mStar.setImageResource(R.drawable.aa);
         mStar.clearAnimation();
         interpolator = new EaseCubicInterpolator(0f,1.17f,0f,0.9f);
+        mTestMask = findViewById(R.id.text_mask);
+        int[] colors = new int[]{Color.TRANSPARENT, Color.parseColor("#02ffffff"), Color.parseColor("#22ffffff"), Color.parseColor("#02ffffff"), Color.TRANSPARENT};
+        float[] position = new float[]{0.3f, 0.4f, 0.5f, 0.6f, 0.7f};
+        mTestMask.setColors(colors);
+        mTestMask.setPositions(position);
     }
 
     public void setData(CharSequence data){
