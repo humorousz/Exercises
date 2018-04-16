@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/text_container"
     android:gravity="center|left">
     <TextView
@@ -34,5 +35,6 @@
         android:layout_alignLeft="@+id/text_into"
         android:layout_alignRight="@+id/text_into"
         android:layout_alignTop="@+id/text_into"
-        android:layout_alignBottom="@+id/text_into"/>
+        android:layout_alignBottom="@+id/text_into"
+        app:repeatCount="1"/>
 </RelativeLayout>
