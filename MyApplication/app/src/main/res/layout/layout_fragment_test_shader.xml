@@ -57,5 +57,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
+        <com.humorous.myapplication.shader.widget.GradientImageView
+            android:id="@+id/gradientImage"
+            android:layout_marginTop="@dimen/shader_test_margin_top"
+            android:layout_marginBottom="@dimen/shader_test_margin_top"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
