@@ -1,19 +1,19 @@
 package com.humorous.myapplication.shader.widget;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.humorousz.commonutils.log.Logger;
 
 public class GradinetDrawable extends Drawable {
     private Bitmap mBitmap;
@@ -23,18 +23,37 @@ public class GradinetDrawable extends Drawable {
         mContext = context;
     }
 
+    private float cur = 0;
+    @Override
+    public boolean setVisible(boolean visible, boolean restart) {
+        ValueAnimator animator = ValueAnimator.ofFloat(0,1);
+        animator.setDuration(5000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                cur = (float) animation.getAnimatedValue();
+                invalidateSelf();
+            }
+        });
+//        animator.start();
+        return super.setVisible(visible, restart);
+    }
+
     @Override
     public void draw(@NonNull Canvas canvas) {
         if(mBitmap == null){
             return;
         }
-        Logger.d("MRT","draw  width:"+mBitmap.getWidth()+" height:"+mBitmap.getHeight());
-//        canvas.drawBitmap(mBitmap,new Rect(0,0,mBitmap.getWidth(),mBitmap.getHeight()/2),getBounds(),new Paint());
         BitmapShader shader = new BitmapShader(mBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+        float scalex = (getBounds().right-getBounds().left) * 1.0f / mBitmap.getWidth();
+        float scaley = (getBounds().bottom-getBounds().top) * 1.0f / mBitmap.getHeight();
+        Matrix matrix = new Matrix();
+        matrix.setScale(scalex,scaley);
+        shader.setLocalMatrix(matrix);
         Paint paint = new Paint();
         paint.setShader(shader);
         paint.setColor(Color.RED);
-        canvas.drawRect(new Rect(0,0,getBounds().width(),getBounds().height()),paint);
+        canvas.drawRect(0,0, (int) (getBounds().width()),getBounds().height(),paint);
     }
 
     @Override

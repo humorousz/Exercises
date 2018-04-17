@@ -37,6 +37,7 @@ public class GradientImageView extends AppCompatImageView {
     Matrix matrix = new Matrix();
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.concat(getImageMatrix());
         super.onDraw(canvas);
 //        Drawable drawable = getDrawable();
 //        if (drawable == null) {
