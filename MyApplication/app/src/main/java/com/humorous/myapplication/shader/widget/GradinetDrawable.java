@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -53,7 +54,7 @@ public class GradinetDrawable extends Drawable {
         Paint paint = new Paint();
         paint.setShader(shader);
         paint.setColor(Color.RED);
-        canvas.drawRect(0,0, (int) (getBounds().width()),getBounds().height(),paint);
+        canvas.drawRoundRect(new RectF(0,0, (int) (getBounds().width()),getBounds().height()),150,150,paint);
     }
 
     @Override

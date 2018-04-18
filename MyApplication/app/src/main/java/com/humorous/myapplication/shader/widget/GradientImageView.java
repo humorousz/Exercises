@@ -19,7 +19,7 @@ import android.util.AttributeSet;
  * @date 2018/04/16
  * 可渐变的ImageView
  */
-public class GradientImageView extends AppCompatImageView {
+public class GradientImageView extends PictureScrollView {
     private Bitmap mBitMap;
     private Paint mPaint;
     private Shader mShader;
@@ -37,7 +37,6 @@ public class GradientImageView extends AppCompatImageView {
     Matrix matrix = new Matrix();
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.concat(getImageMatrix());
         super.onDraw(canvas);
 //        Drawable drawable = getDrawable();
 //        if (drawable == null) {

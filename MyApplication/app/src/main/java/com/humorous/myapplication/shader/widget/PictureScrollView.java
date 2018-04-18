@@ -13,7 +13,7 @@ import android.util.AttributeSet;
  */
 public class PictureScrollView extends AppCompatImageView implements ValueAnimator.AnimatorUpdateListener{
     private ValueAnimator mAnimator;
-    private int mDuration = 3000;
+    private int mDuration = 1500;
     private float mCurrentValue=0;
     public PictureScrollView(Context context) {
         this(context,null);
@@ -32,6 +32,7 @@ public class PictureScrollView extends AppCompatImageView implements ValueAnimat
         mAnimator = ValueAnimator.ofFloat(0,1);
         mAnimator.addUpdateListener(this);
         mAnimator.setDuration(mDuration);
+        mAnimator.setRepeatCount(5);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class PictureScrollView extends AppCompatImageView implements ValueAnimat
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.clipRect(0,0,getWidth(),getHeight()*mCurrentValue);
+        canvas.clipRect(0,0,getWidth()*mCurrentValue,getHeight());
         super.onDraw(canvas);
     }
 

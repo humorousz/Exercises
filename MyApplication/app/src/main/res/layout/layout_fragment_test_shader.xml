@@ -62,8 +62,8 @@
             android:layout_marginTop="@dimen/shader_test_margin_top"
             android:layout_marginBottom="@dimen/shader_test_margin_top"
             android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_width="200dp"
+            android:layout_height="70dp"/>
 
         <com.humorous.myapplication.shader.widget.PictureScrollView
             android:layout_marginTop="@dimen/shader_test_margin_top"
