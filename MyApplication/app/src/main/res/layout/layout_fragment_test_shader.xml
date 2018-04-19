@@ -23,6 +23,7 @@
             android:background="#BFEBEBEB"/>
 
         <FrameLayout
+            android:id="@+id/text_shader"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/shader_test_margin_top"

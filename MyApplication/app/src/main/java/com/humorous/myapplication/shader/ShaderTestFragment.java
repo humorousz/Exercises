@@ -1,10 +1,7 @@
 package com.humorous.myapplication.shader;
 
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +10,6 @@ import android.widget.ImageView;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.shader.widget.GradinetDrawable;
-import com.humorous.myapplication.shader.widget.MaskCircleView;
 import com.humorous.myapplication.shader.widget.MaskLoadingView;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
 import com.humorousz.uiutils.view.BaseFragment;
