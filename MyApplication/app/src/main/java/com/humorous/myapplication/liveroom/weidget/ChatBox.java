@@ -35,6 +35,7 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
     private static final String TAG = "ChatBox";
     private static final int CHAT_MSG = 0x01;
     private static final int CHAT_MSG_LOCAL = 0x02;
+    private static final int CHAT_UPDATE = 0x03;
     private Context mContext;
     private View mRootView;
     private RecyclerView mChatRecyclerView;
@@ -54,6 +55,14 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
                     break;
                 case CHAT_MSG_LOCAL:
                     updateChatData(module,true);
+                    break;
+                case CHAT_UPDATE:
+                    mAdapter.notifyMessage();
+                    if(mAdapter.isSlideToBottom()){
+                        hideNewMsgLayout();
+                    }else {
+                        showNewMsgLayout();
+                    }
                     break;
                 default:
                     break;
@@ -164,11 +173,10 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
         if (mAdapter != null) {
             Logger.d(TAG,"updateChatData");
             mAdapter.notifyAddItem(newMessage);
-            if(mAdapter.isSlideToBottom()){
-                hideNewMsgLayout();
-            }else {
-                showNewMsgLayout();
+            if(mHandler.hasMessages(CHAT_UPDATE)){
+                mHandler.removeMessages(CHAT_UPDATE);
             }
+            mHandler.sendEmptyMessageDelayed(CHAT_UPDATE,100);
         }
     }
 

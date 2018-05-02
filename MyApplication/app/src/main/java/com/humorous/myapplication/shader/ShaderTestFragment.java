@@ -2,6 +2,7 @@ package com.humorous.myapplication.shader;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,5 +53,8 @@ public class ShaderTestFragment  extends BaseFragment{
 
         gImage = root.findViewById(R.id.gradientImage);
         gImage.setImageDrawable(new GradinetDrawable(getContext(), BitmapFactory.decodeResource(getResources(),R.drawable.sssssss)));
+        root.findViewById(R.id.text_shader).getBackground().setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.SRC_ATOP);
+        root.findViewById(R.id.text_shader).getBackground().setAlpha(Color.alpha(Color.parseColor("#55ff0000")));
+
     }
 }
