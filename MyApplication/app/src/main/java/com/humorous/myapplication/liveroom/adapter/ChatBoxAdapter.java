@@ -29,8 +29,8 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
     private static final int MSG_REFRESH = 0x001;
     private static final int MSG_UPDATE = 0x002;
 
-    private static final int MAX_CHAT_LIST_LENGTH = 20;
-    private static final int MAX_CHAT_CACHE_LENGTH = 20;
+    private static final int MAX_CHAT_LIST_LENGTH = 10;
+    private static final int MAX_CHAT_CACHE_LENGTH = 10;
 
     private RecyclerView mRecyclerView;
     private List<IChatMessage> mLiveCommentItem = new ArrayList<>();
@@ -78,12 +78,10 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
                     Logger.d("chatBox","notify size:"+mLiveCommentItem.size());
                     notifyItemRangeInserted(start,mLiveCommentItem.size() - start);
                 }
-                if (mLiveCommentItem.size() > MAX_CHAT_LIST_LENGTH) {
+                if (mLiveCommentItem.size() > MAX_CHAT_CACHE_LENGTH) {
                     int offset = mLiveCommentItem.size() - MAX_CHAT_CACHE_LENGTH;
-                    for (int i = 0;i<offset;i++){
-                        mLiveCommentItem.remove(0);
-                        notifyRemoveItem(0);
-                    }
+                    mLiveCommentItem = mLiveCommentItem.subList(offset,mLiveCommentItem.size());
+                    notifyItemRangeRemoved(0,offset);
 
                 }
                 scrollToEnd();
