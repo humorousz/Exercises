@@ -8,6 +8,8 @@ ext{
     animated_webp= "0.12.0"
     animated_gif= "0.12.0"
     AnimationSequenceDrawable = "1.0.1-SNAPSHOT"
+    Danmaku = "0.9.25"
+    ndkbitmap_armv7 = "0.9.21"
 
     android = [
             compileSdkVersion : 27,
@@ -27,6 +29,9 @@ ext{
             imageLoader:"com.nostra13.universalimageloader:universal-image-loader:${imageLoader}",
             animated_webp:"com.facebook.fresco:animated-webp:${animated_webp}",
             animated_gif:"com.facebook.fresco:animated-gif:${animated_gif}",
-            AnimationSequenceDrawable:"com.github.humorousz:AnimationSequenceDrawable:${AnimationSequenceDrawable}"
+            AnimationSequenceDrawable:"com.github.humorousz:AnimationSequenceDrawable:${AnimationSequenceDrawable}",
+            Danmaku:"com.github.ctiao:DanmakuFlameMaster:${Danmaku}",
+            ndkbitmap_armv7: "com.github.ctiao:ndkbitmap-armv7a:${ndkbitmap_armv7}"
+
     ]
 }

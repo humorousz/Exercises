@@ -25,6 +25,22 @@
         android:layout_height="wrap_content"
         android:text="自动" />
 
+
+    <Button
+        android:id="@+id/btn_danmuku"
+        android:layout_toRightOf="@id/btn_auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="弹幕" />
+
+    <master.flame.danmaku.ui.widget.DanmakuView
+        android:id="@+id/danmuku_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        tools:background="@color/color_8cfd9500"
+        android:layout_below="@id/btn_danmuku"/>
+
     <com.humrousz.sequence.AnimationImageView
         android:id="@+id/webp_image"
         android:scaleType="centerCrop"

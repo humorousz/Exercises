@@ -11,13 +11,14 @@ import com.humorous.myapplication.config.factory.TestFragmentFactory;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.helper.ToastUtil;
+import com.humorousz.uiutils.view.BaseActivity;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
  * @author zhangzhiquan
  */
 
-public class ContainerActivity extends AppCompatActivity {
+public class ContainerActivity extends BaseActivity {
     private static final String TAG = "ContainerActivity";
     public static final String HAS_TITLE = "hasTitle";
     public static final String FRAGMENT_TYPE = "type";

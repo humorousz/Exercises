@@ -1,11 +1,14 @@
 package com.humorous.myapplication.liveroom;
 
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.humorous.myapplication.R;
+import com.humorous.myapplication.danmaku.Danmu;
+import com.humorous.myapplication.danmaku.controller.DanmaController;
 import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorous.myapplication.liveroom.controller.AutoController;
@@ -40,6 +43,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     private AutoController mAutoController;
     private String[] mUserNames,mUserContent;
     private View mRoot;
+    private DanmaController mDanmaController;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layoyt_fragment_demo_room,container,false);
@@ -52,15 +56,18 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
         mChatBox = root.findViewById(R.id.chat_box);
         mWebPImage = root.findViewById(R.id.webp_image);
+        mDanmaController = new DanmaController();
         setClickListener(R.id.btn_come);
         setClickListener(R.id.btn_msg);
         setClickListener(R.id.image_gift);
         setClickListener(R.id.tv_chat);
         setClickListener(R.id.btn_auto);
+        setClickListener(R.id.btn_danmuku);
         mGiftController = new GiftAnimationController(mWebPImage);
         mAutoController = new AutoController(this);
         mUserNames = getResources().getStringArray(R.array.user_name);
         mUserContent = getResources().getStringArray(R.array.user_content);
+        mDanmaController.setDanmakuView(root.findViewById(R.id.danmuku_view));
     }
 
 
@@ -71,7 +78,14 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
+        mDanmaController.resume();
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mDanmaController.pause();
     }
 
     @Override
@@ -102,6 +116,9 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
                     mAutoController.stopAuto();
                 }
                 break;
+            case R.id.btn_danmuku:
+                addDanmaku();
+                break;
 
             default:
                 break;
@@ -113,6 +130,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     public void onDestroy() {
         super.onDestroy();
         mAutoController.destroy();
+        mDanmaController.destroy();
     }
 
     public void userComeIn(){
@@ -150,6 +168,14 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
             mPop= new SendGiftPopupWindow(getContext(),view,tiedView);
         }
         mPop.show();
+    }
+
+    private void addDanmaku(){
+        SpannableString spannableString = new SpannableString("张智全到此一游");
+        Danmu danmu = new Danmu(123,false,"http://imgsrc.baidu.com/forum/w=580/sign=1588b7c5d739b6004dce0fbfd9503526/7bec54e736d12f2eb97e1a464dc2d56285356898.jpg","zzq",spannableString);
+        if(mDanmaController != null){
+            mDanmaController.addDanmu(danmu);
+        }
     }
 
     private void openInputDialog(){

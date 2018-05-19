@@ -40,4 +40,13 @@ dependencies {
     androidTestImplementation 'junit:junit:4.12'
     implementation project(':uiutils')
     implementation project(':commonutils')
+    implementation project(':weexlib')
+    implementation rootProject.ext.dependencies.appcompatV7
+    implementation rootProject.ext.dependencies.supportV4
+    implementation rootProject.ext.dependencies.recyclerview
+    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.Danmaku
+    implementation rootProject.ext.dependencies.ndkbitmap_armv7
+    implementation rootProject.ext.dependencies.AnimationSequenceDrawable
+    implementation rootProject.ext.dependencies.rxJava
 }
