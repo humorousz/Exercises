@@ -1,9 +1,8 @@
 package com.humorous.myapplication.shader;
 
-import android.graphics.Canvas;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.humorous.myapplication.R;
-import com.humorous.myapplication.shader.widget.MaskCircleView;
+import com.humorous.myapplication.shader.widget.GradinetDrawable;
 import com.humorous.myapplication.shader.widget.MaskLoadingView;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
 import com.humorousz.uiutils.view.BaseFragment;
@@ -24,6 +23,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 public class ShaderTestFragment  extends BaseFragment{
     private MaskLoadingView mTestMask;
     private ImageView mImage;
+    private ImageView gImage;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_fragment_test_shader,container,false);
@@ -50,5 +50,11 @@ public class ShaderTestFragment  extends BaseFragment{
 //                return shader;
 //            }
 //        });
+
+        gImage = root.findViewById(R.id.gradientImage);
+        gImage.setImageDrawable(new GradinetDrawable(getContext(), BitmapFactory.decodeResource(getResources(),R.drawable.sssssss)));
+        root.findViewById(R.id.text_shader).getBackground().setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.SRC_ATOP);
+        root.findViewById(R.id.text_shader).getBackground().setAlpha(Color.alpha(Color.parseColor("#55ff0000")));
+
     }
 }

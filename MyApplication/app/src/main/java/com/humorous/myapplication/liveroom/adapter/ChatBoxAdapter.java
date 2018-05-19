@@ -17,6 +17,7 @@ import com.humorousz.commonutils.log.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * @author zhangzhiquan
@@ -26,25 +27,27 @@ import java.util.List;
 
 public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHolder> {
     private static final int MSG_REFRESH = 0x001;
-    private static final int MAX_CHAT_LIST_LENGTH = 100;
-    private static final int MAX_CHAT_CACHE_LENGTH = 100;
+    private static final int MSG_UPDATE = 0x002;
+
+    private static final int MAX_CHAT_LIST_LENGTH = 10;
+    private static final int MAX_CHAT_CACHE_LENGTH = 10;
 
     private RecyclerView mRecyclerView;
     private List<IChatMessage> mLiveCommentItem = new ArrayList<>();
     private List<IChatMessage> mCacheList = new ArrayList<>();
+    private List<IChatMessage> mChatMessage = new ArrayList<>();
 
     private Handler handler = new NormalHandler(new HandlerCallback(){
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == MSG_REFRESH) {
-                try {
-                    synchronized (ChatBoxAdapter.class) {
-                        notifyDataSetChanged();
-                        scrollToEnd();
-                    }
-                } catch (Exception e) {
-
+                synchronized (ChatBoxAdapter.class) {
+                    notifyDataSetChanged();
+                    scrollToEnd();
                 }
+            }
+            if(msg.what == MSG_UPDATE){
+                notifyMessage();
             }
         }
     });
@@ -62,22 +65,32 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
 
     public void notifyAddItem(IChatMessage msgInfo) {
         synchronized (ChatBoxAdapter.class) {
+            mChatMessage.add(msgInfo);
+        }
+    }
+
+    public void notifyMessage(){
+        synchronized (ChatBoxAdapter.class) {
             if (isSlideToBottom()) {
-                mLiveCommentItem.add(msgInfo);
+                int start = mLiveCommentItem.size();
+                mLiveCommentItem.addAll(mChatMessage);
                 if(mLiveCommentItem.size() != 0){
                     Logger.d("chatBox","notify size:"+mLiveCommentItem.size());
-                    notifyItemInserted(mLiveCommentItem.size() - 1);
+                    notifyItemRangeInserted(start,mLiveCommentItem.size() - start);
                 }
-                if (mLiveCommentItem.size() > MAX_CHAT_LIST_LENGTH) {
-                    mLiveCommentItem.remove(0);
-                    notifyRemoveItem(0);
+                if (mLiveCommentItem.size() > MAX_CHAT_CACHE_LENGTH) {
+                    int offset = mLiveCommentItem.size() - MAX_CHAT_CACHE_LENGTH;
+                    mLiveCommentItem = mLiveCommentItem.subList(offset,mLiveCommentItem.size());
+                    notifyItemRangeRemoved(0,offset);
+
                 }
                 scrollToEnd();
             } else {
                 if (mCacheList.size() < MAX_CHAT_CACHE_LENGTH) {
-                    mCacheList.add(msgInfo);
+                    mCacheList.addAll(mChatMessage);
                 }
             }
+            mChatMessage.clear();
         }
     }
 
@@ -119,6 +132,7 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
         try {
             synchronized (ChatBoxAdapter.class) {
                 if (mRecyclerView != null) {
+                    Logger.d("<<<<MMM","size:"+mLiveCommentItem.size());
                     mRecyclerView.smoothScrollToPosition(mLiveCommentItem.size());
                 }
             }
@@ -128,10 +142,12 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
     }
 
     public int getNewCount() {
-        if (mCacheList != null) {
-            return mCacheList.size();
+        synchronized (this){
+            if (mCacheList != null) {
+                return mCacheList.size();
+            }
+            return 1;
         }
-        return 1;
     }
 
     private void notifyRemoveItem(int pos) {

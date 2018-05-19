@@ -29,14 +29,15 @@ public class AutoController {
         }
         if(mMessageThread == null){
             mMessageThread = new Thread(new ConsumerRunnable("message",DELAY_TIME));
-            mMessageThread.start();
         }
+        mMessageThread.start();
         isRunning = true;
         return false;
     }
 
     public void stopAuto(){
         isRunning = false;
+        mMessageThread.interrupt();
     }
 
     public void destroy(){
@@ -55,17 +56,15 @@ public class AutoController {
         }
         @Override
         public void run() {
-            while (!isDestroy ){
-                if(isRunning){
-                    if(mListener != null){
-                        mListener.autoSendMessage();
-                        mListener.autoComeInUser();
-                    }
-                    try {
-                        Thread.sleep(delayTime);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            while (isRunning){
+                if(mListener != null){
+                    mListener.autoSendMessage();
+                    mListener.autoComeInUser();
+                }
+                try {
+                    Thread.sleep(delayTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }

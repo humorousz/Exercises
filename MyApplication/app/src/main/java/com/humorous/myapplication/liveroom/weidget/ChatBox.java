@@ -21,6 +21,7 @@ import com.humorous.myapplication.liveroom.module.IChatMessage;
 import com.humorousz.commonutils.handler.HandlerCallback;
 import com.humorousz.commonutils.handler.NormalHandler;
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.uiutils.helper.UIUtils;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
     private static final String TAG = "ChatBox";
     private static final int CHAT_MSG = 0x01;
     private static final int CHAT_MSG_LOCAL = 0x02;
+    private static final int CHAT_UPDATE = 0x03;
     private Context mContext;
     private View mRootView;
     private RecyclerView mChatRecyclerView;
@@ -53,6 +55,14 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
                     break;
                 case CHAT_MSG_LOCAL:
                     updateChatData(module,true);
+                    break;
+                case CHAT_UPDATE:
+                    mAdapter.notifyMessage();
+                    if(mAdapter.isSlideToBottom()){
+                        hideNewMsgLayout();
+                    }else {
+                        showNewMsgLayout();
+                    }
                     break;
                 default:
                     break;
@@ -82,13 +92,15 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mChatRecyclerView.setLayoutManager(manager);
         mChatRecyclerView.setAdapter(mAdapter);
+        mChatRecyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        mChatRecyclerView.setVerticalFadingEdgeEnabled(true);
+        mChatRecyclerView.setFadingEdgeLength(UIUtils.dip2px(15));
         mNewMessageTips = (RelativeLayout) mRootView.findViewById(R.id.chat_new_message_tip);
         mNewMessageText = (TextView) mRootView.findViewById(R.id.chat_new_message_tip_text);
         mChatRecyclerViewScrollListener = new OnScrollListener();
         mChatRecyclerView.addOnScrollListener(mChatRecyclerViewScrollListener);
         mNewMessageTips.setOnClickListener(this);
         hideNewMsgLayout();
-
     }
     /**
      * 设置用户ID
@@ -161,11 +173,10 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
         if (mAdapter != null) {
             Logger.d(TAG,"updateChatData");
             mAdapter.notifyAddItem(newMessage);
-            if(mAdapter.isSlideToBottom()){
-                hideNewMsgLayout();
-            }else {
-                showNewMsgLayout();
+            if(mHandler.hasMessages(CHAT_UPDATE)){
+                mHandler.removeMessages(CHAT_UPDATE);
             }
+            mHandler.sendEmptyMessageDelayed(CHAT_UPDATE,100);
         }
     }
 

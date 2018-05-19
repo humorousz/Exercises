@@ -130,7 +130,9 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
     }
 
     public void addNewMessage(){
-        addNewMessage("humorousMan","我是第"+messageCount+"条测试消息");
+        for(int i = 0 ;i<15;i++){
+            addNewMessage("humorousMan","我是第"+messageCount+"条测试消息");
+        }
     }
 
     public void addNewMessage(String user,String content){

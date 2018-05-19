@@ -23,6 +23,7 @@
             android:background="#BFEBEBEB"/>
 
         <FrameLayout
+            android:id="@+id/text_shader"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/shader_test_margin_top"
@@ -57,5 +58,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
+        <com.humorous.myapplication.shader.widget.GradientImageView
+            android:id="@+id/gradientImage"
+            android:layout_marginTop="@dimen/shader_test_margin_top"
+            android:layout_marginBottom="@dimen/shader_test_margin_top"
+            android:scaleType="centerCrop"
+            android:layout_width="200dp"
+            android:layout_height="70dp"/>
+
+        <com.humorous.myapplication.shader.widget.PictureScrollView
+            android:layout_marginTop="@dimen/shader_test_margin_top"
+            android:layout_marginBottom="@dimen/shader_test_margin_top"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/sssssss"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
