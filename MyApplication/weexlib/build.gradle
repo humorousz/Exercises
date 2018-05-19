@@ -13,24 +13,23 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation rootProject.ext.dependencies.appcompatV7
-    implementation rootProject.ext.dependencies.fastJson
-    implementation rootProject.ext.dependencies.rxJava
-    implementation rootProject.ext.dependencies.eventBus
-    //对Json解析的单元测试需要用到，因为JUnit不包含json库
+
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.json:json:20140107'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':commonutils')
+    implementation project(':uiutils')
+    implementation rootProject.ext.dependencies.weexSdk
 }

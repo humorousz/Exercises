@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
     defaultConfig {
         applicationId "com.humorous.myapplication"
-        minSdkVersion 14
-        targetSdkVersion 19
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,14 +33,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:recyclerview-v7:26+'
-    compile 'com.android.support:support-v4:26+'
-    compile 'com.android.support:design:26.1.0'
-    testCompile 'junit:junit:4.12'
-    compile project(':uiutils')
-    compile project(':commonutils')
+    androidTestImplementation 'junit:junit:4.12'
+    implementation project(':uiutils')
+    implementation project(':commonutils')
 }

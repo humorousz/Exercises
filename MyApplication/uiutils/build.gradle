@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
@@ -30,17 +30,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26+'
-    testCompile 'junit:junit:4.12'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile project(':commonutils')
-    compile 'com.facebook.fresco:animated-webp:0.12.0'
-    compile 'com.facebook.fresco:animated-gif:0.12.0'
-    compile 'com.github.humorousz:AnimationSequenceDrawable:1.0.1-SNAPSHOT'
+    androidTestImplementation 'junit:junit:4.12'
+    implementation project(':commonutils')
+    implementation rootProject.ext.dependencies.appcompatV7
+    implementation rootProject.ext.dependencies.recyclerview
+    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.imageLoader
+    implementation rootProject.ext.dependencies.animated_webp
+    implementation rootProject.ext.dependencies.animated_gif
+    implementation rootProject.ext.dependencies.AnimationSequenceDrawable
 }
