@@ -47,11 +47,7 @@ public class DanmaController {
     /**
      * 弹幕显示的时间(如果是list的话，会 * i)，记得加上mDanmakuView.getCurrentTime()
      */
-    private static final long ADD_DANMU_TIME = 2000;
-
-    private static final int PINK_COLOR = 0xffff5a93;//粉红 楼主
-    private static final int ORANGE_COLOR = 0xffff815a;//橙色 我
-    private static final int BLACK_COLOR = 0x33000000;//黑色 普通
+    private static final long ADD_DANMU_TIME = 1200;
 
     private static final int DURATION_LONG = 3000;
     private static final int DURATION_SHORT = 2000;
@@ -61,21 +57,25 @@ public class DanmaController {
 
     private int BITMAP_WIDTH = 23;//头像的大小
     private int BITMAP_HEIGHT = 23;
-    private int DANMU_TEXT_SIZE = 13;//弹幕字体的大小
-    private int EMOJI_SIZE = 12;//emoji的大小
+    //弹幕字体的大小
+    private int DANMU_TEXT_SIZE = 13;
+    //emoji的大小
+    private int EMOJI_SIZE = 12;
 
     //这两个用来控制两行弹幕之间的间距
     private int DANMU_PADDING = 8;
     private int DANMU_PADDING_INNER = 3;
-    private int DANMU_RADIUS = 15;//圆角半径
+    //圆角半径
+    private int DANMU_RADIUS = 15;
 
     private final int mGoodUserId = 1;
     private final int mMyUserId = 2;
 
     private IDanmakuView mDanmakuView;
     private DanmakuContext mDanmakuContext;
-    private long lastDanmuTime;//记录上次发弹幕的时间 两次弹幕间隔太短 加间隔时间
-    private Duration mDuration;
+    //记录上次发弹幕的时间 两次弹幕间隔太短 加间隔时间
+    private long lastDanmuTime;
+    private Duration mLongDuration,mShortDuration;
 
     public DanmaController() {
         setSize();
@@ -132,7 +132,7 @@ public class DanmaController {
                 .setDuplicateMergingEnabled(false)
                 //越大速度越慢
                 .setScrollSpeedFactor(1.0f)
-                .setScaleTextSize(1.2f)
+                .setScaleTextSize(1.0f)
                 .setCacheStuffer(new BackgroundCacheStuffer(), mCacheStufferAdapter)
                 .setMaximumLines(maxLinesPair)
                 .preventOverlapping(overlappingEnablePair);
@@ -293,14 +293,15 @@ public class DanmaController {
                     danmaku.textColor = Color.WHITE;
                     danmaku.textShadowColor = 0;
                     if (mDanmakuView != null) {
-                        danmaku.setTime(mDanmakuView.getCurrentTime() + 1200);
-                        if(mDuration == null){
-                            mDuration = new Duration(DURATION_LONG);
+                        danmaku.setTime(mDanmakuView.getCurrentTime() + ADD_DANMU_TIME);
+                        if(mLongDuration == null){
+                            mLongDuration = new Duration(DURATION_LONG);
+                            mShortDuration = new Duration(DURATION_SHORT);
                         }
-                        mDuration.setValue(DURATION_LONG);
-                        danmaku.setDuration(mDuration);
                         if(mDanmakuView.getCurrentVisibleDanmakus().size() >= MAX_SIZE){
-                            mDuration.setValue(DURATION_SHORT);
+                            danmaku.setDuration(mShortDuration);
+                        }else {
+                            danmaku.setDuration(mLongDuration);
                         }
                         lastDanmuTime = danmaku.getTime();
                         mDanmakuView.addDanmaku(danmaku);
