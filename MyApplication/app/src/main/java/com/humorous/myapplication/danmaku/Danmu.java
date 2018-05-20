@@ -1,12 +1,15 @@
 package com.humorous.myapplication.danmaku;
 
+import android.graphics.Color;
 import android.text.SpannableString;
+
+import com.humorous.myapplication.danmaku.protocol.IDanmakuData;
 
 /**
  * Created by liuli on 2016/11/4.
  */
 
-public class Danmu {
+public class Danmu implements IDanmakuData{
     public long id;
     public long userId;
     public boolean isGuest;
@@ -35,4 +38,33 @@ public class Danmu {
         this.danmuConfig = config;
     }
 
+    @Override
+    public String getNickName() {
+        return nickName;
+    }
+
+    @Override
+    public int getNickNameColor() {
+        return Color.RED;
+    }
+
+    @Override
+    public int getBackgroundColor() {
+        return Color.parseColor("#55000000");
+    }
+
+    @Override
+    public SpannableString getContent() {
+        return content;
+    }
+
+    @Override
+    public int getContentColor() {
+        return Color.WHITE;
+    }
+
+    @Override
+    public String getUserIconUrl() {
+        return avatarUrl;
+    }
 }

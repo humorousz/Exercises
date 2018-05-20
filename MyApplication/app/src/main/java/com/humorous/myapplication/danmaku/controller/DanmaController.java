@@ -16,8 +16,8 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 
 import com.humorous.myapplication.danmaku.CenteredImageSpan;
-import com.humorous.myapplication.danmaku.Danmu;
 import com.humorous.myapplication.danmaku.DanmuConfig;
+import com.humorous.myapplication.danmaku.protocol.IDanmakuData;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
 import com.humorousz.uiutils.helper.ImageLoadingListener;
 import com.humorousz.uiutils.helper.UIUtils;
@@ -29,6 +29,7 @@ import master.flame.danmaku.controller.DrawHandler;
 import master.flame.danmaku.controller.IDanmakuView;
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.danmaku.model.DanmakuTimer;
+import master.flame.danmaku.danmaku.model.Duration;
 import master.flame.danmaku.danmaku.model.IDisplayer;
 import master.flame.danmaku.danmaku.model.android.BaseCacheStuffer;
 import master.flame.danmaku.danmaku.model.android.DanmakuContext;
@@ -52,6 +53,10 @@ public class DanmaController {
     private static final int ORANGE_COLOR = 0xffff815a;//橙色 我
     private static final int BLACK_COLOR = 0x33000000;//黑色 普通
 
+    private static final int DURATION_LONG = 3000;
+    private static final int DURATION_SHORT = 2000;
+    private static final int MAX_SIZE = 6;
+
     private int DANMU_BG = 0x4D000000;
 
     private int BITMAP_WIDTH = 23;//头像的大小
@@ -70,6 +75,7 @@ public class DanmaController {
     private IDanmakuView mDanmakuView;
     private DanmakuContext mDanmakuContext;
     private long lastDanmuTime;//记录上次发弹幕的时间 两次弹幕间隔太短 加间隔时间
+    private Duration mDuration;
 
     public DanmaController() {
         setSize();
@@ -112,12 +118,12 @@ public class DanmaController {
      */
     private void initDanmuConfig() {
         // 设置最大显示行数
-        Map<Integer, Integer> maxLinesPair = new HashMap(16);
+        Map<Integer, Integer> maxLinesPair = new HashMap<>(16);
         // 滚动弹幕最大显示2行
-        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL, 2);
+        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL, 3);
         // 设置是否禁止重叠
-        Map<Integer, Boolean> overlappingEnablePair = new HashMap(16);
-        overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_RL, true);
+        Map<Integer, Boolean> overlappingEnablePair = new HashMap<>(16);
+        overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_RL, false);
 
         mDanmakuContext = DanmakuContext.create();
 
@@ -125,7 +131,7 @@ public class DanmaController {
                 .setDanmakuStyle(IDisplayer.DANMAKU_STYLE_NONE)
                 .setDuplicateMergingEnabled(false)
                 //越大速度越慢
-                .setScrollSpeedFactor(2f)
+                .setScrollSpeedFactor(1.0f)
                 .setScaleTextSize(1.2f)
                 .setCacheStuffer(new BackgroundCacheStuffer(), mCacheStufferAdapter)
                 .setMaximumLines(maxLinesPair)
@@ -149,7 +155,8 @@ public class DanmaController {
         public void drawBackground(BaseDanmaku danmaku, Canvas canvas, float left, float top) {
             paint.setAntiAlias(true);
             //黑色 普通
-            paint.setColor(PINK_COLOR);
+            IDanmakuData data = (IDanmakuData) danmaku.tag;
+            paint.setColor(data.getBackgroundColor());
             RectF rectF = new RectF(left + DANMU_PADDING_INNER,
                     top + DANMU_PADDING_INNER,
                     left + danmaku.paintWidth,
@@ -255,13 +262,11 @@ public class DanmaController {
         }
     }
 
-    public void addDanmu(final Danmu danmu) {
+    public void addDanmu(final IDanmakuData danmu) {
         final BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
-        //isGuest此处用来判断是赞还是评论
-        danmaku.isGuest = danmu.isGuest;
-
+        danmaku.tag = danmu;
         final SpannableStringBuilder[] spannable = new SpannableStringBuilder[1];
-        ImageLoaderHelper.loadImage(danmu.avatarUrl, new ImageLoadingListener() {
+        ImageLoaderHelper.loadImage(danmu.getUserIconUrl(), new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
             }
@@ -288,9 +293,14 @@ public class DanmaController {
                     danmaku.textColor = Color.WHITE;
                     danmaku.textShadowColor = 0;
                     if (mDanmakuView != null) {
-                        danmaku.setTime(mDanmakuView.getCurrentTime() + 500);
-                        if(danmaku.getTime() - lastDanmuTime < 3000){
-                            danmaku.setTime(lastDanmuTime + 3000);
+                        danmaku.setTime(mDanmakuView.getCurrentTime() + 1200);
+                        if(mDuration == null){
+                            mDuration = new Duration(DURATION_LONG);
+                        }
+                        mDuration.setValue(DURATION_LONG);
+                        danmaku.setDuration(mDuration);
+                        if(mDanmakuView.getCurrentVisibleDanmakus().size() >= MAX_SIZE){
+                            mDuration.setValue(DURATION_SHORT);
                         }
                         lastDanmuTime = danmaku.getTime();
                         mDanmakuView.addDanmaku(danmaku);
@@ -309,10 +319,10 @@ public class DanmaController {
     }
 
 
-    private SpannableStringBuilder createSpannable(Drawable drawable, Danmu danmu) {
+    private SpannableStringBuilder createSpannable(Drawable drawable, IDanmakuData danmu) {
         String text = "bitmap";
-        SpannableString content = danmu.content;
-        String nickName = danmu.nickName;
+        SpannableString content = danmu.getContent();
+        String nickName = danmu.getNickName();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
         CenteredImageSpan span = new CenteredImageSpan(drawable, BITMAP_HEIGHT);
         spannableStringBuilder.setSpan(span, 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -322,7 +332,7 @@ public class DanmaController {
             spannableNickName.setSpan(new ForegroundColorSpan(Color.parseColor("#fff7c0")), 0, spannableNickName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableStringBuilder.append(spannableNickName);
             spannableStringBuilder.append(" ");
-            spannableStringBuilder.append(danmu.content);
+            spannableStringBuilder.append(danmu.getContent());
         }
         return spannableStringBuilder;
     }
