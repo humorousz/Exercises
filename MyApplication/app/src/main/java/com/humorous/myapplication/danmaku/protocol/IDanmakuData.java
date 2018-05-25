@@ -30,7 +30,7 @@ public interface IDanmakuData {
      * content
      * @return
      */
-    SpannableString getContent();
+    String getContent();
 
     /**
      * content color
@@ -43,4 +43,6 @@ public interface IDanmakuData {
      * @return
      */
     String getUserIconUrl();
+
+    int getPriority();
 }

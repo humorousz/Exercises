@@ -69,6 +69,8 @@ public class DanmakuAdapter extends FrameLayout implements DanmakuProtocol {
 
     @Override
     public void addDanmaku(IDanmakuData data) {
-        mController.addDanmu(data);
+        mController.addDanmuWithoutIcon(data);
     }
+
+
 }

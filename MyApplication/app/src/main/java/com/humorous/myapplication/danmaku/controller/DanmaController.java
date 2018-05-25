@@ -49,7 +49,7 @@ public class DanmaController {
      */
     private static final long ADD_DANMU_TIME = 1200;
 
-    private static final int DURATION_LONG = 3000;
+    private static final int DURATION_LONG = 7000;
     private static final int DURATION_SHORT = 2000;
     private static final int MAX_SIZE = 6;
 
@@ -75,7 +75,7 @@ public class DanmaController {
     private DanmakuContext mDanmakuContext;
     //记录上次发弹幕的时间 两次弹幕间隔太短 加间隔时间
     private long lastDanmuTime;
-    private Duration mLongDuration,mShortDuration;
+    private Duration mLongDuration, mShortDuration;
 
     public DanmaController() {
         setSize();
@@ -131,10 +131,11 @@ public class DanmaController {
                 .setDanmakuStyle(IDisplayer.DANMAKU_STYLE_NONE)
                 .setDuplicateMergingEnabled(false)
                 //越大速度越慢
-                .setScrollSpeedFactor(1.0f)
+                .setScrollSpeedFactor(1.2f)
                 .setScaleTextSize(1.0f)
                 .setCacheStuffer(new BackgroundCacheStuffer(), mCacheStufferAdapter)
                 .setMaximumLines(maxLinesPair)
+                .setMaximumVisibleSizeInScreen(0)
                 .preventOverlapping(overlappingEnablePair);
     }
 
@@ -149,6 +150,10 @@ public class DanmaController {
         @Override
         public void measure(BaseDanmaku danmaku, TextPaint paint, boolean fromWorkerThread) {
             super.measure(danmaku, paint, fromWorkerThread);
+            int mDistance = (int) (mDanmakuContext.getDisplayer().getWidth() + danmaku.paintWidth);
+            float d = UIUtils.px2dip(mDistance) / 100.f;
+            danmaku.setDuration(new Duration((long) (d * 1000)));
+
         }
 
         @Override
@@ -294,13 +299,13 @@ public class DanmaController {
                     danmaku.textShadowColor = 0;
                     if (mDanmakuView != null) {
                         danmaku.setTime(mDanmakuView.getCurrentTime() + ADD_DANMU_TIME);
-                        if(mLongDuration == null){
+                        if (mLongDuration == null) {
                             mLongDuration = new Duration(DURATION_LONG);
                             mShortDuration = new Duration(DURATION_SHORT);
                         }
-                        if(mDanmakuView.getCurrentVisibleDanmakus().size() >= MAX_SIZE){
+                        if (mDanmakuView.getCurrentVisibleDanmakus().size() >= MAX_SIZE) {
                             danmaku.setDuration(mShortDuration);
-                        }else {
+                        } else {
                             danmaku.setDuration(mLongDuration);
                         }
                         lastDanmuTime = danmaku.getTime();
@@ -322,7 +327,7 @@ public class DanmaController {
 
     private SpannableStringBuilder createSpannable(Drawable drawable, IDanmakuData danmu) {
         String text = "bitmap";
-        SpannableString content = danmu.getContent();
+        String content = danmu.getContent();
         String nickName = danmu.getNickName();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
         CenteredImageSpan span = new CenteredImageSpan(drawable, BITMAP_HEIGHT);
@@ -336,5 +341,24 @@ public class DanmaController {
             spannableStringBuilder.append(danmu.getContent());
         }
         return spannableStringBuilder;
+    }
+
+    public void addDanmuWithoutIcon(final IDanmakuData danmu) {
+        BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
+        if (danmaku == null || mDanmakuView == null) {
+            return;
+        }
+        danmaku.tag = danmu;
+        danmaku.text = danmu.getContent();
+        danmaku.priority = 0;
+        danmaku.isLive = true;
+        danmaku.setTime(mDanmakuView.getCurrentTime() + 1200);
+        danmaku.textSize = UIUtils.dip2px(18);
+        danmaku.textColor = Color.BLACK;
+        if (mLongDuration == null) {
+            mLongDuration = new Duration(DURATION_LONG);
+            mShortDuration = new Duration(DURATION_SHORT);
+        }
+        mDanmakuView.addDanmaku(danmaku);
     }
 }

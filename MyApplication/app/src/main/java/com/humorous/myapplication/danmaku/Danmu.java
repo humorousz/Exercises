@@ -15,20 +15,22 @@ public class Danmu implements IDanmakuData{
     public boolean isGuest;
     public String avatarUrl;
     public String nickName;
-    public SpannableString content;
+    public String content;
     public DanmuConfig danmuConfig;
+    public int priority;
 
-    public Danmu(long userId, boolean isGuest, String avatarUrl, String nickName, SpannableString content) {
+    public Danmu(long userId, boolean isGuest, String avatarUrl, String nickName, String content,int priority) {
         this.id = System.currentTimeMillis();
         this.userId = userId;
         this.isGuest = isGuest;
         this.avatarUrl = avatarUrl;
         this.content = content;
         this.nickName = nickName;
+        this.priority = priority;
     }
 
 
-    public Danmu(long userId, boolean isGuest, String avatarUrl, String nickName, SpannableString content, DanmuConfig config) {
+    public Danmu(long userId, boolean isGuest, String avatarUrl, String nickName, String content, DanmuConfig config) {
         this.id = System.currentTimeMillis();
         this.userId = userId;
         this.isGuest = isGuest;
@@ -54,7 +56,7 @@ public class Danmu implements IDanmakuData{
     }
 
     @Override
-    public SpannableString getContent() {
+    public String getContent() {
         return content;
     }
 
@@ -66,5 +68,10 @@ public class Danmu implements IDanmakuData{
     @Override
     public String getUserIconUrl() {
         return avatarUrl;
+    }
+
+    @Override
+    public int getPriority() {
+        return priority;
     }
 }
