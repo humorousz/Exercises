@@ -22,7 +22,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".container.ContainerActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustNothing"
+            android:exported="false">
+            <intent-filter >
+                <action android:name="com.humorous.test"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="test"
+                      android:host="humorous"/>
+            </intent-filter>
         </activity>
         <activity android:name=".SecondMenuActivity" />
 

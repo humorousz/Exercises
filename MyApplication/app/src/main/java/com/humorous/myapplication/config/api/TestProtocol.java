@@ -103,6 +103,8 @@ public class TestProtocol {
      */
     public static final String RXJAVA = BASE + TestFragmentFactory.TYPE.RXJAVA + HAS_TITLE;
 
+    public static final String WEEX = "test://weex/?jsBundle=2222.js";
+
     /**
      * 二级菜单
      */

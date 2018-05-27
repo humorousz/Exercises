@@ -3,7 +3,18 @@
     package="com.humorous.weexlib">
 
     <application>
-        <activity android:name=".activity.WeexActivity"></activity>
+        <activity
+            android:name=".activity.WeexActivity">
+            <intent-filter >
+                <action android:name="com.humorous.test"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="test"
+                    android:host="weex"/>
+            </intent-filter>
+        </activity>
+
     </application>
+
+
 
 </manifest>
