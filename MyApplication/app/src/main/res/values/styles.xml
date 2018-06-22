@@ -7,4 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="select_pop_anim_style" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/select_pop_show</item>
+        <item name="android:windowExitAnimation">@anim/select_pop_hide</item>
+    </style>
 </resources>

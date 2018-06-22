@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
+import com.humorous.myapplication.R;
+
 
 /**
  * @author Created by zhangzhiquan on 2017/8/3.
@@ -27,6 +29,7 @@ public class SendGiftPopupWindow extends PopupWindow {
         this.setFocusable(true);
         setTouchable(true);
         this.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        setAnimationStyle(R.style.select_pop_anim_style);
     }
 
     public void show(){

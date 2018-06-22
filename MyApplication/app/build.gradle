@@ -49,4 +49,5 @@ dependencies {
     implementation rootProject.ext.dependencies.ndkbitmap_armv7
     implementation rootProject.ext.dependencies.AnimationSequenceDrawable
     implementation rootProject.ext.dependencies.rxJava
+    implementation rootProject.ext.dependencies.zxing
 }
