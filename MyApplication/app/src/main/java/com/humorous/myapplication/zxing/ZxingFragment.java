@@ -10,8 +10,13 @@ import android.widget.Toast;
 
 import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.yzq.zxinglibrary.android.CaptureActivity;
+import com.yzq.zxinglibrary.bean.ZxingConfig;
+import com.yzq.zxinglibrary.common.Constant;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 
 /**
  * @author zhangzhiquan
@@ -32,6 +37,16 @@ public class ZxingFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), CaptureActivity.class);
+                ZxingConfig config = new ZxingConfig();
+                //是否播放扫描声音 默认为true
+                config.setPlayBeep(true);
+                //是否震动  默认为true
+                config.setShake(true);
+                //是否扫描条形码 默认为true
+                config.setDecodeBarCode(false);
+                //是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
+                config.setFullScreenScan(true);
+                intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -47,10 +62,10 @@ public class ZxingFragment extends BaseFragment {
                 if (bundle == null) {
                     return;
                 }
-                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                    String result = bundle.getString(CodeUtils.RESULT_STRING);
-//                    Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
-                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                if (resultCode == RESULT_OK) {
+                    String result = bundle.getString(Constant.CODED_CONTENT);
+                    Toast.makeText(getContext(), "解析结果:" + result, Toast.LENGTH_LONG).show();
+                } else if (requestCode == RESULT_CANCELED) {
                     Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
                 }
             }

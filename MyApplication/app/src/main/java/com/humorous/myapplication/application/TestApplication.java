@@ -6,6 +6,7 @@ import com.humorous.myapplication.exceptionTest.CatchExceptionHandler;
 import com.humorous.weexlib.WeexManager;
 import com.humorousz.commonutils.service.CommonService;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
+import com.yzq.zxinglibrary.bean.ZxingConfig;
 
 /**
  * Created by zhangzhiquan on 2017/5/31.

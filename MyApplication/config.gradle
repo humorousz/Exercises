@@ -10,7 +10,7 @@ ext{
     AnimationSequenceDrawable = "1.0.1-SNAPSHOT"
     Danmaku = "0.9.25"
     ndkbitmap_armv7 = "0.9.21"
-    zxing = "2.2"
+    zxing = "c56e8f3c9c"
 
     android = [
             compileSdkVersion : 27,
@@ -33,7 +33,7 @@ ext{
             AnimationSequenceDrawable:"com.github.humorousz:AnimationSequenceDrawable:${AnimationSequenceDrawable}",
             Danmaku:"com.github.ctiao:DanmakuFlameMaster:${Danmaku}",
             ndkbitmap_armv7: "com.github.ctiao:ndkbitmap-armv7a:${ndkbitmap_armv7}",
-            zxing:"cn.yipianfengye.android:zxing-library:${zxing}"
+            zxing:"com.github.humorousz:zxing:${zxing}"
 
     ]
 }
