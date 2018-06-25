@@ -18,6 +18,7 @@ import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
 import com.humorous.myapplication.vectorDrawableTest.VectorTestFragment;
+import com.humorous.myapplication.zxing.ZxingFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -44,7 +45,8 @@ public class TestFragmentFactory {
         SHARE_ELEMENT,
         SHARE_ELEMENT_B,
         SHADER,
-        RXJAVA
+        RXJAVA,
+        SAO_YI_SAO
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -103,6 +105,8 @@ public class TestFragmentFactory {
             case RXJAVA:
                 fragment = new RxTestFragment();
                 break;
+            case SAO_YI_SAO:
+                fragment = new ZxingFragment();
             default:
                 break;
         }

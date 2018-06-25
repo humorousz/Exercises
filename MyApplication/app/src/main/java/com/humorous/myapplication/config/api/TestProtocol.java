@@ -105,6 +105,8 @@ public class TestProtocol {
 
     public static final String WEEX = "test://weex/?jsBundle=2222.js";
 
+    public static final String SAO_YI_SAO = BASE + TestFragmentFactory.TYPE.SAO_YI_SAO + HAS_TITLE;
+
     /**
      * 二级菜单
      */

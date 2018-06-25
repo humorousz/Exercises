@@ -168,6 +168,12 @@ public class Api {
         models.add(itemModel);
 
         itemModel = new HomeItemModel();
+        itemModel.setLink(TestProtocol.SAO_YI_SAO);
+        itemModel.setTitle("扫码");
+        models.add(itemModel);
+
+
+        itemModel = new HomeItemModel();
         itemModel.setLink(TestProtocol.RXJAVA);
         itemModel.setTitle("RxJava");
         models.add(itemModel);
