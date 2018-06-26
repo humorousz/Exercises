@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.view.BaseActivity;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorousz.uiutils.view.ImmerseActivity;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
@@ -29,7 +31,7 @@ import com.yzq.zxinglibrary.common.Constant;
 /**
  * @author zhangzhiquan
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends ImmerseActivity {
     private static final String TAG = "MainActivity";
     private static int REQUEST_CODE = 1001;
     private FrameLayout mContainer;
@@ -44,7 +46,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolBar();
-        StatusBarCompat.compat(this);
         mFragment = HomeFragment.newInstance(Api.SECOND_MENU.MAIN);
         mContainer = findViewById(R.id.container);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();

@@ -17,12 +17,13 @@ import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseActivity;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorousz.uiutils.view.ImmerseActivity;
 
 /**
  * @author zhangzhiquan
  */
 
-public class ContainerActivity extends BaseActivity {
+public class ContainerActivity extends ImmerseActivity {
     private static final String TAG = "ContainerActivity";
     public static final String HAS_TITLE = "hasTitle";
     public static final String FRAGMENT_TYPE = "type";
@@ -48,7 +49,6 @@ public class ContainerActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_container);
         initToolBar();
-        StatusBarCompat.compat(this);
         mFragment = TestFragmentFactory.createFragment(type);
         mContainer = (FrameLayout) findViewById(R.id.test_container);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
