@@ -10,22 +10,31 @@ import android.os.PersistableBundle;
 import android.os.RemoteException;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.humorous.myapplication.config.api.Api;
 import com.humorous.myapplication.home.HomeFragment;
 
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.StatusBarCompat;
+import com.humorousz.uiutils.view.BaseActivity;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.yzq.zxinglibrary.android.CaptureActivity;
+import com.yzq.zxinglibrary.bean.ZxingConfig;
+import com.yzq.zxinglibrary.common.Constant;
 
 /**
  * @author zhangzhiquan
  */
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
-    FrameLayout mContainer;
-    BaseFragment mFragment;
+    private static int REQUEST_CODE = 1001;
+    private FrameLayout mContainer;
+    private BaseFragment mFragment;
+    private Toolbar mToolBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(savedInstanceState != null){
@@ -34,14 +43,38 @@ public class MainActivity extends FragmentActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initToolBar();
         StatusBarCompat.compat(this);
         mFragment = HomeFragment.newInstance(Api.SECOND_MENU.MAIN);
-        mContainer = (FrameLayout) findViewById(R.id.container);
+        mContainer = findViewById(R.id.container);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
         tr.add(R.id.container,mFragment);
         tr.commit();
         Logger.d(TAG,Thread.currentThread().hashCode());
         testFunc();
+    }
+
+    private void initToolBar(){
+        mToolBar = findViewById(R.id.toolbar);
+        TextView title = mToolBar.findViewById(R.id.title);
+        title.setText(R.string.main_title);
+        mToolBar.setTitle("");
+        setSupportActionBar(mToolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        mToolBar.findViewById(R.id.btn_sao_yi_sao).setOnClickListener((v)->{
+            Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+            ZxingConfig config = new ZxingConfig();
+            //是否播放扫描声音 默认为true
+            config.setPlayBeep(true);
+            //是否震动  默认为true
+            config.setShake(true);
+            //是否扫描条形码 默认为true
+            config.setDecodeBarCode(false);
+            //是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
+            config.setFullScreenScan(true);
+            intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+            startActivityForResult(intent, REQUEST_CODE);
+        });
     }
 
     ServiceConnection serviceConnection = new ServiceConnection() {

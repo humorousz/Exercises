@@ -23,6 +23,11 @@ import com.humorousz.commonutils.log.Logger;
 public class Router {
     private static final String TAG = "Router";
     public static void jumpTo(Context context,String link){
+       jumpTo(context,link,"");
+    }
+
+
+    public static void jumpTo(Context context,String link,String title){
         long startTime;
         startTime = System.currentTimeMillis();
         Logger.i(TAG,"jumpTo begin");
@@ -34,21 +39,18 @@ public class Router {
             String typeString = uri.getQueryParameter("type");
             if(link.contains(TestProtocol.MENU)){
                 Api.SECOND_MENU type = Api.SECOND_MENU.valueOf(typeString);
-                startMenuActivity(context,type);
+                startMenuActivity(context,type,title);
             }else {
                 Boolean hasTitle = Boolean.valueOf(uri.getQueryParameter("hasTitle"));
                 Boolean landscape = uri.getBooleanQueryParameter("couldLandscape",false);
-                startActivity(context,hasTitle,landscape,typeString,uri);
+                startActivity(context,hasTitle,landscape,typeString,uri,title);
             }
         }catch (RuntimeException e){
             Logger.e(TAG,e.getMessage());
         }
-
         Logger.i(TAG,"jumpTo end spend "+(System.currentTimeMillis() - startTime));
-
-
     }
-    private static void startActivity(Context context,boolean hasTitle,boolean landscape,String typeString,Uri link){
+    private static void startActivity(Context context,boolean hasTitle,boolean landscape,String typeString,Uri link,String title){
         if(context == null){
             Logger.e(TAG,"context must not be null");
             return;
@@ -63,17 +65,20 @@ public class Router {
         }
         intent.putExtra(ContainerActivity.HAS_TITLE,hasTitle);
         intent.putExtra(ContainerActivity.LANDSCAPE,landscape);
-
+        if(!TextUtils.isEmpty(title)){
+            intent.putExtra(ContainerActivity.TITLE,title);
+        }
         context.startActivity(intent);
     }
 
-    private static void startMenuActivity(Context context, Api.SECOND_MENU type){
+    private static void startMenuActivity(Context context, Api.SECOND_MENU type,String title){
         if(context == null){
             Logger.e(TAG,"context must not be null");
             return;
         }
         Intent intent = new Intent(context, SecondMenuActivity.class);
         intent.putExtra(SecondMenuActivity.TYPE,type);
+        intent.putExtra(SecondMenuActivity.TITLE,title);
         context.startActivity(intent);
     }
 

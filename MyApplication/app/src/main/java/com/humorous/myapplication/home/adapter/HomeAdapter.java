@@ -49,6 +49,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     @Override
     public void onItemClick(int position) {
         String link = mList.get(position).getLink();
-        Router.jumpTo(mContext,link);
+        String title =  mList.get(position).getTitle();
+        Router.jumpTo(mContext,link,title);
     }
 }

@@ -44,9 +44,8 @@ public class ContainerActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_container);
         StatusBarCompat.compat(this);
-        if(!hasTitle){
-            Logger.d(TAG,"no title");
-            getSupportActionBar().hide();
+        if(hasTitle){
+
         }
         mFragment = TestFragmentFactory.createFragment(type);
         mContainer = (FrameLayout) findViewById(R.id.test_container);
