@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity {
         mToolBar = findViewById(R.id.toolbar);
         TextView title = mToolBar.findViewById(R.id.title);
         title.setText(R.string.main_title);
+        title.setSelected(true);
         mToolBar.setTitle("");
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
