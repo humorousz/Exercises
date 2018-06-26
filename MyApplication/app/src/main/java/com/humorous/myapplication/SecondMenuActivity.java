@@ -5,17 +5,15 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.humorous.myapplication.config.api.Api;
 import com.humorous.myapplication.home.HomeFragment;
 import com.humorousz.uiutils.helper.StatusBarCompat;
-import com.humorousz.uiutils.view.BaseActivity;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorousz.uiutils.view.ImmerseActivity;
 
-public class SecondMenuActivity extends BaseActivity {
+public class SecondMenuActivity extends ImmerseActivity {
 
     public static final String TYPE = "type";
     private BaseFragment mFragment;
@@ -24,7 +22,6 @@ public class SecondMenuActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_menu);
-        StatusBarCompat.compat(this);
         initToolBar();
         Api.SECOND_MENU type = (Api.SECOND_MENU) getIntent().getSerializableExtra(TYPE);
         mFragment = HomeFragment.newInstance(type);

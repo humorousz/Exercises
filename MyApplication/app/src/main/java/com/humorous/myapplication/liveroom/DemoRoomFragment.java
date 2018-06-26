@@ -1,6 +1,7 @@
 package com.humorous.myapplication.liveroom;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -54,6 +55,11 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void initView(View root) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+            getActivity().findViewById(R.id.activity_container).setBackground(getResources().getDrawable(R.drawable.shader_bg));
+        }else {
+            getActivity().findViewById(R.id.activity_container).setBackgroundDrawable(getResources().getDrawable(R.drawable.shader_bg));
+        }
         mRoot = root;
         mContainer = root.findViewById(R.id.into_room_container);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);

@@ -8,20 +8,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PersistableBundle;
 import android.os.RemoteException;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.config.api.Api;
 import com.humorous.myapplication.home.HomeFragment;
-
 import com.humorousz.commonutils.log.Logger;
-import com.humorousz.uiutils.helper.StatusBarCompat;
-import com.humorousz.uiutils.view.BaseActivity;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
 import com.yzq.zxinglibrary.android.CaptureActivity;

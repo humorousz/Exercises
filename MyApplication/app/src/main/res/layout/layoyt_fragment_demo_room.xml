@@ -5,40 +5,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".container.ContainerActivity"
-    android:background="@drawable/shader_bg">
-    <Button
-        android:id="@+id/btn_come"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="进场"/>
-    <Button
-        android:id="@+id/btn_msg"
-        android:layout_toRightOf="@id/btn_come"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="消息" />
+    tools:background="@drawable/shader_bg">
 
-    <Button
-        android:id="@+id/btn_auto"
-        android:layout_toRightOf="@id/btn_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="自动" />
+    <RelativeLayout
+        android:id="@+id/statusbarutil_sub_padding_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_come"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进场"/>
+        <Button
+            android:id="@+id/btn_msg"
+            android:layout_toRightOf="@id/btn_come"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消息" />
 
-
-    <Button
-        android:id="@+id/btn_danmuku"
-        android:layout_toRightOf="@id/btn_auto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="弹幕" />
+        <Button
+            android:id="@+id/btn_auto"
+            android:layout_toRightOf="@id/btn_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自动" />
+        <Button
+            android:id="@+id/btn_danmuku"
+            android:layout_toRightOf="@id/btn_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="弹幕" />
+    </RelativeLayout>
 
     <com.humorous.myapplication.danmaku.protocol.DanmakuAdapter
         android:id="@+id/danmuku_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/btn_danmuku"/>
+        android:layout_below="@id/statusbarutil_sub_padding_view"/>
 
     <com.humrousz.sequence.AnimationImageView
         android:id="@+id/webp_image"

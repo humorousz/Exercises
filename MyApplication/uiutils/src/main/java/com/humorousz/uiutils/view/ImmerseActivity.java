@@ -20,6 +20,10 @@ abstract public class ImmerseActivity extends BaseActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        StatusBarUtil.setTranslucentForImageView(this,0,null);
+        StatusBarUtil.setTranslucentForRootPadding(this,0,getPaddingStatusViewId());
+    }
+
+    protected int getPaddingStatusViewId(){
+        return R.id.statusbarutil_padding_view;
     }
 }

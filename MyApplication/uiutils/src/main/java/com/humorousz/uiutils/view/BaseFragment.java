@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.uiutils.R;
+import com.humorousz.uiutils.helper.StatusBarUtil;
 
 /**
  * -- abstract Class --
@@ -49,6 +51,9 @@ public abstract class BaseFragment extends Fragment {
         printLog("onCreateView");
         View view = createView(inflater,container,savedInstanceState);
         initView(view);
+        if(view.findViewById(R.id.statusbarutil_sub_padding_view) != null){
+            StatusBarUtil.setTranslucentForRootPadding(getActivity(),0,view.findViewById(R.id.statusbarutil_sub_padding_view));
+        }
         return view;
     }
 

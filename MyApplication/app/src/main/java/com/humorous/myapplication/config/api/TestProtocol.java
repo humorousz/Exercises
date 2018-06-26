@@ -26,7 +26,7 @@ public class TestProtocol {
     /**
      * 抖音滑动渐变
      */
-    public static final String TOPIC_RECYCLER_TEST = BASE + TestFragmentFactory.TYPE.TOPIC_RECYCLER + HAS_NO_TITLE;
+    public static final String TOPIC_RECYCLER_TEST = BASE + TestFragmentFactory.TYPE.TOPIC_RECYCLER + HAS_TITLE;
 
     /**
      * 上滑悬浮

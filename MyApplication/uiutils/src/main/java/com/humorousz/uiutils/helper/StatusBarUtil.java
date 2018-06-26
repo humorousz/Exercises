@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.IdRes;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
@@ -33,6 +34,7 @@ public class StatusBarUtil {
     private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.statusbarutil_fake_status_bar_view;
     private static final int FAKE_TRANSLUCENT_VIEW_ID = R.id.statusbarutil_translucent_view;
     private static final int TAG_KEY_HAVE_SET_OFFSET = -123;
+    private static final int TAG_KEY_HAVE_SET_PADDING = -124;
 
     /**
      * 设置状态栏颜色
@@ -461,6 +463,56 @@ public class StatusBarUtil {
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(activity),
                 layoutParams.rightMargin, layoutParams.bottomMargin);
             needOffsetView.setTag(TAG_KEY_HAVE_SET_OFFSET, true);
+        }
+    }
+
+
+    public static void setTranslucentForRootPaddingInFragment(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha,
+                                                              @IdRes int needOffsetView) {
+        setTranslucentForRootPadding(activity, statusBarAlpha, needOffsetView);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            clearPreviousSetting(activity);
+        }
+    }
+
+    public static void setTranslucentForRootPaddingInFragment(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha,
+                                                            View needOffsetView) {
+        setTranslucentForRootPadding(activity, statusBarAlpha, needOffsetView);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            clearPreviousSetting(activity);
+        }
+    }
+
+    /**
+     * 为需要设置padding属性的View设置状态栏透明
+     * @param activity
+     * @param statusBarAlpha
+     * @param needOffsetView
+     */
+    public static void setTranslucentForRootPadding(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha, @IdRes int needOffsetView){
+        View view = activity.findViewById(needOffsetView);
+        setTranslucentForRootPadding(activity,statusBarAlpha,view);
+    }
+
+    /**
+     * 为需要设置padding属性的View设置状态栏透明
+     * @param activity
+     * @param statusBarAlpha
+     * @param needOffsetView
+     */
+    public static void setTranslucentForRootPadding(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha, View needOffsetView){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+        setTransparentForWindow(activity);
+        addTranslucentView(activity, statusBarAlpha);
+        if (needOffsetView != null) {
+            Object haveSetOffset = needOffsetView.getTag(TAG_KEY_HAVE_SET_PADDING);
+            if (haveSetOffset != null && (Boolean) haveSetOffset) {
+                return;
+            }
+            needOffsetView.setPadding(needOffsetView.getPaddingLeft(),needOffsetView.getPaddingTop()+getStatusBarHeight(activity),needOffsetView.getPaddingRight(),needOffsetView.getPaddingBottom());
+            needOffsetView.setTag(TAG_KEY_HAVE_SET_PADDING, true);
         }
     }
 

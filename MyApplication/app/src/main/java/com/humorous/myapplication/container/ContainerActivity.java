@@ -31,6 +31,7 @@ public class ContainerActivity extends ImmerseActivity {
     private FrameLayout mContainer;
     private BaseFragment mFragment;
     private Toolbar mToolBar;
+    private boolean hasTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(savedInstanceState != null){
@@ -47,18 +48,18 @@ public class ContainerActivity extends ImmerseActivity {
             ToastUtil.showToast(this,"no fragment type");
             finish();
         }
+        hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);
         setContentView(R.layout.activity_container);
-        initToolBar();
+        initToolBar(hasTitle);
         mFragment = TestFragmentFactory.createFragment(type);
-        mContainer = (FrameLayout) findViewById(R.id.test_container);
+        mContainer = findViewById(R.id.test_container);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
         tr.add(R.id.test_container,mFragment);
         tr.commit();
     }
 
 
-    private void initToolBar(){
-        boolean hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);
+    private void initToolBar(boolean hasTitle){
         if(hasTitle){
             mToolBar = findViewById(R.id.toolbar);
             mToolBar.setVisibility(View.VISIBLE);
@@ -71,5 +72,13 @@ public class ContainerActivity extends ImmerseActivity {
             setSupportActionBar(mToolBar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    protected int getPaddingStatusViewId() {
+        if(!hasTitle){
+            return R.id.statusbarutil_sub_padding_view;
+        }
+        return super.getPaddingStatusViewId();
     }
 }
