@@ -4,7 +4,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.config.factory.TestFragmentFactory;
@@ -23,8 +27,9 @@ public class ContainerActivity extends BaseActivity {
     public static final String HAS_TITLE = "hasTitle";
     public static final String FRAGMENT_TYPE = "type";
     public static final String LANDSCAPE = "landscape";
-    FrameLayout mContainer;
-    BaseFragment mFragment;
+    private FrameLayout mContainer;
+    private BaseFragment mFragment;
+    private Toolbar mToolBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(savedInstanceState != null){
@@ -36,21 +41,35 @@ public class ContainerActivity extends BaseActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         super.onCreate(savedInstanceState);
-        boolean hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);
         TestFragmentFactory.TYPE type = (TestFragmentFactory.TYPE) getIntent().getSerializableExtra(FRAGMENT_TYPE);
         if(type == null){
             ToastUtil.showToast(this,"no fragment type");
             finish();
         }
         setContentView(R.layout.activity_container);
+        initToolBar();
         StatusBarCompat.compat(this);
-        if(hasTitle){
-
-        }
         mFragment = TestFragmentFactory.createFragment(type);
         mContainer = (FrameLayout) findViewById(R.id.test_container);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
         tr.add(R.id.test_container,mFragment);
         tr.commit();
+    }
+
+
+    private void initToolBar(){
+        boolean hasTitle = getIntent().getBooleanExtra(HAS_TITLE,true);
+        if(hasTitle){
+            mToolBar = findViewById(R.id.toolbar);
+            mToolBar.setVisibility(View.VISIBLE);
+            TextView title = mToolBar.findViewById(R.id.title);
+            String titleString = getIntent().getStringExtra(TITLE);
+            if(!TextUtils.isEmpty(titleString)){
+                title.setText(titleString);
+                mToolBar.setTitle("");
+            }
+            setSupportActionBar(mToolBar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 }
