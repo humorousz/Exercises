@@ -75,10 +75,7 @@ public class ContainerActivity extends ImmerseActivity {
     }
 
     @Override
-    protected int getPaddingStatusViewId() {
-        if(!hasTitle){
-            return R.id.statusbarutil_sub_padding_view;
-        }
-        return super.getPaddingStatusViewId();
+    public int getPaddingStatusViewId() {
+        return R.id.activity_container;
     }
 }

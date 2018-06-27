@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.humorousz.uiutils.R;
-import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.helper.StatusBarUtil;
 
 /**
@@ -20,10 +19,15 @@ abstract public class ImmerseActivity extends BaseActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        StatusBarUtil.setTranslucentForRootPadding(this,0,getPaddingStatusViewId());
+        StatusBarUtil.setTranslucentForImageView(this,0,findViewById(getPaddingStatusViewId()));
+        StatusBarUtil.setColor(this,getStatusBarColor(),99);
     }
 
-    protected int getPaddingStatusViewId(){
-        return R.id.statusbarutil_padding_view;
+    public int getPaddingStatusViewId(){
+        return R.id.statusbarutil_offset_view;
+    }
+
+    public int getStatusBarColor(){
+        return getResources().getColor(R.color.colorPrimary);
     }
 }

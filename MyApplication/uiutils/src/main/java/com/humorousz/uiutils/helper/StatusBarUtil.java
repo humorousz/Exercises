@@ -466,6 +466,19 @@ public class StatusBarUtil {
         }
     }
 
+    public static void clearTranslucentForImageView(Activity activity,View needOffsetView){
+        if (needOffsetView != null) {
+            Object haveSetOffset = needOffsetView.getTag(TAG_KEY_HAVE_SET_OFFSET);
+            if (haveSetOffset != null && (Boolean) haveSetOffset) {
+                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
+                layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin - getStatusBarHeight(activity),
+                        layoutParams.rightMargin, layoutParams.bottomMargin);
+                needOffsetView.setTag(TAG_KEY_HAVE_SET_OFFSET, false);
+                return;
+            }
+        }
+    }
+
 
     public static void setTranslucentForRootPaddingInFragment(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha,
                                                               @IdRes int needOffsetView) {

@@ -51,9 +51,9 @@ public abstract class BaseFragment extends Fragment {
         printLog("onCreateView");
         View view = createView(inflater,container,savedInstanceState);
         initView(view);
-        if(view.findViewById(R.id.statusbarutil_sub_padding_view) != null){
-            StatusBarUtil.setTranslucentForRootPadding(getActivity(),0,view.findViewById(R.id.statusbarutil_sub_padding_view));
-        }
+//        if(view.findViewById(R.id.statusbarutil_sub_padding_view) != null){
+//            StatusBarUtil.setTranslucentForRootPadding(getActivity(),0,view.findViewById(R.id.statusbarutil_sub_padding_view));
+//        }
         return view;
     }
 

@@ -20,8 +20,10 @@ import com.humorous.myapplication.liveroom.controller.GiftAnimationController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.module.DefaultChatMessage;
 import com.humorous.myapplication.liveroom.weidget.ChatBox;
+import com.humorousz.uiutils.helper.StatusBarUtil;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorousz.uiutils.view.ImmerseActivity;
 import com.humorousz.uiutils.widget.InputDialog;
 import com.humrousz.sequence.AnimationImageView;
 
@@ -61,6 +63,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
             getActivity().findViewById(R.id.activity_container).setBackgroundDrawable(getResources().getDrawable(R.drawable.shader_bg));
         }
         mRoot = root;
+        setStatusBar();
         mContainer = root.findViewById(R.id.into_room_container);
         mController = new IntoRoomAnimatorController(getContext(),mContainer);
         mChatBox = root.findViewById(R.id.chat_box);
@@ -76,6 +79,14 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mUserNames = getResources().getStringArray(R.array.user_name);
         mUserContent = getResources().getStringArray(R.array.user_content);
         mDamakuView = root.findViewById(R.id.danmuku_view);
+    }
+
+    private void setStatusBar(){
+        if(getActivity() instanceof ImmerseActivity){
+            StatusBarUtil.clearTranslucentForImageView(getActivity(),getActivity().findViewById(((ImmerseActivity) getActivity()).getPaddingStatusViewId()));
+            StatusBarUtil.setColor(getActivity(),0,255);
+        }
+        StatusBarUtil.setTranslucentForRootPadding(getActivity(),0,mRoot.findViewById(R.id.statusbarutil_sub_padding_view));
     }
 
 
