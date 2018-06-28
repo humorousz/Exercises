@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
+import com.humorousz.uiutils.view.FullScreenActivity;
+import com.humorousz.uiutils.view.ImmerseActivity;
 import com.yzq.zxinglibrary.R;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.camera.CameraManager;
@@ -40,7 +42,7 @@ import java.io.IOException;
  * @declare :扫一扫
  */
 
-public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.Callback, View.OnClickListener {
+public class CaptureActivity extends FullScreenActivity implements SurfaceHolder.Callback, View.OnClickListener {
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
     public ZxingConfig config;
