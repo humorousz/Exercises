@@ -41,6 +41,7 @@ dependencies {
     implementation project(':uiutils')
     implementation project(':commonutils')
     implementation project(':weexlib')
+    implementation project(':zxinglibrary')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
@@ -49,5 +50,4 @@ dependencies {
     implementation rootProject.ext.dependencies.ndkbitmap_armv7
     implementation rootProject.ext.dependencies.AnimationSequenceDrawable
     implementation rootProject.ext.dependencies.rxJava
-    implementation rootProject.ext.dependencies.zxing
 }

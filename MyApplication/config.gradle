@@ -33,7 +33,9 @@ ext{
             AnimationSequenceDrawable:"com.github.humorousz:AnimationSequenceDrawable:${AnimationSequenceDrawable}",
             Danmaku:"com.github.ctiao:DanmakuFlameMaster:${Danmaku}",
             ndkbitmap_armv7: "com.github.ctiao:ndkbitmap-armv7a:${ndkbitmap_armv7}",
-            zxing:"com.github.humorousz:zxing:${zxing}"
+            zxing:"com.github.humorousz:zxing:${zxing}",
+            support_v4:"com.android.support:support-v4:${supportVersion}",
+            support_vector_drawable:"com.android.support:support-vector-drawable:${supportVersion}"
 
     ]
 }
