@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.uiutils.helper.StatusBarUtil;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorousz.uiutils.view.ImmerseActivity;
 
 /**
  * Created by zhangzhiquan on 2017/6/9.
@@ -32,6 +34,13 @@ public class AdvancedCoordinatorFragment extends BaseFragment {
         FragmentTransaction tr = getChildFragmentManager().beginTransaction();
         tr.add(R.id.advanced_container,new TestListFragment());
         tr.commit();
-
+        setStatusBar();
+    }
+    private void setStatusBar(){
+        if(getActivity() instanceof ImmerseActivity){
+            StatusBarUtil.clearTranslucentForImageView(getActivity(),getActivity().findViewById(((ImmerseActivity) getActivity()).getPaddingStatusViewId()));
+            StatusBarUtil.setColor(getActivity(),0,255);
+        }
+        StatusBarUtil.setTranslucentForRootPadding(getActivity(),0,mToolBar);
     }
 }
