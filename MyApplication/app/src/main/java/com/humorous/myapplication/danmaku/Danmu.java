@@ -52,7 +52,7 @@ public class Danmu implements IDanmakuData{
 
     @Override
     public int getBackgroundColor() {
-        return Color.parseColor("#55000000");
+        return Color.TRANSPARENT;
     }
 
     @Override

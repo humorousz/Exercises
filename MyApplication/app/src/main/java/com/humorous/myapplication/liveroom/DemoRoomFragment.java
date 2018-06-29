@@ -1,6 +1,5 @@
 package com.humorous.myapplication.liveroom;
 
-import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.danmaku.Danmu;
-import com.humorous.myapplication.danmaku.controller.DanmaController;
 import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
 import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
@@ -136,7 +134,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
                 }
                 break;
             case R.id.btn_danmuku:
-                addDanmaku(1);
+                autoSendMessage();
                 break;
 
             default:
@@ -189,20 +187,8 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         mPop.show();
     }
 
-    private void addDanmaku(int p){
-        Random random = new Random();
-        int r = random.nextInt(10);
-        SpannableStringBuilder builder  = new SpannableStringBuilder();
-        SpannableString spannableString = new SpannableString("到此一游");
-        if(p == 1){
-            spannableString = new SpannableString("高优先级");
-        }
-        builder.append(spannableString);
-//        for(int i = 0; i<r ; i++){
-//            builder.append("1");
-//        }
-
-        Danmu danmu = new Danmu(123,false,"http://imgsrc.baidu.com/forum/w=580/sign=1588b7c5d739b6004dce0fbfd9503526/7bec54e736d12f2eb97e1a464dc2d56285356898.jpg","d",builder.toString(),p);
+    private void addDanmaku(String content,int p){
+        Danmu danmu = new Danmu(123,false,"","d",content,p);
         if(mDamakuView != null){
             mDamakuView.addDanmaku(danmu);
         }
@@ -259,7 +245,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         int mNameIndex = mNameRandom.nextInt(mUserNames.length);
         int mContentIndex = mContentRandom.nextInt(mUserContent.length);
         addNewMessage(mUserNames[mNameIndex],mUserContent[mContentIndex]);
-        addDanmaku(0);
+        addDanmaku(mUserContent[mContentIndex],0);
     }
 
     /**
