@@ -15,6 +15,7 @@
 
 
     <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/statusbarutil_offset_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -23,7 +24,6 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/statusbarutil_offset_view"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="top"

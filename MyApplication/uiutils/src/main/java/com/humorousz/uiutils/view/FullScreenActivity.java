@@ -22,20 +22,15 @@ abstract public class FullScreenActivity extends BaseActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        StatusBarUtil.setTranslucentForImageView(this,0,findViewById(getPaddingStatusViewId()));
-        StatusBarUtil.setColor(this,getStatusBarColor(),55);
+        StatusBarUtil.setTranslucentForImageView(this,getStatusBarAlpha(),findViewById(getPaddingStatusViewId()));
     }
 
     public int getPaddingStatusViewId(){
         return R.id.statusbarutil_offset_view;
     }
 
-    @IntRange(from = 1,to = 255) public int getStatusBarAlpha(){
-        return 255;
-    }
-
-    public int getStatusBarColor(){
-        return Color.TRANSPARENT;
+    @IntRange(from = 0,to = 255) public int getStatusBarAlpha(){
+        return 0x77;
     }
 
 }

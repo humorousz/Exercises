@@ -84,6 +84,11 @@ public class CaptureActivity extends FullScreenActivity implements SurfaceHolder
     }
 
     @Override
+    public int getStatusBarAlpha() {
+        return 0xaa;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
