@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.humorous.myapplication.config.api.Api;
 import com.humorous.myapplication.home.HomeFragment;
@@ -143,5 +144,25 @@ public class MainActivity extends ImmerseActivity {
     protected void onDestroy() {
         super.onDestroy();
         Logger.d(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (resultCode == RESULT_OK) {
+                    String result = bundle.getString(Constant.CODED_CONTENT);
+                    Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                } else if (requestCode == RESULT_CANCELED) {
+                    Toast.makeText(this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 }

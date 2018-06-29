@@ -1,6 +1,5 @@
 package com.humorousz.uiutils.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IntRange;
 import android.support.annotation.Nullable;
