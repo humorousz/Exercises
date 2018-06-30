@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.humorous.myapplication.config.api.Api;
+import com.humorous.myapplication.config.router.Router;
 import com.humorous.myapplication.home.HomeFragment;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.view.BaseFragment;
@@ -158,7 +159,7 @@ public class MainActivity extends ImmerseActivity {
                 }
                 if (resultCode == RESULT_OK) {
                     String result = bundle.getString(Constant.CODED_CONTENT);
-                    Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                    Router.open(this,result);
                 } else if (requestCode == RESULT_CANCELED) {
                     Toast.makeText(this, "解析二维码失败", Toast.LENGTH_LONG).show();
                 }

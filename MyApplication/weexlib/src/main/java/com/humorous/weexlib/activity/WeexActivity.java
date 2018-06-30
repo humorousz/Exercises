@@ -3,29 +3,30 @@ package com.humorous.weexlib.activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.ViewGroup;
 
 import com.humorous.weexlib.R;
 import com.humorous.weexlib.controller.WeexBinder;
 import com.humorousz.commonutils.log.Logger;
-import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.helper.ToastUtil;
-import com.humorousz.uiutils.view.BaseActivity;
+import com.humorousz.uiutils.view.ImmerseActivity;
 
 /**
  * @author zhangzhiquan
  * on 2018/05/19
  */
-public class WeexActivity extends BaseActivity {
+public class WeexActivity extends ImmerseActivity {
     private static final String TAG = "WeexActivity";
     private WeexBinder mBinder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarCompat.compatTransparent(this);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_weex);
         initParams();
+    }
+
+    @Override
+    public int getStatusBarAlpha() {
+        return 0x99;
     }
 
     private void initParams(){
@@ -49,13 +50,13 @@ public class WeexActivity extends BaseActivity {
                 .setContainer(findViewById(R.id.container))
                 .setUrl(jsBundle);
         mBinder = builder.build();
+        mBinder.render();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mBinder.onResume();
-        mBinder.render();
     }
 
 
@@ -65,6 +66,11 @@ public class WeexActivity extends BaseActivity {
         mBinder.onPause();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mBinder.onStop();
+    }
 
     @Override
     protected void onDestroy() {

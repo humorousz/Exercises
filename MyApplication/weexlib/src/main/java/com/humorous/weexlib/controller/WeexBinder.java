@@ -4,16 +4,20 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.humorousz.commonutils.log.Logger;
 import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
-import com.taobao.weex.utils.WXFileUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zhangzhiquan
  * on 2018/5/27
  */
 public class WeexBinder implements IWXRenderListener {
+    private static final String TAG = "WeexBinder";
     private String mUrl;
     private WXSDKInstance mInstance;
     private Context mContext;
@@ -27,8 +31,9 @@ public class WeexBinder implements IWXRenderListener {
     }
 
     public void render(){
-
-        mInstance.render("WXSample", WXFileUtils.loadFileOrAsset("hello.js", mContext), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
+        Map<String,Object> params = new HashMap<>(4);
+        params.put("wxbundle",mUrl);
+        mInstance.renderByUrl("WXSample", mUrl, params,"", WXRenderStrategy.APPEND_ASYNC);
     }
 
     public static class Builder{
@@ -93,16 +98,16 @@ public class WeexBinder implements IWXRenderListener {
 
     @Override
     public void onRenderSuccess(WXSDKInstance instance, int width, int height) {
-
+        Logger.d(TAG,"onRenderSuccess");
     }
 
     @Override
     public void onRefreshSuccess(WXSDKInstance instance, int width, int height) {
-
+        Logger.d(TAG,"onRefreshSuccess");
     }
 
     @Override
     public void onException(WXSDKInstance instance, String errCode, String msg) {
-
+        Logger.d(TAG,"onException");
     }
 }

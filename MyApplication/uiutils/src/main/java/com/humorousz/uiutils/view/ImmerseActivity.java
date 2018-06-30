@@ -20,7 +20,7 @@ abstract public class ImmerseActivity extends BaseActivity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         StatusBarUtil.setTranslucentForImageView(this,0,findViewById(getPaddingStatusViewId()));
-        StatusBarUtil.setColor(this,getStatusBarColor(),99);
+        StatusBarUtil.setColor(this,getStatusBarColor(),getStatusBarAlpha());
     }
 
     public int getPaddingStatusViewId(){
@@ -29,5 +29,9 @@ abstract public class ImmerseActivity extends BaseActivity {
 
     public int getStatusBarColor(){
         return getResources().getColor(R.color.colorPrimary);
+    }
+
+    public int getStatusBarAlpha(){
+        return 99;
     }
 }

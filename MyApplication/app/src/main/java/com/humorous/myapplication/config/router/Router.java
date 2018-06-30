@@ -82,4 +82,15 @@ public class Router {
         context.startActivity(intent);
     }
 
+    public static void open(Context context,String url){
+        if(context == null || TextUtils.isEmpty(url)){
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction("com.humorous.test");
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse(url));
+        context.startActivity(intent);
+    }
+
 }
