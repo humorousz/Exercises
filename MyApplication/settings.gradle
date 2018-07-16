@@ -1,1 +1,1 @@
-include ':app', ':commonutils', ':uiutils', ':weexlib',':zxinglibrary'
+include ':app', ':commonutils', ':uiutils', ':weexlib',':zxinglibrary', ':annotationtest'
