@@ -71,17 +71,21 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
 
     public void notifyAddItemNew(IChatMessage msgInfo) {
         if(isSlideToBottom()){
-            int start = mLiveCommentItem.size();
-            mLiveCommentItem.add(msgInfo);
-            notifyItemRangeInserted(start,mLiveCommentItem.size() - start);
-            if (mLiveCommentItem.size() > MAX_CHAT_CACHE_LENGTH) {
-                int offset = mLiveCommentItem.size() - MAX_CHAT_CACHE_LENGTH;
-                mLiveCommentItem = mLiveCommentItem.subList(offset,mLiveCommentItem.size());
-                notifyItemRangeRemoved(0,offset);
+            if(addIntoRoomChatList(mLiveCommentItem,msgInfo)){
+                notifyItemChanged(mLiveCommentItem.size()-1);
+            }else {
+                int start = mLiveCommentItem.size();
+                mLiveCommentItem.add(msgInfo);
+                notifyItemRangeInserted(start,mLiveCommentItem.size() - start);
+                if (mLiveCommentItem.size() > MAX_CHAT_CACHE_LENGTH) {
+                    int offset = mLiveCommentItem.size() - MAX_CHAT_CACHE_LENGTH;
+                    mLiveCommentItem = mLiveCommentItem.subList(offset,mLiveCommentItem.size());
+                    notifyItemRangeRemoved(0,offset);
+                }
             }
             scrollToEnd();
         }else {
-            if (mCacheList.size() < MAX_CHAT_CACHE_LENGTH) {
+            if (mCacheList.size() < MAX_CHAT_CACHE_LENGTH && !addIntoRoomChatList(mCacheList,msgInfo)) {
                 mCacheList.add(msgInfo);
             }
         }
@@ -100,7 +104,6 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
                     int offset = mLiveCommentItem.size() - MAX_CHAT_CACHE_LENGTH;
                     mLiveCommentItem = mLiveCommentItem.subList(offset,mLiveCommentItem.size());
                     notifyItemRangeRemoved(0,offset);
-
                 }
                 scrollToEnd();
             } else {
@@ -110,6 +113,18 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
             }
             mChatMessage.clear();
         }
+    }
+
+    private boolean addIntoRoomChatList(List<IChatMessage> list,IChatMessage message){
+        //是否需要更新进场消息
+        //1.聊天消息不是0
+        //2.当前消息是进场消息
+        //3.当前显示最后一条消息是进场消息
+        boolean needUpdateLast = list.size() > 0 && message.getType() == IChatMessage.INTO_ROOM_MSG && list.get(list.size()-1).getType() == IChatMessage.INTO_ROOM_MSG;
+        if(needUpdateLast){
+            list.set(list.size()-1,message);
+        }
+        return needUpdateLast;
     }
 
     public void notifyAddList(List<IChatMessage> list){
@@ -134,7 +149,9 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
                         if (mLiveCommentItem.size() > MAX_CHAT_LIST_LENGTH) {
                             mLiveCommentItem.remove(0);
                         }
-                        mLiveCommentItem.add(item);
+                        if(!addIntoRoomChatList(mLiveCommentItem,item)){
+                            mLiveCommentItem.add(item);
+                        }
                     }
                     mCacheList.clear();
                     notifyDataSetChanged();

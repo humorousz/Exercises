@@ -17,6 +17,7 @@ import com.humorous.myapplication.liveroom.controller.AutoController;
 import com.humorous.myapplication.liveroom.controller.GiftAnimationController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
 import com.humorous.myapplication.liveroom.module.DefaultChatMessage;
+import com.humorous.myapplication.liveroom.module.IntoRoomMessage;
 import com.humorous.myapplication.liveroom.weidget.ChatBox;
 import com.humorousz.uiutils.helper.StatusBarUtil;
 import com.humorousz.uiutils.helper.ToastUtil;
@@ -72,6 +73,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         setClickListener(R.id.tv_chat);
         setClickListener(R.id.btn_auto);
         setClickListener(R.id.btn_danmuku);
+        setClickListener(R.id.btn_into_msg);
         mGiftController = new GiftAnimationController(mWebPImage);
         mAutoController = new AutoController(this);
         mUserNames = getResources().getStringArray(R.array.user_name);
@@ -136,7 +138,9 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
             case R.id.btn_danmuku:
                 autoSendMessage();
                 break;
-
+            case R.id.btn_into_msg:
+                addNewIntoRoomMessage();
+                break;
             default:
                 break;
         }
@@ -168,9 +172,21 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
         addNewMessage("humorousMan","我是第"+messageCount+"条测试消息");
     }
 
+    public void addNewIntoRoomMessage(){
+        if(mNameRandom == null){
+            mNameRandom = new Random();
+        }
+        int mNameIndex = mNameRandom.nextInt(mUserNames.length);
+        addNewIntoRoomMessage(mUserNames[mNameIndex],"进入房间");
+    }
+
     public void addNewMessage(String user,String content){
         mChatBox.addNewChat(new DefaultChatMessage(user,content));
         messageCount++;
+    }
+
+    public void addNewIntoRoomMessage(String user,String content){
+        mChatBox.addNewChat(new IntoRoomMessage(user,content));
     }
 
     public void openGiftBox(){
