@@ -69,6 +69,24 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ViewHold
         }
     }
 
+    public void notifyAddItemNew(IChatMessage msgInfo) {
+        if(isSlideToBottom()){
+            int start = mLiveCommentItem.size();
+            mLiveCommentItem.add(msgInfo);
+            notifyItemRangeInserted(start,mLiveCommentItem.size() - start);
+            if (mLiveCommentItem.size() > MAX_CHAT_CACHE_LENGTH) {
+                int offset = mLiveCommentItem.size() - MAX_CHAT_CACHE_LENGTH;
+                mLiveCommentItem = mLiveCommentItem.subList(offset,mLiveCommentItem.size());
+                notifyItemRangeRemoved(0,offset);
+            }
+            scrollToEnd();
+        }else {
+            if (mCacheList.size() < MAX_CHAT_CACHE_LENGTH) {
+                mCacheList.add(msgInfo);
+            }
+        }
+    }
+
     public void notifyMessage(){
         synchronized (ChatBoxAdapter.class) {
             if (isSlideToBottom()) {

@@ -7,38 +7,18 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 
 /**
- * Created by zhangzhiquan on 2018/2/5.
+ * @author zhangzhiquan
+ * @date 2018/8/14
  */
-
-public class DefaultChatMessage implements IChatMessage {
+public class IntoRoomMessage extends DefaultChatMessage {
     private static final ForegroundColorSpan NAME_COLOR_SPAN = new ForegroundColorSpan(Color.parseColor("#99ffffff"));
     private static final ForegroundColorSpan CONTENT_COLOR_SPAN = new ForegroundColorSpan(Color.parseColor("#ffffff"));
-    private CharSequence name;
-    private CharSequence content;
-    private String userId;
-
-    public DefaultChatMessage(CharSequence name,CharSequence content){
-        this(name,content,"");
+    public IntoRoomMessage(CharSequence name, CharSequence content) {
+        super(name, content);
     }
 
-    public DefaultChatMessage(CharSequence name,CharSequence content,String userId){
-        this.name = name;
-        this.content = content;
-        this.userId = userId;
-    }
-    @Override
-    public String getUserId() {
-        return userId;
-    }
-
-    @Override
-    public CharSequence getName() {
-        return name;
-    }
-
-    @Override
-    public CharSequence getContent() {
-        return content;
+    public IntoRoomMessage(CharSequence name, CharSequence content, String userId) {
+        super(name, content, userId);
     }
 
     @Override
@@ -56,6 +36,6 @@ public class DefaultChatMessage implements IChatMessage {
 
     @Override
     public int getType() {
-        return IChatMessage.DEFAULT_CHAT_MSG;
+        return IChatMessage.INTO_ROOM_MSG;
     }
 }

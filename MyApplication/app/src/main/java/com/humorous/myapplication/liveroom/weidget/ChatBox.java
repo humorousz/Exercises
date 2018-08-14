@@ -57,12 +57,12 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
                     updateChatData(module,true);
                     break;
                 case CHAT_UPDATE:
-                    mAdapter.notifyMessage();
-                    if(mAdapter.isSlideToBottom()){
-                        hideNewMsgLayout();
-                    }else {
-                        showNewMsgLayout();
-                    }
+//                    mAdapter.notifyMessage();
+//                    if(mAdapter.isSlideToBottom()){
+//                        hideNewMsgLayout();
+//                    }else {
+//                        showNewMsgLayout();
+//                    }
                     break;
                 default:
                     break;
@@ -172,11 +172,17 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
         }
         if (mAdapter != null) {
             Logger.d(TAG,"updateChatData");
-            mAdapter.notifyAddItem(newMessage);
-            if(mHandler.hasMessages(CHAT_UPDATE)){
-                mHandler.removeMessages(CHAT_UPDATE);
+//            mAdapter.notifyAddItem(newMessage);
+//            if(mHandler.hasMessages(CHAT_UPDATE)){
+//                mHandler.removeMessages(CHAT_UPDATE);
+//            }
+//            mHandler.sendEmptyMessageDelayed(CHAT_UPDATE,100);
+            mAdapter.notifyAddItemNew(newMessage);
+            if(mAdapter.isSlideToBottom()){
+                hideNewMsgLayout();
+            }else {
+                showNewMsgLayout();
             }
-            mHandler.sendEmptyMessageDelayed(CHAT_UPDATE,100);
         }
     }
 

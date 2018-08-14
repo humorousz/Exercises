@@ -1,6 +1,11 @@
 package com.humorous.myapplication.liveroom.module;
 
 
+import android.support.annotation.IntDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * @author zhangzhiquan
  * @date 2018/2/5
@@ -8,7 +13,12 @@ package com.humorous.myapplication.liveroom.module;
  * */
 
 public interface IChatMessage {
+    int DEFAULT_CHAT_MSG= 0x01;
+    int INTO_ROOM_MSG = 0x02;
 
+    @IntDef({DEFAULT_CHAT_MSG,INTO_ROOM_MSG})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface MessageType{}
     /**
      * 获取用户ID
      * @return
@@ -33,4 +43,10 @@ public interface IChatMessage {
      * @return 需要展示的聊天信息
      */
     CharSequence getRealContent();
+
+    /**
+     * 返回消息的类型
+     * @return
+     */
+    @MessageType int getType();
 }
