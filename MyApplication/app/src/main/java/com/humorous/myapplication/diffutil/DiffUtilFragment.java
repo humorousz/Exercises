@@ -65,6 +65,7 @@ public class DiffUtilFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-
+        list.add(1,"i am the new");
+        mAdapter.notifyDataSetChanged();
     }
 }
