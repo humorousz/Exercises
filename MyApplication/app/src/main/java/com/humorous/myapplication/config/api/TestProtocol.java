@@ -114,6 +114,11 @@ public class TestProtocol {
     public static final String SAO_YI_SAO = BASE + TestFragmentFactory.TYPE.SAO_YI_SAO + HAS_TITLE;
 
     /**
+     * 扫码
+     */
+    public static final String DIFF_UTIL = BASE + TestFragmentFactory.TYPE.DIFF_UTIL + HAS_TITLE;
+
+    /**
      * 二级菜单
      */
 

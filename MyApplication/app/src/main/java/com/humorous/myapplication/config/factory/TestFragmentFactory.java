@@ -4,6 +4,7 @@ import com.humorous.myapplication.antTest.AntFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
+import com.humorous.myapplication.diffutil.DiffUtilFragment;
 import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
 import com.humorous.myapplication.frameAnimtor.AnimatorFragment;
@@ -46,7 +47,8 @@ public class TestFragmentFactory {
         SHARE_ELEMENT_B,
         SHADER,
         RXJAVA,
-        SAO_YI_SAO
+        SAO_YI_SAO,
+        DIFF_UTIL
     }
     public static BaseFragment createFragment(TYPE type){
         BaseFragment fragment = null;
@@ -107,6 +109,9 @@ public class TestFragmentFactory {
                 break;
             case SAO_YI_SAO:
                 fragment = new ZxingFragment();
+            case DIFF_UTIL:
+                fragment = new DiffUtilFragment();
+                break;
             default:
                 break;
         }

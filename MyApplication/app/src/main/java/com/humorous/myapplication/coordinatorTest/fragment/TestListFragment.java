@@ -72,7 +72,5 @@ public class TestListFragment extends BaseFragment {
                 textView = (TextView) itemView.findViewById(R.id.item_text);
             }
         }
-
-
     };
 }
