@@ -1,6 +1,7 @@
 package com.humorous.myapplication.diffutil;
 
 import android.os.Bundle;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -48,7 +49,7 @@ public class DiffUtilFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void initData(){
-        for(int i=0; i < 30; i++){
+        for(int i=0; i < 5; i++){
             list.add("i am the "+i+"th");
         }
     }
@@ -65,7 +66,47 @@ public class DiffUtilFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        list.add(1,"i am the new");
+//        list.add(1,"i am the new");
+//        mAdapter.notifyDataSetChanged();
+        onRefreshV3();
+    }
+
+    private void onRefresh() {
+        List<CharSequence> newList = new LinkedList<>();
+        newList.addAll(list);
+
+        newList.add("i am the new " + newList.size());
+        newList.set(0, "abcdefg");
+        CharSequence charSequence = newList.get(1);
+        newList.remove(charSequence);
+        newList.add(charSequence);
+        list = newList;
+        mAdapter.setList(list);
         mAdapter.notifyDataSetChanged();
+    }
+
+    private void onRefreshV2() {
+        List<CharSequence> newList = new LinkedList<>();
+        newList.addAll(list);
+
+        newList.add("i am the new " + newList.size());
+        newList.set(0, "abcdefg");
+        CharSequence charSequence = newList.get(1);
+        newList.remove(charSequence);
+        newList.add(charSequence);
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffCallBack(list,newList));
+        list = newList;
+        mAdapter.setList(list);
+        result.dispatchUpdatesTo(mAdapter);
+    }
+
+    private void onRefreshV3() {
+        List<CharSequence> newList = new LinkedList<>();
+        newList.addAll(list);
+        newList.add(0,"i am the new " + newList.size());
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffCallBack(list,newList),true);
+        list = newList;
+        mAdapter.setList(list);
+        result.dispatchUpdatesTo(mAdapter);
     }
 }

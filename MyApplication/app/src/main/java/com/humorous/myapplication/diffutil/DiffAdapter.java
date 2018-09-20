@@ -1,5 +1,6 @@
 package com.humorous.myapplication.diffutil;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
+import com.humorousz.uiutils.helper.UIUtils;
 
 import java.util.List;
 
@@ -30,8 +32,26 @@ public class DiffAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if(payloads.isEmpty()){
+            this.onBindViewHolder(holder,position);
+            return;
+        }
+        Bundle payload = (Bundle) payloads.get(0);
+        CharSequence charSequence = payload.getCharSequence("Char","");
+        ViewHolder holder1 = (ViewHolder) holder;
+        ViewGroup.LayoutParams params = holder1.textView.getLayoutParams();
+        params.height = UIUtils.dip2px(50);
+        holder1.textView.setLayoutParams(params);
+        holder1.textView.setText(charSequence);
+    }
+
+    @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder holder1 = (ViewHolder) holder;
+        ViewGroup.LayoutParams params = holder1.textView.getLayoutParams();
+        params.height = UIUtils.dip2px(50);
+        holder1.textView.setLayoutParams(params);
         holder1.textView.setText(mList.get(position));
     }
 
