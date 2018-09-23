@@ -63,6 +63,12 @@ public interface IEntity {
     IPoint getPoint();
 
     /**
+     * 设置绘制点
+     * @param point
+     */
+    void setPoint(IPoint point);
+
+    /**
      * 设置绘制图片
      * @param bitmap
      */
