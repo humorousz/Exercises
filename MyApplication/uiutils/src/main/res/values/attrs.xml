@@ -49,4 +49,10 @@
     <declare-styleable name="AnimatedImageView">
         <attr name="loopCount" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="HollowTextView">
+        <attr name="background_color" format="reference|color"/>
+        <attr name="corner_radius" format="dimension"/>
+        <attr name="show_text_color" format="boolean"/>
+    </declare-styleable>
 </resources>

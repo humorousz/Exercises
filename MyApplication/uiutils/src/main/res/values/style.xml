@@ -8,4 +8,11 @@
         <item name="android:windowSoftInputMode">stateAlwaysVisible</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <style name="LiveTopBarTextStyle">
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:shadowColor">#4DFFFFFF</item>
+    </style>
 </resources>
