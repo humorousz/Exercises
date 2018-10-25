@@ -5,8 +5,10 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
@@ -16,13 +18,14 @@ import android.util.AttributeSet;
 import com.humorousz.uiutils.R;
 
 public class HollowTextView extends AppCompatTextView{
-  private Paint mTextPaint, mBackgroundPaint;
+  private Paint mTextPaint, mBackgroundPaint,mTextColorPaint;
   private Bitmap mBackgroundBitmap,mTextBitmap,mShadingBitmap;
   private Canvas mBackgroundCanvas,mTextCanvas,mShadingCanvas;
   private RectF mBackgroundRect;
   private int mBackgroundColor;
   private boolean mShowTextColor;
   private int mCornerRadius;
+  private int mHollowTextColor;
 
   public HollowTextView(Context context) {
     this(context,null);
@@ -47,6 +50,7 @@ public class HollowTextView extends AppCompatTextView{
     mBackgroundColor = a.getColor(R.styleable.HollowTextView_background_color,Color.TRANSPARENT);
     mCornerRadius = a.getDimensionPixelOffset(R.styleable.HollowTextView_corner_radius,0);
     mShowTextColor = a.getBoolean(R.styleable.HollowTextView_show_text_color,false);
+    mHollowTextColor = a.getColor(R.styleable.HollowTextView_hollow_text_color,Color.TRANSPARENT);
     a.recycle();
   }
 
@@ -62,6 +66,13 @@ public class HollowTextView extends AppCompatTextView{
     mBackgroundPaint = new Paint();
     mBackgroundPaint.setColor(mBackgroundColor);
     mBackgroundPaint.setAntiAlias(true);
+    mTextColorPaint = new Paint();
+    //获取color透明度
+    int textAlpha = (mHollowTextColor >>> 24) & 0xff ;
+    //获取color颜色
+    int textColor = mHollowTextColor | 0xFF000000;
+    mTextColorPaint.setColorFilter(new PorterDuffColorFilter(textColor,PorterDuff.Mode.SRC_IN));
+    mTextColorPaint.setAlpha(textAlpha);
 
   }
 
@@ -83,6 +94,8 @@ public class HollowTextView extends AppCompatTextView{
       super.onDraw(canvas);
       return;
     }
+    mBackgroundCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+    mTextCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
     super.onDraw(mTextCanvas);
     drawBackground(mBackgroundCanvas);
     int sc;
@@ -94,8 +107,8 @@ public class HollowTextView extends AppCompatTextView{
     canvas.drawBitmap(mBackgroundBitmap,0,0,null);
     canvas.drawBitmap(mTextBitmap, 0, 0, mTextPaint);
     canvas.restoreToCount(sc);
-    if (mShowTextColor) {
-      canvas.drawBitmap(mTextBitmap,0,0,null);
+    if (mHollowTextColor != Color.TRANSPARENT) {
+      canvas.drawBitmap(mTextBitmap,0,0,mTextColorPaint);
     }
   }
 
