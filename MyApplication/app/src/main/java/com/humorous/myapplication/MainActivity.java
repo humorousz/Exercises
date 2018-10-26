@@ -166,4 +166,9 @@ public class MainActivity extends ImmerseActivity {
             }
         }
     }
+
+    @Override
+    protected boolean isSupportSwipeBack() {
+        return false;
+    }
 }

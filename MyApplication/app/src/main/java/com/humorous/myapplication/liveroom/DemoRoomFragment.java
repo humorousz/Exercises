@@ -252,7 +252,7 @@ public class DemoRoomFragment extends BaseFragment implements View.OnClickListen
      */
     @Override
     public void autoSendMessage() {
-        if(mNameRandom == null){
+        if(mNameRandom == null || mContentRandom == null){
             mNameRandom = new Random();
             mContentRandom = new Random();
         }

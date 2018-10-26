@@ -10,7 +10,7 @@ import com.humorousz.uiutils.helper.StatusBarUtil;
  * @author zhangzhiquan
  * @date 2018/6/26
  */
-abstract public class ImmerseActivity extends BaseActivity {
+abstract public class ImmerseActivity extends BaseSlideCloseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -41,4 +41,9 @@ public class SecondMenuActivity extends ImmerseActivity {
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    @Override
+    protected boolean isSupportSwipeBack() {
+        return super.isSupportSwipeBack();
+    }
 }
