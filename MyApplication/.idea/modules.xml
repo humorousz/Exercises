@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/annotationtest/annotationtest.iml" filepath="$PROJECT_DIR$/annotationtest/annotationtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonutils/commonutils.iml" filepath="$PROJECT_DIR$/commonutils/commonutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/networklibrary/networklibrary.iml" filepath="$PROJECT_DIR$/networklibrary/networklibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/uiutils/uiutils.iml" filepath="$PROJECT_DIR$/uiutils/uiutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/weexlib/weexlib.iml" filepath="$PROJECT_DIR$/weexlib/weexlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/zxinglibrary/zxinglibrary.iml" filepath="$PROJECT_DIR$/zxinglibrary/zxinglibrary.iml" />

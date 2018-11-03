@@ -12,6 +12,10 @@ ext{
     ndkbitmap_armv7 = "0.9.21"
     zxing = "c56e8f3c9c"
     eventBus = "3.1.1"
+    retrofit = "2.3.0"
+    rxAndroid = "2.0.1"
+    rxAdapter = "2.3.0"
+    gson = "2.3.0"
 
     android = [
             compileSdkVersion : 27,
@@ -27,7 +31,7 @@ ext{
             fastJson: "com.alibaba:fastjson:${fastjsonVersion}",
             supportV4 : "com.android.support:support-v4:${supportVersion}",
             weexSdk:"com.taobao.android:weex_sdk:${weexVersion}",
-            eventBus:"de.greenrobot:eventbus:${eventBus}",
+            eventBus:"org.greenrobot:eventbus:${eventBus}",
             imageLoader:"com.nostra13.universalimageloader:universal-image-loader:${imageLoader}",
             animated_webp:"com.facebook.fresco:animated-webp:${animated_webp}",
             animated_gif:"com.facebook.fresco:animated-gif:${animated_gif}",
@@ -37,7 +41,10 @@ ext{
             zxing:"com.github.humorousz:zxing:${zxing}",
             support_v4:"com.android.support:support-v4:${supportVersion}",
             support_vector_drawable:"com.android.support:support-vector-drawable:${supportVersion}",
-            eventBus:"org.greenrobot:eventbus:${eventBus}"
+            retrofit:"com.squareup.retrofit2:retrofit:${retrofit}",
+            rxAndroid:"io.reactivex.rxjava2:rxandroid:${rxAndroid}",
+            rxAdapter:"com.squareup.retrofit2:adapter-rxjava2:${rxAdapter}",
+            gson:"com.squareup.retrofit2:converter-gson:${gson}"
 
     ]
 }
