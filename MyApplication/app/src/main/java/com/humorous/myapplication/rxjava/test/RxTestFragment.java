@@ -9,10 +9,13 @@ import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.networklibrary.NetworkManager;
 import com.humorousz.uiutils.view.BaseFragment;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by zhangzhiquan on 2018/2/1.
@@ -33,6 +36,19 @@ public class RxTestFragment extends BaseFragment {
         mBtn = root.findViewById(R.id.btn_map);
         mBtn.setOnClickListener((v)->{
             testMap(1);
+        });
+        getSocial();
+    }
+
+    private void getSocial(){
+        Disposable disposable =  NetworkManager.getTianRequest().getSocial(10)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .map(mapper -> mapper.itemList)
+                .subscribe( list -> {
+            Logger.d(TAG,"tianBaseResponse : successful size:"+list.size());
+        },error->{
+            Logger.d(TAG,"tianBaseResponse : error : "+error.toString());
         });
     }
 
