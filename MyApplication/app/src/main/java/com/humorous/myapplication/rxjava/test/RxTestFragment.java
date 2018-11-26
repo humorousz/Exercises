@@ -1,6 +1,7 @@
 package com.humorous.myapplication.rxjava.test;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by zhangzhiquan on 2018/2/1.
  */
@@ -25,6 +28,7 @@ public class RxTestFragment extends BaseFragment {
     private static final String TAG = "RxTestFragment";
     private TextView mText;
     private Button mBtn;
+    Disposable disposable;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_fragment_rxjava,container,false);
@@ -53,17 +57,33 @@ public class RxTestFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(disposable != null){
+            disposable.dispose();
+        }
+    }
+
+    Observable<Integer> mObservable;
     private void testMap(int inputNum){
-        Observable.<Integer>create((e)->{
-            e.onNext(inputNum);
-            e.onComplete();
-        }).map((input)->{
+        Logger.d(TAG,"testMap");
+        if(mObservable == null){
+            mObservable = Observable.create((e)->{
+                Logger.d(TAG,"onNext");
+                e.onNext(inputNum);
+                e.onComplete();
+            });
+        }
+
+         mObservable.delaySubscription(3,TimeUnit.SECONDS).map((input)->{
            String s = "this is num"+input;
            return  s;
         }).subscribe(new io.reactivex.Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
                 Logger.d(TAG,"onSubscribe");
+                disposable = d;
             }
 
             @Override
