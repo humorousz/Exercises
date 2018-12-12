@@ -16,6 +16,8 @@ ext{
     rxAndroid = "2.0.1"
     rxAdapter = "2.3.0"
     gson = "2.3.0"
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     android = [
             compileSdkVersion : 27,
