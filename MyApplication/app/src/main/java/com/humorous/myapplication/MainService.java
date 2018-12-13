@@ -11,6 +11,11 @@ import com.humorousz.commonutils.machine.State;
 import com.humorousz.commonutils.machine.StateMachine;
 
 public class MainService extends Service {
+  static final int CLICK = 1;
+  static final int LONG_CLICK = 2;
+  static final int RESET_FINISH = 3;
+  static final int CONNECT_SUCCESS = 4;
+
   public MainService() {
   }
 
@@ -19,11 +24,11 @@ public class MainService extends Service {
     return new TestBinder();
   }
 
-
   class TestBinder extends IMyAidlInterface.Stub {
 
     @Override
-    public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+    public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble,
+        String aString) throws RemoteException {
 
     }
 
@@ -34,18 +39,42 @@ public class MainService extends Service {
 
     private void testMachine() {
       StateMachine machine = MyStateMachine.create();
-      machine.sendMessage(2);
+      machine.sendMessage(CLICK);
+      machine.sendMessage(CLICK);
+      machine.sendMessage(LONG_CLICK);
+      machine.sendMessageDelayed(LONG_CLICK,2000);
     }
   }
 
+  /**
+   * powerOn  (click) -> powerOff
+   * powerOff (click) -> powerOn
+   * powerOn (longClick) -> connect
+   * powerOff (longClick) -> reset
+   */
   static class MyStateMachine extends StateMachine {
-    State mP1 = new P1();
-    State mP2 = new P2();
+    State mPowerOnState;
+    State mPowerOffState;
+    State mResetState;
+    State mConnectState;
+    State mParentState = new DefaultState();
 
     protected MyStateMachine(String name) {
       super(name);
-      addState(mP1);
-      addState(mP2);
+      mPowerOffState = new PowerOffState();
+      mPowerOnState = new PowerOnState();
+      mConnectState = new ConnectState();
+      mResetState = new ResetState();
+      mParentState = new DefaultState();
+      addState(mPowerOffState, mParentState);
+      addState(mPowerOnState, mParentState);
+      addState(mConnectState, mParentState);
+      addState(mResetState, mParentState);
+      setInitialState(mPowerOffState);
+    }
+
+    @Override protected void unhandledMessage(Message msg) {
+      Logger.d("MRZ", "Busy now can not handle message,please retry after!");
     }
 
     public static MyStateMachine create() {
@@ -56,55 +85,94 @@ public class MainService extends Service {
       return stateMachine;
     }
 
-    class P1 extends State {
-      @Override
-      public void enter() {
-        super.enter();
-        Logger.d("MRZ", "P1 enter");
-      }
-
-      @Override
-      public void exit() {
-        super.exit();
-        Logger.d("MRZ", "P1 exit");
-      }
-
-      @Override
-      public boolean processMessage(Message msg) {
-        Logger.d("MRZ", "P1 processMessage:" + msg.what);
-        switch (msg.what) {
-          case 1:
-            sendMessage(obtainMessage(2));
-            transitionTo(mP2);
-            return HANDLED;
-          default:
-            return NOT_HANDLED;
-        }
+    class DefaultState extends State {
+      @Override public boolean processMessage(Message msg) {
+        return super.processMessage(msg);
       }
     }
 
-    class P2 extends State {
-      @Override
-      public void enter() {
+    class PowerOffState extends State {
+      @Override public void enter() {
         super.enter();
-        Logger.d("MRZ", "P2 enter");
+        Logger.d("MRZ", "now power off");
       }
 
-      @Override
-      public void exit() {
-        super.exit();
-        Logger.d("MRZ", "P2 exit");
-      }
-
-      @Override
-      public boolean processMessage(Message msg) {
-        Logger.d("MRZ", "P2 processMessage:" + msg.what);
-        switch (msg.what) {
-          case 2:
+      @Override public boolean processMessage(Message msg) {
+        int what = msg.what;
+        switch (what) {
+          case CLICK:
+            transitionTo(mPowerOnState);
+            return HANDLED;
+          case LONG_CLICK:
+            transitionTo(mResetState);
             return HANDLED;
           default:
-            return NOT_HANDLED;
+            break;
         }
+        return NOT_HANDLED;
+      }
+    }
+
+    class PowerOnState extends State {
+      @Override public void enter() {
+        Logger.d("MRZ", "now power On");
+      }
+
+      @Override public boolean processMessage(Message msg) {
+        int what = msg.what;
+        switch (what) {
+          case CLICK:
+            transitionTo(mPowerOffState);
+            return HANDLED;
+          case LONG_CLICK:
+            transitionTo(mConnectState);
+            return HANDLED;
+          default:
+            break;
+        }
+        return NOT_HANDLED;
+      }
+    }
+
+    class ResetState extends State {
+      @Override public void enter() {
+        super.enter();
+        Logger.d("MRZ", "enter reset start....");
+        sendMessageDelayed(RESET_FINISH, 1000);
+      }
+
+      @Override public void exit() {
+        super.exit();
+        Logger.d("MRZ", "exit reset finish....");
+      }
+
+      @Override public boolean processMessage(Message msg) {
+        if (msg.what == RESET_FINISH) {
+          transitionTo(mPowerOffState);
+          return HANDLED;
+        }
+        return super.processMessage(msg);
+      }
+    }
+
+    class ConnectState extends State {
+      @Override public void enter() {
+        super.enter();
+        Logger.d("MRZ", "enter connect start....");
+        sendMessageDelayed(CONNECT_SUCCESS, 1000);
+      }
+
+      @Override public void exit() {
+        super.exit();
+        Logger.d("MRZ", "exit connect finish....");
+      }
+
+      @Override public boolean processMessage(Message msg) {
+        if (msg.what == CONNECT_SUCCESS) {
+          transitionTo(mPowerOnState);
+          return HANDLED;
+        }
+        return super.processMessage(msg);
       }
     }
   }
