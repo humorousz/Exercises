@@ -83,7 +83,6 @@ public class MainActivity extends ImmerseActivity {
       IMyAidlInterface binder = IMyAidlInterface.Stub.asInterface(service);
       try {
         binder.testLog();
-        binder.testLog();
       } catch (RemoteException e) {
         e.printStackTrace();
       }
@@ -96,8 +95,8 @@ public class MainActivity extends ImmerseActivity {
   };
 
   private void testFunc() {
-    //        Intent intent = new Intent(this,MainService.class);
-    //        bindService(intent,serviceConnection,BIND_AUTO_CREATE);
+    Intent intent = new Intent(this, MainService.class);
+    bindService(intent, serviceConnection, BIND_AUTO_CREATE);
   }
 
   @Override
