@@ -1,86 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <LinearLayout
+    android:id="@+id/commonTipsView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_height="200dp"
+    android:gravity="center"
+    android:orientation="horizontal"></LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/commonTipsView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-    </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/left_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="左"/>
-        <Button
-            android:id="@+id/middle_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="中"/>
-        <Button
-            android:id="@+id/right_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="右"/>
-    </LinearLayout>
+    <Button
+      android:id="@+id/left_btn"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="左" />
 
-    <EditText
-        android:id="@+id/tip_edit"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="输入文字在点上边按钮，弹出tips"/>
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone"/>
-    <com.humorousz.uiutils.widget.CommonTipsView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我好帅啊啊啊啊啊啊啊啊"
-        app:arrow_gravity="top|right"
-        android:visibility="gone"/>
+    <Button
+      android:id="@+id/middle_btn"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="中" />
 
-    <com.humorous.myapplication.liveroom.weidget.BreathingLampView
-        android:layout_width="51dp"
-        android:layout_height="51dp"
-        android:layout_gravity="center"
-        app:smallRadius="15dp"
-        app:bigRadius="22dp"
-        app:hollowRadius="14dp"
-        app:circleColor="#FFE400"
-        app:animationTime="500"
-        app:repeatCount="3"
-        android:visibility="gone"/>
+    <Button
+      android:id="@+id/right_btn"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="右" />
+  </LinearLayout>
+
+  <EditText
+    android:id="@+id/tip_edit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:hint="输入文字在点上边按钮，弹出tips" />
+
+  <ImageView
+    android:id="@+id/image"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_gravity="center_horizontal"
+    android:visibility="gone" />
+
+  <com.humorousz.uiutils.widget.CommonTipsView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="我好帅啊啊啊啊啊啊啊啊"
+    android:visibility="gone"
+    app:arrow_gravity="top|right" />
+
+  <com.humorous.myapplication.liveroom.weidget.BreathingLampView
+    android:layout_width="51dp"
+    android:layout_height="51dp"
+    android:layout_gravity="center"
+    android:visibility="gone"
+    app:animationTime="500"
+    app:bigRadius="22dp"
+    app:circleColor="#FFE400"
+    app:hollowRadius="14dp"
+    app:repeatCount="3"
+    app:smallRadius="15dp" />
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.humorous.myapplication.liveroom.weidget.CircleRippleView
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_gravity="center"
+      app:bigRadius="50dp"
+      app:smallRadius="43dp"
+      app:circleColor="#ff8000"/>
+    <View
+      android:layout_width="43dp"
+      android:layout_height="43dp"
+      android:layout_gravity="center"
+      android:background="@drawable/circle_bg"/>
+  </FrameLayout>
 
 
-    <FrameLayout
-        android:id="@+id/switcher_container"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:background="@drawable/switcer_bg"
-        android:layout_gravity="center_horizontal">
-        <com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher
-            android:id="@+id/verticalTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical" />
-    </FrameLayout>
+  <FrameLayout
+    android:id="@+id/switcher_container"
+    android:layout_width="wrap_content"
+    android:layout_height="24dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/switcer_bg">
+
+    <com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher
+      android:id="@+id/verticalTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical" />
+  </FrameLayout>
 
 
 </LinearLayout>
