@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="repeatCount" format="integer" />
-    <declare-styleable name="LF_LoadingImageView">
-        <attr name="src" format="reference"></attr>
-        <attr name="frontColor" format="reference"></attr>
-        <attr name="backColor" format="reference"></attr>
-    </declare-styleable>
+  <attr name="repeatCount" format="integer" />
+  <declare-styleable name="LF_LoadingImageView">
+    <attr name="src" format="reference"></attr>
+    <attr name="frontColor" format="reference"></attr>
+    <attr name="backColor" format="reference"></attr>
+  </declare-styleable>
 
-    <declare-styleable name="BreathingLampView">
-        <attr name="smallRadius" format="dimension|reference" />
-        <attr name="bigRadius" format="dimension|reference" />
-        <attr name="hollowRadius" format="dimension|reference" />
-        <attr name="circleColor" format="color|reference" />
-        <attr name="animationTime" format="integer" />
-        <attr name="repeatCount" />
-    </declare-styleable>
+  <declare-styleable name="BreathingLampView">
+    <attr name="smallRadius" format="dimension|reference" />
+    <attr name="bigRadius" format="dimension|reference" />
+    <attr name="hollowRadius" format="dimension|reference" />
+    <attr name="circleColor" format="color|reference" />
+    <attr name="animationTime" format="integer" />
+    <attr name="repeatCount" />
+  </declare-styleable>
 
-    <declare-styleable name="MaskLoadingView">
-        <attr name="repeatCount"  />
-        <attr name="duration" format="integer" />
-        <attr name="repeatMode">
-            <flag name="restart" value="1" />
-            <flag name="reverse" value="2" />
-        </attr>
-        <attr name="animMode">
-            <flag name="left_right" value="1"/>
-            <flag name="right_left" value="2"/>
-        </attr>
-        <attr name="shape">
-            <flag name="rectangle" value="1"/>
-            <flag name="circle" value="2"/>
-        </attr>
-    </declare-styleable>
+  <declare-styleable name="MaskLoadingView">
+    <attr name="repeatCount" />
+    <attr name="duration" format="integer" />
+    <attr name="repeatMode">
+      <flag name="restart" value="1" />
+      <flag name="reverse" value="2" />
+    </attr>
+    <attr name="animMode">
+      <flag name="left_right" value="1" />
+      <flag name="right_left" value="2" />
+    </attr>
+    <attr name="shape">
+      <flag name="rectangle" value="1" />
+      <flag name="circle" value="2" />
+    </attr>
+  </declare-styleable>
+  <declare-styleable name="WheelView">
+    <attr name="wheelTextWidth" format="dimension|reference" />
+    <attr name="wheelTextPaddingTop" format="dimension|reference" />
+    <attr name="wheelTextSize" format="dimension|reference" />
+  </declare-styleable>
 </resources>
