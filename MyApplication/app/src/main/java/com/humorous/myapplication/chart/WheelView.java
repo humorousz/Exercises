@@ -20,8 +20,8 @@ import com.humorousz.commonutils.util.CollectionUtils;
 import java.util.List;
 
 public class WheelView extends View {
-  private static final float CIRCLE_TOTAL_DEGREE = 360.0f;
-  private static final float CIRCLE_ROTATE_DEGREE = 90.0f;
+  public static final float CIRCLE_TOTAL_DEGREE = 360.0f;
+  public static final float CIRCLE_ROTATE_DEGREE = 90.0f;
   /**
    * item的画笔
    */
@@ -144,8 +144,7 @@ public class WheelView extends View {
   }
 
   /**
-   * 由于是采用的顺时针绘制饼图，所以需要将角度调整
-   * 计算角度所属象限，返回基于contrastDegree角度
+   * 计算基于contrastDegree角度
    *
    * @param deltaX         x坐标
    * @param deltaY         y坐标

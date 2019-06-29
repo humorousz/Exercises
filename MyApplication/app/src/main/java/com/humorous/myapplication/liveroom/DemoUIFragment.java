@@ -141,13 +141,13 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
   }
 
   private void initWheelView() {
-    List<String> list = Arrays.asList("俯卧撑哈哈哈", "仰卧起坐", "高山流水", "自定义", "谢谢", "再来一次");
+    List<String> list = Arrays.asList("俯卧撑10个", "仰卧起坐", "高山流水", "自定义", "谢谢", "这次我要打10个了");
     List<WheelData> wheelData = WheelDataFactory.createDataList(list);
     WheelRotateManager manager = new WheelRotateManager(mWheelView);
     mWheelView.post(() -> mWheelView.setDataList(wheelData));
     mWheelView.setOnWheelDataClickListener((position, data) -> {
       ToastUtil.showToast(getContext(), data.mText + " p:" + position);
-      manager.roateToPosition(position);
+      manager.rotateToPosition(position);
     });
   }
 }
