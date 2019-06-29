@@ -16,7 +16,7 @@ public final class WheelDataFactory {
     }
     for (int i = 0; i < list.size(); i++) {
       WheelData data = new WheelData();
-      data.mBackgroundColor = i % 2 == 0 ? Color.BLUE : Color.WHITE;
+      data.mBackgroundColor = i % 2 == 0 ? Color.BLUE : Color.GRAY;
       data.mTextColor = i % 2 == 0 ? Color.YELLOW : Color.RED;
       data.mPosition = i;
       data.mText = list.get(i);

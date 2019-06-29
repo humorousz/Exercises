@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.chart.WheelData;
 import com.humorous.myapplication.chart.WheelDataFactory;
+import com.humorous.myapplication.chart.WheelRotateManager;
 import com.humorous.myapplication.chart.WheelView;
 import com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher;
 import com.humorousz.commonutils.log.Logger;
@@ -33,6 +34,7 @@ import java.util.List;
  */
 
 public class DemoUIFragment extends BaseFragment implements View.OnClickListener {
+  int clickTime = 0;
   private Button lbtn, mbtn, rbtn;
   private EditText editText;
   private LinearLayout mTipsContainer;
@@ -75,7 +77,6 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
       showTips(3);
     }
   }
-
 
   private void showTips(int gravity) {
     if (commonTipsView == null) {
@@ -142,6 +143,11 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
   private void initWheelView() {
     List<String> list = Arrays.asList("俯卧撑哈哈哈", "仰卧起坐", "高山流水", "自定义", "谢谢", "再来一次");
     List<WheelData> wheelData = WheelDataFactory.createDataList(list);
+    WheelRotateManager manager = new WheelRotateManager(mWheelView);
     mWheelView.post(() -> mWheelView.setDataList(wheelData));
+    mWheelView.setOnWheelDataClickListener((position, data) -> {
+      ToastUtil.showToast(getContext(), data.mText + " p:" + position);
+      manager.roateToPosition(position);
+    });
   }
 }

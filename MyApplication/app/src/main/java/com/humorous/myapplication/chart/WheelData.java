@@ -1,8 +1,8 @@
 package com.humorous.myapplication.chart;
 
 public class WheelData {
-  CharSequence mText;
-  int mBackgroundColor;
-  int mPosition;
-  int mTextColor;
+  public CharSequence mText;
+  public int mBackgroundColor;
+  public int mPosition;
+  public int mTextColor;
 }

@@ -112,7 +112,6 @@
 
       <com.humorous.myapplication.chart.WheelView
         android:id="@+id/wheel_view"
-        android:background="#f0f0f0"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center_horizontal"

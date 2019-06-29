@@ -5,8 +5,8 @@ import java.util.Collection;
 /**
  * 一些集合的操作
  */
-public final class CollectionsUtil {
-  private CollectionsUtil() {
+public final class CollectionUtils {
+  private CollectionUtils() {
   }
 
   public static boolean isEmpty(Collection collection) {
