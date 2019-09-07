@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -54,4 +56,6 @@ dependencies {
     implementation rootProject.ext.dependencies.AnimationSequenceDrawable
     implementation rootProject.ext.dependencies.rxJava
     implementation rootProject.ext.dependencies.rxAndroid
+    implementation rootProject.ext.dependencies.constraint_layout
+    implementation rootProject.ext.dependencies.kotlin
 }

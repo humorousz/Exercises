@@ -9,6 +9,7 @@ import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
 import com.humorous.myapplication.frameAnimtor.AnimatorFragment;
 import com.humorous.myapplication.jetpack.JetpackFragment;
+import com.humorous.myapplication.kotlin.KotlinTestFragment;
 import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
 import com.humorous.myapplication.nested.TestNestedFragment;
@@ -54,7 +55,8 @@ public class TestFragmentFactory {
     RXJAVA,
     SAO_YI_SAO,
     DIFF_UTIL,
-    JECTPACK
+    JET_PACK,
+    KOTLIN
   }
 
   public static BaseFragment createFragment(TYPE type) {
@@ -120,12 +122,15 @@ public class TestFragmentFactory {
       case DIFF_UTIL:
         fragment = new DiffUtilFragment();
         break;
-      case JECTPACK:
+      case JET_PACK:
         fragment = new JetpackFragment();
-      default:
         break;
+      case KOTLIN:
+        fragment = new KotlinTestFragment();
+        break;
+      default:
+        throw new IllegalArgumentException("can not handle Type:" + type.name());
     }
     return fragment;
   }
-
 }

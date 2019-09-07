@@ -207,10 +207,14 @@ public class Api {
     List<HomeItemModel> models = new ArrayList<>(12);
     HomeItemModel itemModel;
     itemModel = new HomeItemModel();
-    itemModel.setLink(TestProtocol.JECTPACK);
+    itemModel.setLink(TestProtocol.JET_PACK);
     itemModel.setTitle("Jetpack");
     models.add(itemModel);
 
+    itemModel = new HomeItemModel();
+    itemModel.setLink(TestProtocol.KOTLIN);
+    itemModel.setTitle("Kotlin");
+    models.add(itemModel);
 
     return models;
   }
