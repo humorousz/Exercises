@@ -1,6 +1,6 @@
 package com.humorous.myapplication.nestedScrollView;
 
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 
 /**
@@ -39,7 +39,7 @@ class ViewOffsetHelper {
     }
 
     /**
-     * Set the top and bottom offset for this {@link android.support.design.widget.ViewOffsetHelper}'s view.
+     * Set the top and bottom offset for this {@link com.google.android.material.appbar.ViewOffsetHelper}'s view.
      *
      * @param offset the offset in px.
      * @return true if the offset has changed
@@ -54,7 +54,7 @@ class ViewOffsetHelper {
     }
 
     /**
-     * Set the left and right offset for this {@link android.support.design.widget.ViewOffsetHelper}'s view.
+     * Set the left and right offset for this {@link com.google.android.material.appbar.ViewOffsetHelper}'s view.
      *
      * @param offset the offset in px.
      * @return true if the offset has changed

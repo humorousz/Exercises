@@ -1,8 +1,8 @@
 package com.humorousz.uiutils.view;
 
 import android.os.Bundle;
-import android.support.annotation.IntRange;
-import android.support.annotation.Nullable;
+import androidx.annotation.IntRange;
+import androidx.annotation.Nullable;
 
 import com.humorousz.uiutils.R;
 import com.humorousz.uiutils.helper.StatusBarUtil;

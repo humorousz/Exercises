@@ -1,12 +1,11 @@
 package com.humorous.myapplication.coordinatorTest.behavior;
 
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.humorous.myapplication.coordinatorTest.widget.TestTextView;
 

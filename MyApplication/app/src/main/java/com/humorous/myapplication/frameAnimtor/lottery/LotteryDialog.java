@@ -1,17 +1,13 @@
 package com.humorous.myapplication.frameAnimtor.lottery;
 
 import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.humorous.myapplication.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zhangzhiquan on 2017/10/6.

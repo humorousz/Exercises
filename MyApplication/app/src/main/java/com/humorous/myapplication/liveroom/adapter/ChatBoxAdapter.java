@@ -2,7 +2,7 @@ package com.humorous.myapplication.liveroom.adapter;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,6 @@ import com.humorousz.commonutils.log.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * @author zhangzhiquan

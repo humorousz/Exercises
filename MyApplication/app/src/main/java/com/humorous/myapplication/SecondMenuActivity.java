@@ -2,14 +2,13 @@ package com.humorous.myapplication;
 
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.humorous.myapplication.config.api.Api;
 import com.humorous.myapplication.home.HomeFragment;
-import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
 

@@ -2,9 +2,9 @@ package com.humorous.myapplication.container;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,10 +12,7 @@ import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.config.factory.TestFragmentFactory;
-import com.humorousz.commonutils.log.Logger;
-import com.humorousz.uiutils.helper.StatusBarCompat;
 import com.humorousz.uiutils.helper.ToastUtil;
-import com.humorousz.uiutils.view.BaseActivity;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
 

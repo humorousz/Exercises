@@ -1,8 +1,8 @@
 package com.humorous.myapplication.coordinatorTest.widget;
 
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.MotionEventCompat;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
