@@ -216,6 +216,10 @@ public class Api {
     itemModel.setTitle("Kotlin");
     models.add(itemModel);
 
+    itemModel = new HomeItemModel();
+    itemModel.setLink(TestProtocol.DAGGER);
+    itemModel.setTitle("Dagger");
+    models.add(itemModel);
     return models;
   }
 }

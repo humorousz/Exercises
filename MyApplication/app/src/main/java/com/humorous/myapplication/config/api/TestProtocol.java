@@ -140,6 +140,11 @@ public class TestProtocol {
   public static final String KOTLIN = BASE + TestFragmentFactory.TYPE.KOTLIN + HAS_TITLE;
 
   /**
+   * Dagger
+   */
+  public static final String DAGGER = BASE + TestFragmentFactory.TYPE.DAGGER + HAS_TITLE;
+
+  /**
    * 二级菜单
    */
 

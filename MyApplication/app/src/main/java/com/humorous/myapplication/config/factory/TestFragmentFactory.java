@@ -4,6 +4,7 @@ import com.humorous.myapplication.antTest.AntFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
+import com.humorous.myapplication.dagger.DaggerFragment;
 import com.humorous.myapplication.diffutil.DiffUtilFragment;
 import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
@@ -56,7 +57,8 @@ public class TestFragmentFactory {
     SAO_YI_SAO,
     DIFF_UTIL,
     JET_PACK,
-    KOTLIN
+    KOTLIN,
+    DAGGER
   }
 
   public static BaseFragment createFragment(TYPE type) {
@@ -127,6 +129,9 @@ public class TestFragmentFactory {
         break;
       case KOTLIN:
         fragment = new KotlinTestFragment();
+        break;
+      case DAGGER:
+        fragment = new DaggerFragment();
         break;
       default:
         throw new IllegalArgumentException("can not handle Type:" + type.name());

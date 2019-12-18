@@ -63,4 +63,9 @@ dependencies {
     implementation rootProject.ext.dependencies.rxAndroid
     implementation rootProject.ext.dependencies.constraint_layout
     implementation rootProject.ext.dependencies.kotlin
+    implementation rootProject.ext.dependencies.dagger
+    implementation rootProject.ext.dependencies.dagger_android
+    annotationProcessor rootProject.ext.dependencies.dagger_compiler
+    annotationProcessor rootProject.ext.dependencies.dagger_android_compiler
+
 }
