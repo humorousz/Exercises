@@ -34,6 +34,11 @@ android {
     }
 }
 
+task run(type: Exec,dependsOn: 'installDebug'){
+    description 'Installs the APK and runs the main activity'
+    commandLine "${android.sdkDirectory}/platform-tools/adb", 'shell', 'am', 'start', '-n', 'com.humorous.myapplication/com.humorous.myapplication.MainActivity'
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
