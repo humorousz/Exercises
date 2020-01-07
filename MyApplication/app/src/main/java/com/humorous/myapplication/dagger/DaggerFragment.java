@@ -20,13 +20,16 @@ import javax.inject.Inject;
 public class DaggerFragment extends BaseFragment {
   @Inject
   Teacher mTeacher;
-  @StudentType(2)
   @Inject
   Student mStudent;
-
-  @StudentType
   @Inject
   Student mStudentA;
+  @StudentType
+  @Inject
+  Student mStudentType1;
+  @StudentType(2)
+  @Inject
+  Student mStudentType2;
   @Inject
   FetchStudentService mSerivice;
   private View mButton;
@@ -44,13 +47,13 @@ public class DaggerFragment extends BaseFragment {
 
   @Override
   public void initView(View root) {
-    mTeacher.test();
     Logger.d(mSerivice.getStudentByName("aaaaa").getName());
     mButton = root.findViewById(R.id.click_button);
-    String uid = "171174481";
     mButton.setOnClickListener(v -> {
-      Log.d("MRZ", mStudent.getName());
-      Log.d("MRZ", mStudentA.getName());
+      Log.d("MRZ", mStudent.toString());
+      Log.d("MRZ", mStudentA.toString());
+      Log.d("MRZ", mStudentType1.toString());
+      Log.d("MRZ", mStudentType2.toString());
     });
   }
 }

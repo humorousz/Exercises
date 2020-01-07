@@ -1,6 +1,8 @@
 package com.humorous.myapplication.dagger.test;
 
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -16,5 +18,11 @@ public class StudentMoudle {
   @Provides
   public Student provideStudentB() {
     return new Student("WANG");
+  }
+
+  @Singleton
+  @Provides
+  public Student provideNomalStudent() {
+    return new Student("Nomal");
   }
 }
