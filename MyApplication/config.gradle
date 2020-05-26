@@ -19,6 +19,7 @@ ext {
     constraint_layout = "1.1.3"
     kotlin_version = "1.3.41"
     dagger_version = "2.25"
+    fresco = "1.13.0"
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -38,8 +39,12 @@ ext {
             weexSdk                  : "com.taobao.android:weex_sdk:${weexVersion}",
             eventBus                 : "org.greenrobot:eventbus:${eventBus}",
             imageLoader              : "com.nostra13.universalimageloader:universal-image-loader:${imageLoader}",
-            animated_webp            : "com.facebook.fresco:animated-webp:${animated_webp}",
-            animated_gif             : "com.facebook.fresco:animated-gif:${animated_gif}",
+            animated_webp            : "com.facebook.fresco:animated-webp:${fresco}",
+            animated_gif             : "com.facebook.fresco:animated-gif:${fresco}",
+            animated_drawable        : "com.facebook.fresco:animated-drawable:${fresco}",
+            webpsupport              : "com.facebook.fresco:webpsupport:${fresco}",
+            animated_base_support    : "com.facebook.fresco:animated-base-support:0.10.0",
+            fresco                   : "com.facebook.fresco:fresco:${fresco}",
             AnimationSequenceDrawable: "com.github.humorousz:AnimationSequenceDrawable:${AnimationSequenceDrawable}",
             Danmaku                  : "com.github.ctiao:DanmakuFlameMaster:${Danmaku}",
             ndkbitmap_armv7          : "com.github.ctiao:ndkbitmap-armv7a:${ndkbitmap_armv7}",

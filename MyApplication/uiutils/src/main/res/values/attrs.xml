@@ -56,4 +56,15 @@
         <attr name="show_text_color" format="boolean"/>
         <attr name="hollow_text_color" format="reference|color"/>
     </declare-styleable>
+
+    <declare-styleable name="FlipView">
+        <attr name="orientation" format="enum">
+            <enum name="vertical" value="0"/>
+            <enum name="horizontal" value="1"/>
+        </attr>
+        <attr name="overFlipMode" format="enum">
+            <enum name="glow" value="0"/>
+            <enum name="rubber_band" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>

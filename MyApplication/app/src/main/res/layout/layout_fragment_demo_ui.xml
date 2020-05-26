@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
@@ -10,14 +11,46 @@
     android:layout_height="match_parent">
     <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="50dp"
+      android:gravity="center_horizontal"
       android:orientation="vertical">
+      <se.emilsjolander.flipview.ClipView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#0000ff">
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="#00ff00" />
+      </se.emilsjolander.flipview.ClipView>
+      <se.emilsjolander.flipview.FlipView
+        android:id="@+id/flipView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:orientation="vertical"
+        app:overFlipMode="glow" />
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+          android:id="@+id/add"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="加分" />
+        <Button
+          android:id="@+id/reduce"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="减分" />
+      </LinearLayout>
       <LinearLayout
         android:id="@+id/commonTipsView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:gravity="center"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -86,13 +119,13 @@
           android:layout_height="50dp"
           android:layout_gravity="center"
           app:bigRadius="50dp"
-          app:smallRadius="43dp"
-          app:circleColor="#ff8000"/>
+          app:circleColor="#ff8000"
+          app:smallRadius="43dp" />
         <View
           android:layout_width="43dp"
           android:layout_height="43dp"
           android:layout_gravity="center"
-          android:background="@drawable/circle_bg"/>
+          android:background="@drawable/circle_bg" />
       </FrameLayout>
 
 
@@ -116,8 +149,8 @@
         android:layout_height="300dp"
         android:layout_gravity="center_horizontal"
         app:wheelTextPaddingTop="30dp"
-        app:wheelTextWidth="60dp"
-        app:wheelTextSize="15sp"/>
+        app:wheelTextSize="15sp"
+        app:wheelTextWidth="60dp" />
     </LinearLayout>
   </ScrollView>
 </LinearLayout>

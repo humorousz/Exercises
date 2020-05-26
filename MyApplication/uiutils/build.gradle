@@ -42,5 +42,8 @@ dependencies {
     implementation rootProject.ext.dependencies.imageLoader
     implementation rootProject.ext.dependencies.animated_webp
     implementation rootProject.ext.dependencies.animated_gif
+    implementation rootProject.ext.dependencies.webpsupport
+    implementation rootProject.ext.dependencies.animated_drawable
     implementation rootProject.ext.dependencies.AnimationSequenceDrawable
+    implementation rootProject.ext.dependencies.fresco
 }

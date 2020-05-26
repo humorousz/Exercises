@@ -2,6 +2,8 @@ package com.humorous.myapplication.application;
 
 import android.app.Application;
 
+import androidx.multidex.MultiDex;
+
 import com.humorous.myapplication.exceptionTest.CatchExceptionHandler;
 import com.humorous.weexlib.WeexManager;
 import com.humorousz.commonutils.service.CommonService;
@@ -26,6 +28,7 @@ public class HumorousZApplication extends Application {
   public void onCreate() {
     super.onCreate();
     mInstance = this;
+    MultiDex.install(this);
     CommonService.getService().init(this);
     ImageLoaderHelper.init(getApplicationContext());
     CatchExceptionHandler.getInstance().init(this);

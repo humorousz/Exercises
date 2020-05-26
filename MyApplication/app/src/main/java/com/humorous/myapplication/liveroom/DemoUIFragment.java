@@ -18,6 +18,7 @@ import com.humorous.myapplication.chart.WheelData;
 import com.humorous.myapplication.chart.WheelDataFactory;
 import com.humorous.myapplication.chart.WheelRotateManager;
 import com.humorous.myapplication.chart.WheelView;
+import com.humorous.myapplication.liveroom.adapter.FlipViewAdapter;
 import com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.ToastUtil;
@@ -29,19 +30,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import se.emilsjolander.flipview.FlipView;
+
 /**
  * Created by zhangzhiquan on 2017/9/26.
  */
 
 public class DemoUIFragment extends BaseFragment implements View.OnClickListener {
-  int clickTime = 0;
-  private Button lbtn, mbtn, rbtn;
+  private Button lbtn, mbtn, rbtn, mAddButton, mReduceButton;
   private EditText editText;
   private LinearLayout mTipsContainer;
   private CommonTipsView commonTipsView;
   private ImageView mImage;
   private VerticalTextViewSwitcher mTextSwitcher;
   private WheelView mWheelView;
+  private FlipView mFlipView;
 
   @Override
   public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,13 +61,18 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
     mTipsContainer = (LinearLayout) root.findViewById(R.id.commonTipsView);
     mImage.setImageResource(R.drawable.light);
     mWheelView = root.findViewById(R.id.wheel_view);
+    mAddButton = root.findViewById(R.id.add);
+    mReduceButton = root.findViewById(R.id.reduce);
     AnimationDrawable anim = (AnimationDrawable) mImage.getDrawable();
     anim.start();
     lbtn.setOnClickListener(this);
     mbtn.setOnClickListener(this);
     rbtn.setOnClickListener(this);
+    mAddButton.setOnClickListener(this);
+    mReduceButton.setOnClickListener(this);
     initSwitcher(root);
     initWheelView();
+    initFlipView(root);
   }
 
   @Override
@@ -75,6 +83,10 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
       showTips(2);
     } else if (v == rbtn) {
       showTips(3);
+    } else if (v == mAddButton) {
+      mFlipView.smoothFlipTo(1);
+    } else if (v == mReduceButton) {
+      mFlipView.smoothFlipTo(0);
     }
   }
 
@@ -149,5 +161,10 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
       ToastUtil.showToast(getContext(), data.mText + " p:" + position);
       manager.rotateToPosition(position);
     });
+  }
+
+  private void initFlipView(View root) {
+    mFlipView = root.findViewById(R.id.flipView);
+    mFlipView.setAdapter(new FlipViewAdapter(getContext(), R.layout.layout_flip_view_item, Arrays.asList("1", "2", "3", "4")));
   }
 }
