@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 /**
  * 礼物面板View
+ *
  * @author zhangzhiquan
  * @date 2021/1/27
  */
@@ -24,6 +25,10 @@ class LiveGifPanelView extends FrameLayout {
   private TabHost mTabHost;
   private GiftTabAdapter mAdapter;
   private ViewPager2 mGiftTabViewPager;
+  private List<LiveGiftPanelTabView> mLiveGiftPanelTabViews;
+  @NonNull
+  private LiveGiftPanelTabViewFactory mLiveGiftPanelTabViewFactory;
+
   public LiveGifPanelView(@NonNull Context context) {
     super(context);
   }
@@ -33,12 +38,17 @@ class LiveGifPanelView extends FrameLayout {
     super(context, attrs);
   }
 
-  public LiveGifPanelView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+  public LiveGifPanelView(@NonNull Context context, @Nullable AttributeSet attrs,
+      int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
   }
 
-  public void setGiftPanelTabItems(List<LiveGiftPanelTabView> panelTabItems){
+  public void setLiveGiftPanelTabViewFactory(@NonNull LiveGiftPanelTabViewFactory factory) {
+    mLiveGiftPanelTabViewFactory = factory;
+  }
+
+  public void setGiftPanelTabItems(List<LiveGiftPanelTabView> panelTabItems) {
     mGiftTabViewPager.setAdapter(mAdapter);
   }
 
@@ -57,7 +67,7 @@ class LiveGifPanelView extends FrameLayout {
 
     @Override
     public int getItemCount() {
-      return 0;
+      return mLiveGiftPanelTabViews == null ? 0 : mLiveGiftPanelTabViews.size();
     }
   }
 }
