@@ -48,8 +48,7 @@ public interface LiveGiftPanelTabView {
 
   void setGiftItemConfigStrategy(GiftItemConfigStrategy giftItemConfigStrategy);
 
-  void setGiftDataSourceStrategy(LifecycleOwner owner,
-      GiftDataSourceStrategy giftDataSourceStrategy);
+  void setGiftDataSourceStrategy(GiftDataSourceStrategy giftDataSourceStrategy);
 
   /**
    * 创建礼物Item的策略
@@ -78,5 +77,11 @@ public interface LiveGiftPanelTabView {
      * @return
      */
     LiveData<List<LiveGiftItem>> getGiftItemsDataSource();
+
+    /**
+     * 获取LifecycleOwner
+     * @return
+     */
+    LifecycleOwner getLifecycleOwner();
   }
 }

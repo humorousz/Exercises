@@ -23,10 +23,7 @@ class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   private GiftItemViewStrategy mGiftItemViewStrategy;
   private GiftItemConfigStrategy mGiftItemConfigStrategy;
   private GiftDataSourceStrategy mGiftDataSourceStrategy;
-  private Observer<List<LiveGiftItem>> mListObserver;
-  private LifecycleOwner mLifecycleOwner;
   private LiveNormalGiftAdapter mLiveNormalGiftAdapter;
-  private LiveData<List<LiveGiftItem>> mListLiveData;
 
   @Override
   public String getTitle() {
@@ -63,11 +60,8 @@ class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   }
 
   @Override
-  public void setGiftDataSourceStrategy(
-      LifecycleOwner owner,
-      GiftDataSourceStrategy giftDataSourceStrategy) {
+  public void setGiftDataSourceStrategy(GiftDataSourceStrategy giftDataSourceStrategy) {
     mGiftDataSourceStrategy = giftDataSourceStrategy;
-    mLifecycleOwner = owner;
   }
 
 
@@ -84,25 +78,31 @@ class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   }
 
   private void initAdapter(RecyclerView recyclerView) {
-    if (mListObserver == null) {
-      mListObserver = new Observer<List<LiveGiftItem>>() {
-        @Override
-        public void onChanged(List<LiveGiftItem> liveGiftItems) {
-
-        }
-      };
+    if (mLiveNormalGiftAdapter == null) {
+      mLiveNormalGiftAdapter = new LiveNormalGiftAdapter(
+          mGiftDataSourceStrategy.getLifecycleOwner(),
+          mGiftDataSourceStrategy.getGiftItemsDataSource());
+      recyclerView.setAdapter(mLiveNormalGiftAdapter);
     }
-    if(mLiveNormalGiftAdapter == null){
-      mLiveNormalGiftAdapter = new LiveNormalGiftAdapter();
-    }
-    mListLiveData = mGiftDataSourceStrategy.getGiftItemsDataSource();
-    mListLiveData.observe(mLifecycleOwner, mListObserver);
     mLiveNormalGiftAdapter.notifyDataSetChanged();
 
   }
 
-  private static class LiveNormalGiftAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+  private static class LiveNormalGiftAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private LiveData<List<LiveGiftItem>> mListLiveData;
+    private LifecycleOwner mLifecycleOwner;
+
+    public LiveNormalGiftAdapter(LifecycleOwner owner, LiveData<List<LiveGiftItem>> listLiveData) {
+      mListLiveData = listLiveData;
+      mLifecycleOwner = owner;
+      mListLiveData.observe(mLifecycleOwner, new Observer<List<LiveGiftItem>>() {
+        @Override
+        public void onChanged(List<LiveGiftItem> liveGiftItems) {
+          notifyDataSetChanged();
+        }
+      });
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
