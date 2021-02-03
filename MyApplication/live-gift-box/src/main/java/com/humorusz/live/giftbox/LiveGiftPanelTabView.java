@@ -1,6 +1,6 @@
 package com.humorusz.live.giftbox;
 
-import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * 礼物面板每页对应的Item
@@ -33,7 +33,8 @@ interface LiveGiftPanelTabView {
 
   /**
    * 获取TabView
+   *
    * @return
    */
-  View getTabView();
+  void onCreateGiftPanelTabView(ViewGroup parent);
 }

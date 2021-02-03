@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+  <TabHost
+    android:id="@+id/live_gift_panel_view_tab_host"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+  <androidx.viewpager2.widget.ViewPager2
+    android:id="@+id/live_gift_panel_view_pager"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+</LinearLayout>

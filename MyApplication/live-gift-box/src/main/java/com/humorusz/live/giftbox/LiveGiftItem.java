@@ -5,5 +5,5 @@ package com.humorusz.live.giftbox;
  * @author zhangzhiquan
  * @date 2021/1/27
  */
-class LiveGiftItem {
+interface LiveGiftItem {
 }
