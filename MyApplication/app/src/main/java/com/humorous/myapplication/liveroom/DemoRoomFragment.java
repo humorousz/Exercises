@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.danmaku.Danmu;
 import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
-import com.humorous.myapplication.frameAnimtor.widget.SelectGiftView;
+import com.humorusz.live.giftbox.normal.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorous.myapplication.liveroom.controller.AutoController;
 import com.humorous.myapplication.liveroom.controller.GiftAnimationController;

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor.widget;
+package com.humorusz.live.giftbox.normal;
 
 import android.content.Context;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,10 +11,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.humorusz.live.giftbox.R;
 
 /**
  * @author Created by zhangzhiquan on 2017/8/3.
@@ -107,7 +108,7 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
             textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             textView.setTextSize(15);
             textView.setPadding(40,40,40,40);
-            textView.setTextColor(getResources().getColorStateList(R.color.text));
+            textView.setTextColor(getResources().getColorStateList(R.color.design_default_color_primary));
             textView.setGravity(Gravity.CENTER);
             return new ViewHolder(textView);
         }

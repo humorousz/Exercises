@@ -55,6 +55,7 @@ dependencies {
     implementation project(':weexlib')
     implementation project(':zxinglibrary')
     implementation project(':networklibrary')
+    implementation project(':live-gift-box')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview

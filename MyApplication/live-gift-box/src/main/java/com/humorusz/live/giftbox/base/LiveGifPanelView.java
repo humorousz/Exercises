@@ -1,4 +1,4 @@
-package com.humorusz.live.giftbox;
+package com.humorusz.live.giftbox.base;
 
 import java.util.List;
 
@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.humorusz.live.giftbox.R;
 
 /**
  * 礼物面板View

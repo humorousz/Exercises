@@ -1,4 +1,4 @@
-package com.humorusz.live.giftbox;
+package com.humorusz.live.giftbox.base;
 
 import android.view.View;
 
