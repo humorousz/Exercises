@@ -6,4 +6,6 @@ package com.humorusz.live.giftbox.base;
  * @date 2021/1/27
  */
 public interface LiveGiftItem {
+  boolean isSelected();
+  void setSelected(boolean isSelected);
 }

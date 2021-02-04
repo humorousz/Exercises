@@ -4,9 +4,10 @@ import java.util.List;
 
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import io.reactivex.Observable;
 
 /**
  * 礼物面板每页对应的Item
@@ -35,6 +36,7 @@ public interface LiveGiftPanelTabView {
    *
    * @return
    */
+  @Nullable
   LiveGiftItem getSelectedGift();
 
   /**
@@ -43,6 +45,11 @@ public interface LiveGiftPanelTabView {
    * @return
    */
   void onCreateGiftPanelTabView(ViewGroup parent);
+
+  /**
+   * 礼物面板被销毁
+   */
+  void onGiftPanelDestroy();
 
   void setGiftItemViewStrategy(GiftItemViewStrategy giftItemViewStrategy);
 
@@ -55,6 +62,13 @@ public interface LiveGiftPanelTabView {
    */
   interface GiftItemViewStrategy {
     View createItemView(LiveGiftItem item, int position);
+
+    <T extends RecyclerView.ViewHolder> T createViewHolder(ViewGroup parent);
+
+    <T extends RecyclerView.ViewHolder> void onBindViewHolder(
+        T viewHolder,
+        LiveGiftItem item,
+        int position);
   }
 
   /**
@@ -72,16 +86,10 @@ public interface LiveGiftPanelTabView {
    */
   interface GiftDataSourceStrategy {
     /**
-     * 礼物列表数据的DataSource
+     * 获取
      *
      * @return
      */
-    LiveData<List<LiveGiftItem>> getGiftItemsDataSource();
-
-    /**
-     * 获取LifecycleOwner
-     * @return
-     */
-    LifecycleOwner getLifecycleOwner();
+    Observable<List<LiveGiftItem>> getGiftItemsObservable();
   }
 }

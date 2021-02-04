@@ -80,6 +80,16 @@ class LiveGifPanelView extends FrameLayout {
     }
   }
 
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    if (mLiveGiftPanelTabViews != null) {
+      for (LiveGiftPanelTabView tabView : mLiveGiftPanelTabViews) {
+        tabView.onGiftPanelDestroy();
+      }
+    }
+  }
+
   private class GiftTabAdapter extends RecyclerView.Adapter<GiftTabViewHolder> {
     @NonNull
     @Override
