@@ -2,7 +2,6 @@ package com.humorusz.live.giftbox.base;
 
 import java.util.List;
 
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,15 +52,16 @@ public interface LiveGiftPanelTabView {
 
   void setGiftItemViewStrategy(GiftItemViewStrategy giftItemViewStrategy);
 
-  void setGiftItemConfigStrategy(GiftItemConfigStrategy giftItemConfigStrategy);
-
   void setGiftDataSourceStrategy(GiftDataSourceStrategy giftDataSourceStrategy);
 
   /**
    * 创建礼物Item的策略
    */
   interface GiftItemViewStrategy {
-    View createItemView(LiveGiftItem item, int position);
+    int getSpanCount();
+
+    @RecyclerView.Orientation
+    int getOrientation();
 
     <T extends RecyclerView.ViewHolder> T createViewHolder(ViewGroup parent);
 
@@ -69,16 +69,6 @@ public interface LiveGiftPanelTabView {
         T viewHolder,
         LiveGiftItem item,
         int position);
-  }
-
-  /**
-   * 礼物列表配置策略
-   */
-  interface GiftItemConfigStrategy {
-    int getSpanCount();
-
-    @RecyclerView.Orientation
-    int getOrientation();
   }
 
   /**

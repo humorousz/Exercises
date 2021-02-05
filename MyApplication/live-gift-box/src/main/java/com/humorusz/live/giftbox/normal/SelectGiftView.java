@@ -12,10 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.humorusz.live.giftbox.R;
+import com.humorusz.live.giftbox.base.LiveGiftItem;
 
 /**
  * @author Created by zhangzhiquan on 2017/8/3.
@@ -23,10 +23,8 @@ import com.humorusz.live.giftbox.R;
 
 public class SelectGiftView extends LinearLayout implements View.OnClickListener {
     private static final String TAG = "SelectGiftView";
-    private static String Path = "f3/";
     private Context mContext;
     private RecyclerView mRecycler;
-    private List<GiftInfo> mData;
     private OnGiftItemClick mListener;
     private OnSpaceClick mSpaceListener;
     public SelectGiftView(Context context) {
@@ -41,7 +39,7 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
         super(context, attrs, defStyleAttr);
         mContext = context;
         setOnClickListener(this);
-        initData();
+        GiftStore.initData();
         initView();
     }
 
@@ -57,22 +55,7 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
         View root = LayoutInflater.from(mContext).inflate(R.layout.layout_animtor_send_view,this);
         mRecycler  = root.findViewById(R.id.recycler_send_gift);
         mRecycler.setLayoutManager(new GridLayoutManager(mContext,3));
-        mRecycler.setAdapter(new Adapter(mData));
-    }
-
-    private void initData(){
-        mData = new ArrayList<>(12);
-        mData.add(new GiftInfo("奢华蛋糕","cake.webp"));
-        mData.add(new GiftInfo("跑车","car.webp"));
-        mData.add(new GiftInfo("新年快乐","newyear.webp"));
-        mData.add(new GiftInfo("人民币","rmb.webp"));
-        mData.add(new GiftInfo("鲜花","flower.webp"));
-        mData.add(new GiftInfo("城堡","house.webp"));
-        mData.add(new GiftInfo("邮轮","ship.webp"));
-        mData.add(new GiftInfo("心动","animation_out.webp"));
-        mData.add(new GiftInfo("香蕉","banana.webp"));
-        mData.add(new GiftInfo("星星 ","star.webp"));
-        mData.add(new GiftInfo("超跑 ","newcar.webp"));
+        mRecycler.setAdapter(new Adapter(GiftStore.mData));
     }
 
     /**
@@ -87,19 +70,10 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
         }
     }
 
-    private static class GiftInfo{
-        String name;
-        String path;
-        public GiftInfo(String name,String path){
-            this.name = name;
-            this.path = Path + path;
-        }
-    }
-
 
     private class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-        List<GiftInfo>  mDatas;
-        public Adapter(List<GiftInfo> list){
+        List<LiveGiftItem>  mDatas;
+        public Adapter(List<LiveGiftItem> list){
             mDatas = list;
         }
         @Override
@@ -117,8 +91,8 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             ViewHolder viewHolder = (ViewHolder) holder;
             TextView textView = viewHolder.mText;
-            final GiftInfo info = mDatas.get(position);
-            textView.setText(info.name);
+            final GiftInfo info = (GiftInfo) mDatas.get(position);
+            textView.setText(info.getName());
             textView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

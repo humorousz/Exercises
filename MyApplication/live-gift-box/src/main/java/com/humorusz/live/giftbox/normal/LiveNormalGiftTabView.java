@@ -22,7 +22,6 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   private GiftItemViewStrategy mGiftItemViewStrategy;
-  private GiftItemConfigStrategy mGiftItemConfigStrategy;
   private GiftDataSourceStrategy mGiftDataSourceStrategy;
   private LiveNormalGiftAdapter mLiveNormalGiftAdapter;
   private CompositeDisposable mDisposable = new CompositeDisposable();
@@ -64,25 +63,20 @@ class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   }
 
   @Override
-  public void setGiftItemConfigStrategy(GiftItemConfigStrategy giftItemConfigStrategy) {
-    mGiftItemConfigStrategy = giftItemConfigStrategy;
-  }
-
-  @Override
   public void setGiftDataSourceStrategy(GiftDataSourceStrategy giftDataSourceStrategy) {
     mGiftDataSourceStrategy = giftDataSourceStrategy;
   }
 
 
   private void initLayoutManager(RecyclerView recyclerView) {
-    if (mGiftItemConfigStrategy == null) {
+    if (mGiftItemViewStrategy == null) {
       throw new IllegalArgumentException(
           "must set mGiftItemConfigStrategy at setGiftItemConfigStrategy method");
     }
     if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
       GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-      gridLayoutManager.setOrientation(mGiftItemConfigStrategy.getOrientation());
-      gridLayoutManager.setSpanCount(mGiftItemConfigStrategy.getSpanCount());
+      gridLayoutManager.setOrientation(mGiftItemViewStrategy.getOrientation());
+      gridLayoutManager.setSpanCount(mGiftItemViewStrategy.getSpanCount());
     }
   }
 
@@ -102,10 +96,10 @@ class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   }
 
   private class LiveNormalGiftAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<LiveGiftItem> mLiveGiftItems;
+    private List<? extends LiveGiftItem> mLiveGiftItems;
     private int mCurrentSelectedPosition = -1;
 
-    public void setLiveGiftItems(List<LiveGiftItem> liveGiftItems) {
+    public void setLiveGiftItems(List<? extends LiveGiftItem> liveGiftItems) {
       mLiveGiftItems = liveGiftItems;
     }
 
