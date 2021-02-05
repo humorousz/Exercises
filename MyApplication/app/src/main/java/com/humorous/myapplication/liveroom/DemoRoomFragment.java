@@ -200,9 +200,8 @@ public class DemoRoomFragment extends BaseFragment
 
   public void openGiftBox() {
     if (mPop == null) {
-      ViewGroup group = getActivity().findViewById(android.R.id.content);
-      View tiedView = group.getChildAt(0);
-      mPop = new SendGiftPopupWindow(getContext(), createGiftBoxView(), tiedView);
+      View group = getActivity().findViewById(R.id.image_gift);
+      mPop = new SendGiftPopupWindow(getContext(), createGiftBoxView(), group);
     }
     mPop.show();
   }
@@ -212,7 +211,13 @@ public class DemoRoomFragment extends BaseFragment
     LiveGiftPanelTabView giftPanelTabView = new LiveNormalGiftTabView();
     giftPanelTabView.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
     giftPanelTabView.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
-    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView));
+
+
+    LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
+    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
+    giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
+
+    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView,giftPanelTabView2));
     return view;
   }
 

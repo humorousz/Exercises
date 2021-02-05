@@ -23,7 +23,7 @@ public class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftI
 
   @Override
   public int getOrientation() {
-    return RecyclerView.HORIZONTAL;
+    return RecyclerView.VERTICAL;
   }
 
   @Override

@@ -23,7 +23,7 @@ public class SendGiftPopupWindow extends PopupWindow {
         this.contentView = contentView;
         this.mTiedView = tiedView;
         this.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-        this.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+        this.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         this.update();
         this.setOutsideTouchable(true);
         this.setFocusable(true);
@@ -37,7 +37,7 @@ public class SendGiftPopupWindow extends PopupWindow {
             return;
         }
         setContentView(contentView);
-        showAtLocation(mTiedView, Gravity.BOTTOM,0,0);
+        showAtLocation(mTiedView, Gravity.BOTTOM,0,150);
     }
 
 }
