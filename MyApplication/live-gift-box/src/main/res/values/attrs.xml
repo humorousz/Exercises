@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="GridViewPager">
+    <attr name="gvpColumnNumber" format="integer"/>
+    <attr name="gvpRowNumber" format="integer"/>
+    <attr name="gvpColumnMargin" format="dimension|flags"/>
+    <attr name="gvpRowMargin" format="dimension|flags"/>
+    <attr name="gvpMinCellWidth" format="dimension|flags"/>
+    <attr name="gvpMinCellHeight" format="dimension|flags"/>
+    <attr name="android_padding" format="dimension|flags"/>
+    <attr name="android_paddingLeft" format="dimension|flags"/>
+    <attr name="android_paddingRight" format="dimension|flags"/>
+  </declare-styleable>
+</resources>
