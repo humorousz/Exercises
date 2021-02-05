@@ -15,7 +15,7 @@ import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
  * @author zhangzhiquan
  * @date 2021/2/4
  */
-class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftItemViewStrategy {
+public class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftItemViewStrategy {
   @Override
   public int getSpanCount() {
     return 4;

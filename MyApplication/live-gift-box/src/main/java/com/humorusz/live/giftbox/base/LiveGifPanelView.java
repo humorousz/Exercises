@@ -22,7 +22,7 @@ import com.humorusz.live.giftbox.R;
  * @author zhangzhiquan
  * @date 2021/1/27
  */
-class LiveGifPanelView extends FrameLayout {
+public class LiveGifPanelView extends FrameLayout {
   private TabHost mTabHost;
   private GiftTabAdapter mAdapter;
   private ViewPager2 mGiftTabViewPager;
@@ -31,12 +31,12 @@ class LiveGifPanelView extends FrameLayout {
   private LiveGiftTabTitleCreateFactory mTabContentFactory;
 
   public LiveGifPanelView(@NonNull Context context) {
-    super(context);
+    this(context, null);
   }
 
   public LiveGifPanelView(@NonNull Context context,
       @Nullable AttributeSet attrs) {
-    super(context, attrs);
+    this(context, attrs, 0);
   }
 
   public LiveGifPanelView(@NonNull Context context, @Nullable AttributeSet attrs,

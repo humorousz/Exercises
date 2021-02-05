@@ -39,7 +39,6 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
         super(context, attrs, defStyleAttr);
         mContext = context;
         setOnClickListener(this);
-        GiftStore.initData();
         initView();
     }
 

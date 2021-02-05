@@ -20,11 +20,12 @@ import io.reactivex.disposables.CompositeDisposable;
  * @author zhangzhiquan
  * @date 2021/2/3
  */
-class LiveNormalGiftTabView implements LiveGiftPanelTabView {
+public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   private GiftItemViewStrategy mGiftItemViewStrategy;
   private GiftDataSourceStrategy mGiftDataSourceStrategy;
   private LiveNormalGiftAdapter mLiveNormalGiftAdapter;
   private CompositeDisposable mDisposable = new CompositeDisposable();
+  private RecyclerView mRecyclerView;
 
   @Override
   public String getTitle() {
@@ -45,9 +46,9 @@ class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   public void onCreateGiftPanelTabView(ViewGroup parent) {
     LayoutInflater.from(parent.getContext())
         .inflate(R.layout.live_gift_panel_item_view, parent);
-    RecyclerView recyclerView = parent.findViewById(R.id.live_gift_panel_view_recycler_view);
-    initLayoutManager(recyclerView);
-    initAdapter(recyclerView);
+    mRecyclerView = parent.findViewById(R.id.live_gift_panel_view_recycler_view);
+    initLayoutManager(mRecyclerView);
+    initAdapter(mRecyclerView);
   }
 
   @Override

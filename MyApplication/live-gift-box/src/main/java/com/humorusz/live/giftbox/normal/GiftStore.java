@@ -31,7 +31,8 @@ class GiftStore {
     return mData.get(position);
   }
 
-  public List<LiveGiftItem> getData(){
+  public static List<LiveGiftItem> getData(){
+    initData();
     return mData;
   }
 }

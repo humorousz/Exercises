@@ -5,9 +5,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.danmaku.Danmu;
 import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
+import com.humorusz.live.giftbox.base.LiveGifPanelView;
+import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
+import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
+import com.humorusz.live.giftbox.normal.LiveNormalGiftTabView;
+import com.humorusz.live.giftbox.normal.LiveNormalGiftTabViewStrategy;
 import com.humorusz.live.giftbox.normal.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorous.myapplication.liveroom.controller.AutoController;
@@ -22,6 +28,8 @@ import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
 import com.humorousz.uiutils.widget.InputDialog;
 import com.humrousz.sequence.AnimationImageView;
+
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -192,14 +200,20 @@ public class DemoRoomFragment extends BaseFragment
 
   public void openGiftBox() {
     if (mPop == null) {
-      SelectGiftView view = new SelectGiftView(getContext());
-      view.setOnGiftItemClickListener(this);
-      view.setSpaceListener(this);
       ViewGroup group = getActivity().findViewById(android.R.id.content);
       View tiedView = group.getChildAt(0);
-      mPop = new SendGiftPopupWindow(getContext(), view, tiedView);
+      mPop = new SendGiftPopupWindow(getContext(), createGiftBoxView(), tiedView);
     }
     mPop.show();
+  }
+
+  private View createGiftBoxView() {
+    LiveGifPanelView view = new LiveGifPanelView(getContext());
+    LiveGiftPanelTabView giftPanelTabView = new LiveNormalGiftTabView();
+    giftPanelTabView.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
+    giftPanelTabView.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
+    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView));
+    return view;
   }
 
   private void addDanmaku(String content, int p) {
