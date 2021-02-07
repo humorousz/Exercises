@@ -2,6 +2,7 @@ package com.humorusz.live.giftbox.base;
 
 import java.util.List;
 
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,13 +63,15 @@ public interface LiveGiftPanelTabView {
 
     @RecyclerView.Orientation
     int getOrientation();
-
-    <T extends RecyclerView.ViewHolder> T createViewHolder(ViewGroup parent);
-
-    <T extends RecyclerView.ViewHolder> void onBindViewHolder(
-        T viewHolder,
-        LiveGiftItem item,
-        int position);
+    /**
+     * 创建子View
+     *
+     * @param position
+     * @param parent
+     * @param item
+     * @return
+     */
+    View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item);
   }
 
   /**

@@ -4,9 +4,11 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="200dp">
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/live_gift_panel_view_recycler_view"
+
+  <com.humorusz.live.giftbox.GridViewPager
+    android:id="@+id/live_gift_panel_view_pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+    app:gvpColumnNumber="3"
+    app:gvpRowNumber="4" />
 </FrameLayout>

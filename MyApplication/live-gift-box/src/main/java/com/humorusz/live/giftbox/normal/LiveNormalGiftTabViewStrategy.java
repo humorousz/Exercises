@@ -27,33 +27,14 @@ public class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftI
   }
 
   @Override
-  public <T extends RecyclerView.ViewHolder> void onBindViewHolder(
-      T viewHolder,
-      LiveGiftItem item,
-      int position) {
-    ViewHolder holder = (ViewHolder) viewHolder;
-    TextView textView = holder.mText;
-    textView.setText(item.getName());
-
-  }
-
-  @Override
-  public ViewHolder createViewHolder(ViewGroup parent) {
+  public View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item) {
     TextView textView = new TextView(parent.getContext());
     textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     textView.setTextSize(15);
     textView.setPadding(40,40,40,40);
     textView.setTextColor(Color.RED);
     textView.setGravity(Gravity.CENTER);
-    return new ViewHolder(textView);
-  }
-
-
-  private class ViewHolder extends RecyclerView.ViewHolder{
-    TextView mText;
-    public ViewHolder(View itemView) {
-      super(itemView);
-      mText = (TextView) itemView;
-    }
+    textView.setText(item.getName());
+    return textView;
   }
 }
