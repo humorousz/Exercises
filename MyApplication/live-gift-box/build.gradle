@@ -51,4 +51,5 @@ dependencies {
     implementation rootProject.ext.dependencies.viewpager2
     implementation rootProject.ext.dependencies.rxJava
     implementation rootProject.ext.dependencies.rxAndroid
+    implementation rootProject.ext.dependencies.constraint_layout
 }

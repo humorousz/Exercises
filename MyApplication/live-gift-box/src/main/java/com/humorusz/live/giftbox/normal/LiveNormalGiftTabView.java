@@ -15,6 +15,7 @@ import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
+ * 普通礼物面板
  * @author zhangzhiquan
  * @date 2021/2/3
  */
