@@ -14,7 +14,7 @@ import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftTabView;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftTabViewStrategy;
-import com.humorusz.live.giftbox.normal.SelectGiftView;
+import com.humorusz.live.giftbox.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorous.myapplication.liveroom.controller.AutoController;
 import com.humorous.myapplication.liveroom.controller.GiftAnimationController;

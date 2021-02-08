@@ -1,4 +1,4 @@
-package com.humorusz.live.giftbox.normal;
+package com.humorusz.live.giftbox.data;
 
 import com.humorusz.live.giftbox.base.LiveGiftItem;
 
@@ -6,10 +6,10 @@ import com.humorusz.live.giftbox.base.LiveGiftItem;
  * @author zhangzhiquan
  * @date 2021/2/4
  */
-class GiftInfo extends LiveGiftItem {
+public class GiftInfo extends LiveGiftItem {
   private static String Path = "f3/";
-  String name;
-  String path;
+  public String name;
+  public String path;
   private boolean mIsSelected;
 
   public GiftInfo(String name, String path) {

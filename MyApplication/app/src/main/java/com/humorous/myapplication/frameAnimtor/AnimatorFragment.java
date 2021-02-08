@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.frameAnimtor.webp.BitMapActor;
-import com.humorusz.live.giftbox.normal.SelectGiftView;
+import com.humorusz.live.giftbox.widget.SelectGiftView;
 import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humrousz.sequence.AnimationImageView;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.humorusz.live.giftbox.base.LiveGiftItem;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
+import com.humorusz.live.giftbox.data.GiftStore;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -1,4 +1,4 @@
-package com.humorusz.live.giftbox.normal;
+package com.humorusz.live.giftbox.widget;
 
 import android.content.Context;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +16,8 @@ import java.util.List;
 
 import com.humorusz.live.giftbox.R;
 import com.humorusz.live.giftbox.base.LiveGiftItem;
+import com.humorusz.live.giftbox.data.GiftInfo;
+import com.humorusz.live.giftbox.data.GiftStore;
 
 /**
  * @author Created by zhangzhiquan on 2017/8/3.
@@ -54,7 +56,7 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
         View root = LayoutInflater.from(mContext).inflate(R.layout.layout_animtor_send_view,this);
         mRecycler  = root.findViewById(R.id.recycler_send_gift);
         mRecycler.setLayoutManager(new GridLayoutManager(mContext,3));
-        mRecycler.setAdapter(new Adapter(GiftStore.mData));
+        mRecycler.setAdapter(new Adapter(GiftStore.getData()));
     }
 
     /**
