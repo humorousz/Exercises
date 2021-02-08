@@ -213,11 +213,12 @@ public class DemoRoomFragment extends BaseFragment
     giftPanelTabView.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
 
 
-    LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
-    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
-    giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
+//    LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
+//    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
+//    giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
 
-    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView,giftPanelTabView2));
+//    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView,giftPanelTabView2));
+    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView));
     return view;
   }
 

@@ -22,7 +22,7 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   private GiftItemViewStrategy mGiftItemViewStrategy;
   private GiftDataSourceStrategy mGiftDataSourceStrategy;
   private CompositeDisposable mDisposable = new CompositeDisposable();
-  private GridViewPager mRecyclerView;
+  private GridViewPager mViewPager;
   private Adapter mAdapter;
 
   @Override
@@ -37,15 +37,15 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
   @Override
   public LiveGiftItem getSelectedGift() {
-    return mRecyclerView == null ? null : (LiveGiftItem) mAdapter.getItem(mRecyclerView.getCurrentItem());
+    return mViewPager == null ? null : (LiveGiftItem) mAdapter.getItem(mViewPager.getCurrentItem());
   }
 
   @Override
   public void onCreateGiftPanelTabView(ViewGroup parent) {
     LayoutInflater.from(parent.getContext())
         .inflate(R.layout.live_gift_panel_item_view, parent);
-    mRecyclerView = parent.findViewById(R.id.live_gift_panel_view_pager);
-    initAdapter(mRecyclerView);
+    mViewPager = parent.findViewById(R.id.live_gift_panel_view_pager);
+    initAdapter(mViewPager);
   }
 
   @Override

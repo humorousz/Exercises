@@ -9,6 +9,6 @@
     android:id="@+id/live_gift_panel_view_pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:gvpColumnNumber="3"
-    app:gvpRowNumber="4" />
+    app:gvpColumnNumber="4"
+    app:gvpRowNumber="3" />
 </FrameLayout>

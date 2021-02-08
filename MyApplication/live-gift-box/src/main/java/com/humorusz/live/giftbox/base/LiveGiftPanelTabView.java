@@ -5,7 +5,6 @@ import java.util.List;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import io.reactivex.Observable;
 
@@ -59,10 +58,6 @@ public interface LiveGiftPanelTabView {
    * 创建礼物Item的策略
    */
   interface GiftItemViewStrategy {
-    int getSpanCount();
-
-    @RecyclerView.Orientation
-    int getOrientation();
     /**
      * 创建子View
      *
