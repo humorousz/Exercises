@@ -1,4 +1,4 @@
-package com.humorusz.live.giftbox;
+package com.humorusz.live.giftbox.widget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.humorusz.live.giftbox.R;
 
 public class GridViewPager extends ViewPager {
 

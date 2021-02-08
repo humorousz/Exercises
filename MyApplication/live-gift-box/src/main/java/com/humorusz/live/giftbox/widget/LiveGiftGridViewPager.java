@@ -1,4 +1,4 @@
-package com.humorusz.live.giftbox;
+package com.humorusz.live.giftbox.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
