@@ -1,6 +1,6 @@
 package com.humorusz.live.giftbox.normal;
 
-import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,6 @@ public class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftI
     View mRoot = LayoutInflater.from(parent.getContext())
         .inflate(R.layout.live_gift_panel_normal_item_view, parent, false);
     onUpdateItemView(position, mRoot, item);
-    Log.d("ZZZ","LiveNormalGiftTabView create");
     return mRoot;
   }
 
@@ -30,6 +29,23 @@ public class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftI
   public void onUpdateItemView(int position, View itemView, LiveGiftItem item) {
     TextView textView = itemView.findViewById(R.id.live_normal_gift_view);
     textView.setText(item.getName());
-    Log.d("ZZZ","LiveNormalGiftTabView update");
+    if (item.isSelected()) {
+      textView.setBackgroundColor(Color.RED);
+    } else {
+      textView.setBackgroundColor(Color.TRANSPARENT);
+    }
+  }
+
+  @Override
+  public void onItemClick(int position, View itemView, LiveGiftItem item) {
+    TextView textView = itemView.findViewById(R.id.live_normal_gift_view);
+    textView.animate()
+        .scaleX(2f)
+        .scaleY(2f)
+        .setDuration(300)
+        .scaleX(1f)
+        .scaleY(1f)
+        .setDuration(300)
+        .start();
   }
 }

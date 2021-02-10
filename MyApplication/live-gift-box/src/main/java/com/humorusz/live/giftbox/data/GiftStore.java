@@ -13,7 +13,10 @@ public class GiftStore {
   static List<LiveGiftItem> mDataPager1;
   static List<LiveGiftItem> mDataPager2;
 
-  static {
+  private static void initPage1() {
+    if (mDataPager1 != null) {
+      return;
+    }
     mDataPager1 = new ArrayList<>(12);
     mDataPager1.add(new GiftInfo("奢华蛋糕", "cake.webp"));
     mDataPager1.add(new GiftInfo("跑车", "car.webp"));
@@ -39,8 +42,12 @@ public class GiftStore {
     mDataPager1.add(new GiftInfo("香蕉1", "banana.webp"));
     mDataPager1.add(new GiftInfo("星星1", "star.webp"));
     mDataPager1.add(new GiftInfo("超跑1", "newcar.webp"));
+  }
 
-
+  private static void initPage2() {
+    if (mDataPager2 != null) {
+      return;
+    }
     mDataPager2 = new ArrayList<>(12);
     mDataPager2.add(new GiftInfo("奢华蛋糕22", "cake.webp"));
     mDataPager2.add(new GiftInfo("跑车22", "car.webp"));
@@ -60,11 +67,13 @@ public class GiftStore {
   }
 
   public static List<LiveGiftItem> getDataPage1() {
+    initPage1();
     return mDataPager1;
   }
 
 
   public static List<LiveGiftItem> getDataPage2() {
+    initPage2();
     return mDataPager2;
   }
 }

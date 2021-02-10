@@ -84,6 +84,7 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
   private class Adapter extends BaseAdapter {
     private List<LiveGiftItem> mLiveGiftItemList;
+    private int mSelectedPosition = -1;
 
     @Override
     public int getCount() {
@@ -113,7 +114,24 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
         ViewHolder holder = (ViewHolder) convertView.getTag();
         mGiftItemViewStrategy
             .onUpdateItemView(position, holder.mView, (LiveGiftItem) getItem(position));
+        giftView = holder.mView;
       }
+      View finalGiftView = giftView;
+      giftView.setOnClickListener(v -> {
+        if (mSelectedPosition != position) {
+          LiveGiftItem lastSelected = getCount() > mSelectedPosition && mSelectedPosition >= 0
+              ? (LiveGiftItem) getItem(mSelectedPosition)
+              : null;
+          LiveGiftItem current = (LiveGiftItem) getItem(position);
+          if (lastSelected != null) {
+            lastSelected.setSelected(false);
+          }
+          current.setSelected(true);
+          mGiftItemViewStrategy.onItemClick(position, finalGiftView, current);
+          mSelectedPosition = position;
+          notifyDataSetChanged();
+        }
+      });
       return giftView;
     }
   }

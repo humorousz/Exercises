@@ -77,6 +77,8 @@ public interface LiveGiftPanelTabView {
      */
     void onUpdateItemView(int position, View itemView, LiveGiftItem item);
 
+    void onItemClick(int position, View itemView, LiveGiftItem item);
+
   }
 
   /**
