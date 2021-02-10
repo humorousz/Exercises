@@ -77,6 +77,13 @@ public interface LiveGiftPanelTabView {
      */
     void onUpdateItemView(int position, View itemView, LiveGiftItem item);
 
+    /**
+     * 子View被点击
+     *
+     * @param position 位置
+     * @param itemView View
+     * @param item     数据
+     */
     void onItemClick(int position, View itemView, LiveGiftItem item);
 
   }

@@ -16,6 +16,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.humorusz.live.giftbox.R;
 
+import se.emilsjolander.flipview.Recycler;
+
 /**
  * 礼物面板View
  *
@@ -51,6 +53,9 @@ public class LiveGifPanelView extends FrameLayout {
     mTabHost = findViewById(R.id.live_gift_panel_view_tab_host);
     mAdapter = new GiftTabAdapter();
     mGiftTabViewPager.setAdapter(mAdapter);
+    if (mGiftTabViewPager.getChildAt(0) instanceof RecyclerView) {
+      mGiftTabViewPager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+    }
   }
 
   public void setGiftPanelTabContentFactory(@Nullable LiveGiftTabTitleCreateFactory factory) {

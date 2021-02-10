@@ -1,4 +1,4 @@
-package com.humorusz.live.giftbox.normal;
+package com.humorusz.live.giftbox.base;
 
 import java.util.List;
 
@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.humorusz.live.giftbox.R;
-import com.humorusz.live.giftbox.base.LiveGiftItem;
-import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 import com.humorusz.live.giftbox.widget.GridViewPager;
 
 import io.reactivex.disposables.CompositeDisposable;

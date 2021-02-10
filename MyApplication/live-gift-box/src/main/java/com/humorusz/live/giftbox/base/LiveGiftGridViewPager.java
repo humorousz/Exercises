@@ -1,9 +1,11 @@
-package com.humorusz.live.giftbox.widget;
+package com.humorusz.live.giftbox.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import com.humorusz.live.giftbox.widget.GridViewPager;
 
 /**
  * 直播礼物网格ViewPager
