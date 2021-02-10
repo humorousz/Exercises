@@ -56,7 +56,7 @@ public class SelectGiftView extends LinearLayout implements View.OnClickListener
         View root = LayoutInflater.from(mContext).inflate(R.layout.layout_animtor_send_view,this);
         mRecycler  = root.findViewById(R.id.recycler_send_gift);
         mRecycler.setLayoutManager(new GridLayoutManager(mContext,3));
-        mRecycler.setAdapter(new Adapter(GiftStore.getData()));
+        mRecycler.setAdapter(new Adapter(GiftStore.getDataPage1()));
     }
 
     /**

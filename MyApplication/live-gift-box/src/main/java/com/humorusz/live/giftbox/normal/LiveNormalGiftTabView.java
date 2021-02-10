@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.humorusz.live.giftbox.widget.GridViewPager;
 import com.humorusz.live.giftbox.R;
 import com.humorusz.live.giftbox.base.LiveGiftItem;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
+import com.humorusz.live.giftbox.widget.GridViewPager;
 
 import io.reactivex.disposables.CompositeDisposable;
 

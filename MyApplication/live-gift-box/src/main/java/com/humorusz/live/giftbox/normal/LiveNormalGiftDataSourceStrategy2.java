@@ -11,11 +11,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * @author zhangzhiquan
- * @date 2021/2/5
+ * @date 2021/2/10
  */
-public class LiveNormalGiftDataSourceStrategy implements LiveGiftPanelTabView.GiftDataSourceStrategy {
+public class LiveNormalGiftDataSourceStrategy2 implements LiveGiftPanelTabView.GiftDataSourceStrategy {
   @Override
   public Observable<List<LiveGiftItem>> getGiftItemsObservable() {
-    return Observable.fromArray(GiftStore.getDataPage1()).observeOn(AndroidSchedulers.mainThread());
+    return Observable.fromArray(GiftStore.getDataPage2()).observeOn(AndroidSchedulers.mainThread());
   }
 }

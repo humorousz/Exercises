@@ -12,6 +12,7 @@ import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
 import com.humorusz.live.giftbox.base.LiveGifPanelView;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
+import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy2;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftTabView;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftTabViewStrategy;
 import com.humorusz.live.giftbox.widget.SelectGiftView;
@@ -214,7 +215,7 @@ public class DemoRoomFragment extends BaseFragment
 
 
     LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
-    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
+    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy2());
     giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
 
     view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView,giftPanelTabView2));
