@@ -16,6 +16,7 @@ import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * 普通礼物面板
+ *
  * @author zhangzhiquan
  * @date 2021/2/3
  */
@@ -101,9 +102,23 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-      View giftView = mGiftItemViewStrategy
-          .onCreateItemView(position, parent, (LiveGiftItem) getItem(position));
+      View giftView = null;
+      if (convertView == null) {
+        giftView = mGiftItemViewStrategy
+            .onCreateItemView(position, parent, (LiveGiftItem) getItem(position));
+        ViewHolder viewHolder = new ViewHolder();
+        viewHolder.mView = giftView;
+        giftView.setTag(viewHolder);
+      } else {
+        ViewHolder holder = (ViewHolder) convertView.getTag();
+        mGiftItemViewStrategy
+            .onUpdateItemView(position, holder.mView, (LiveGiftItem) getItem(position));
+      }
       return giftView;
     }
+  }
+
+  private class ViewHolder {
+    public View mView;
   }
 }

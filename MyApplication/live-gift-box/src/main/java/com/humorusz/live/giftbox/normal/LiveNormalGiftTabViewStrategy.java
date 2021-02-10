@@ -1,12 +1,11 @@
 package com.humorusz.live.giftbox.normal;
 
-import android.graphics.Color;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.humorusz.live.giftbox.R;
 import com.humorusz.live.giftbox.base.LiveGiftItem;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 
@@ -19,14 +18,15 @@ import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 public class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftItemViewStrategy {
   @Override
   public View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item) {
-    TextView textView = new TextView(parent.getContext());
-    textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.WRAP_CONTENT));
-    textView.setTextSize(15);
-    textView.setPadding(40, 40, 40, 40);
-    textView.setTextColor(Color.RED);
-    textView.setGravity(Gravity.CENTER);
+    View mRoot = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.live_gift_panel_normal_item_view, parent, false);
+    onUpdateItemView(position, mRoot, item);
+    return mRoot;
+  }
+
+  @Override
+  public void onUpdateItemView(int position, View itemView, LiveGiftItem item) {
+    TextView textView = itemView.findViewById(R.id.live_normal_gift_view);
     textView.setText(item.getName());
-    return textView;
   }
 }

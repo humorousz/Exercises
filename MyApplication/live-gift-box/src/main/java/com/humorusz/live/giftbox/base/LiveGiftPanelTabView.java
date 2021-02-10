@@ -67,6 +67,16 @@ public interface LiveGiftPanelTabView {
      * @return
      */
     View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item);
+
+    /**
+     * 更新子View
+     *
+     * @param position
+     * @param itemView
+     * @param item
+     */
+    void onUpdateItemView(int position, View itemView, LiveGiftItem item);
+
   }
 
   /**
