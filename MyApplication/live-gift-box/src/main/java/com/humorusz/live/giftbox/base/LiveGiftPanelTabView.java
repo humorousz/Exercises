@@ -54,6 +54,8 @@ public interface LiveGiftPanelTabView {
 
   void setGiftDataSourceStrategy(GiftDataSourceStrategy giftDataSourceStrategy);
 
+  void setOnGiftItemClickListener(OnGiftItemClickListener listener);
+
   /**
    * 创建礼物Item的策略
    */
@@ -98,5 +100,17 @@ public interface LiveGiftPanelTabView {
      * @return
      */
     Observable<List<LiveGiftItem>> getGiftItemsObservable();
+  }
+
+  /**
+   * 红包Item点击事件传递
+   */
+  interface OnGiftItemClickListener{
+    /**
+     * 红包Item被点击
+     * @param position 点击的位置
+     * @param clickItem 点击的Item
+     */
+    void onGiftItemClick(int position,LiveGiftItem clickItem);
   }
 }

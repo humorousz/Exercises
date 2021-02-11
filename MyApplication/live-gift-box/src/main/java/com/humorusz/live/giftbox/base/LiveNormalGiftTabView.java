@@ -21,6 +21,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   private GiftItemViewStrategy mGiftItemViewStrategy;
   private GiftDataSourceStrategy mGiftDataSourceStrategy;
+  private OnGiftItemClickListener mOnGiftItemClickListener;
   private CompositeDisposable mDisposable = new CompositeDisposable();
   private GridViewPager mViewPager;
   private Adapter mAdapter;
@@ -63,6 +64,11 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   @Override
   public void setGiftDataSourceStrategy(GiftDataSourceStrategy giftDataSourceStrategy) {
     mGiftDataSourceStrategy = giftDataSourceStrategy;
+  }
+
+  @Override
+  public void setOnGiftItemClickListener(OnGiftItemClickListener listener) {
+    mOnGiftItemClickListener = listener;
   }
 
   private void initAdapter(GridViewPager viewPager) {
@@ -126,6 +132,9 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
           }
           current.setSelected(true);
           mGiftItemViewStrategy.onItemClick(position, finalGiftView, current);
+          if (mOnGiftItemClickListener != null) {
+            mOnGiftItemClickListener.onGiftItemClick(position, current);
+          }
           mSelectedPosition = position;
           notifyDataSetChanged();
         }

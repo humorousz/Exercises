@@ -57,7 +57,7 @@ class LiveGiftGridViewPager extends GridViewPager {
         final float x = ev.getX(pointerIndex);
         final float dx = x - mLastMotionX;
         mLastMotionX = x;
-        /**
+        /*
          * 除了滑动方向，还要考虑是否已经处理了Touch事件，如果处理了，就不考虑滑动方向了，否则将会发生跳动
          */
         if (shouldIgnore(dx) && !mHasInterceptTouchEvent) {

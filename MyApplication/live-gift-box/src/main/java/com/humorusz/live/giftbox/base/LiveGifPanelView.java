@@ -16,8 +16,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.humorusz.live.giftbox.R;
 
-import se.emilsjolander.flipview.Recycler;
-
 /**
  * 礼物面板View
  *
@@ -31,6 +29,19 @@ public class LiveGifPanelView extends FrameLayout {
   private List<LiveGiftPanelTabView> mLiveGiftPanelTabViews;
   @Nullable
   private LiveGiftTabTitleCreateFactory mTabContentFactory;
+  private OnGiftItemClickListener mOnGiftItemClickListener;
+  private LiveGiftPanelTabView.OnGiftItemClickListener mGiftPanelTabItemClickListener =
+      new LiveGiftPanelTabView.OnGiftItemClickListener() {
+        @Override
+        public void onGiftItemClick(int position, LiveGiftItem clickItem) {
+          if (mOnGiftItemClickListener != null) {
+            mOnGiftItemClickListener.onGiftItemClick(
+                mLiveGiftPanelTabViews.get(mGiftTabViewPager.getCurrentItem()),
+                position,
+                clickItem);
+          }
+        }
+      };
 
   public LiveGifPanelView(@NonNull Context context) {
     this(context, null);
@@ -64,7 +75,14 @@ public class LiveGifPanelView extends FrameLayout {
 
   public void setGiftPanelTabItems(@Nullable List<LiveGiftPanelTabView> panelTabItems) {
     mLiveGiftPanelTabViews = panelTabItems;
+    for (LiveGiftPanelTabView tabView : panelTabItems) {
+      tabView.setOnGiftItemClickListener(mGiftPanelTabItemClickListener);
+    }
     mAdapter.notifyDataSetChanged();
+  }
+
+  public void setOnGiftItemClickListener(OnGiftItemClickListener listener) {
+    mOnGiftItemClickListener = listener;
   }
 
   private void setTabHost(@Nullable List<LiveGiftPanelTabView> panelTabItems) {
@@ -141,5 +159,22 @@ public class LiveGifPanelView extends FrameLayout {
     public ViewGroup getViewGroup() {
       return mViewGroup;
     }
+  }
+
+  /**
+   * 礼物Item被点击
+   */
+  public interface OnGiftItemClickListener {
+    /**
+     * 点击礼物Item的回调
+     *
+     * @param currentTab
+     * @param position
+     * @param clickItem
+     */
+    void onGiftItemClick(
+        LiveGiftPanelTabView currentTab,
+        int position,
+        LiveGiftItem clickItem);
   }
 }
