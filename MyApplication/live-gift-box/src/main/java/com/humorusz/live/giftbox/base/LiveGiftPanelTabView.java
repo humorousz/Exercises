@@ -56,6 +56,8 @@ public interface LiveGiftPanelTabView {
 
   void setGiftDefaultSelectedStrategy(GiftDefaultSelectedStrategy giftDefaultSelectedStrategy);
 
+  void setGiftSendStrategy(GiftSendStrategy giftSendStrategy);
+
   void setOnGiftItemClickListener(OnGiftItemClickListener listener);
 
   /**
@@ -116,6 +118,20 @@ public interface LiveGiftPanelTabView {
      */
     int getDefaultSelectedPosition(int currentSize);
   }
+
+
+  /**
+   * 发送礼物策略
+   */
+  interface GiftSendStrategy{
+    /**
+     * 发送礼物
+     * @param giftItem
+     * @param count
+     */
+    void sendGift(LiveGiftItem giftItem, long count);
+  }
+
 
   /**
    * 红包Item点击事件传递

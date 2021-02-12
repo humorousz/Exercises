@@ -21,11 +21,13 @@ import io.reactivex.disposables.CompositeDisposable;
 public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   private GiftItemViewStrategy mGiftItemViewStrategy;
   private GiftDataSourceStrategy mGiftDataSourceStrategy;
+  private GiftSendStrategy mGiftSendStrategy;
   private OnGiftItemClickListener mOnGiftItemClickListener;
   private CompositeDisposable mDisposable = new CompositeDisposable();
   private GridViewPager mViewPager;
   private Adapter mAdapter;
   private int mSelectedPosition = -1;
+
   private GiftDefaultSelectedStrategy mDefaultSelectedStrategy = new GiftDefaultSelectedStrategy() {
     @Override
     public int getDefaultSelectedPosition(int currentSize) {
@@ -40,7 +42,9 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
   @Override
   public void sendGift(LiveGiftItem giftItem, long count) {
-
+    if (mGiftSendStrategy != null) {
+      mGiftSendStrategy.sendGift(giftItem, count);
+    }
   }
 
   @Override
@@ -77,6 +81,11 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   public void setGiftDefaultSelectedStrategy(
       GiftDefaultSelectedStrategy giftDefaultSelectedStrategy) {
     mDefaultSelectedStrategy = giftDefaultSelectedStrategy;
+  }
+
+  @Override
+  public void setGiftSendStrategy(GiftSendStrategy giftSendStrategy) {
+    mGiftSendStrategy = giftSendStrategy;
   }
 
   @Override

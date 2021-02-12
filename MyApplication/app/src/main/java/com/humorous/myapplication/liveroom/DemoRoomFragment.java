@@ -10,6 +10,7 @@ import com.humorous.myapplication.R;
 import com.humorous.myapplication.danmaku.Danmu;
 import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
 import com.humorous.myapplication.liveroom.gift.LiveGiftPanelDialog;
+import com.humorous.myapplication.liveroom.gift.LiveGiftPanelTabViewFactory;
 import com.humorusz.live.giftbox.base.LiveGifPanelView;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
@@ -58,6 +59,7 @@ public class DemoRoomFragment extends BaseFragment
   private View mRoot;
   private DanmakuAdapter mDamakuView;
   private LiveGiftPanelDialog mGiftPanelDialog;
+  private LiveGiftPanelTabViewFactory mLiveGiftPanelTabViewFactory;
 
   @Override
   public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -204,7 +206,11 @@ public class DemoRoomFragment extends BaseFragment
     if(mGiftPanelDialog != null){
       mGiftPanelDialog.dismissAllowingStateLoss();
     }
-    mGiftPanelDialog = LiveGiftPanelDialog.newInstance();
+    if(mLiveGiftPanelTabViewFactory == null){
+      mLiveGiftPanelTabViewFactory = new LiveGiftPanelTabViewFactory();
+      mLiveGiftPanelTabViewFactory.setGiftAnimationController(mGiftController);
+    }
+    mGiftPanelDialog = LiveGiftPanelDialog.newInstance(mLiveGiftPanelTabViewFactory);
     mGiftPanelDialog.show(getChildFragmentManager(),"A");
 
   }

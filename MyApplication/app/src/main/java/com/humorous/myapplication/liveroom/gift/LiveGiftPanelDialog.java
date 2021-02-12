@@ -1,13 +1,10 @@
 package com.humorous.myapplication.liveroom.gift;
 
-import java.util.Arrays;
-
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,10 +14,6 @@ import com.humorous.myapplication.R;
 import com.humorusz.live.giftbox.base.LiveGifPanelView;
 import com.humorusz.live.giftbox.base.LiveGiftItem;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
-import com.humorusz.live.giftbox.base.LiveNormalGiftTabView;
-import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
-import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy2;
-import com.humorusz.live.giftbox.normal.LiveNormalGiftTabViewStrategy;
 
 /**
  * 礼物面板
@@ -33,10 +26,14 @@ public class LiveGiftPanelDialog extends DialogFragment {
   private ViewGroup mGiftPanelContainer;
   private LiveGiftPanelTabView mCurrentTab;
   private LiveGiftItem mCurrentItem;
-  private int mCurrentPosition;
+  private LiveGiftPanelTabViewFactory mLiveGiftPanelTabViewFactory;
+  private LiveGifPanelView mLiveGifPanelView;
 
-  public static LiveGiftPanelDialog newInstance() {
-    return new LiveGiftPanelDialog();
+  public static LiveGiftPanelDialog newInstance(LiveGiftPanelTabViewFactory factory) {
+
+    LiveGiftPanelDialog dialog =  new LiveGiftPanelDialog();
+    dialog.mLiveGiftPanelTabViewFactory = factory;
+    return dialog;
   }
 
   @Nullable
@@ -56,33 +53,26 @@ public class LiveGiftPanelDialog extends DialogFragment {
     mEmptyView.setOnClickListener(v -> {
       dismissAllowingStateLoss();
     });
+
+    View button = rootView.findViewById(R.id.live_gift_send);
+    button.setOnClickListener(v -> {
+      if (mCurrentTab != null && mCurrentItem != null) {
+        mCurrentTab.sendGift(mCurrentItem, 1);
+      }
+    });
   }
 
 
   private View createGiftBoxView() {
-    LiveGifPanelView view = new LiveGifPanelView(getContext());
-
-    LiveGiftPanelTabView giftPanelTabView = new LiveNormalGiftTabView();
-    giftPanelTabView.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
-    giftPanelTabView.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
-
-    LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
-    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy2());
-    giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
-    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView, giftPanelTabView2));
-
-    view.setOnGiftItemClickListener(new LiveGifPanelView.OnGiftItemClickListener() {
-      @Override
-      public void onGiftItemClick(
-          LiveGiftPanelTabView currentTab,
-          int position,
-          LiveGiftItem clickItem) {
-        mCurrentTab = currentTab;
-        mCurrentItem = clickItem;
-        mCurrentPosition = position;
-      }
+    mLiveGifPanelView = new LiveGifPanelView(getContext());
+    if(mLiveGiftPanelTabViewFactory != null){
+      mLiveGifPanelView.setGiftPanelTabItems(mLiveGiftPanelTabViewFactory.createTabViews());
+    }
+    mLiveGifPanelView.setOnGiftItemClickListener((currentTab, position, clickItem) -> {
+      mCurrentTab = currentTab;
+      mCurrentItem = clickItem;
     });
-    return view;
+    return mLiveGifPanelView;
   }
 
   @Override
