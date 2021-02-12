@@ -25,6 +25,13 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   private CompositeDisposable mDisposable = new CompositeDisposable();
   private GridViewPager mViewPager;
   private Adapter mAdapter;
+  private int mSelectedPosition = -1;
+  private GiftDefaultSelectedStrategy mDefaultSelectedStrategy = new GiftDefaultSelectedStrategy() {
+    @Override
+    public int getDefaultSelectedPosition(int currentSize) {
+      return 0;
+    }
+  };
 
   @Override
   public String getTitle() {
@@ -67,6 +74,12 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
   }
 
   @Override
+  public void setGiftDefaultSelectedStrategy(
+      GiftDefaultSelectedStrategy giftDefaultSelectedStrategy) {
+    mDefaultSelectedStrategy = giftDefaultSelectedStrategy;
+  }
+
+  @Override
   public void setOnGiftItemClickListener(OnGiftItemClickListener listener) {
     mOnGiftItemClickListener = listener;
   }
@@ -80,6 +93,11 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
         .getGiftItemsObservable()
         .subscribe(liveGiftItems -> {
           mAdapter.mLiveGiftItemList = liveGiftItems;
+          if (mDefaultSelectedStrategy != null) {
+            mSelectedPosition =
+                mDefaultSelectedStrategy.getDefaultSelectedPosition(liveGiftItems.size());
+            liveGiftItems.get(mSelectedPosition).setSelected(true);
+          }
           viewPager.notifyDataSetChanged();
         }, throwable -> {
 
@@ -88,7 +106,6 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
   private class Adapter extends BaseAdapter {
     private List<LiveGiftItem> mLiveGiftItemList;
-    private int mSelectedPosition = -1;
 
     @Override
     public int getCount() {

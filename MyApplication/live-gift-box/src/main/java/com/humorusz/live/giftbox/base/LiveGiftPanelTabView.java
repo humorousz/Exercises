@@ -54,6 +54,8 @@ public interface LiveGiftPanelTabView {
 
   void setGiftDataSourceStrategy(GiftDataSourceStrategy giftDataSourceStrategy);
 
+  void setGiftDefaultSelectedStrategy(GiftDefaultSelectedStrategy giftDefaultSelectedStrategy);
+
   void setOnGiftItemClickListener(OnGiftItemClickListener listener);
 
   /**
@@ -100,6 +102,19 @@ public interface LiveGiftPanelTabView {
      * @return
      */
     Observable<List<LiveGiftItem>> getGiftItemsObservable();
+  }
+
+  /**
+   * 礼物默认选择位置配置
+   */
+
+  interface GiftDefaultSelectedStrategy{
+    /**
+     * 获取默认选择的位置
+     * @param currentSize 当前数组的大小
+     * @return 位置的int
+     */
+    int getDefaultSelectedPosition(int currentSize);
   }
 
   /**

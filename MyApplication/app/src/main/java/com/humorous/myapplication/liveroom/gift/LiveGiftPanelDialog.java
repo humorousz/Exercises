@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.humorous.myapplication.R;
 import com.humorusz.live.giftbox.base.LiveGifPanelView;
+import com.humorusz.live.giftbox.base.LiveGiftItem;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 import com.humorusz.live.giftbox.base.LiveNormalGiftTabView;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
@@ -30,6 +31,10 @@ import com.humorusz.live.giftbox.normal.LiveNormalGiftTabViewStrategy;
 public class LiveGiftPanelDialog extends DialogFragment {
   private View mEmptyView;
   private ViewGroup mGiftPanelContainer;
+  private LiveGiftPanelTabView mCurrentTab;
+  private LiveGiftItem mCurrentItem;
+  private int mCurrentPosition;
+
   public static LiveGiftPanelDialog newInstance() {
     return new LiveGiftPanelDialog();
   }
@@ -43,12 +48,12 @@ public class LiveGiftPanelDialog extends DialogFragment {
     return rootView;
   }
 
-  private void initView(View rootView){
+  private void initView(View rootView) {
     mGiftPanelContainer = rootView.findViewById(R.id.live_gift_panel_container);
     mGiftPanelContainer.addView(createGiftBoxView());
 
     mEmptyView = rootView.findViewById(R.id.live_gift_panel_space);
-    mEmptyView.setOnClickListener(v->{
+    mEmptyView.setOnClickListener(v -> {
       dismissAllowingStateLoss();
     });
   }
@@ -64,7 +69,19 @@ public class LiveGiftPanelDialog extends DialogFragment {
     LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
     giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy2());
     giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
-    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView,giftPanelTabView2));
+    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView, giftPanelTabView2));
+
+    view.setOnGiftItemClickListener(new LiveGifPanelView.OnGiftItemClickListener() {
+      @Override
+      public void onGiftItemClick(
+          LiveGiftPanelTabView currentTab,
+          int position,
+          LiveGiftItem clickItem) {
+        mCurrentTab = currentTab;
+        mCurrentItem = clickItem;
+        mCurrentPosition = position;
+      }
+    });
     return view;
   }
 
