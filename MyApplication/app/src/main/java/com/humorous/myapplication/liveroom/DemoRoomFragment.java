@@ -50,7 +50,6 @@ public class DemoRoomFragment extends BaseFragment
   private int userComeInCount = 0;
   private int messageCount = 0;
   private ChatBox mChatBox;
-  private SendGiftPopupWindow mPop;
   private AnimationImageView mWebPImage;
   private GiftAnimationController mGiftController;
   private InputDialog mInputDialog;
@@ -58,6 +57,7 @@ public class DemoRoomFragment extends BaseFragment
   private String[] mUserNames, mUserContent;
   private View mRoot;
   private DanmakuAdapter mDamakuView;
+  private LiveGiftPanelDialog mGiftPanelDialog;
 
   @Override
   public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -201,29 +201,12 @@ public class DemoRoomFragment extends BaseFragment
   }
 
   public void openGiftBox() {
-//    if (mPop == null) {
-//      View group = getActivity().findViewById(R.id.image_gift);
-//      mPop = new SendGiftPopupWindow(getContext(), createGiftBoxView(), group);
-//    }
-//    mPop.show();
-    LiveGiftPanelDialog dialog = LiveGiftPanelDialog.newInstance();
-    dialog.show(getFragmentManager(),"A");
+    if(mGiftPanelDialog != null){
+      mGiftPanelDialog.dismissAllowingStateLoss();
+    }
+    mGiftPanelDialog = LiveGiftPanelDialog.newInstance();
+    mGiftPanelDialog.show(getChildFragmentManager(),"A");
 
-  }
-
-  private View createGiftBoxView() {
-    LiveGifPanelView view = new LiveGifPanelView(getContext());
-    LiveGiftPanelTabView giftPanelTabView = new LiveNormalGiftTabView();
-    giftPanelTabView.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
-    giftPanelTabView.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
-
-
-    LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
-    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy2());
-    giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
-
-    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView,giftPanelTabView2));
-    return view;
   }
 
   private void addDanmaku(String content, int p) {
@@ -292,8 +275,8 @@ public class DemoRoomFragment extends BaseFragment
 
   @Override
   public void clickGiftPanelSpace() {
-    if (mPop != null) {
-      mPop.dismiss();
+    if (mGiftPanelDialog != null) {
+      mGiftPanelDialog.dismissAllowingStateLoss();
     }
   }
 }

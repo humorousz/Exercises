@@ -1,5 +1,7 @@
 package com.humorous.myapplication.liveroom.gift;
 
+import java.util.Arrays;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.humorous.myapplication.R;
+import com.humorusz.live.giftbox.base.LiveGifPanelView;
+import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
+import com.humorusz.live.giftbox.base.LiveNormalGiftTabView;
+import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
+import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy2;
+import com.humorusz.live.giftbox.normal.LiveNormalGiftTabViewStrategy;
 
 /**
  * 礼物面板
@@ -21,6 +29,7 @@ import com.humorous.myapplication.R;
  */
 public class LiveGiftPanelDialog extends DialogFragment {
   private View mEmptyView;
+  private ViewGroup mGiftPanelContainer;
   public static LiveGiftPanelDialog newInstance() {
     return new LiveGiftPanelDialog();
   }
@@ -35,10 +44,28 @@ public class LiveGiftPanelDialog extends DialogFragment {
   }
 
   private void initView(View rootView){
+    mGiftPanelContainer = rootView.findViewById(R.id.live_gift_panel_container);
+    mGiftPanelContainer.addView(createGiftBoxView());
+
     mEmptyView = rootView.findViewById(R.id.live_gift_panel_space);
     mEmptyView.setOnClickListener(v->{
       dismissAllowingStateLoss();
     });
+  }
+
+
+  private View createGiftBoxView() {
+    LiveGifPanelView view = new LiveGifPanelView(getContext());
+
+    LiveGiftPanelTabView giftPanelTabView = new LiveNormalGiftTabView();
+    giftPanelTabView.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy());
+    giftPanelTabView.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
+
+    LiveGiftPanelTabView giftPanelTabView2 = new LiveNormalGiftTabView();
+    giftPanelTabView2.setGiftDataSourceStrategy(new LiveNormalGiftDataSourceStrategy2());
+    giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
+    view.setGiftPanelTabItems(Arrays.asList(giftPanelTabView,giftPanelTabView2));
+    return view;
   }
 
   @Override
