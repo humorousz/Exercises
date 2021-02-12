@@ -18,18 +18,19 @@ import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
  */
 public class LiveNormalGiftTabViewStrategy implements LiveGiftPanelTabView.GiftItemViewStrategy {
   @Override
-  public View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item) {
+  public View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item,
+      boolean isSelected) {
     View mRoot = LayoutInflater.from(parent.getContext())
         .inflate(R.layout.live_gift_panel_normal_item_view, parent, false);
-    onUpdateItemView(position, mRoot, item);
+    onUpdateItemView(position, mRoot, item,isSelected);
     return mRoot;
   }
 
   @Override
-  public void onUpdateItemView(int position, View itemView, LiveGiftItem item) {
+  public void onUpdateItemView(int position, View itemView, LiveGiftItem item, boolean isSelected) {
     TextView textView = itemView.findViewById(R.id.live_normal_gift_view);
     textView.setText(item.getName());
-    if (item.isSelected()) {
+    if (isSelected) {
       textView.setBackgroundColor(Color.RED);
     } else {
       textView.setBackgroundColor(Color.TRANSPARENT);

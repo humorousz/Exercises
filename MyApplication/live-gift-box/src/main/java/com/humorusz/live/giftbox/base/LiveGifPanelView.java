@@ -85,6 +85,9 @@ public class LiveGifPanelView extends FrameLayout {
     mOnGiftItemClickListener = listener;
   }
 
+  public LiveGiftPanelTabView getCurrentSelectedTab(){
+   return mLiveGiftPanelTabViews.get(mGiftTabViewPager.getCurrentItem());
+  }
   private void setTabHost(@Nullable List<LiveGiftPanelTabView> panelTabItems) {
     if (mTabContentFactory == null || panelTabItems == null || panelTabItems.isEmpty()) {
       mTabHost.setVisibility(GONE);

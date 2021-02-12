@@ -72,7 +72,7 @@ public interface LiveGiftPanelTabView {
      * @param item
      * @return
      */
-    View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item);
+    View onCreateItemView(int position, ViewGroup parent, LiveGiftItem item, boolean isSelected);
 
     /**
      * 更新子View
@@ -81,7 +81,7 @@ public interface LiveGiftPanelTabView {
      * @param itemView
      * @param item
      */
-    void onUpdateItemView(int position, View itemView, LiveGiftItem item);
+    void onUpdateItemView(int position, View itemView, LiveGiftItem item, boolean isSelected);
 
     /**
      * 子View被点击

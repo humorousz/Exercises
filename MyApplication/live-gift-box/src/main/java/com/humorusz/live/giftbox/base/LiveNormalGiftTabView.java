@@ -105,7 +105,6 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
           if (mDefaultSelectedStrategy != null) {
             mSelectedPosition =
                 mDefaultSelectedStrategy.getDefaultSelectedPosition(liveGiftItems.size());
-            liveGiftItems.get(mSelectedPosition).setSelected(true);
           }
           viewPager.notifyDataSetChanged();
         }, throwable -> {
@@ -136,14 +135,16 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
       View giftView = null;
       if (convertView == null) {
         giftView = mGiftItemViewStrategy
-            .onCreateItemView(position, parent, (LiveGiftItem) getItem(position));
+            .onCreateItemView(position, parent, (LiveGiftItem) getItem(position),
+                mSelectedPosition == position);
         ViewHolder viewHolder = new ViewHolder();
         viewHolder.mView = giftView;
         giftView.setTag(viewHolder);
       } else {
         ViewHolder holder = (ViewHolder) convertView.getTag();
         mGiftItemViewStrategy
-            .onUpdateItemView(position, holder.mView, (LiveGiftItem) getItem(position));
+            .onUpdateItemView(position, holder.mView, (LiveGiftItem) getItem(position),
+                mSelectedPosition == position);
         giftView = holder.mView;
       }
       View finalGiftView = giftView;
@@ -153,10 +154,6 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
               ? (LiveGiftItem) getItem(mSelectedPosition)
               : null;
           LiveGiftItem current = (LiveGiftItem) getItem(position);
-          if (lastSelected != null) {
-            lastSelected.setSelected(false);
-          }
-          current.setSelected(true);
           mGiftItemViewStrategy.onItemClick(position, finalGiftView, current);
           if (mOnGiftItemClickListener != null) {
             mOnGiftItemClickListener.onGiftItemClick(position, current);
