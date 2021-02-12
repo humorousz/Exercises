@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.humorous.myapplication.R;
 import com.humorous.myapplication.danmaku.Danmu;
 import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
+import com.humorous.myapplication.liveroom.gift.LiveGiftPanelDialog;
 import com.humorusz.live.giftbox.base.LiveGifPanelView;
 import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
 import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
@@ -65,13 +66,13 @@ public class DemoRoomFragment extends BaseFragment
 
   @Override
   public void initView(View root) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      getActivity().findViewById(R.id.activity_container)
-          .setBackground(getResources().getDrawable(R.drawable.shader_bg));
-    } else {
-      getActivity().findViewById(R.id.activity_container)
-          .setBackgroundDrawable(getResources().getDrawable(R.drawable.shader_bg));
-    }
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//      getActivity().findViewById(R.id.activity_container)
+//          .setBackground(getResources().getDrawable(R.drawable.shader_bg));
+//    } else {
+//      getActivity().findViewById(R.id.activity_container)
+//          .setBackgroundDrawable(getResources().getDrawable(R.drawable.shader_bg));
+//    }
     mRoot = root;
     setStatusBar();
     mContainer = root.findViewById(R.id.into_room_container);
@@ -200,11 +201,14 @@ public class DemoRoomFragment extends BaseFragment
   }
 
   public void openGiftBox() {
-    if (mPop == null) {
-      View group = getActivity().findViewById(R.id.image_gift);
-      mPop = new SendGiftPopupWindow(getContext(), createGiftBoxView(), group);
-    }
-    mPop.show();
+//    if (mPop == null) {
+//      View group = getActivity().findViewById(R.id.image_gift);
+//      mPop = new SendGiftPopupWindow(getContext(), createGiftBoxView(), group);
+//    }
+//    mPop.show();
+    LiveGiftPanelDialog dialog = LiveGiftPanelDialog.newInstance();
+    dialog.show(getFragmentManager(),"A");
+
   }
 
   private View createGiftBoxView() {
