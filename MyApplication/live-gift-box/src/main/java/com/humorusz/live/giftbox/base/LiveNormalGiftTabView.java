@@ -49,7 +49,7 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
   @Override
   public LiveGiftItem getSelectedGift() {
-    return mViewPager == null ? null : (LiveGiftItem) mAdapter.getItem(mViewPager.getCurrentItem());
+    return mViewPager == null ? null : (LiveGiftItem) mAdapter.getItem(mSelectedPosition);
   }
 
   @Override

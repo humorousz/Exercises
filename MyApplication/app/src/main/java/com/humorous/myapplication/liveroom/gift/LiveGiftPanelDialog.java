@@ -56,8 +56,9 @@ public class LiveGiftPanelDialog extends DialogFragment {
 
     View button = rootView.findViewById(R.id.live_gift_send);
     button.setOnClickListener(v -> {
-      if (mCurrentTab != null && mCurrentItem != null) {
-        mCurrentTab.sendGift(mCurrentItem, 1);
+      LiveGiftPanelTabView tabView = mLiveGifPanelView.getCurrentSelectedTab();
+      if (tabView != null) {
+        tabView.sendGift(tabView.getSelectedGift(), 1);
       }
     });
   }
