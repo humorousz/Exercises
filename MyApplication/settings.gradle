@@ -1,2 +1,1 @@
-include ':live-gift-box'
-include ':app', ':commonutils', ':uiutils', ':weexlib',':zxinglibrary', ':annotationtest', ':networklibrary'
+include ':app', ':commonutils', ':uiutils', ':weexlib',':zxinglibrary', ':annotationtest', ':networklibrary',':Live', ':live-gift-box'
