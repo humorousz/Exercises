@@ -53,8 +53,8 @@ dependencies {
     implementation project(':basic:uiutils')
     implementation project(':basic:commonutils')
     implementation project(':basic:networklibrary')
-    implementation project(':weexlib')
-    implementation project(':zxinglibrary')
+    implementation project(':3rd-part:weexlib')
+    implementation project(':3rd-part:zxinglibrary')
     implementation project(':live-gift-box')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
