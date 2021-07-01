@@ -1,3 +1,4 @@
-include ':app',':weexlib',':zxinglibrary', ':annotationtest', ':networklibrary',':Live', ':live-gift-box'
+include ':app',':weexlib',':zxinglibrary', ':annotationtest', ':Live', ':live-gift-box'
 include':basic:uiutils'
 include':basic:commonutils'
+include':basic:networklibrary'

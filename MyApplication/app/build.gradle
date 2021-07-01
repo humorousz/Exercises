@@ -52,9 +52,9 @@ dependencies {
     androidTestImplementation 'junit:junit:4.12'
     implementation project(':basic:uiutils')
     implementation project(':basic:commonutils')
+    implementation project(':basic:networklibrary')
     implementation project(':weexlib')
     implementation project(':zxinglibrary')
-    implementation project(':networklibrary')
     implementation project(':live-gift-box')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
