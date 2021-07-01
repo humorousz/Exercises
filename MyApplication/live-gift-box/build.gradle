@@ -37,7 +37,7 @@ dependencies {
     })
     androidTestImplementation 'junit:junit:4.12'
     implementation project(':commonutils')
-    implementation project(':uiutils')
+    implementation project(':basic:uiutils')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.recyclerview
     implementation rootProject.ext.dependencies.design
