@@ -51,7 +51,7 @@ dependencies {
     })
     androidTestImplementation 'junit:junit:4.12'
     implementation project(':basic:uiutils')
-    implementation project(':commonutils')
+    implementation project(':basic:commonutils')
     implementation project(':weexlib')
     implementation project(':zxinglibrary')
     implementation project(':networklibrary')
