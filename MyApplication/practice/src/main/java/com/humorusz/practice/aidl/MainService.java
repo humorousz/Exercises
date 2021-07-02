@@ -1,4 +1,4 @@
-package com.humorous.myapplication;
+package com.humorusz.practice.aidl;
 
 import android.app.Service;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.os.RemoteException;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.commonutils.machine.State;
 import com.humorousz.commonutils.machine.StateMachine;
+import com.humorousz.practice.aidl.IMyAidlInterface;
 
 public class MainService extends Service {
   static final int CLICK = 1;

@@ -1,5 +1,5 @@
 // IMyAidlInterface.aidl
-package com.humorous.myapplication;
+package com.humorousz.practice.aidl;
 
 // Declare any non-default types here with import statements
 
