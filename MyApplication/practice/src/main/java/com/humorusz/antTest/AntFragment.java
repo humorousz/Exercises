@@ -1,4 +1,4 @@
-package com.humorous.myapplication.antTest;
+package com.humorusz.antTest;
 
 
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 
 
 /**

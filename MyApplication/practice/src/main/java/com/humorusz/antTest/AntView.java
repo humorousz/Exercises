@@ -1,4 +1,4 @@
-package com.humorous.myapplication.antTest;
+package com.humorusz.antTest;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -17,8 +17,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.helper.UIUtils;
+import com.humorusz.practice.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

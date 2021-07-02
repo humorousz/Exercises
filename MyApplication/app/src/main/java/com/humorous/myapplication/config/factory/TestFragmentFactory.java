@@ -1,6 +1,6 @@
 package com.humorous.myapplication.config.factory;
 
-import com.humorous.myapplication.antTest.AntFragment;
+import com.humorusz.antTest.AntFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;

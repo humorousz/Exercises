@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/text_container"
+    android:gravity="center|left">
+    <TextView
+        android:id="@+id/text_into"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/into_bg"
+        tools:text="xxxx 进入直播间"
+        android:textSize="15dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@android:color/white"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/star_img"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/text_into"
+        android:layout_marginLeft="-50dp"
+        android:layout_alignTop="@+id/text_into"
+        android:layout_alignBottom="@+id/text_into"
+        android:layout_centerInParent="true"/>
+
+    <com.humorous.myapplication.shader.widget.MaskLoadingView
+        android:id="@+id/text_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/text_into"
+        android:layout_alignRight="@+id/text_into"
+        android:layout_alignTop="@+id/text_into"
+        android:layout_alignBottom="@+id/text_into"
+        app:repeatCount="1"/>
+</RelativeLayout>
