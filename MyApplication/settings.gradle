@@ -6,3 +6,4 @@ include':3rd-part:weexlib' // weex
 include':3rd-part:zxinglibrary' // 二维码扫描
 include':feature:live:live-gift-box' //礼物面板
 include':feature:live:Live' //直播
+include ':practice:practice'
