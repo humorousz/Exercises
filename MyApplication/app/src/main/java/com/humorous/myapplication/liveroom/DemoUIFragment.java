@@ -14,10 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
-import com.humorous.myapplication.chart.WheelData;
-import com.humorous.myapplication.chart.WheelDataFactory;
-import com.humorous.myapplication.chart.WheelRotateManager;
-import com.humorous.myapplication.chart.WheelView;
+import com.humorusz.chart.WheelData;
+import com.humorusz.chart.WheelDataFactory;
+import com.humorusz.chart.WheelRotateManager;
+import com.humorusz.chart.WheelView;
 import com.humorous.myapplication.liveroom.adapter.FlipViewAdapter;
 import com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher;
 import com.humorousz.commonutils.log.Logger;

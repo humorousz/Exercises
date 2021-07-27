@@ -1,4 +1,4 @@
-package com.humorous.myapplication.chart;
+package com.humorusz.chart;
 
 /**
  * 轮盘点击事件回调

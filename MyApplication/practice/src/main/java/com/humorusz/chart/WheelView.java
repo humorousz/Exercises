@@ -1,4 +1,4 @@
-package com.humorous.myapplication.chart;
+package com.humorusz.chart;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,8 +14,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.humorous.myapplication.R;
 import com.humorousz.commonutils.util.CollectionUtils;
+import com.humorusz.practice.R;
 
 import java.util.List;
 

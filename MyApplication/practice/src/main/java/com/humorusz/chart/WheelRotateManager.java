@@ -1,4 +1,4 @@
-package com.humorous.myapplication.chart;
+package com.humorusz.chart;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
