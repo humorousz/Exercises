@@ -42,8 +42,6 @@ task run(type: Exec,dependsOn: 'installDebug'){
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
     implementation project(':zq-feature:zq-practice:practice')
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
