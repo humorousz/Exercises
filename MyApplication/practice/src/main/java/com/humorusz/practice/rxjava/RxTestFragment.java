@@ -1,17 +1,16 @@
-package com.humorous.myapplication.rxjava.test;
+package com.humorusz.practice.rxjava;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.networklibrary.NetworkManager;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

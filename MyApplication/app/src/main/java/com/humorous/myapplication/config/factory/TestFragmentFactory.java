@@ -14,7 +14,7 @@ import com.humorous.myapplication.kotlin.KotlinTestFragment;
 import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
 import com.humorusz.practice.nestedScrollView.NestScrollViewFragment;
-import com.humorous.myapplication.rxjava.test.RxTestFragment;
+import com.humorusz.practice.rxjava.RxTestFragment;
 import com.humorusz.practice.shader.ShaderTestFragment;
 import com.humorous.myapplication.shareElement.ShareElementFragmentA;
 import com.humorous.myapplication.shareElement.ShareElementFragmentB;
