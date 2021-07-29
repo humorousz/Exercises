@@ -1,4 +1,4 @@
-package com.humorous.myapplication.jetpack;
+package com.humorusz.practice.jetpack;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

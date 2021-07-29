@@ -1,4 +1,4 @@
-package com.humorous.myapplication.jetpack;
+package com.humorusz.practice.jetpack;
 
 import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 
 public class JetpackFragment extends BaseFragment {
 
