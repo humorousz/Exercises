@@ -1,20 +1,20 @@
-package com.humorous.myapplication.topicRecyclerTest;
+package com.humorusz.practice.topicRecyclerTest;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.LinearItemDecoration;
+import com.humorusz.practice.R;
 
 
 /**

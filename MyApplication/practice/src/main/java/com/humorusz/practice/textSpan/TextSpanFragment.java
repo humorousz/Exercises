@@ -1,4 +1,4 @@
-package com.humorous.myapplication.textSpan;
+package com.humorusz.practice.textSpan;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,10 +9,7 @@ import android.text.Layout;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.style.AlignmentSpan;
-import android.text.style.BulletSpan;
-import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.QuoteSpan;
@@ -22,9 +19,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/9/4.

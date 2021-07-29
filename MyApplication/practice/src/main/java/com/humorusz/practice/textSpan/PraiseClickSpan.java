@@ -1,4 +1,4 @@
-package com.humorous.myapplication.textSpan;
+package com.humorusz.practice.textSpan;
 
 import android.graphics.Color;
 import android.text.TextPaint;
