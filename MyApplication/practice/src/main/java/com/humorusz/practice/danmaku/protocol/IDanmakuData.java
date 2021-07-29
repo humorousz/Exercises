@@ -1,6 +1,4 @@
-package com.humorous.myapplication.danmaku.protocol;
-
-import android.text.SpannableString;
+package com.humorusz.practice.danmaku.protocol;
 
 /**
  * @author zhangzhiquan

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.danmaku.protocol;
+package com.humorusz.practice.danmaku.protocol;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.danmaku.controller.DanmaController;
+import com.humorusz.practice.R;
+import com.humorusz.practice.danmaku.controller.DanmaController;
 
 /**
  * @author zhangzhiquan

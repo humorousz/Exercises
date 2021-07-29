@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.humorous.myapplication.R;
-import com.humorous.myapplication.danmaku.Danmu;
-import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
+import com.humorusz.practice.danmaku.Danmu;
+import com.humorusz.practice.danmaku.protocol.DanmakuAdapter;
 import com.humorous.myapplication.liveroom.gift.LiveGiftPanelDialog;
 import com.humorous.myapplication.liveroom.gift.LiveGiftPanelTabViewFactory;
 import com.humorusz.live.giftbox.widget.SelectGiftView;

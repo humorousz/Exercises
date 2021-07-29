@@ -1,9 +1,8 @@
-package com.humorous.myapplication.danmaku;
+package com.humorusz.practice.danmaku;
 
 import android.graphics.Color;
-import android.text.SpannableString;
 
-import com.humorous.myapplication.danmaku.protocol.IDanmakuData;
+import com.humorusz.practice.danmaku.protocol.IDanmakuData;
 
 /**
  * Created by liuli on 2016/11/4.

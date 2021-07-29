@@ -1,4 +1,4 @@
-package com.humorous.myapplication.danmaku;
+package com.humorusz.practice.danmaku;
 
 /**
  * Created by Ray.LL on 2017/8/22.

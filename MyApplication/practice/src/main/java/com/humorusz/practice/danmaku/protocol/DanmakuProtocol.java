@@ -1,4 +1,4 @@
-package com.humorous.myapplication.danmaku.protocol;
+package com.humorusz.practice.danmaku.protocol;
 
 import android.view.View;
 

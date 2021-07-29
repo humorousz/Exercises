@@ -1,4 +1,4 @@
-package com.humorous.myapplication.danmaku.controller;
+package com.humorusz.practice.danmaku.controller;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,9 +15,9 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 
-import com.humorous.myapplication.danmaku.CenteredImageSpan;
-import com.humorous.myapplication.danmaku.DanmuConfig;
-import com.humorous.myapplication.danmaku.protocol.IDanmakuData;
+import com.humorusz.practice.danmaku.CenteredImageSpan;
+import com.humorusz.practice.danmaku.DanmuConfig;
+import com.humorusz.practice.danmaku.protocol.IDanmakuData;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
 import com.humorousz.uiutils.helper.ImageLoadingListener;
 import com.humorousz.uiutils.helper.UIUtils;

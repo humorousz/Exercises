@@ -1,4 +1,4 @@
-package com.humorous.myapplication.danmaku;
+package com.humorusz.practice.danmaku;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
