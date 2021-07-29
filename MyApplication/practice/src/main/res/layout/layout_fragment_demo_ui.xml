@@ -104,7 +104,7 @@
         android:visibility="gone"
         app:arrow_gravity="top|right" />
 
-      <com.humorous.myapplication.liveroom.weidget.BreathingLampView
+      <com.humorusz.practice.liveroom.weidget.BreathingLampView
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:layout_gravity="center"
@@ -118,7 +118,7 @@
       <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.humorous.myapplication.liveroom.weidget.CircleRippleView
+        <com.humorusz.practice.liveroom.weidget.CircleRippleView
           android:layout_width="50dp"
           android:layout_height="50dp"
           android:layout_gravity="center"
@@ -140,7 +140,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/switcer_bg">
 
-        <com.humorous.myapplication.liveroom.weidget.VerticalTextViewSwitcher
+        <com.humorusz.practice.liveroom.weidget.VerticalTextViewSwitcher
           android:id="@+id/verticalTextView"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
