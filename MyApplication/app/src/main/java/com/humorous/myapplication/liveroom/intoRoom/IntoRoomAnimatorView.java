@@ -9,14 +9,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.humorous.myapplication.R;
-import com.humorous.myapplication.shader.widget.MaskLoadingView;
-import com.humorousz.commonutils.log.Logger;
+import com.humorusz.practice.shader.widget.MaskLoadingView;
 
 /**
  * Created by zhangzhiquan on 2017/8/19.

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.shader.widget;
+package com.humorusz.practice.shader.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -15,10 +15,11 @@ import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.humorous.myapplication.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import com.humorusz.practice.R;
 
 
 /**

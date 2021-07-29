@@ -1,4 +1,4 @@
-package com.humorous.myapplication.shader.widget;
+package com.humorusz.practice.shader.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

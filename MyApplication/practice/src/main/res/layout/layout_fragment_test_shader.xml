@@ -11,7 +11,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
-        <com.humorous.myapplication.shader.widget.MaskLoadingView
+        <com.humorusz.practice.shader.widget.MaskLoadingView
             android:id="@+id/test_shader"
             android:layout_width="250dp"
             android:layout_height="200dp"
@@ -37,7 +37,7 @@
                 android:paddingBottom="2dp"
                 android:gravity="center_horizontal"
                 android:text="牛逼闪闪会发光"/>
-            <com.humorous.myapplication.shader.widget.MaskLoadingView
+            <com.humorusz.practice.shader.widget.MaskLoadingView
                 android:id="@+id/text_mask"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -53,12 +53,12 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"/>
-            <com.humorous.myapplication.shader.widget.MaskCircleView
+            <com.humorusz.practice.shader.widget.MaskCircleView
                 android:id="@+id/image_mask"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
-        <com.humorous.myapplication.shader.widget.GradientImageView
+        <com.humorusz.practice.shader.widget.GradientImageView
             android:id="@+id/gradientImage"
             android:layout_marginTop="@dimen/shader_test_margin_top"
             android:layout_marginBottom="@dimen/shader_test_margin_top"
@@ -66,7 +66,7 @@
             android:layout_width="200dp"
             android:layout_height="70dp"/>
 
-        <com.humorous.myapplication.shader.widget.PictureScrollView
+        <com.humorusz.practice.shader.widget.PictureScrollView
             android:layout_marginTop="@dimen/shader_test_margin_top"
             android:layout_marginBottom="@dimen/shader_test_margin_top"
             android:layout_width="match_parent"

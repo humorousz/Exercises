@@ -1,4 +1,4 @@
-package com.humorous.myapplication.shader.widget;
+package com.humorusz.practice.shader.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 
-import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 /**

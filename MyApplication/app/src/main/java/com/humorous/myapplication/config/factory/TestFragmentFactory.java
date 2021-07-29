@@ -15,7 +15,7 @@ import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.rxjava.test.RxTestFragment;
-import com.humorous.myapplication.shader.ShaderTestFragment;
+import com.humorusz.practice.shader.ShaderTestFragment;
 import com.humorous.myapplication.shareElement.ShareElementFragmentA;
 import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorusz.practice.nested.TestNestedFragment;

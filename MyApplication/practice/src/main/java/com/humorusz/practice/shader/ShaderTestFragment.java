@@ -1,4 +1,4 @@
-package com.humorous.myapplication.shader;
+package com.humorusz.practice.shader;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.shader.widget.GradinetDrawable;
-import com.humorous.myapplication.shader.widget.MaskLoadingView;
+import com.humorusz.practice.R;
+import com.humorusz.practice.shader.widget.GradinetDrawable;
+import com.humorusz.practice.shader.widget.MaskLoadingView;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
 import com.humorousz.uiutils.view.BaseFragment;
 

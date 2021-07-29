@@ -28,7 +28,7 @@
         android:layout_alignBottom="@+id/text_into"
         android:layout_centerInParent="true"/>
 
-    <com.humorous.myapplication.shader.widget.MaskLoadingView
+    <com.humorusz.practice.shader.widget.MaskLoadingView
         android:id="@+id/text_mask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
