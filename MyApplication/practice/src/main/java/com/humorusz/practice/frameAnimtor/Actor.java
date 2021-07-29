@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor;
+package com.humorusz.practice.frameAnimtor;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -11,7 +11,6 @@ import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.UIUtils;
@@ -21,8 +20,6 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zhangzhiquan on 2017/8/2.

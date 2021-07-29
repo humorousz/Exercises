@@ -1,9 +1,7 @@
-package com.humorous.myapplication.frameAnimtor.lottery;
+package com.humorusz.practice.frameAnimtor.lottery;
 
 import android.app.FragmentManager;
 import android.view.ViewGroup;
-
-import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 
 import java.util.LinkedList;
 import java.util.List;

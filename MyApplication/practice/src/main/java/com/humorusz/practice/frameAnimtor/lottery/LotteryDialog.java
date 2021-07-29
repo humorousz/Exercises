@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor.lottery;
+package com.humorusz.practice.frameAnimtor.lottery;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.humorous.myapplication.R;
+import com.humorusz.practice.R;
+
 
 /**
  * Created by zhangzhiquan on 2017/10/6.

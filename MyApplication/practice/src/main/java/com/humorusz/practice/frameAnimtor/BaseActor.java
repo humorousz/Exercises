@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor;
+package com.humorusz.practice.frameAnimtor;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,7 +10,6 @@ import android.graphics.Rect;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.UIUtils;
 
 /**

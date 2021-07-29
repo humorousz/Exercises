@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor.lottery;
+package com.humorusz.practice.frameAnimtor.lottery;
 
 /**
  * Created by zhangzhiquan on 2017/10/2.

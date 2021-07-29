@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor.widget;
+package com.humorusz.practice.frameAnimtor.widget;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
-import com.humorous.myapplication.R;
-
+import com.humorusz.practice.R;
 
 /**
  * @author Created by zhangzhiquan on 2017/8/3.

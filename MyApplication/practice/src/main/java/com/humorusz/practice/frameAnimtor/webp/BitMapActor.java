@@ -1,15 +1,10 @@
-package com.humorous.myapplication.frameAnimtor.webp;
+package com.humorusz.practice.frameAnimtor.webp;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.PixelFormat;
 import android.view.SurfaceHolder;
 
-import com.humorous.myapplication.frameAnimtor.BaseActor;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import com.humorusz.practice.frameAnimtor.BaseActor;
 
 /**
  * Created by zhangzhiquan on 2017/8/3.

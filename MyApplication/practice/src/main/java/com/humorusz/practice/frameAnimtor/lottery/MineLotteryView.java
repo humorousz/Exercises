@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor.lottery;
+package com.humorusz.practice.frameAnimtor.lottery;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -10,9 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.humorous.myapplication.R;
 
 import java.util.List;
+
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/10/2.

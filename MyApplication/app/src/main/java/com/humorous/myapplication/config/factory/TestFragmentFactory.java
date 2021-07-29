@@ -8,7 +8,7 @@ import com.humorous.myapplication.dagger.DaggerFragment;
 import com.humorusz.practice.diffutil.DiffUtilFragment;
 import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
-import com.humorous.myapplication.frameAnimtor.AnimatorFragment;
+import com.humorusz.practice.frameAnimtor.AnimatorFragment;
 import com.humorusz.practice.jetpack.JetpackFragment;
 import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;

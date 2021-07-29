@@ -1,4 +1,4 @@
-package com.humorous.myapplication.frameAnimtor;
+package com.humorusz.practice.frameAnimtor;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,10 +12,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.frameAnimtor.webp.BitMapActor;
+import com.humorusz.practice.R;
+import com.humorusz.practice.frameAnimtor.webp.BitMapActor;
 import com.humorusz.live.giftbox.widget.SelectGiftView;
-import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
+import com.humorusz.practice.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humrousz.sequence.AnimationImageView;
 import java.util.LinkedList;

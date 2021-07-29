@@ -1,6 +1,5 @@
 package com.humorous.myapplication.liveroom;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +10,7 @@ import com.humorous.myapplication.danmaku.Danmu;
 import com.humorous.myapplication.danmaku.protocol.DanmakuAdapter;
 import com.humorous.myapplication.liveroom.gift.LiveGiftPanelDialog;
 import com.humorous.myapplication.liveroom.gift.LiveGiftPanelTabViewFactory;
-import com.humorusz.live.giftbox.base.LiveGifPanelView;
-import com.humorusz.live.giftbox.base.LiveGiftPanelTabView;
-import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy;
-import com.humorusz.live.giftbox.normal.LiveNormalGiftDataSourceStrategy2;
-import com.humorusz.live.giftbox.base.LiveNormalGiftTabView;
-import com.humorusz.live.giftbox.normal.LiveNormalGiftTabViewStrategy;
 import com.humorusz.live.giftbox.widget.SelectGiftView;
-import com.humorous.myapplication.frameAnimtor.widget.SendGiftPopupWindow;
 import com.humorous.myapplication.liveroom.controller.AutoController;
 import com.humorous.myapplication.liveroom.controller.GiftAnimationController;
 import com.humorous.myapplication.liveroom.intoRoom.IntoRoomAnimatorController;
@@ -32,7 +24,6 @@ import com.humorousz.uiutils.view.ImmerseActivity;
 import com.humorousz.uiutils.widget.InputDialog;
 import com.humrousz.sequence.AnimationImageView;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
