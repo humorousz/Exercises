@@ -43,33 +43,13 @@ task run(type: Exec,dependsOn: 'installDebug'){
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'com.android.support:multidex:1.0.1'
-    implementation 'com.github.humorousz:AnimationSequenceDrawable:1.0.1-SNAPSHOT'
+    implementation 'com.android.support:multidex:1.0.3'
     implementation project(path: ':practice')
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    androidTestImplementation 'junit:junit:4.12'
     implementation project(':basic:uiutils')
     implementation project(':basic:commonutils')
-    implementation project(':basic:networklibrary')
     implementation project(':3rd-part:zxinglibrary')
-    implementation project(':feature:live:live-gift-box')
+    implementation project(':basic:networklibrary')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
-    implementation rootProject.ext.dependencies.design
-    implementation rootProject.ext.dependencies.Danmaku
-    implementation rootProject.ext.dependencies.ndkbitmap_armv7
-    implementation rootProject.ext.dependencies.AnimationSequenceDrawable
-    implementation rootProject.ext.dependencies.rxJava
-    implementation rootProject.ext.dependencies.rxAndroid
-    implementation rootProject.ext.dependencies.constraint_layout
-    implementation rootProject.ext.dependencies.kotlin
-    implementation rootProject.ext.dependencies.dagger
-    implementation rootProject.ext.dependencies.dagger_android
-    annotationProcessor rootProject.ext.dependencies.dagger_compiler
-    annotationProcessor rootProject.ext.dependencies.dagger_android_compiler
-
 }
