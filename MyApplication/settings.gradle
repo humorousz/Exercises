@@ -8,3 +8,4 @@ include':zq-feature:live:live-gift-box' //礼物面板
 include':zq-feature:live:Live' //直播
 include ':zq-feature:zq-practice:practice'
 include ':zq-feature:zq-home:home'
+include ':zq-basic:init'

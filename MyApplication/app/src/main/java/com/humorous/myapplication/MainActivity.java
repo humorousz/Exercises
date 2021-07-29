@@ -1,12 +1,8 @@
 package com.humorous.myapplication;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.PersistableBundle;
-import android.os.RemoteException;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,10 +13,8 @@ import com.humorousz.commonutils.log.Logger;
 import com.humorousz.home.config.api.Api;
 import com.humorousz.home.config.router.Router;
 import com.humorousz.home.home.HomeFragment;
-import com.humorousz.practice.aidl.IMyAidlInterface;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
-import com.humorusz.practice.aidl.MainService;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
@@ -52,7 +46,6 @@ public class MainActivity extends ImmerseActivity {
     tr.add(R.id.container, mFragment);
     tr.commit();
     Logger.d(TAG, Thread.currentThread().hashCode());
-    testFunc();
   }
 
   private void initToolBar() {
@@ -77,28 +70,6 @@ public class MainActivity extends ImmerseActivity {
       intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
       startActivityForResult(intent, REQUEST_CODE);
     });
-  }
-
-  ServiceConnection serviceConnection = new ServiceConnection() {
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-      IMyAidlInterface binder = IMyAidlInterface.Stub.asInterface(service);
-      try {
-        binder.testLog();
-      } catch (RemoteException e) {
-        e.printStackTrace();
-      }
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-
-    }
-  };
-
-  private void testFunc() {
-    Intent intent = new Intent(this, MainService.class);
-    bindService(intent, serviceConnection, BIND_AUTO_CREATE);
   }
 
   @Override

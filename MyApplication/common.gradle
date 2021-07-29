@@ -1,13 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.humorous.myapplication"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
@@ -38,14 +33,4 @@ android {
 task run(type: Exec,dependsOn: 'installDebug'){
     description 'Installs the APK and runs the main activity'
     commandLine "${android.sdkDirectory}/platform-tools/adb", 'shell', 'am', 'start', '-n', 'com.humorous.myapplication/com.humorous.myapplication.MainActivity'
-}
-
-dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':zq-basic:uiutils')
-    implementation project(':zq-basic:commonutils')
-    implementation project(':zq-3rd-part:zxinglibrary')
-    implementation project(':zq-basic:networklibrary')
-    implementation project(':zq-feature:zq-home:home')
-    implementation rootProject.ext.dependencies.appcompatV7
 }
