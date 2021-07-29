@@ -1,4 +1,4 @@
-package com.humorous.myapplication.dagger.test;
+package com.humorusz.practice.dagger.test;
 
 
 import com.humorousz.commonutils.log.Logger;

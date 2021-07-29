@@ -1,4 +1,4 @@
-package com.humorous.myapplication.dagger;
+package com.humorusz.practice.dagger;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,12 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.dagger.test.DaggerTestComponent;
-import com.humorous.myapplication.dagger.test.FetchStudentService;
-import com.humorous.myapplication.dagger.test.Student;
-import com.humorous.myapplication.dagger.test.StudentType;
-import com.humorous.myapplication.dagger.test.Teacher;
+import com.humorusz.practice.R;
+import com.humorusz.practice.dagger.test.DaggerTestComponent;
+import com.humorusz.practice.dagger.test.FetchStudentService;
+import com.humorusz.practice.dagger.test.Student;
+import com.humorusz.practice.dagger.test.StudentType;
+import com.humorusz.practice.dagger.test.Teacher;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.view.BaseFragment;
 

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.dagger.test;
+package com.humorusz.practice.dagger.test;
 
 
 import javax.inject.Singleton;

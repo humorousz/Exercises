@@ -1,6 +1,6 @@
-package com.humorous.myapplication.dagger.test;
+package com.humorusz.practice.dagger.test;
 
-import com.humorous.myapplication.dagger.DaggerFragment;
+import com.humorusz.practice.dagger.DaggerFragment;
 
 import javax.inject.Singleton;
 

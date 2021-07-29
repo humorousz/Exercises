@@ -1,4 +1,4 @@
-package com.humorous.myapplication.dagger.car;
+package com.humorusz.practice.dagger.car;
 
 import dagger.Component;
 

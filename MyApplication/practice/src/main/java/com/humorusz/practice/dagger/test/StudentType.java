@@ -1,4 +1,4 @@
-package com.humorous.myapplication.dagger.test;
+package com.humorusz.practice.dagger.test;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

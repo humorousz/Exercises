@@ -4,7 +4,7 @@ import com.humorusz.practice.antTest.AntFragment;
 import com.humorusz.practice.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorusz.practice.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorusz.practice.coordinatorTest.fragment.TestCoordinatorFragment;
-import com.humorous.myapplication.dagger.DaggerFragment;
+import com.humorusz.practice.dagger.DaggerFragment;
 import com.humorusz.practice.diffutil.DiffUtilFragment;
 import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
