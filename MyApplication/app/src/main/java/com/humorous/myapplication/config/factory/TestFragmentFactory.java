@@ -5,14 +5,14 @@ import com.humorusz.practice.coordinatorTest.fragment.AdvancedCoordinatorFragmen
 import com.humorusz.practice.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorusz.practice.coordinatorTest.fragment.TestCoordinatorFragment;
 import com.humorous.myapplication.dagger.DaggerFragment;
-import com.humorous.myapplication.diffutil.DiffUtilFragment;
+import com.humorusz.practice.diffutil.DiffUtilFragment;
 import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
 import com.humorous.myapplication.exceptionTest.UncaughtExceptionFragment;
 import com.humorous.myapplication.frameAnimtor.AnimatorFragment;
 import com.humorous.myapplication.jetpack.JetpackFragment;
-import com.humorous.myapplication.kotlin.KotlinTestFragment;
 import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
+import com.humorusz.practice.kotlin.KotlinTestFragment;
 import com.humorusz.practice.nestedScrollView.NestScrollViewFragment;
 import com.humorusz.practice.rxjava.RxTestFragment;
 import com.humorusz.practice.shader.ShaderTestFragment;

@@ -1,13 +1,13 @@
-package com.humorous.myapplication.kotlin
+package com.humorusz.practice.kotlin
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.humorous.myapplication.R
 import com.humorousz.uiutils.helper.ToastUtil
 import com.humorousz.uiutils.view.BaseFragment
+import com.humorusz.practice.R
 
 /**
  *@author zhangzhiquan

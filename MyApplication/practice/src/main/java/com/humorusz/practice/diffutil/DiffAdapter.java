@@ -1,4 +1,4 @@
-package com.humorous.myapplication.diffutil;
+package com.humorusz.practice.diffutil;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.helper.UIUtils;
+import com.humorusz.practice.R;
 
 import java.util.List;
 

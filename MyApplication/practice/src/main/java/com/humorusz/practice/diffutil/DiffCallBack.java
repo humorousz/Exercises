@@ -1,4 +1,4 @@
-package com.humorous.myapplication.diffutil;
+package com.humorusz.practice.diffutil;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;

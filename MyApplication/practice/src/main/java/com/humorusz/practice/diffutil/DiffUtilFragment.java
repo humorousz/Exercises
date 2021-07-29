@@ -1,5 +1,6 @@
-package com.humorous.myapplication.diffutil;
+package com.humorusz.practice.diffutil;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.LinearItemDecoration;
+import com.humorusz.practice.R;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class DiffUtilFragment extends BaseFragment implements View.OnClickListen
         return inflater.inflate(R.layout.layout_fragment_diff_utils,container,false);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void initView(View root) {
         mRecycler = root.findViewById(R.id.test_list_recycler_view);
