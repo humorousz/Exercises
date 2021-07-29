@@ -1,4 +1,4 @@
-package com.humorusz.chart;
+package com.humorusz.practice.chart;
 
 public class WheelData {
   public CharSequence mText;

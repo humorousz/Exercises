@@ -1,6 +1,6 @@
 package com.humorous.myapplication.config.factory;
 
-import com.humorusz.antTest.AntFragment;
+import com.humorusz.practice.antTest.AntFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
@@ -22,7 +22,7 @@ import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
 import com.humorous.myapplication.vectorDrawableTest.VectorTestFragment;
-import com.humorusz.zxing.ZxingFragment;
+import com.humorusz.practice.zxing.ZxingFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**

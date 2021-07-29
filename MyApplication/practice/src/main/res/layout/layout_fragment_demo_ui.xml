@@ -147,7 +147,7 @@
           android:layout_gravity="center_vertical" />
       </FrameLayout>
 
-      <com.humorusz.chart.WheelView
+      <com.humorusz.practice.chart.WheelView
         android:id="@+id/wheel_view"
         android:layout_width="300dp"
         android:layout_height="300dp"

@@ -1,4 +1,4 @@
-package com.humorusz.zxing;
+package com.humorusz.practice.zxing;
 
 import android.content.Intent;
 import android.os.Bundle;

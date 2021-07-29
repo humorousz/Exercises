@@ -1,4 +1,4 @@
-package com.humorusz.chart;
+package com.humorusz.practice.chart;
 
 /**
  * 轮盘点击事件回调

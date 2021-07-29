@@ -1,4 +1,4 @@
-package com.humorusz.antTest;
+package com.humorusz.practice.antTest;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.humorusz.chart;
+package com.humorusz.practice.chart;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

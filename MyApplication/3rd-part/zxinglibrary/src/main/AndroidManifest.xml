@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:scheme="test"
                     android:host="humorous"
-                    android:path="/com.humorusz.zxing/Capture"/>
+                    android:path="/com.humorusz.practice.zxing/Capture"/>
             </intent-filter>
         </activity>
     </application>
