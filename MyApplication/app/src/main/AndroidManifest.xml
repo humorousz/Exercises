@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".container.ContainerActivity"
+        <activity android:name="com.humorousz.home.container.ContainerActivity"
                   android:windowSoftInputMode="adjustNothing"
                   android:exported="false"
                   android:theme="@style/DIY.SlideClose.Transparent.Theme">
@@ -36,7 +36,7 @@
                       android:host="humorous"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SecondMenuActivity"
+        <activity android:name="com.humorousz.home.SecondMenuActivity"
                   android:theme="@style/DIY.SlideClose.Transparent.Theme"/>
     </application>
 

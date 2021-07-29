@@ -1,6 +1,6 @@
-package com.humorous.myapplication.config.api;
+package com.humorousz.home.config.api;
 
-import com.humorous.myapplication.config.factory.TestFragmentFactory;
+import com.humorousz.home.config.factory.TestFragmentFactory;
 
 /**
  * Created by zhangzhiquan on 2017/6/5.
@@ -97,12 +97,6 @@ public class TestProtocol {
    */
   public static final String VECTOR_DRAWABLE =
       BASE + TestFragmentFactory.TYPE.VECTOR_DRAWABLE + HAS_NO_TITLE;
-
-  /**
-   * 共享元素
-   */
-  public static final String SHARE_ELEMENT =
-      BASE + TestFragmentFactory.TYPE.SHARE_ELEMENT + HAS_TITLE;
 
   /**
    * shader 练习

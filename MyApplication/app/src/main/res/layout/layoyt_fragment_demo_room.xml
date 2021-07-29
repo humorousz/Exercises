@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
   android:background="#55333333"
-    tools:context=".container.ContainerActivity"
+    tools:context="com.humorousz.home.container.ContainerActivity"
     tools:background="@drawable/shader_bg">
 
     <RelativeLayout

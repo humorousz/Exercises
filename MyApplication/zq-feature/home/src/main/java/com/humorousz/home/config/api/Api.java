@@ -1,6 +1,6 @@
-package com.humorous.myapplication.config.api;
+package com.humorousz.home.config.api;
 
-import com.humorous.myapplication.home.model.HomeItemModel;
+import com.humorousz.home.home.model.HomeItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,11 +102,6 @@ public class Api {
     itemModel = new HomeItemModel();
     itemModel.setLink(TestProtocol.NESTED_TEST);
     itemModel.setTitle("NestedScrolling");
-    models.add(itemModel);
-
-    itemModel = new HomeItemModel();
-    itemModel.setLink(TestProtocol.SHARE_ELEMENT);
-    itemModel.setTitle("共享元素");
     models.add(itemModel);
 
     itemModel = new HomeItemModel();

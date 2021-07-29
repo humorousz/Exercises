@@ -1,4 +1,4 @@
-package com.humorous.myapplication;
+package com.humorousz.home;
 
 
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 
-import com.humorous.myapplication.config.api.Api;
-import com.humorous.myapplication.home.HomeFragment;
+import com.humorousz.home.config.api.Api;
+import com.humorousz.home.home.HomeFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
 

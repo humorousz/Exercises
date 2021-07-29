@@ -1,4 +1,4 @@
-package com.humorous.myapplication.config.factory;
+package com.humorousz.home.config.factory;
 
 import com.humorusz.practice.antTest.AntFragment;
 import com.humorusz.practice.coordinatorTest.fragment.AdvancedCoordinatorFragment;
@@ -16,8 +16,6 @@ import com.humorusz.practice.kotlin.KotlinTestFragment;
 import com.humorusz.practice.nestedScrollView.NestScrollViewFragment;
 import com.humorusz.practice.rxjava.RxTestFragment;
 import com.humorusz.practice.shader.ShaderTestFragment;
-import com.humorous.myapplication.shareElement.ShareElementFragmentA;
-import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorusz.practice.nested.TestNestedFragment;
 import com.humorusz.practice.textSpan.TextSpanFragment;
 import com.humorusz.practice.topicRecyclerTest.TestRecyclerFragment;
@@ -50,8 +48,6 @@ public class TestFragmentFactory {
     TEXT_SPAN,
     DEMO_UI,
     VECTOR_DRAWABLE,
-    SHARE_ELEMENT,
-    SHARE_ELEMENT_B,
     SHADER,
     RXJAVA,
     SAO_YI_SAO,
@@ -105,12 +101,6 @@ public class TestFragmentFactory {
         break;
       case VECTOR_DRAWABLE:
         fragment = new VectorTestFragment();
-        break;
-      case SHARE_ELEMENT:
-        fragment = new ShareElementFragmentA();
-        break;
-      case SHARE_ELEMENT_B:
-        fragment = new ShareElementFragmentB();
         break;
       case SHADER:
         fragment = new ShaderTestFragment();

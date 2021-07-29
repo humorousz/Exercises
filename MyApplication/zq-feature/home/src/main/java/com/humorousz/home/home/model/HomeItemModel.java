@@ -1,4 +1,4 @@
-package com.humorous.myapplication.home.model;
+package com.humorousz.home.home.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

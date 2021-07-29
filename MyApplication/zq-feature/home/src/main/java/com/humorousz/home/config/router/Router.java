@@ -1,4 +1,4 @@
-package com.humorous.myapplication.config.router;
+package com.humorousz.home.config.router;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,11 +6,11 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 
-import com.humorous.myapplication.SecondMenuActivity;
-import com.humorous.myapplication.config.api.Api;
-import com.humorous.myapplication.config.api.TestProtocol;
-import com.humorous.myapplication.config.factory.TestFragmentFactory;
-import com.humorous.myapplication.container.ContainerActivity;
+import com.humorousz.home.SecondMenuActivity;
+import com.humorousz.home.config.api.Api;
+import com.humorousz.home.config.api.TestProtocol;
+import com.humorousz.home.config.factory.TestFragmentFactory;
+import com.humorousz.home.container.ContainerActivity;
 
 import com.humorousz.commonutils.log.Logger;
 

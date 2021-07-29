@@ -1,4 +1,4 @@
-package com.humorous.myapplication.home;
+package com.humorousz.home.home;
 
 import android.os.Bundle;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.home.adapter.HomeAdapter;
-import com.humorous.myapplication.config.api.Api;
+import com.humorousz.home.R;
+import com.humorousz.home.home.adapter.HomeAdapter;
+import com.humorousz.home.config.api.Api;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.GridItemDecoration;
 

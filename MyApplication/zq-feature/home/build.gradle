@@ -1,13 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
+plugins {
+    id 'com.android.library'
+}
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.humorous.myapplication"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
@@ -47,10 +45,7 @@ dependencies {
     implementation project(path: ':zq-practice')
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
-    implementation project(':zq-3rd-part:zxinglibrary')
-    implementation project(':zq-basic:networklibrary')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
-    implementation project(path: ':zq-feature:home')
 }

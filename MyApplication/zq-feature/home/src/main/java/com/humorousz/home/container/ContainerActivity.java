@@ -1,17 +1,16 @@
-package com.humorous.myapplication.container;
+package com.humorousz.home.container;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.config.factory.TestFragmentFactory;
+import com.humorousz.home.R;
+import com.humorousz.home.config.factory.TestFragmentFactory;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
