@@ -13,7 +13,7 @@ import com.humorous.myapplication.jetpack.JetpackFragment;
 import com.humorous.myapplication.kotlin.KotlinTestFragment;
 import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
-import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
+import com.humorusz.practice.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.rxjava.test.RxTestFragment;
 import com.humorusz.practice.shader.ShaderTestFragment;
 import com.humorous.myapplication.shareElement.ShareElementFragmentA;

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.nestedScrollView;
+package com.humorusz.practice.nestedScrollView;
 
 import android.content.Context;
 import com.google.android.material.appbar.AppBarLayout;

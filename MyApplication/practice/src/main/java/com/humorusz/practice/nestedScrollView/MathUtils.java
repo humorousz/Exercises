@@ -1,4 +1,4 @@
-package com.humorous.myapplication.nestedScrollView;
+package com.humorusz.practice.nestedScrollView;
 
 /**
  * Created by zhangzhiquan on 2017/11/14.

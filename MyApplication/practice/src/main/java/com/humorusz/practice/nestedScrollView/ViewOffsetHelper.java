@@ -1,4 +1,4 @@
-package com.humorous.myapplication.nestedScrollView;
+package com.humorusz.practice.nestedScrollView;
 
 import androidx.core.view.ViewCompat;
 import android.view.View;
