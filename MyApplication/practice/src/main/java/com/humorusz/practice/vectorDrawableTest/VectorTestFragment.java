@@ -1,15 +1,13 @@
-package com.humorous.myapplication.vectorDrawableTest;
+package com.humorusz.practice.vectorDrawableTest;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/10/29.

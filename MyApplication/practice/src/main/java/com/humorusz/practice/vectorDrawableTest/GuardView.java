@@ -1,4 +1,4 @@
-package com.humorous.myapplication.vectorDrawableTest;
+package com.humorusz.practice.vectorDrawableTest;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
+import com.humorusz.practice.R;
 
 /**
  *

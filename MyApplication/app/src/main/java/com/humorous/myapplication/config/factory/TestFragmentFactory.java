@@ -21,7 +21,7 @@ import com.humorous.myapplication.shareElement.ShareElementFragmentA;
 import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
-import com.humorous.myapplication.vectorDrawableTest.VectorTestFragment;
+import com.humorusz.practice.vectorDrawableTest.VectorTestFragment;
 import com.humorusz.practice.zxing.ZxingFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 

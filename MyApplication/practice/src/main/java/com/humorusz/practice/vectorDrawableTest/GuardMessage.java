@@ -1,4 +1,4 @@
-package com.humorous.myapplication.vectorDrawableTest;
+package com.humorusz.practice.vectorDrawableTest;
 
 /**
  * Created by zhangzhiquan on 2017/11/5.

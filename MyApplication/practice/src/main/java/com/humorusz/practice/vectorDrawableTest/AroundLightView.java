@@ -1,4 +1,4 @@
-package com.humorous.myapplication.vectorDrawableTest;
+package com.humorusz.practice.vectorDrawableTest;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;

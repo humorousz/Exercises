@@ -148,7 +148,7 @@
                 android:layout_marginTop="2dp"
                 android:visibility="invisible"
                 tools:visibility="visible"/>
-            <com.humorous.myapplication.vectorDrawableTest.AroundLightView
+            <com.humorusz.practice.vectorDrawableTest.AroundLightView
                 android:id="@+id/guard_around_light"
                 android:layout_width="90dp"
                 android:layout_height="36dp"
