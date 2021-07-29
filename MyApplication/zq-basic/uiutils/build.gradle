@@ -11,6 +11,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi"
+        }
 
     }
     buildTypes {
@@ -24,10 +27,6 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
@@ -36,8 +35,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation 'junit:junit:4.12'
-    implementation project(':basic:commonutils')
-    implementation project(':basic:uiutils')
+    implementation project(':zq-basic:commonutils')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.recyclerview
     implementation rootProject.ext.dependencies.design
@@ -48,8 +46,4 @@ dependencies {
     implementation rootProject.ext.dependencies.animated_drawable
     implementation rootProject.ext.dependencies.AnimationSequenceDrawable
     implementation rootProject.ext.dependencies.fresco
-    implementation rootProject.ext.dependencies.viewpager2
-    implementation rootProject.ext.dependencies.rxJava
-    implementation rootProject.ext.dependencies.rxAndroid
-    implementation rootProject.ext.dependencies.constraint_layout
 }

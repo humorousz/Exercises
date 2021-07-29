@@ -44,11 +44,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation 'junit:junit:4.12'
-    implementation project(':basic:uiutils')
-    implementation project(':basic:commonutils')
-    implementation project(':basic:networklibrary')
-    implementation project(':3rd-part:zxinglibrary')
-    implementation project(':feature:live:live-gift-box')
+    implementation project(':zq-basic:uiutils')
+    implementation project(':zq-basic:commonutils')
+    implementation project(':zq-basic:networklibrary')
+    implementation project(':zq-3rd-part:zxinglibrary')
+    implementation project(':zq-feature:live:live-gift-box')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
