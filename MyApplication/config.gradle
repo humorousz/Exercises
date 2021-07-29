@@ -49,7 +49,7 @@ ext {
         AnimationSequenceDrawable: "com.github.humorousz:AnimationSequenceDrawable:${AnimationSequenceDrawable}",
         Danmaku                  : "com.github.ctiao:DanmakuFlameMaster:${Danmaku}",
         ndkbitmap_armv7          : "com.github.ctiao:ndkbitmap-armv7a:${ndkbitmap_armv7}",
-        zxing                    : "com.github.humorousz:zxing:${zxing}",
+        zxing                    : "com.github.humorousz:com.humorusz.zxing:${zxing}",
         support_v4               : 'androidx.legacy:legacy-support-v4:1.0.0',
         support_vector_drawable  : 'androidx.vectordrawable:vectordrawable:1.0.0',
         retrofit                 : "com.squareup.retrofit2:retrofit:${retrofit}",

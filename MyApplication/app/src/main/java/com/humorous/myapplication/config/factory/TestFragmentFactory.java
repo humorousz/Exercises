@@ -22,7 +22,7 @@ import com.humorous.myapplication.shareElement.ShareElementFragmentB;
 import com.humorous.myapplication.textSpan.TextSpanFragment;
 import com.humorous.myapplication.topicRecyclerTest.TestRecyclerFragment;
 import com.humorous.myapplication.vectorDrawableTest.VectorTestFragment;
-import com.humorous.myapplication.zxing.ZxingFragment;
+import com.humorusz.zxing.ZxingFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.zxing;
+package com.humorusz.zxing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
