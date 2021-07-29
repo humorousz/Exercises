@@ -1,4 +1,4 @@
-package com.humorous.myapplication.exceptionTest;
+package com.humorusz.practice.exceptionTest;
 
 import android.content.Context;
 

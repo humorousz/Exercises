@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.multidex.MultiDex;
 
-import com.humorous.myapplication.exceptionTest.CatchExceptionHandler;
+import com.humorusz.practice.exceptionTest.CatchExceptionHandler;
 import com.humorousz.commonutils.service.CommonService;
 import com.humorousz.networklibrary.NetworkManager;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;

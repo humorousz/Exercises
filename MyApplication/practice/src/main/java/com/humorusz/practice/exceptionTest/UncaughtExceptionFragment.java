@@ -1,12 +1,12 @@
-package com.humorous.myapplication.exceptionTest;
+package com.humorusz.practice.exceptionTest;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/7/8.
