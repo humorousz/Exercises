@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ZzqDemo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="span_test">这几天学了一些CoordinatorLayout、AppBarLayout配合使用的一些方法，之前还写了一篇CoordinatorLayout Behavior一些笔记,通过这几天对源码的阅读，现在对CoordinatorLayout、AppBarLayout这部分的内容有了更深一层的理解，接下来我就把我所理解的源码简单的分析一下。</string>
+    <string name="lf_gift_lottery_other_person_info"><Data><![CDATA[<font color="#f39700">%1$s</font>在<font color="#f39700">%2$s</font>的直播间]]></Data></string>
+    <string name="main_title">Welcome to Humorous Man Demo</string>
+</resources>

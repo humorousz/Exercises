@@ -4,8 +4,7 @@ import android.app.Application;
 
 import androidx.multidex.MultiDex;
 
-import com.humorous.myapplication.exceptionTest.CatchExceptionHandler;
-import com.humorous.weexlib.WeexManager;
+import com.humorusz.practice.exceptionTest.CatchExceptionHandler;
 import com.humorousz.commonutils.service.CommonService;
 import com.humorousz.networklibrary.NetworkManager;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
@@ -33,7 +32,6 @@ public class HumorousZApplication extends Application {
     ImageLoaderHelper.init(getApplicationContext());
     CatchExceptionHandler.getInstance().init(this);
     NetworkManager.getInstance().init();
-    WeexManager.init(this);
   }
 
 }

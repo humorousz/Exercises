@@ -1,2 +1,8 @@
-include ':live-gift-box'
-include ':app', ':commonutils', ':uiutils', ':weexlib',':zxinglibrary', ':annotationtest', ':networklibrary'
+include ':app'
+include':basic:uiutils' // UI基础
+include':basic:commonutils' // 通用Util
+include':basic:networklibrary' // 网络请求
+include':3rd-part:zxinglibrary' // 二维码扫描
+include':feature:live:live-gift-box' //礼物面板
+include':feature:live:Live' //直播
+include ':practice:practice'

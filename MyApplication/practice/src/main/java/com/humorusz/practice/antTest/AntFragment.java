@@ -1,0 +1,40 @@
+package com.humorusz.practice.antTest;
+
+
+import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class AntFragment extends BaseFragment {
+
+    private static final String TAG = "AntFragment";
+
+    AntView mAntView;
+
+    @Override
+    public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_ant, container, false);
+    }
+
+    @Override
+    public void initView(View root) {
+        mAntView = (AntView) root.findViewById(R.id.ant_view);
+        mAntView.setSesameValues(500);
+        mAntView.startAnim();
+    }
+
+    @Override
+    public String getLogTitle() {
+        return TAG;
+    }
+
+}

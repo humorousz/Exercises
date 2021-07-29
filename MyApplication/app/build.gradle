@@ -46,16 +46,16 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'com.android.support:multidex:1.0.1'
     implementation 'com.github.humorousz:AnimationSequenceDrawable:1.0.1-SNAPSHOT'
+    implementation project(path: ':practice')
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation 'junit:junit:4.12'
-    implementation project(':uiutils')
-    implementation project(':commonutils')
-    implementation project(':weexlib')
-    implementation project(':zxinglibrary')
-    implementation project(':networklibrary')
-    implementation project(':live-gift-box')
+    implementation project(':basic:uiutils')
+    implementation project(':basic:commonutils')
+    implementation project(':basic:networklibrary')
+    implementation project(':3rd-part:zxinglibrary')
+    implementation project(':feature:live:live-gift-box')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
