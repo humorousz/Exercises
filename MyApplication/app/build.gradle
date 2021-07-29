@@ -49,8 +49,6 @@ dependencies {
     implementation project(':zq-basic:commonutils')
     implementation project(':zq-3rd-part:zxinglibrary')
     implementation project(':zq-basic:networklibrary')
-    implementation rootProject.ext.dependencies.appcompatV7
-    implementation rootProject.ext.dependencies.supportV4
-    implementation rootProject.ext.dependencies.recyclerview
     implementation project(':zq-feature:zq-home:home')
+    implementation rootProject.ext.dependencies.appcompatV7
 }
