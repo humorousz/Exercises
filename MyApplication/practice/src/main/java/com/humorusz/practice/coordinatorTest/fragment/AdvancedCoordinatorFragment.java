@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest.fragment;
+package com.humorusz.practice.coordinatorTest.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.FragmentTransaction;
@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.helper.StatusBarUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/6/9.

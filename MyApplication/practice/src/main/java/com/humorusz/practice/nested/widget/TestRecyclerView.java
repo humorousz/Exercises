@@ -1,4 +1,4 @@
-package com.humorous.myapplication.nested.widget;
+package com.humorusz.practice.nested.widget;
 
 import android.content.Context;
 import androidx.annotation.Nullable;

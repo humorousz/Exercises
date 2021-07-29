@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest.fragment;
+package com.humorusz.practice.coordinatorTest.fragment;
 
 import android.os.Bundle;
 import com.google.android.material.appbar.AppBarLayout;
@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.coordinatorTest.HomePagerAdapter;
+import com.humorusz.practice.R;
+import com.humorusz.practice.coordinatorTest.HomePagerAdapter;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.UIUtils;
 import com.humorousz.uiutils.view.BaseFragment;

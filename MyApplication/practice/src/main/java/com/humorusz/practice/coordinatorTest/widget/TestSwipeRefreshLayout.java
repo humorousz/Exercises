@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest.widget;
+package com.humorusz.practice.coordinatorTest.widget;
 
 import android.content.Context;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/5/31.

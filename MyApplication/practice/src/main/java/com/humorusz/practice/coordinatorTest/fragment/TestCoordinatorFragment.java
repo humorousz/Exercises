@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest.fragment;
+package com.humorusz.practice.coordinatorTest.fragment;
 
 import android.os.Bundle;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/6/7.

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest;
+package com.humorusz.practice.coordinatorTest;
 
 
 import androidx.fragment.app.Fragment;

@@ -1,9 +1,9 @@
 package com.humorous.myapplication.config.factory;
 
 import com.humorusz.practice.antTest.AntFragment;
-import com.humorous.myapplication.coordinatorTest.fragment.AdvancedCoordinatorFragment;
-import com.humorous.myapplication.coordinatorTest.fragment.CoordinatorFragment;
-import com.humorous.myapplication.coordinatorTest.fragment.TestCoordinatorFragment;
+import com.humorusz.practice.coordinatorTest.fragment.AdvancedCoordinatorFragment;
+import com.humorusz.practice.coordinatorTest.fragment.CoordinatorFragment;
+import com.humorusz.practice.coordinatorTest.fragment.TestCoordinatorFragment;
 import com.humorous.myapplication.dagger.DaggerFragment;
 import com.humorous.myapplication.diffutil.DiffUtilFragment;
 import com.humorous.myapplication.drawerLayout.DrawerLayoutFragment;
@@ -13,12 +13,12 @@ import com.humorous.myapplication.jetpack.JetpackFragment;
 import com.humorous.myapplication.kotlin.KotlinTestFragment;
 import com.humorous.myapplication.liveroom.DemoRoomFragment;
 import com.humorous.myapplication.liveroom.DemoUIFragment;
-import com.humorous.myapplication.nested.TestNestedFragment;
 import com.humorous.myapplication.nestedScrollView.NestScrollViewFragment;
 import com.humorous.myapplication.rxjava.test.RxTestFragment;
 import com.humorous.myapplication.shader.ShaderTestFragment;
 import com.humorous.myapplication.shareElement.ShareElementFragmentA;
 import com.humorous.myapplication.shareElement.ShareElementFragmentB;
+import com.humorusz.practice.nested.TestNestedFragment;
 import com.humorusz.practice.textSpan.TextSpanFragment;
 import com.humorusz.practice.topicRecyclerTest.TestRecyclerFragment;
 import com.humorusz.practice.vectorDrawableTest.VectorTestFragment;

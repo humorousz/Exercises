@@ -1,4 +1,4 @@
-package com.humorous.myapplication.nested.widget;
+package com.humorusz.practice.nested.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -15,8 +15,8 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
-import com.humorous.myapplication.R;
 import com.humorousz.commonutils.log.Logger;
+import com.humorusz.practice.R;
 
 /**
  * Created by zhangzhiquan on 2017/6/12.

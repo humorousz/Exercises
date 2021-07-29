@@ -19,9 +19,9 @@
         android:layout_marginTop="300dp"
         android:background="#FFCC00"
         android:text="Hello"
-        app:layout_behavior="com.humorous.myapplication.coordinatorTest.behavior.MyBehavior" />
+        app:layout_behavior="com.humorusz.practice.coordinatorTest.behavior.MyBehavior" />
 
-    <com.humorous.myapplication.coordinatorTest.widget.TestTextView
+    <com.humorusz.practice.coordinatorTest.widget.TestTextView
         android:id="@+id/textView"
         android:layout_width="100dp"
         android:layout_height="100dp"

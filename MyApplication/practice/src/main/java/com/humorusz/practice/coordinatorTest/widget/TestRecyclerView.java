@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest.widget;
+package com.humorusz.practice.coordinatorTest.widget;
 
 import android.content.Context;
 import androidx.annotation.Nullable;

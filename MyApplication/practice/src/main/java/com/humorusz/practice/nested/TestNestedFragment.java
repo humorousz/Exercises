@@ -1,4 +1,4 @@
-package com.humorous.myapplication.nested;
+package com.humorusz.practice.nested;
 
 import android.os.Bundle;
 import androidx.fragment.app.FragmentTransaction;
@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.humorous.myapplication.R;
-import com.humorous.myapplication.coordinatorTest.fragment.TestListFragment;
-import com.humorous.myapplication.nested.widget.TestImageView;
 import com.humorousz.uiutils.view.BaseFragment;
+import com.humorusz.practice.R;
+import com.humorusz.practice.coordinatorTest.fragment.TestListFragment;
+import com.humorusz.practice.nested.widget.TestImageView;
 
 /**
  * Created by zhangzhiquan on 2017/6/12.

@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest.behavior;
+package com.humorusz.practice.coordinatorTest.behavior;
 
 import android.content.Context;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -7,7 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
-import com.humorous.myapplication.coordinatorTest.widget.TestTextView;
+import com.humorusz.practice.coordinatorTest.widget.TestTextView;
 
 /**
  * Created by zhangzhiquan on 2017/6/7.

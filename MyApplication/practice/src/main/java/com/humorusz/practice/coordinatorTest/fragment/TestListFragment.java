@@ -1,4 +1,4 @@
-package com.humorous.myapplication.coordinatorTest.fragment;
+package com.humorusz.practice.coordinatorTest.fragment;
 
 import android.os.Bundle;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.humorous.myapplication.R;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.widget.LinearItemDecoration;
+import com.humorusz.practice.R;
 
 
 /**
