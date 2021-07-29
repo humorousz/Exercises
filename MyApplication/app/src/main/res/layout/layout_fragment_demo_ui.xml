@@ -15,7 +15,7 @@
       android:layout_marginTop="50dp"
       android:gravity="center_horizontal"
       android:orientation="vertical">
-      <com.humorous.myapplication.wigdet.SkewView
+      <com.humorusz.wigdet.SkewView
         android:id="@+id/live"
         android:layout_width="200dp"
         android:layout_height="200dp"/>

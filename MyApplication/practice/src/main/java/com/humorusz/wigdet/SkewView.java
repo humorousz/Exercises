@@ -1,4 +1,4 @@
-package com.humorous.myapplication.wigdet;
+package com.humorusz.wigdet;
 
 import android.content.Context;
 import android.graphics.Canvas;
