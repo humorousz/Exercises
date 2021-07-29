@@ -44,7 +44,7 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation project(path: ':zq-practice')
+    implementation project(':zq-feature:zq-practice:practice')
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
     implementation project(':zq-3rd-part:zxinglibrary')
@@ -52,5 +52,5 @@ dependencies {
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
-    implementation project(path: ':zq-feature:home')
+    implementation project(':zq-feature:zq-home:home')
 }
