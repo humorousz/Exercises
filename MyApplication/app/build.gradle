@@ -1,49 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
-android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
-
-    defaultConfig {
-        applicationId "com.humorous.myapplication"
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        ndk {
-            abiFilters("armeabi", "armeabi-v7a", "x86", "mips")
-        }
-        multiDexEnabled true
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility rootProject.ext.sourceCompatibility
-        targetCompatibility rootProject.ext.targetCompatibility
-    }
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
-}
-
-task run(type: Exec,dependsOn: 'installDebug'){
-    description 'Installs the APK and runs the main activity'
-    commandLine "${android.sdkDirectory}/platform-tools/adb", 'shell', 'am', 'start', '-n', 'com.humorous.myapplication/com.humorous.myapplication.MainActivity'
-}
-
+apply from: rootProject.file('common.gradle')
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
+    implementation project(':zq-basic:init')
     implementation project(':zq-3rd-part:zxinglibrary')
     implementation project(':zq-basic:networklibrary')
     implementation project(':zq-feature:zq-home:home')
