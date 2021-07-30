@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply from: rootProject.file('common.gradle')
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
     implementation project(':zq-basic:init')
