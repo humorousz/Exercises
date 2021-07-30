@@ -5,7 +5,6 @@ import androidx.multidex.MultiDex;
 
 import com.humorousz.commonutils.service.CommonService;
 import com.humorousz.init.ZQInitManagerImpl;
-import com.humorousz.networklibrary.NetworkManager;
 import com.humorousz.uiutils.helper.ImageLoaderHelper;
 
 /**
@@ -21,7 +20,6 @@ public class HumorousZApplication extends Application {
     MultiDex.install(this);
     CommonService.getService().init(this);
     ImageLoaderHelper.init(getApplicationContext());
-    NetworkManager.getInstance().init();
     ZQInitManagerImpl.getInstance().onApplicationCreate(this);
   }
 

@@ -1,6 +1,7 @@
 package com.humorousz.init;
 import android.app.Application;
 
+import com.humorousz.networklibrary.NetworkManager;
 import com.humorusz.practice.exceptionTest.CatchExceptionHandler;
 
 /**
@@ -25,5 +26,6 @@ public class ZQInitManagerImpl implements ZQInitManager {
   @Override
   public void onApplicationCreate(Application application) {
     CatchExceptionHandler.getInstance().init(application);
+    NetworkManager.getInstance().init();
   }
 }
