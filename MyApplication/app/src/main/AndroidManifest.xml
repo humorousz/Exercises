@@ -16,28 +16,6 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1"/>
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.humorousz.home.container.ContainerActivity"
-                  android:windowSoftInputMode="adjustNothing"
-                  android:exported="false"
-                  android:theme="@style/DIY.SlideClose.Transparent.Theme">
-            <intent-filter >
-                <action android:name="com.humorous.test"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="test"
-                      android:host="humorous"/>
-            </intent-filter>
-        </activity>
-        <activity android:name="com.humorousz.home.SecondMenuActivity"
-                  android:theme="@style/DIY.SlideClose.Transparent.Theme"/>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.humorous.myapplication.MainActivity"
+    tools:context="com.humorous.myapplication.com.humorousz.home.MainActivity"
     >
   <com.google.android.material.appbar.AppBarLayout
       android:id="@+id/statusbarutil_offset_view"
