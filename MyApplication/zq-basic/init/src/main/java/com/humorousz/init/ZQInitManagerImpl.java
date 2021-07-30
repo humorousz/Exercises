@@ -1,7 +1,9 @@
 package com.humorousz.init;
 import android.app.Application;
 
+import com.humorousz.commonutils.service.CommonService;
 import com.humorousz.networklibrary.NetworkManager;
+import com.humorousz.uiutils.helper.ImageLoaderHelper;
 import com.humorusz.practice.exceptionTest.CatchExceptionHandler;
 
 /**
@@ -27,5 +29,7 @@ public class ZQInitManagerImpl implements ZQInitManager {
   public void onApplicationCreate(Application application) {
     CatchExceptionHandler.getInstance().init(application);
     NetworkManager.getInstance().init();
+    CommonService.getService().init(application);
+    ImageLoaderHelper.init(application);
   }
 }

@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply from: rootProject.file('common.gradle')
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':zq-basic:uiutils')
-    implementation project(':zq-basic:commonutils')
     implementation project(':zq-basic:init')
     implementation project(':zq-feature:zq-home:home')
     implementation rootProject.ext.dependencies.appcompatV7
