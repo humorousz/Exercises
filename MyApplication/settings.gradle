@@ -9,3 +9,4 @@ include':zq-feature:live:Live' //直播
 include ':zq-feature:zq-practice:practice'
 include ':zq-feature:zq-home:home'
 include ':zq-basic:init'
+include ':zq-basic:plugin'

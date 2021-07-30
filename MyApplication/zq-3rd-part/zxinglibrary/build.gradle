@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 
 android {
@@ -37,6 +38,8 @@ dependencies {
     implementation rootProject.ext.dependencies.design
     implementation rootProject.ext.dependencies.support_v4
     implementation rootProject.ext.dependencies.support_vector_drawable
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 
@@ -68,4 +71,7 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives sourcesJar
 //    archives javadocJar
+}
+repositories {
+    mavenCentral()
 }
