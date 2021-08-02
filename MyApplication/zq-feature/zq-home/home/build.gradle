@@ -9,6 +9,7 @@ dependencies {
     implementation project(':zq-feature:zq-practice:practice')
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
+    implementation project(':zq-3rd-part:zxinglibrary')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
