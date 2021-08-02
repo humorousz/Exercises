@@ -1,0 +1,11 @@
+plugins {
+    id 'com.android.library'
+}
+apply from: rootProject.file('common.gradle')
+
+dependencies {
+    implementation project(':zq-feature:zq-practice:practice')
+    implementation project(':zq-basic:networklibrary')
+    implementation project(':zq-basic:uiutils')
+    implementation project(':zq-basic:commonutils')
+}

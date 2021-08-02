@@ -1,0 +1,31 @@
+plugins {
+    id 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+apply from: rootProject.file('common.gradle')
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation project(':zq-basic:uiutils')
+    implementation project(':zq-basic:commonutils')
+    implementation project(':zq-basic:networklibrary')
+    implementation project(':zq-3rd-part:zxinglibrary')
+    implementation project(':zq-feature:live:live-gift-box')
+    implementation rootProject.ext.dependencies.appcompatV7
+    implementation rootProject.ext.dependencies.supportV4
+    implementation rootProject.ext.dependencies.recyclerview
+    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.Danmaku
+    implementation rootProject.ext.dependencies.ndkbitmap_armv7
+    implementation rootProject.ext.dependencies.AnimationSequenceDrawable
+    implementation rootProject.ext.dependencies.rxJava
+    implementation rootProject.ext.dependencies.rxAndroid
+    implementation rootProject.ext.dependencies.constraint_layout
+    implementation rootProject.ext.dependencies.kotlin
+    implementation rootProject.ext.dependencies.dagger
+    implementation rootProject.ext.dependencies.dagger_android
+    annotationProcessor rootProject.ext.dependencies.dagger_compiler
+    annotationProcessor rootProject.ext.dependencies.dagger_android_compiler
+
+}
