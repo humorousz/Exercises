@@ -4,10 +4,10 @@ import java.util.Map;
 
 import com.example.plugin.biz.ZQPlugin;
 
-public class ZQPluginManager {
+public class ZQPluginManager<T extends ZQPlugin> {
   private static Map<Class<? extends ZQPlugin>, ? extends ZQPlugin> sZQPluginMap;
 
-  <T extends ZQPlugin> public T getPlugin(Class<? extends ZQPlugin> cls) {
-    return sZQPluginMap.get(cls);
+  public T getPlugin(Class<T> cls) {
+    return (T) sZQPluginMap.get(cls);
   }
 }
