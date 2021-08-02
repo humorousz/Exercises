@@ -10,4 +10,5 @@ dependencies {
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
     implementation project(':zq-basic:module')
+    implementation project(':zq-framework:router')
 }
