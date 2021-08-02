@@ -1,8 +1,7 @@
 package com.humorousz.init;
 
-import java.util.List;
-
 import com.humorousz.home.init.HomeInitModule;
+import com.humorusz.practice.init.PracticeInitModule;
 
 /**
  * Description:
@@ -12,6 +11,7 @@ import com.humorousz.home.init.HomeInitModule;
  */
 public class InitConfig {
   public static String[] mInitConfig = new String[]{
-      HomeInitModule.class.getName()
+      HomeInitModule.class.getName(),
+      PracticeInitModule.class.getName()
   };
 }

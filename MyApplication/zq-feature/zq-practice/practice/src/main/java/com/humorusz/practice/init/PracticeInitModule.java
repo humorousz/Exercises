@@ -1,4 +1,4 @@
-package com.humorousz.home.init;
+package com.humorusz.practice.init;
 
 import android.app.Application;
 
@@ -7,13 +7,14 @@ import com.humorusz.moudle.init.InitModule;
 
 /**
  * Description:
+ * 初始化模块
  * author：zhangzhiquan
  * Date: 2021/8/2
  */
-public class HomeInitModule implements InitModule {
-  private static final String TAG = "HomeInitModule";
+public class PracticeInitModule implements InitModule {
+  private static final String TAG = "PracticeInitModule";
   @Override
   public void onApplicationCreate(Application application) {
-    Logger.d(TAG, "HomeInitModule create");
+    Logger.d(TAG, "PracticeInitModule create");
   }
 }
