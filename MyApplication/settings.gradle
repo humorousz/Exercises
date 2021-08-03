@@ -8,7 +8,6 @@ include':zq-basic:networklibrary' // 网络请求
 include ':zq-basic:init'
 include ':zq-basic:plugin'
 include ':zq-basic:module'
-include ':zq-basic:config'
 
 /**
  * 3rd
