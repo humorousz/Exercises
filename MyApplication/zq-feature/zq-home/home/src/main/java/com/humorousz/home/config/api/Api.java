@@ -231,7 +231,7 @@ public class Api {
 
     itemModel = new HomeItemModel();
     itemModel.setLink(TestProtocol.LIVE_PRE_PUSH);
-    itemModel.setTitle("直播预览");
+    itemModel.setTitle("直播");
     models.add(itemModel);
     return models;
   }
