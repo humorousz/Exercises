@@ -4,11 +4,14 @@ plugins {
 apply from: rootProject.file('common.gradle')
 
 dependencies {
-    implementation project(':zq-feature:zq-practice:practice')
+    // biz
     implementation project(':zq-feature:zq-home:home')
+    implementation project(':zq-feature:zq-practice:practice')
+    // framework
+    implementation project(':zq-framework:router')
+    // basic
     implementation project(':zq-basic:networklibrary')
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
     implementation project(':zq-basic:module')
-    implementation project(':zq-framework:router')
 }

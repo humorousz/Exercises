@@ -4,5 +4,4 @@ apply plugin: 'kotlin-android-extensions'
 apply from: rootProject.file('common.gradle')
 dependencies {
     implementation project(':zq-basic:init')
-    implementation project(':zq-feature:zq-home:home')
 }
