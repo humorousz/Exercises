@@ -10,7 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.humorousz.home.R;
-import com.humorousz.home.config.factory.TestFragmentFactory;
+import com.humorousz.router.PageManager;
+import com.humorousz.router.factory.PAGE_TYPE;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
@@ -40,15 +41,15 @@ public class ContainerActivity extends ImmerseActivity {
       setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
     super.onCreate(savedInstanceState);
-    TestFragmentFactory.TYPE type = (TestFragmentFactory.TYPE) getIntent().getSerializableExtra(FRAGMENT_TYPE);
-    if (type == null) {
+    PAGE_TYPE type = (PAGE_TYPE) getIntent().getSerializableExtra(FRAGMENT_TYPE);
+    mFragment = PageManager.getInstance().createFragment(type);
+    if (type == null || mFragment == null) {
       ToastUtil.showToast(this, "no fragment type");
       finish();
     }
     hasTitle = getIntent().getBooleanExtra(HAS_TITLE, true);
     setContentView(R.layout.activity_container);
     initToolBar(hasTitle);
-    mFragment = TestFragmentFactory.createFragment(type);
     mContainer = findViewById(R.id.test_container);
     FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
     tr.add(R.id.test_container, mFragment);

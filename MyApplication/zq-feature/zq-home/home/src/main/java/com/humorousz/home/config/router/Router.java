@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
-
+import com.humorousz.commonutils.log.Logger;
 import com.humorousz.home.SecondMenuActivity;
 import com.humorousz.home.config.api.Api;
-import com.humorousz.home.config.api.TestProtocol;
-import com.humorousz.home.config.factory.TestFragmentFactory;
 import com.humorousz.home.container.ContainerActivity;
-
-import com.humorousz.commonutils.log.Logger;
+import com.humorousz.router.factory.PAGE_TYPE;
+import com.humorousz.router.factory.TestProtocol;
 
 /**
  * @author zhangzhiquan
@@ -41,8 +39,8 @@ public class Router {
                 Api.SECOND_MENU type = Api.SECOND_MENU.valueOf(typeString);
                 startMenuActivity(context,type,title);
             }else {
-                Boolean hasTitle = Boolean.valueOf(uri.getQueryParameter("hasTitle"));
-                Boolean landscape = uri.getBooleanQueryParameter("couldLandscape",false);
+                boolean hasTitle = Boolean.parseBoolean(uri.getQueryParameter("hasTitle"));
+                boolean landscape = uri.getBooleanQueryParameter("couldLandscape",false);
                 startActivity(context,hasTitle,landscape,typeString,uri,title);
             }
         }catch (RuntimeException e){
@@ -60,7 +58,7 @@ public class Router {
         intent.addCategory(Intent.CATEGORY_DEFAULT );
         intent.setData(link);
         if(!TextUtils.isEmpty(typeString)){
-            TestFragmentFactory.TYPE type = TestFragmentFactory.TYPE.valueOf(typeString);
+            PAGE_TYPE type = PAGE_TYPE.valueOf(typeString);
             intent.putExtra(ContainerActivity.FRAGMENT_TYPE,type);
         }
         intent.putExtra(ContainerActivity.HAS_TITLE,hasTitle);

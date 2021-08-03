@@ -10,8 +10,11 @@ dependencies {
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
     implementation project(':zq-basic:networklibrary')
+    implementation project(':zq-basic:module')
     implementation project(':zq-3rd-part:zxinglibrary')
     implementation project(':zq-feature:live:live-gift-box')
+    implementation project(':zq-framework:router')
+    implementation project(':zq-basic:plugin')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
