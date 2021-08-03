@@ -30,5 +30,6 @@ public enum PAGE_TYPE {
   DIFF_UTIL,
   JET_PACK,
   KOTLIN,
-  DAGGER
+  DAGGER,
+  LIVE_PRE_PUSH
 }
