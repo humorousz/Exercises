@@ -13,6 +13,8 @@ dependencies {
     implementation project(':zq-basic:module')
     implementation project(':zq-3rd-part:zxinglibrary')
     implementation project(':zq-feature:live:live-gift-box')
+    implementation project(':zq-framework:router')
+    implementation project(':zq-basic:plugin')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
@@ -26,7 +28,6 @@ dependencies {
     implementation rootProject.ext.dependencies.kotlin
     implementation rootProject.ext.dependencies.dagger
     implementation rootProject.ext.dependencies.dagger_android
-    implementation project(path: ':zq-framework:router')
     annotationProcessor rootProject.ext.dependencies.dagger_compiler
     annotationProcessor rootProject.ext.dependencies.dagger_android_compiler
 

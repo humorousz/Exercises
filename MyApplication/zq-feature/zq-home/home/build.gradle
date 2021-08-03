@@ -8,8 +8,8 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
-    implementation project(':zq-3rd-part:zxinglibrary')
     implementation project(':zq-basic:module')
+    implementation project(':zq-basic:plugin')
     implementation project(':zq-framework:router')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
