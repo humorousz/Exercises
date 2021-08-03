@@ -137,4 +137,9 @@ public class TestProtocol {
    * Dagger
    */
   public static final String DAGGER = BASE + PAGE_TYPE.DAGGER + HAS_TITLE;
+
+  /**
+   * Live_PrePush
+   */
+  public static final String LIVE_PRE_PUSH = BASE + PAGE_TYPE.LIVE_PRE_PUSH + HAS_TITLE;
 }

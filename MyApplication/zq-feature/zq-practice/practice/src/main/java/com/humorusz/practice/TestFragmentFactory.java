@@ -99,8 +99,6 @@ public class TestFragmentFactory implements PageProvider {
       case DAGGER:
         fragment = new DaggerFragment();
         break;
-      default:
-        throw new IllegalArgumentException("can not handle Type:" + type.name());
     }
     return fragment;
   }

@@ -12,14 +12,18 @@ import com.humorousz.uiutils.view.BaseFragment
  *
  */
 class LivePrePushFragment : BaseFragment() {
-  override fun createView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater?.inflate(R.layout.live_push_fragment,container)
+  override fun createView(
+    inflater: LayoutInflater?,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    return inflater?.inflate(R.layout.live_push_fragment, container, false)
   }
 
   override fun initView(root: View?) {
-   root?.let{
+    root?.let {
 
-   }
+    }
   }
 
 }

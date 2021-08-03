@@ -228,6 +228,11 @@ public class Api {
     itemModel.setLink(TestProtocol.DAGGER);
     itemModel.setTitle("Dagger");
     models.add(itemModel);
+
+    itemModel = new HomeItemModel();
+    itemModel.setLink(TestProtocol.LIVE_PRE_PUSH);
+    itemModel.setTitle("直播预览");
+    models.add(itemModel);
     return models;
   }
 }

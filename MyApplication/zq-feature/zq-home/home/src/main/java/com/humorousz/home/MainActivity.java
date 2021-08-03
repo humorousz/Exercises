@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -17,9 +16,6 @@ import com.humorousz.home.config.router.Router;
 import com.humorousz.home.home.HomeFragment;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;
-//import com.yzq.zxinglibrary.android.CaptureActivity;
-//import com.yzq.zxinglibrary.bean.ZxingConfig;
-//import com.yzq.zxinglibrary.common.Constant;
 
 /**
  * MainActivity
