@@ -5,7 +5,7 @@ include ':app'
 include':zq-basic:uiutils' // UI基础
 include':zq-basic:commonutils' // 通用Util
 include':zq-basic:networklibrary' // 网络请求
-include ':zq-basic:init'
+include ':zq-framework:init'
 include ':zq-basic:plugin'
 include ':zq-basic:module'
 
