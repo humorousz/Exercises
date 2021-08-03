@@ -1,6 +1,9 @@
 package com.humorousz.home.config.api;
 
+import static com.humorousz.router.factory.TestProtocol.MENU;
+
 import com.humorousz.home.home.model.HomeItemModel;
+import com.humorousz.router.factory.TestProtocol;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +53,18 @@ public class Api {
         break;
     }
     return null;
-
   }
+
+  /**
+   * 二级菜单
+   */
+  public static final String UI_MENU = MENU + Api.SECOND_MENU.UI;
+
+  public static final String ANIM_MENU = MENU + Api.SECOND_MENU.ANIM;
+
+  public static final String OTHER_MENU = MENU + Api.SECOND_MENU.OTHER;
+
+  public static final String EXPLORE = MENU + Api.SECOND_MENU.EXPLORE;
 
   public static List<HomeItemModel> getAllItem() {
     List<HomeItemModel> models = new ArrayList<>(12);
@@ -59,23 +72,23 @@ public class Api {
     HomeItemModel itemModel;
 
     itemModel = new HomeItemModel();
-    itemModel.setLink(TestProtocol.UI_MENU);
+    itemModel.setLink(UI_MENU);
     itemModel.setTitle("UI相关");
     models.add(itemModel);
 
     itemModel = new HomeItemModel();
-    itemModel.setLink(TestProtocol.ANIM_MENU);
+    itemModel.setLink(ANIM_MENU);
     itemModel.setTitle("动画练习");
     models.add(itemModel);
 
 
     itemModel = new HomeItemModel();
-    itemModel.setLink(TestProtocol.OTHER_MENU);
+    itemModel.setLink(OTHER_MENU);
     itemModel.setTitle("练习");
     models.add(itemModel);
 
     itemModel = new HomeItemModel();
-    itemModel.setLink(TestProtocol.EXPLORE);
+    itemModel.setLink(EXPLORE);
     itemModel.setTitle("探索新内容");
     models.add(itemModel);
 

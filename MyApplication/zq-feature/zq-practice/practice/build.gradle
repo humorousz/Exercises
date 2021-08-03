@@ -26,6 +26,7 @@ dependencies {
     implementation rootProject.ext.dependencies.kotlin
     implementation rootProject.ext.dependencies.dagger
     implementation rootProject.ext.dependencies.dagger_android
+    implementation project(path: ':zq-framework:router')
     annotationProcessor rootProject.ext.dependencies.dagger_compiler
     annotationProcessor rootProject.ext.dependencies.dagger_android_compiler
 

@@ -1,5 +1,8 @@
-package com.humorousz.home.config.factory;
+package com.humorusz.practice;
 
+import com.humorousz.router.PageProvider;
+import com.humorousz.router.factory.PAGE_TYPE;
+import com.humorousz.uiutils.view.BaseFragment;
 import com.humorusz.practice.antTest.AntFragment;
 import com.humorusz.practice.coordinatorTest.fragment.AdvancedCoordinatorFragment;
 import com.humorusz.practice.coordinatorTest.fragment.CoordinatorFragment;
@@ -10,18 +13,17 @@ import com.humorusz.practice.drawerLayout.DrawerLayoutFragment;
 import com.humorusz.practice.exceptionTest.UncaughtExceptionFragment;
 import com.humorusz.practice.frameAnimtor.AnimatorFragment;
 import com.humorusz.practice.jetpack.JetpackFragment;
+import com.humorusz.practice.kotlin.KotlinTestFragment;
 import com.humorusz.practice.liveroom.DemoRoomFragment;
 import com.humorusz.practice.liveroom.DemoUIFragment;
-import com.humorusz.practice.kotlin.KotlinTestFragment;
+import com.humorusz.practice.nested.TestNestedFragment;
 import com.humorusz.practice.nestedScrollView.NestScrollViewFragment;
 import com.humorusz.practice.rxjava.RxTestFragment;
 import com.humorusz.practice.shader.ShaderTestFragment;
-import com.humorusz.practice.nested.TestNestedFragment;
 import com.humorusz.practice.textSpan.TextSpanFragment;
 import com.humorusz.practice.topicRecyclerTest.TestRecyclerFragment;
 import com.humorusz.practice.vectorDrawableTest.VectorTestFragment;
 import com.humorusz.practice.zxing.ZxingFragment;
-import com.humorousz.uiutils.view.BaseFragment;
 
 /**
  * Created by zhangzhiquan on 2017/6/5.
@@ -29,35 +31,9 @@ import com.humorousz.uiutils.view.BaseFragment;
  * @author zhangzhiquan
  */
 
-public class TestFragmentFactory {
-  public enum TYPE {
-    /**
-     * 所以子页面
-     */
-    ANT,
-    COORDINATOR,
-    TOPIC_RECYCLER,
-    TEST_COORDINATOR,
-    ADVANCE_COORDINATOR,
-    NESTED_SCROLLING,
-    NESTED_SCROLL_VIEW,
-    EXCEPTION,
-    DRAWER_LAYOUT,
-    FRAME_ANIMTOR,
-    DEMO_ROOM,
-    TEXT_SPAN,
-    DEMO_UI,
-    VECTOR_DRAWABLE,
-    SHADER,
-    RXJAVA,
-    SAO_YI_SAO,
-    DIFF_UTIL,
-    JET_PACK,
-    KOTLIN,
-    DAGGER
-  }
-
-  public static BaseFragment createFragment(TYPE type) {
+public class TestFragmentFactory implements PageProvider {
+  @Override
+  public BaseFragment createPage(PAGE_TYPE type) {
     BaseFragment fragment = null;
     switch (type) {
       case ANT:

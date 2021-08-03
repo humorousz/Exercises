@@ -3,7 +3,9 @@ package com.humorusz.practice.init;
 import android.app.Application;
 
 import com.humorousz.commonutils.log.Logger;
+import com.humorousz.router.PageManager;
 import com.humorusz.moudle.init.InitModule;
+import com.humorusz.practice.TestFragmentFactory;
 
 /**
  * Description:
@@ -16,5 +18,6 @@ public class PracticeInitModule implements InitModule {
   @Override
   public void onApplicationCreate(Application application) {
     Logger.d(TAG, "PracticeInitModule create");
+    PageManager.getInstance().registerPageProvider(new TestFragmentFactory());
   }
 }
