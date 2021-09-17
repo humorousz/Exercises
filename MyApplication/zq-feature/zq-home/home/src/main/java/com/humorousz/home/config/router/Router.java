@@ -9,7 +9,7 @@ import com.humorousz.commonutils.log.Logger;
 import com.humorousz.home.SecondMenuActivity;
 import com.humorousz.home.config.api.Api;
 import com.humorousz.home.container.ContainerActivity;
-import com.humorousz.router.factory.PAGE_TYPE;
+import com.example.api.page.PAGE_TYPE;
 import com.humorousz.router.factory.TestProtocol;
 
 /**

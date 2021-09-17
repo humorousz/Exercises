@@ -1,5 +1,7 @@
 package com.humorousz.router.factory;
 
+import com.example.api.page.PAGE_TYPE;
+
 /**
  * Created by zhangzhiquan on 2017/6/5.
  *

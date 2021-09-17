@@ -3,9 +3,11 @@ package com.humorousz.router;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.humorousz.router.factory.PAGE_TYPE;
+import com.example.api.page.PAGE_TYPE;
+import com.example.api.page.PageProvider;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -15,8 +17,8 @@ import com.humorousz.uiutils.view.BaseFragment;
  * Date: 2021/8/3
  */
 public class PageManager {
-  private final List<PageProvider> mPageProviders = new ArrayList<>();
   private static volatile PageManager mInstance;
+  private final List<PageProvider> mPageProviders = new ArrayList<>();
 
   private PageManager() {
 
@@ -54,5 +56,10 @@ public class PageManager {
       return false;
     }
     return mPageProviders.add(pageProvider);
+  }
+
+  public boolean registerPageProvider(@NotNull PAGE_TYPE pageType,
+      @NotNull PageProvider pageProvider) {
+    return registerPageProvider(pageProvider);
   }
 }

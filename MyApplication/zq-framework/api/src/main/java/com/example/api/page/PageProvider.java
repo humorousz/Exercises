@@ -1,8 +1,7 @@
-package com.humorousz.router;
+package com.example.api.page;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.humorousz.router.factory.PAGE_TYPE;
 import com.humorousz.uiutils.view.BaseFragment;
 
 /**
@@ -14,6 +13,7 @@ import com.humorousz.uiutils.view.BaseFragment;
 public interface PageProvider {
   /**
    * 创建一个Fragment
+   *
    * @param type 传入的type
    * @return
    */

@@ -1,7 +1,9 @@
 package com.humorusz.live.init
 
 import android.app.Application
-import com.humorousz.router.PageManager
+import com.example.api.page.PAGE_TYPE
+import com.example.plugin.ZQPluginManager
+import com.example.plugin.biz.PagePlugin
 import com.humorusz.moudle.init.InitModule
 
 /**
@@ -12,6 +14,7 @@ import com.humorusz.moudle.init.InitModule
  */
 class LiveInitModule : InitModule {
   override fun onApplicationCreate(application: Application?) {
-    PageManager.getInstance().registerPageProvider(LivePageProvider())
+    ZQPluginManager.getInstance().getPlugin(PagePlugin::class.java)
+      ?.registerPageProvider(PAGE_TYPE.LIVE_PRE_PUSH, LivePageProvider());
   }
 }

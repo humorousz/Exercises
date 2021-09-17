@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.humorousz.home.R;
 import com.humorousz.router.PageManager;
-import com.humorousz.router.factory.PAGE_TYPE;
+import com.example.api.page.PAGE_TYPE;
 import com.humorousz.uiutils.helper.ToastUtil;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorousz.uiutils.view.ImmerseActivity;

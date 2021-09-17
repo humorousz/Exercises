@@ -1,7 +1,7 @@
 package com.humorusz.practice;
 
-import com.humorousz.router.PageProvider;
-import com.humorousz.router.factory.PAGE_TYPE;
+import com.example.api.page.PageProvider;
+import com.example.api.page.PAGE_TYPE;
 import com.humorousz.uiutils.view.BaseFragment;
 import com.humorusz.practice.antTest.AntFragment;
 import com.humorusz.practice.coordinatorTest.fragment.AdvancedCoordinatorFragment;
