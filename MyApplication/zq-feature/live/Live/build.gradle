@@ -9,4 +9,5 @@ dependencies {
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:module')
     implementation project(':zq-framework:api')
+    implementation 'io.agora.rtc:full-sdk:3.1.2'
 }
