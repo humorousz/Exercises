@@ -34,7 +34,11 @@ public class Api {
     /**
      * 探索新内容
      */
-    EXPLORE
+    EXPLORE,
+    /**
+     * 直播
+     */
+    LIVE
   }
 
   public static List<HomeItemModel> getList(SECOND_MENU type) {
@@ -49,6 +53,8 @@ public class Api {
         return getOther();
       case EXPLORE:
         return getExplore();
+      case LIVE:
+        return getLive();
       default:
         break;
     }
@@ -65,6 +71,8 @@ public class Api {
   public static final String OTHER_MENU = MENU + Api.SECOND_MENU.OTHER;
 
   public static final String EXPLORE = MENU + Api.SECOND_MENU.EXPLORE;
+
+  public static final String LIVE = MENU + Api.SECOND_MENU.LIVE;
 
   public static List<HomeItemModel> getAllItem() {
     List<HomeItemModel> models = new ArrayList<>(12);
@@ -90,6 +98,11 @@ public class Api {
     itemModel = new HomeItemModel();
     itemModel.setLink(EXPLORE);
     itemModel.setTitle("探索新内容");
+    models.add(itemModel);
+
+    itemModel = new HomeItemModel();
+    itemModel.setLink(LIVE);
+    itemModel.setTitle("直播");
     models.add(itemModel);
 
     return models;
@@ -233,6 +246,17 @@ public class Api {
     itemModel.setLink(TestProtocol.LIVE_PRE_PUSH);
     itemModel.setTitle("直播");
     models.add(itemModel);
+    return models;
+  }
+
+  public static List<HomeItemModel> getLive(){
+    List<HomeItemModel> models = new ArrayList<>(12);
+    HomeItemModel itemModel;
+    itemModel = new HomeItemModel();
+    itemModel.setLink(TestProtocol.LIVE_PRE_PUSH);
+    itemModel.setTitle("PrePush");
+    models.add(itemModel);
+
     return models;
   }
 }
