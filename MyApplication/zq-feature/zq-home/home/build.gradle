@@ -9,7 +9,7 @@ dependencies {
     implementation project(':zq-basic:uiutils')
     implementation project(':zq-basic:commonutils')
     implementation project(':zq-basic:module')
-    implementation project(':zq-basic:plugin')
+    implementation project(':zq-framework:plugin')
     implementation project(':zq-framework:router')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4

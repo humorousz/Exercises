@@ -6,7 +6,6 @@ include':zq-basic:uiutils' // UI基础
 include':zq-basic:commonutils' // 通用Util
 include':zq-basic:networklibrary' // 网络请求
 include ':zq-framework:init'
-include ':zq-basic:plugin'
 include ':zq-basic:module'
 
 /**
@@ -21,7 +20,8 @@ include':zq-feature:live:Live' //直播
 include ':zq-feature:zq-practice:practice'
 include ':zq-feature:zq-home:home'
 /**
- * framewokr
+ * framework
  */
+include ':zq-framework:plugin'
 include ':zq-framework'
 include ':zq-framework:router'

@@ -14,7 +14,7 @@ dependencies {
     implementation project(':zq-3rd-part:zxinglibrary')
     implementation project(':zq-feature:live:live-gift-box')
     implementation project(':zq-framework:router')
-    implementation project(':zq-basic:plugin')
+    implementation project(':zq-framework:plugin')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
     implementation rootProject.ext.dependencies.recyclerview
