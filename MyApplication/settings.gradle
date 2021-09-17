@@ -22,6 +22,6 @@ include ':zq-feature:zq-home:home'
 /**
  * framework
  */
-include ':zq-framework:plugin'
+include ':zq-framework:api'
 include ':zq-framework'
 include ':zq-framework:router'
