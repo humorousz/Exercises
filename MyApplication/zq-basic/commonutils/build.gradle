@@ -37,7 +37,6 @@ dependencies {
     //对Json解析的单元测试需要用到，因为JUnit不包含json库
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.json:json:20140107'
-    implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
