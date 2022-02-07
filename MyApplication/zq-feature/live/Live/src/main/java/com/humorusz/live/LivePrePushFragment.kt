@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.humorousz.commonutils.log.Logger
 import com.humorousz.uiutils.helper.ToastUtil
@@ -46,19 +48,21 @@ class LivePrePushFragment : BaseFragment() {
   override fun initView(root: View?) {
     root?.let {
       mRootView = root.findViewById(R.id.live_video_container)
-      checkPermission()
-    }
-  }
-
-  private fun checkPermission() {
-    permissionViewModel.getPermission().observe(this) {
-      if (it) {
+      checkPermission().observe(this) {
         ToastUtil.showToast(context, "获取权限成功")
         initRtcEngine()
         setPreview(mRootView)
       }
     }
+  }
+
+  private fun checkPermission(): LiveData<Boolean> {
+    val data = MutableLiveData<Boolean>()
+    permissionViewModel.getPermission().observe(this) {
+      data.value = it
+    }
     permissionViewModel.requestPermission(activity!!)
+    return data
   }
 
   private fun initRtcEngine() {
