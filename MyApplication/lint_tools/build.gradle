@@ -1,8 +1,6 @@
-plugins {
-    id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
-}
-
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: rootProject.file('common.gradle')
 java {
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
