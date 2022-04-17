@@ -13,3 +13,9 @@ dependencies {
     compileOnly 'com.android.tools.lint:lint-api:30.1.3'
     compileOnly 'com.android.tools.lint:lint-checks:30.1.3'
 }
+
+jar {
+    manifest{
+        attributes("Lint-Registry-v2":"com.humrousz.lint.LintRegistry")
+    }
+}

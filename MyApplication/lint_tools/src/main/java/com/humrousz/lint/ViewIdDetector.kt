@@ -1,9 +1,12 @@
 package com.humrousz.lint
 
 import com.android.SdkConstants
-import com.android.tools.lint.checks.ActionsXmlDetector.Companion.ISSUE
+import com.android.tools.lint.detector.api.Category
+import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.LayoutDetector
+import com.android.tools.lint.detector.api.Scope.Companion.RESOURCE_FILE_SCOPE
+import com.android.tools.lint.detector.api.Severity
 import com.android.tools.lint.detector.api.XmlContext
 import org.w3c.dom.Element
 
@@ -39,8 +42,28 @@ class ViewIdDetector : LayoutDetector() {
         }
       }
       if(!matchRule){
-        context.report(ISSUE,context.getLocation(attr),"应该TV开头")
+        context.report(
+          ISSUE,
+          attr,
+          context.getLocation(attr),
+          "ViewIdName建议使用view的缩写_xxx; ${element.tagName} 建议使用 `${expMsg}_xxx`"
+          )
       }
     }
+  }
+
+  companion object{
+    val ISSUE:Issue = Issue.create(
+      "ViewCheck",
+      "ViewId命名不规范",
+      "建议tv_开头",
+      Category.CORRECTNESS,
+      5,
+      Severity.ERROR,
+      Implementation(
+        ViewIdDetector::class.java,
+        RESOURCE_FILE_SCOPE
+      )
+    )
   }
 }

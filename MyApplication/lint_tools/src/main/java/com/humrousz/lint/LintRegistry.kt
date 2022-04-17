@@ -1,6 +1,5 @@
 package com.humrousz.lint
 
-import com.android.tools.lint.checks.ActionsXmlDetector.Companion.ISSUE
 import com.android.tools.lint.client.api.IssueRegistry
 import com.android.tools.lint.detector.api.Issue
 
@@ -12,5 +11,5 @@ import com.android.tools.lint.detector.api.Issue
  */
 class LintRegistry : IssueRegistry(){
   override val issues: List<Issue>
-    get() = listOf(ISSUE)
+    get() = listOf(ViewIdDetector.ISSUE)
 }
