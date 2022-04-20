@@ -32,6 +32,10 @@ android {
     }
 }
 
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
 task run(type: Exec,dependsOn: 'installDebug'){
     description 'Installs the APK and runs the main activity'
     commandLine "${android.sdkDirectory}/platform-tools/adb", 'shell', 'am', 'start', '-n', 'com.humorous.myapplication/com.humorous.myapplication.MainActivity'

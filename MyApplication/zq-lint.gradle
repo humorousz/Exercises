@@ -1,0 +1,25 @@
+/**
+ * lint检查的通用配置
+ */
+dependencies {
+    lintChecks project(':lint_tools')
+}
+
+android{
+    lintOptions {
+        // 设置为 true 后，release 构建都会以 Fatal 的设置来运行 Lint。
+        // 如果构建时发现了致命（Fatal）的问题，会中止构建（具体由 abortOnError 控制）
+        checkReleaseBuilds = false
+        // 设置为 true，则当 Lint 发现错误时停止 Gradle 构建
+        abortOnError false
+        // 仅检查指定的问题（根据规则的 id 指定）
+        check 'ZQDimenCheck','ViewCheck'
+        // 在报告中是否返回对应的 Lint 说明
+        explainIssues true
+        // 写入报告的路径，默认为构建目录下的 lint-results.html
+        htmlOutput file("lint-report.html")
+        htmlReport = false
+
+        disable 'ObsoleteLintCustomCheck'
+    }
+}

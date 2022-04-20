@@ -1,6 +1,7 @@
 package com.humorusz.practice.coordinatorTest.widget;
 
 import android.content.Context;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.MotionEventCompat;
 import android.util.AttributeSet;
@@ -12,7 +13,7 @@ import android.widget.TextView;
  * Created by zhangzhiquan on 2017/6/7.
  */
 
-public class TestTextView extends TextView {
+public class TestTextView extends AppCompatTextView {
     public TestTextView(Context context) {
         super(context);
     }

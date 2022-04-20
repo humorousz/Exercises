@@ -7,4 +7,5 @@ dependencies {
     implementation project(':zq-basic:module')
     implementation project(':zq-framework:api')
     implementation project(path: ':zq-basic:uiutils')
+    compileOnly rootProject.ext.dependencies.appcompatV7
 }

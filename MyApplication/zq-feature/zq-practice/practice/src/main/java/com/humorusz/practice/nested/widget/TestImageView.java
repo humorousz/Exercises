@@ -3,12 +3,13 @@ package com.humorusz.practice.nested.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * Created by zhangzhiquan on 2017/6/12.
  */
 
-public class TestImageView extends ImageView {
+public class TestImageView extends AppCompatImageView {
     public TestImageView(Context context) {
         this(context,null);
     }

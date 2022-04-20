@@ -32,11 +32,13 @@ import com.humorusz.practice.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 /**
  * Created by zhangzhiquan on 2017/8/28.
  */
 
-public class LoadingImageView extends ImageView {
+public class LoadingImageView extends AppCompatImageView {
     private final Bitmap mSrc;
     private final Activity mActivity;
     private Matrix mShaderMatrix;

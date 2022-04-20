@@ -11,5 +11,6 @@ import com.android.tools.lint.detector.api.Issue
  */
 class LintRegistry : IssueRegistry(){
   override val issues: List<Issue>
-    get() = listOf(ViewIdDetector.ISSUE)
+    get() = listOf(ViewIdDetector.ISSUE,
+    DimenDetector.ISSUE)
 }

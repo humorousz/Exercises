@@ -16,10 +16,12 @@
 
 package com.humorousz.commonutils.machine;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
@@ -1195,6 +1197,7 @@ public class StateMachine {
      * active or if it has any children in the hierarchy.
      * @param state the state to remove
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void removeState(State state) {
       StateInfo stateInfo = mStateInfo.get(state);
       if (stateInfo == null || stateInfo.active) {
@@ -1362,7 +1365,9 @@ public class StateMachine {
    * @param state state to remove
    */
   public final void removeState(State state) {
-    mSmHandler.removeState(state);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      mSmHandler.removeState(state);
+    }
   }
 
   /**

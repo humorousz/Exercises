@@ -29,6 +29,7 @@ class ViewIdDetector : LayoutDetector() {
     if(!element.hasAttributeNS(SdkConstants.ANDROID_URI,SdkConstants.ATTR_ID)){
       return
     }
+    println("Zhangzhiquan")
     val attr = element.getAttributeNodeNS(SdkConstants.ANDROID_URI,SdkConstants.ATTR_ID)
     val value = attr.value
     if(value.startsWith(SdkConstants.NEW_ID_PREFIX)){

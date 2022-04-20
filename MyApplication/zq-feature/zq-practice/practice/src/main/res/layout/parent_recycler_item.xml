@@ -3,9 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="300dp">
 
-    <com.humorous.zhangzhiquan.myapplication.widget.InnerRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/parent_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.humorous.zhangzhiquan.myapplication.widget.InnerRecyclerView>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
