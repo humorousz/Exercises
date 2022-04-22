@@ -13,7 +13,7 @@ android{
         // 设置为 true，则当 Lint 发现错误时停止 Gradle 构建
         abortOnError false
         // 仅检查指定的问题（根据规则的 id 指定）
-        check 'ZQDimenCheck','ViewCheck'
+        check 'ColorValueCheck','ZQDimenCheck','ViewCheck'
         // 在报告中是否返回对应的 Lint 说明
         explainIssues true
         // 写入报告的路径，默认为构建目录下的 lint-results.html
