@@ -26,35 +26,34 @@ class ViewIdDetector : LayoutDetector() {
   }
 
   override fun visitElement(context: XmlContext, element: Element) {
-    if(!element.hasAttributeNS(SdkConstants.ANDROID_URI,SdkConstants.ATTR_ID)){
+    if (!element.hasAttributeNS(SdkConstants.ANDROID_URI, SdkConstants.ATTR_ID)) {
       return
     }
-    println("Zhangzhiquan")
-    val attr = element.getAttributeNodeNS(SdkConstants.ANDROID_URI,SdkConstants.ATTR_ID)
+    val attr = element.getAttributeNodeNS(SdkConstants.ANDROID_URI, SdkConstants.ATTR_ID)
     val value = attr.value
-    if(value.startsWith(SdkConstants.NEW_ID_PREFIX)){
+    if (value.startsWith(SdkConstants.NEW_ID_PREFIX)) {
       val idValue = value.substring(SdkConstants.NEW_ID_PREFIX.length)
       var matchRule = true
       var expMsg = ""
-      when(element.tagName){
+      when (element.tagName) {
         SdkConstants.TEXT_VIEW -> {
           expMsg = "tv"
           matchRule = idValue.startsWith(expMsg)
         }
       }
-      if(!matchRule){
+      if (!matchRule) {
         context.report(
           ISSUE,
           attr,
           context.getLocation(attr),
           "ViewIdName建议使用view的缩写_xxx; ${element.tagName} 建议使用 `${expMsg}_xxx`"
-          )
+        )
       }
     }
   }
 
-  companion object{
-    val ISSUE:Issue = Issue.create(
+  companion object {
+    val ISSUE: Issue = Issue.create(
       "ViewCheck",
       "ViewId命名不规范",
       "建议tv_开头",

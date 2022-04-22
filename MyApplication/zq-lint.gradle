@@ -18,7 +18,10 @@ android{
         explainIssues true
         // 写入报告的路径，默认为构建目录下的 lint-results.html
         htmlOutput file("lint-report.html")
-        htmlReport = false
+        htmlReport = true
+        textReport true
+        absolutePaths false
+        ignoreTestSources true
 
         disable 'ObsoleteLintCustomCheck'
     }
