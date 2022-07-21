@@ -166,10 +166,10 @@ public class PagerGridLayoutManager extends RecyclerView.LayoutManager implement
         public void onChildViewAttachedToWindow(@NonNull View view) {
             LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
             //判断ItemLayout的宽高是否是match_parent
-            if (layoutParams.width != ViewGroup.LayoutParams.MATCH_PARENT
-                    || layoutParams.height != ViewGroup.LayoutParams.MATCH_PARENT) {
-                throw new IllegalStateException("Item layout  must fill the whole PagerGridLayoutManager (use match_parent)");
-            }
+//            if (layoutParams.width != ViewGroup.LayoutParams.MATCH_PARENT
+//                    || layoutParams.height != ViewGroup.LayoutParams.MATCH_PARENT) {
+//                throw new IllegalStateException("Item layout  must fill the whole PagerGridLayoutManager (use match_parent)");
+//            }
         }
 
         @Override

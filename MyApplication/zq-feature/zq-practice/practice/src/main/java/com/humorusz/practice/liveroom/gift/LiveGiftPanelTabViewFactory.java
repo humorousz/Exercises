@@ -35,7 +35,7 @@ public class LiveGiftPanelTabViewFactory {
     giftPanelTabView2.setGiftItemViewStrategy(new LiveNormalGiftTabViewStrategy());
 
     res.add(giftPanelTabView);
-    res.add(giftPanelTabView2);
+//    res.add(giftPanelTabView2);
     return res;
   }
 

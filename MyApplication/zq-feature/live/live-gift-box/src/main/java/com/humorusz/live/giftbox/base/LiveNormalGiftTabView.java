@@ -2,11 +2,15 @@ package com.humorusz.live.giftbox.base;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.humorousz.uiutils.widget.PagerGridLayoutManager;
 import com.humorusz.live.giftbox.R;
 import com.humorusz.live.giftbox.widget.GridViewPager;
 
@@ -19,21 +23,15 @@ import io.reactivex.disposables.CompositeDisposable;
  * @date 2021/2/3
  */
 public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
-  private GiftItemViewStrategy mGiftItemViewStrategy;
   private GiftDataSourceStrategy mGiftDataSourceStrategy;
   private GiftSendStrategy mGiftSendStrategy;
   private OnGiftItemClickListener mOnGiftItemClickListener;
   private CompositeDisposable mDisposable = new CompositeDisposable();
-  private GridViewPager mViewPager;
-  private Adapter mAdapter;
+  private RecyclerView mRV;
+  private LiveNormalGiftAdapter mLiveNormalGiftAdapter;
   private int mSelectedPosition = -1;
 
-  private GiftDefaultSelectedStrategy mDefaultSelectedStrategy = new GiftDefaultSelectedStrategy() {
-    @Override
-    public int getDefaultSelectedPosition(int currentSize) {
-      return 0;
-    }
-  };
+  private GiftDefaultSelectedStrategy mDefaultSelectedStrategy = currentSize -> 0;
 
   @Override
   public String getTitle() {
@@ -49,15 +47,15 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
   @Override
   public LiveGiftItem getSelectedGift() {
-    return mViewPager == null ? null : (LiveGiftItem) mAdapter.getItem(mSelectedPosition);
+    return mLiveNormalGiftAdapter.mLiveGiftItemList.get(mLiveNormalGiftAdapter.mSelectedPosition);
   }
 
   @Override
   public void onCreateGiftPanelTabView(ViewGroup parent) {
     LayoutInflater.from(parent.getContext())
         .inflate(R.layout.live_gift_panel_item_view, parent);
-    mViewPager = parent.findViewById(R.id.live_gift_panel_view_pager);
-    initAdapter(mViewPager);
+    mRV = parent.findViewById(R.id.live_gift_panel_rv);
+    initRv(mRV);
   }
 
   @Override
@@ -69,7 +67,6 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
 
   @Override
   public void setGiftItemViewStrategy(GiftItemViewStrategy giftItemViewStrategy) {
-    mGiftItemViewStrategy = giftItemViewStrategy;
   }
 
   @Override
@@ -93,80 +90,27 @@ public class LiveNormalGiftTabView implements LiveGiftPanelTabView {
     mOnGiftItemClickListener = listener;
   }
 
-  private void initAdapter(GridViewPager viewPager) {
-    if (mAdapter == null) {
-      mAdapter = new Adapter();
-      viewPager.setAdapter(mAdapter);
+  @SuppressLint("NotifyDataSetChanged")
+  private void initRv(RecyclerView recyclerView) {
+    PagerGridLayoutManager pagerGridLayoutManager = new PagerGridLayoutManager(2,4);
+    recyclerView.setLayoutManager(pagerGridLayoutManager);
+    if (mLiveNormalGiftAdapter == null) {
+      mLiveNormalGiftAdapter = new LiveNormalGiftAdapter();
+      recyclerView.setAdapter(mLiveNormalGiftAdapter);
+      mLiveNormalGiftAdapter.mOnGiftItemClickListener = mOnGiftItemClickListener;
     }
     mDisposable.add(mGiftDataSourceStrategy
         .getGiftItemsObservable()
         .subscribe(liveGiftItems -> {
-          mAdapter.mLiveGiftItemList = liveGiftItems;
+          mLiveNormalGiftAdapter.mLiveGiftItemList = liveGiftItems;
           if (mDefaultSelectedStrategy != null) {
             mSelectedPosition =
                 mDefaultSelectedStrategy.getDefaultSelectedPosition(liveGiftItems.size());
+            mLiveNormalGiftAdapter.mSelectedPosition = mSelectedPosition;
           }
-          viewPager.notifyDataSetChanged();
+          mLiveNormalGiftAdapter.notifyDataSetChanged();
         }, throwable -> {
 
         }));
-  }
-
-  private class Adapter extends BaseAdapter {
-    private List<LiveGiftItem> mLiveGiftItemList;
-
-    @Override
-    public int getCount() {
-      return mLiveGiftItemList == null ? 0 : mLiveGiftItemList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-      return mLiveGiftItemList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-      return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-      View giftView = null;
-      if (convertView == null) {
-        giftView = mGiftItemViewStrategy
-            .onCreateItemView(position, parent, (LiveGiftItem) getItem(position),
-                mSelectedPosition == position);
-        ViewHolder viewHolder = new ViewHolder();
-        viewHolder.mView = giftView;
-        giftView.setTag(viewHolder);
-      } else {
-        ViewHolder holder = (ViewHolder) convertView.getTag();
-        mGiftItemViewStrategy
-            .onUpdateItemView(position, holder.mView, (LiveGiftItem) getItem(position),
-                mSelectedPosition == position);
-        giftView = holder.mView;
-      }
-      View finalGiftView = giftView;
-      giftView.setOnClickListener(v -> {
-        if (mSelectedPosition != position) {
-          LiveGiftItem lastSelected = getCount() > mSelectedPosition && mSelectedPosition >= 0
-              ? (LiveGiftItem) getItem(mSelectedPosition)
-              : null;
-          LiveGiftItem current = (LiveGiftItem) getItem(position);
-          mGiftItemViewStrategy.onItemClick(position, finalGiftView, current);
-          if (mOnGiftItemClickListener != null) {
-            mOnGiftItemClickListener.onGiftItemClick(position, current);
-          }
-          mSelectedPosition = position;
-          notifyDataSetChanged();
-        }
-      });
-      return giftView;
-    }
-  }
-
-  private class ViewHolder {
-    public View mView;
   }
 }
