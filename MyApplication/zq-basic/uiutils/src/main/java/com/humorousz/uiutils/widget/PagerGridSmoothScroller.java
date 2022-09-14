@@ -27,7 +27,7 @@ class PagerGridSmoothScroller extends LinearSmoothScroller {
     /**
      * @see #calculateTimeForScrolling(int)
      */
-    static final int MAX_SCROLL_ON_FLING_DURATION = 500; //ms
+    static final int MAX_SCROLL_ON_FLING_DURATION = 50; //ms
 
     PagerGridSmoothScroller(@NonNull RecyclerView recyclerView, @NonNull PagerGridLayoutManager layoutManager) {
         super(recyclerView.getContext());

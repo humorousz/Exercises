@@ -25,13 +25,10 @@ public class LiveNormalGiftAdapter extends RecyclerView.Adapter<LiveNormalGiftAd
   public int mSelectedPosition = 0;
   public LiveGiftPanelTabView.OnGiftItemClickListener mOnGiftItemClickListener;
 
-  private int ss = 0;
 
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    ss++;
-    Log.d("MRRRR", "onBindViewHolder :" + ss);
     return new ViewHolder(LayoutInflater.from(parent.getContext())
         .inflate(R.layout.live_gift_panel_normal_item_view, parent, false));
   }
@@ -42,7 +39,7 @@ public class LiveNormalGiftAdapter extends RecyclerView.Adapter<LiveNormalGiftAd
     holder.textView.setText(item.getName());
     if (mSelectedPosition == holder.getAdapterPosition()) {
       holder.itemView.setBackgroundColor(Color.RED);
-      if(mSelectedView == null){
+      if (mSelectedView == null) {
         mSelectedView = holder.itemView;
       }
     } else {
