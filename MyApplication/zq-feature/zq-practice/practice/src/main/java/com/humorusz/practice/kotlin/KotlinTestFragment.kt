@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.humorousz.uiutils.helper.ToastUtil
 import com.humorousz.uiutils.view.BaseFragment
 import com.humorusz.practice.R
@@ -29,5 +32,38 @@ class KotlinTestFragment : BaseFragment() {
     btn.setOnClickListener {
       ToastUtil.showToast(context, "aa")
     }
+    val recyclerView = root?.findViewById<RecyclerView>(R.id.test_recycler_view)
+    recyclerView.adapter = GiftPriceAdapter()
+    val snapHelper = PagerSnapHelper()
+    snapHelper.attachToRecyclerView(recyclerView)
+  }
+
+
+  private fun initRecyclerView() {
+
+  }
+
+  class GiftPriceAdapter : RecyclerView.Adapter<GiftPriceHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GiftPriceHolder {
+      return GiftPriceHolder(
+        LayoutInflater.from(parent.context).inflate(
+          R.layout
+            .layout_test_gift_price_item, parent, false
+        )
+      )
+    }
+
+    override fun onBindViewHolder(holder: GiftPriceHolder, position: Int) {
+      holder.itemView.findViewById<TextView>(R.id.test_text).text = position.toString()
+    }
+
+    override fun getItemCount(): Int {
+      return 10
+    }
+
+  }
+
+  class GiftPriceHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
   }
 }
