@@ -1,6 +1,7 @@
 package com.humorusz.practice.kotlin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,12 @@ class KotlinTestFragment : BaseFragment() {
     recyclerView.adapter = GiftPriceAdapter()
     val snapHelper = PagerSnapHelper()
     snapHelper.attachToRecyclerView(recyclerView)
+    recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        super.onScrolled(recyclerView, dx, dy)
+        Log.d("MRZZ", dx.toString())
+      }
+    })
   }
 
 
