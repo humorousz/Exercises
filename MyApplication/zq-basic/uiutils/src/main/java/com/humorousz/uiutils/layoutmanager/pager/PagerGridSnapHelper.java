@@ -1,4 +1,4 @@
-package com.humorousz.uiutils.widget;
+package com.humorousz.uiutils.layoutmanager.pager;
 
 import java.util.ArrayList;
 import java.util.Arrays;

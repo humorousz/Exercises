@@ -1,18 +1,13 @@
 package com.humorusz.live.giftbox.base;
 
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.humorousz.uiutils.widget.PagerGridLayoutManager;
+import com.humorousz.uiutils.layoutmanager.pager.PagerGridLayoutManager;
 import com.humorusz.live.giftbox.R;
-import com.humorusz.live.giftbox.widget.GridViewPager;
 
 import io.reactivex.disposables.CompositeDisposable;
 

@@ -1,4 +1,4 @@
-package com.humorousz.uiutils.widget;
+package com.humorousz.uiutils.layoutmanager.pager;
 
 import android.util.Log;
 import android.view.MotionEvent;

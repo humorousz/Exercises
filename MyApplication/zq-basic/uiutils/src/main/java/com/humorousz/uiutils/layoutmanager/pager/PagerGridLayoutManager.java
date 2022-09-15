@@ -1,4 +1,4 @@
-package com.humorousz.uiutils.widget;
+package com.humorousz.uiutils.layoutmanager.pager;
 
 
 import java.lang.annotation.Retention;
@@ -21,7 +21,6 @@ import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
