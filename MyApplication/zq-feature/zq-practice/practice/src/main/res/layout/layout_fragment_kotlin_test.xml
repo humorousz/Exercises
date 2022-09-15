@@ -16,10 +16,10 @@
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/test_recycler_view"
-    android:layout_width="72dp"
+    android:layout_width="100dp"
     android:layout_height="36dp"
     android:orientation="horizontal"
-    app:layoutManager="com.humorusz.practice.kotlin.GiftPriceLayoutManager"
+    app:layoutManager="com.humorusz.practice.kotlin.LoopLinearLayoutManager"
     app:layout_constrainedWidth="true"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

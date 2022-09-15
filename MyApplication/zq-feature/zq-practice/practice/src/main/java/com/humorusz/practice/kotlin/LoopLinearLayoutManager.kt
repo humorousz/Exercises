@@ -1,8 +1,11 @@
 package com.humorusz.practice.kotlin
 
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
+import com.humorousz.uiutils.helper.UIUtils
 
 /**
  * Description:
@@ -10,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
  * author：zhangzhiquan
  * Date: 2022/9/14
  */
-class GiftPriceLayoutManager : RecyclerView.LayoutManager() {
+class LoopLinearLayoutManager : RecyclerView.LayoutManager() {
   var loopEnable = true
+  var mRecyclerView: RecyclerView? = null
+  var mItemWidth = 0
   override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
     return RecyclerView.LayoutParams(
       ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -21,6 +26,14 @@ class GiftPriceLayoutManager : RecyclerView.LayoutManager() {
 
   override fun canScrollHorizontally(): Boolean {
     return true
+  }
+
+  override fun onAttachedToWindow(view: RecyclerView?) {
+    super.onAttachedToWindow(view)
+    mRecyclerView = view
+    mRecyclerView?.post {
+      mRecyclerView?.scrollBy(-1 * mItemWidth / 2, 0)
+    }
   }
 
   override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State) {
@@ -34,6 +47,7 @@ class GiftPriceLayoutManager : RecyclerView.LayoutManager() {
       measureChildWithMargins(view, 0, 0)
       val width = getDecoratedMeasuredWidth(view)
       val height = getDecoratedMeasuredHeight(view)
+      mItemWidth = width
       layoutDecorated(view, authWidth, 0, authWidth + width, height)
       authWidth += width
       if (authWidth > getWidth()) break
@@ -45,6 +59,7 @@ class GiftPriceLayoutManager : RecyclerView.LayoutManager() {
     recycler: RecyclerView.Recycler,
     state: RecyclerView.State
   ): Int {
+    loopEnable = childCount > 1
     val travel = fill(dx, recycler, state)
     if (travel == 0) return 0
     offsetChildrenHorizontal(-travel)
@@ -120,5 +135,9 @@ class GiftPriceLayoutManager : RecyclerView.LayoutManager() {
       }
     }
     return dx
+  }
+
+  fun scrollToNext() {
+    mRecyclerView?.smoothScrollBy(mItemWidth, 0)
   }
 }

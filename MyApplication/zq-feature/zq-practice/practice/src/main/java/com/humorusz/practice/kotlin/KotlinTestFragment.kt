@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.humorousz.uiutils.helper.ToastUtil
+import com.humorousz.uiutils.helper.UIUtils
 import com.humorousz.uiutils.view.BaseFragment
 import com.humorusz.practice.R
 
@@ -30,19 +31,15 @@ class KotlinTestFragment : BaseFragment() {
 
   override fun initView(root: View?) {
     btn = root!!.findViewById(R.id.test_btn)
-    btn.setOnClickListener {
-      ToastUtil.showToast(context, "aa")
-    }
     val recyclerView = root?.findViewById<RecyclerView>(R.id.test_recycler_view)
+    val layoutManager = recyclerView.layoutManager as LoopLinearLayoutManager
     recyclerView.adapter = GiftPriceAdapter()
     val snapHelper = PagerSnapHelper()
     snapHelper.attachToRecyclerView(recyclerView)
-    recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        super.onScrolled(recyclerView, dx, dy)
-        Log.d("MRZZ", dx.toString())
-      }
-    })
+    btn.setOnClickListener {
+      ToastUtil.showToast(context, "aa")
+      layoutManager?.scrollToNext()
+    }
   }
 
 
@@ -65,7 +62,7 @@ class KotlinTestFragment : BaseFragment() {
     }
 
     override fun getItemCount(): Int {
-      return 10
+      return 2
     }
 
   }
