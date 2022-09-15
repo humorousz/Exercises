@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.humorousz.uiutils.helper.ToastUtil
 import com.humorousz.uiutils.helper.UIUtils
 import com.humorousz.uiutils.view.BaseFragment
+import com.humorousz.uiutils.widget.GiftPriceView
 import com.humorusz.practice.R
 
 /**
@@ -38,7 +39,7 @@ class KotlinTestFragment : BaseFragment() {
     snapHelper.attachToRecyclerView(recyclerView)
     btn.setOnClickListener {
       ToastUtil.showToast(context, "aa")
-      layoutManager?.scrollToNext()
+      root.findViewById<GiftPriceView>(R.id.price_view).startLoop()
     }
   }
 

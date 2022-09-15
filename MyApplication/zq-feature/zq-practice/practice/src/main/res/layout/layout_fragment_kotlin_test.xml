@@ -24,4 +24,46 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <com.humorousz.uiutils.widget.GiftPriceView
+    android:id="@+id/price_view"
+    android:layout_width="72dp"
+    android:layout_height="32dp"
+    android:layout_marginTop="100dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/test_btn">
+    <TextView
+      android:id="@+id/item_start"
+      android:layout_width="32dp"
+      android:layout_height="32dp"
+      android:layout_alignParentStart="true"
+      android:alpha="0.2"
+      android:background="@drawable/input_send_bg"
+      android:gravity="center"
+      android:scaleX="0.5"
+      android:scaleY="0.5"
+      android:text="1" />
+
+    <TextView
+      android:id="@+id/item_center"
+      android:layout_width="32dp"
+      android:layout_height="32dp"
+      android:layout_centerHorizontal="true"
+      android:background="@drawable/input_send_bg"
+      android:gravity="center"
+      android:text="0" />
+
+    <TextView
+      android:id="@+id/item_end"
+      android:layout_width="32dp"
+      android:layout_height="32dp"
+      android:layout_alignParentEnd="true"
+      android:alpha="0.2"
+      android:background="@drawable/input_send_bg"
+      android:gravity="center"
+      android:scaleX="0.5"
+      android:scaleY="0.5"
+      android:text="2" />
+  </com.humorousz.uiutils.widget.GiftPriceView>
 </androidx.constraintlayout.widget.ConstraintLayout>
