@@ -16,7 +16,7 @@
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/test_recycler_view"
-    android:layout_width="100dp"
+    android:layout_width="108dp"
     android:layout_height="36dp"
     android:orientation="horizontal"
     app:layoutManager="com.humorusz.practice.kotlin.LoopLinearLayoutManager"

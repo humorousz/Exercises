@@ -33,6 +33,7 @@ class LoopLinearLayoutManager : RecyclerView.LayoutManager() {
     mRecyclerView = view
     mRecyclerView?.post {
       mRecyclerView?.scrollBy(-1 * mItemWidth / 2, 0)
+//      mRecyclerView?.requestLayout()
     }
   }
 
@@ -50,7 +51,10 @@ class LoopLinearLayoutManager : RecyclerView.LayoutManager() {
       mItemWidth = width
       layoutDecorated(view, authWidth, 0, authWidth + width, height)
       authWidth += width
-      if (authWidth > getWidth()) break
+      if (authWidth > width) break
+    }
+    if (authWidth < width) {
+      fill(width - authWidth, recycler, state)
     }
   }
 
