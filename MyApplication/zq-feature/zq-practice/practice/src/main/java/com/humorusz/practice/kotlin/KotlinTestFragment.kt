@@ -14,6 +14,7 @@ import com.humorousz.uiutils.helper.UIUtils
 import com.humorousz.uiutils.view.BaseFragment
 import com.humorousz.uiutils.widget.GiftPriceView
 import com.humorusz.practice.R
+import org.w3c.dom.Text
 
 /**
  *@author zhangzhiquan
@@ -39,7 +40,15 @@ class KotlinTestFragment : BaseFragment() {
     snapHelper.attachToRecyclerView(recyclerView)
     btn.setOnClickListener {
       ToastUtil.showToast(context, "aa")
-      root.findViewById<GiftPriceView>(R.id.price_view).startLoop()
+      root.findViewById<GiftPriceView<TextView>>(R.id.price_view)?.apply {
+        setCount(10)
+        setBindListener(object : GiftPriceView.BindListener<TextView> {
+          override fun onBindView(view: TextView, index: Int) {
+            view.text = index.toString()
+          }
+        })
+        startLoop(true)
+      }
     }
   }
 

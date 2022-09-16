@@ -1,7 +1,10 @@
 package com.humorousz.uiutils.widget
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -15,28 +18,38 @@ import com.humorousz.uiutils.helper.UIUtils
  * author：zhangzhiquan
  * Date: 2022/9/15
  */
-class GiftPriceView @JvmOverloads constructor(
+class GiftPriceView<T : View> @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
 ) : RelativeLayout(context, attrs, defStyleAttr) {
-  private val mViewList: ArrayList<View> = ArrayList()
+  private val mViewList: ArrayList<T> = ArrayList()
   private var mCenterIndex = 0
   private var mStartIndex = 1
   private var mEndIndex = 2
   private var mAnimSet: AnimatorSet? = null
+  private var mCount = 0
+  private var mNextBindIndex: Int = 0
+  private var mListener: BindListener<T>? = null
+
+  @SuppressLint("WrongViewCast")
   override fun onFinishInflate() {
     super.onFinishInflate()
-    val right = findViewById<View>(R.id.item_end)
-    val center = findViewById<View>(R.id.item_center)
-    val start = findViewById<View>(R.id.item_start)
+    val right = findViewById<T>(R.id.item_end)
+    val center = findViewById<T>(R.id.item_center)
+    val start = findViewById<T>(R.id.item_start)
     mViewList.add(center)
     mViewList.add(start)
     mViewList.add(right)
   }
 
+  private val runnable = Runnable {
+    startLoop(false)
+  }
+
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
+    removeCallbacks(runnable)
     mAnimSet?.isRunning?.let {
       if (it) {
         mAnimSet?.cancel()
@@ -44,11 +57,53 @@ class GiftPriceView @JvmOverloads constructor(
     }
   }
 
-  fun startLoop() {
+  fun resetView() {
+    mCenterIndex = 0
+    mStartIndex = 1
+    mEndIndex = 2
+    for (view: View in mViewList) {
+      view.translationX = 0f
+    }
+    mViewList[mStartIndex].scaleX = SCALE_END
+    mViewList[mStartIndex].scaleY = SCALE_END
+    mViewList[mStartIndex].alpha = ALPHA_END
+
+    mViewList[mCenterIndex].scaleX = SCALE_START
+    mViewList[mCenterIndex].scaleY = SCALE_START
+    mViewList[mCenterIndex].alpha = 1f
+
+    mViewList[mEndIndex].scaleX = SCALE_END
+    mViewList[mEndIndex].scaleY = SCALE_END
+    mViewList[mEndIndex].alpha = ALPHA_END
+
+
+  }
+
+  fun stopLoop() {
+    removeCallbacks(runnable)
+  }
+
+  fun setCount(count: Int) {
+    mCount = count
+  }
+
+  fun setBindListener(listener: BindListener<T>) {
+    mListener = listener
+  }
+
+  fun startLoop(firstLoop: Boolean) {
+    if (mCount < DISPLAY_SIZE) {
+      return
+    }
     val startView = mViewList[mStartIndex]
     val centerView = mViewList[mCenterIndex]
     val endView = mViewList[mEndIndex]
-
+    if (firstLoop) {
+      mListener?.onBindView(startView, mStartIndex)
+      mListener?.onBindView(centerView, mCenterIndex)
+      mListener?.onBindView(endView, mCount - 1)
+      mNextBindIndex = (mStartIndex + 1) % mCount
+    }
     if (mStartIndex == 1) {
       startView.translationX = 0f
       centerView.translationX = 0f
@@ -70,9 +125,7 @@ class GiftPriceView @JvmOverloads constructor(
     mStartIndex = (mStartIndex + 1) % DISPLAY_SIZE
     mCenterIndex = (mCenterIndex + 1) % DISPLAY_SIZE
     mEndIndex = (mEndIndex + 1) % DISPLAY_SIZE
-    postDelayed({
-      startLoop()
-    }, ANIM_DURATION * 2)
+    postDelayed(runnable, ANIM_DURATION * 2)
 
   }
 
@@ -110,7 +163,7 @@ class GiftPriceView @JvmOverloads constructor(
     return animSet
   }
 
-  private fun createEndViewAnim(endView: View): AnimatorSet {
+  private fun createEndViewAnim(endView: T): AnimatorSet {
     val endTranslate = ObjectAnimator.ofFloat(
       endView, View.TRANSLATION_X, endView
         .translationX, endView.translationX - TRANSLATE_X_OFF_SET * 2
@@ -122,6 +175,13 @@ class GiftPriceView @JvmOverloads constructor(
       endView, View.SCALE_Y, SCALE_END, 0f, SCALE_END
     )
     val animSet = AnimatorSet()
+    animSet.addListener(object : AnimatorListenerAdapter() {
+      override fun onAnimationStart(animation: Animator?) {
+        super.onAnimationStart(animation)
+        mListener?.onBindView(endView, mNextBindIndex)
+        mNextBindIndex = (mNextBindIndex + 1) % mCount
+      }
+    })
     animSet.playTogether(endTranslate, endScaleX, endScaleY)
     return animSet
   }
@@ -133,5 +193,9 @@ class GiftPriceView @JvmOverloads constructor(
     var TRANSLATE_X_OFF_SET = UIUtils.dip2px(20)
     const val DISPLAY_SIZE = 3
     const val ANIM_DURATION = 500L
+  }
+
+  interface BindListener<T : View> {
+    fun onBindView(view: T, index: Int)
   }
 }
