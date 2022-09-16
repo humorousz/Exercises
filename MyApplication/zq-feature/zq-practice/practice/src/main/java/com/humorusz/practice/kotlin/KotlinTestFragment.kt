@@ -38,16 +38,18 @@ class KotlinTestFragment : BaseFragment() {
     recyclerView.adapter = GiftPriceAdapter()
     val snapHelper = PagerSnapHelper()
     snapHelper.attachToRecyclerView(recyclerView)
+    root.findViewById<GiftPriceView<TextView>>(R.id.price_view)?.apply {
+      setBindListener(object : GiftPriceView.BindListener<TextView> {
+        override fun onBindView(view: TextView, index: Int) {
+          view.text = (index % 1).toString()
+        }
+      })
+      setCount(1)
+    }
     btn.setOnClickListener {
       ToastUtil.showToast(context, "aa")
       root.findViewById<GiftPriceView<TextView>>(R.id.price_view)?.apply {
-        setCount(10)
-        setBindListener(object : GiftPriceView.BindListener<TextView> {
-          override fun onBindView(view: TextView, index: Int) {
-            view.text = index.toString()
-          }
-        })
-        startLoop(true)
+        startLoop()
       }
     }
   }

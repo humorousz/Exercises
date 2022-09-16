@@ -44,17 +44,12 @@ class GiftPriceView<T : View> @JvmOverloads constructor(
   }
 
   private val runnable = Runnable {
-    startLoop(false)
+    startLoop()
   }
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    removeCallbacks(runnable)
-    mAnimSet?.isRunning?.let {
-      if (it) {
-        mAnimSet?.cancel()
-      }
-    }
+    stopLoop()
   }
 
   fun resetView() {
@@ -75,35 +70,39 @@ class GiftPriceView<T : View> @JvmOverloads constructor(
     mViewList[mEndIndex].scaleX = SCALE_END
     mViewList[mEndIndex].scaleY = SCALE_END
     mViewList[mEndIndex].alpha = ALPHA_END
-
-
   }
 
   fun stopLoop() {
     removeCallbacks(runnable)
+    mAnimSet?.isRunning?.let {
+      if (it) {
+        mAnimSet?.cancel()
+      }
+    }
   }
 
   fun setCount(count: Int) {
-    mCount = count
+    mCount = count.coerceAtLeast(DISPLAY_SIZE)
+    val startView = mViewList[mStartIndex]
+    val centerView = mViewList[mCenterIndex]
+    val endView = mViewList[mEndIndex]
+    mListener?.onBindView(startView, mStartIndex)
+    mListener?.onBindView(centerView, mCenterIndex)
+    mListener?.onBindView(endView, mCount - 1)
+    mNextBindIndex = (mStartIndex + 1) % mCount
   }
 
   fun setBindListener(listener: BindListener<T>) {
     mListener = listener
   }
 
-  fun startLoop(firstLoop: Boolean) {
+  fun startLoop() {
     if (mCount < DISPLAY_SIZE) {
       return
     }
     val startView = mViewList[mStartIndex]
     val centerView = mViewList[mCenterIndex]
     val endView = mViewList[mEndIndex]
-    if (firstLoop) {
-      mListener?.onBindView(startView, mStartIndex)
-      mListener?.onBindView(centerView, mCenterIndex)
-      mListener?.onBindView(endView, mCount - 1)
-      mNextBindIndex = (mStartIndex + 1) % mCount
-    }
     if (mStartIndex == 1) {
       startView.translationX = 0f
       centerView.translationX = 0f
