@@ -41,10 +41,10 @@ class KotlinTestFragment : BaseFragment() {
     root.findViewById<GiftPriceView<TextView>>(R.id.price_view)?.apply {
       setBindListener(object : GiftPriceView.BindListener<TextView> {
         override fun onBindView(view: TextView, index: Int) {
-          view.text = (index % 1).toString()
+          view.text = (index % 10).toString()
         }
       })
-      setCount(1)
+      setCount(10)
     }
     btn.setOnClickListener {
       ToastUtil.showToast(context, "aa")

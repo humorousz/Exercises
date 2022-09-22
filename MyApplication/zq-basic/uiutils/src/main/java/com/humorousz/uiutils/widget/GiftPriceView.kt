@@ -6,11 +6,14 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import com.humorousz.uiutils.R
 import com.humorousz.uiutils.helper.UIUtils
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Description:
@@ -31,6 +34,7 @@ class GiftPriceView<T : View> @JvmOverloads constructor(
   private var mCount = 0
   private var mNextBindIndex: Int = 0
   private var mListener: BindListener<T>? = null
+  private val rtlValue = if (isRtl()) -1 else 1
 
   @SuppressLint("WrongViewCast")
   override fun onFinishInflate() {
@@ -131,7 +135,7 @@ class GiftPriceView<T : View> @JvmOverloads constructor(
   private fun createStartView(startView: View): AnimatorSet {
     val startTranslate = ObjectAnimator.ofFloat(
       startView, View.TRANSLATION_X, startView
-        .translationX, startView.translationX + TRANSLATE_X_OFF_SET
+        .translationX, startView.translationX + TRANSLATE_X_OFF_SET * rtlValue
     )
     val startScaleX = ObjectAnimator.ofFloat(
       startView, View.SCALE_X, SCALE_END, 1f
@@ -148,7 +152,7 @@ class GiftPriceView<T : View> @JvmOverloads constructor(
   private fun createCenterViewAnim(centerView: View): AnimatorSet {
     val centerTranslate = ObjectAnimator.ofFloat(
       centerView, View.TRANSLATION_X, centerView
-        .translationX, centerView.translationX + TRANSLATE_X_OFF_SET
+        .translationX, centerView.translationX + TRANSLATE_X_OFF_SET * rtlValue
     )
     val centerScaleX = ObjectAnimator.ofFloat(
       centerView, View.SCALE_X, SCALE_START, SCALE_END
@@ -165,7 +169,7 @@ class GiftPriceView<T : View> @JvmOverloads constructor(
   private fun createEndViewAnim(endView: T): AnimatorSet {
     val endTranslate = ObjectAnimator.ofFloat(
       endView, View.TRANSLATION_X, endView
-        .translationX, endView.translationX - TRANSLATE_X_OFF_SET * 2
+        .translationX, endView.translationX - TRANSLATE_X_OFF_SET * 2 * rtlValue
     )
     val endScaleX = ObjectAnimator.ofFloat(
       endView, View.SCALE_X, SCALE_END, 0f, SCALE_END
@@ -192,6 +196,10 @@ class GiftPriceView<T : View> @JvmOverloads constructor(
     var TRANSLATE_X_OFF_SET = UIUtils.dip2px(20)
     const val DISPLAY_SIZE = 3
     const val ANIM_DURATION = 500L
+  }
+
+  private fun isRtl(): Boolean {
+    return TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) === LAYOUT_DIRECTION_RTL
   }
 
   interface BindListener<T : View> {
