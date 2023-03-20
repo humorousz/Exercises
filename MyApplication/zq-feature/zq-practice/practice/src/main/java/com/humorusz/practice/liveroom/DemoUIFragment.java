@@ -1,5 +1,8 @@
 package com.humorusz.practice.liveroom;
 
+import static com.humorousz.uiutils.widget.RandomTextView.LOW_FIRST;
+
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.humorousz.uiutils.widget.MultiScrollNumber;
+import com.humorousz.uiutils.widget.RandomTextView;
+import com.humorousz.uiutils.widget.ScrollNumberText;
 import com.humorusz.practice.R;
 import com.humorusz.practice.chart.WheelData;
 import com.humorusz.practice.chart.WheelDataFactory;
@@ -29,6 +35,7 @@ import com.humorousz.uiutils.widget.CommonTipsView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import se.emilsjolander.flipview.FlipView;
 
@@ -45,6 +52,8 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
   private VerticalTextViewSwitcher mTextSwitcher;
   private WheelView mWheelView;
   private FlipView mFlipView;
+  private MultiScrollNumber mScrollNumberText;
+  private RandomTextView mRandomTextView;
 
   @Override
   public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +72,8 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
     mWheelView = root.findViewById(R.id.wheel_view);
     mAddButton = root.findViewById(R.id.add);
     mReduceButton = root.findViewById(R.id.reduce);
+    mScrollNumberText = root.findViewById(R.id.scroll_number);
+    mRandomTextView = root.findViewById(R.id.random_text);
     AnimationDrawable anim = (AnimationDrawable) mImage.getDrawable();
     anim.start();
     lbtn.setOnClickListener(this);
@@ -73,8 +84,10 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
     initSwitcher(root);
     initWheelView();
     initFlipView(root);
+    setScrollNumberText();
   }
 
+  private int last = 1000;
   @Override
   public void onClick(View v) {
     if (v == lbtn) {
@@ -85,6 +98,8 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
       showTips(3);
     } else if (v == mAddButton) {
       mFlipView.smoothFlipTo(1);
+      mScrollNumberText.setNumber(last, last + 98);
+      last += 98;
     } else if (v == mReduceButton) {
       mFlipView.smoothFlipTo(0);
     }
@@ -166,5 +181,9 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
   private void initFlipView(View root) {
     mFlipView = root.findViewById(R.id.flipView);
     mFlipView.setAdapter(new FlipViewAdapter(getContext(), R.layout.layout_flip_view_item, Arrays.asList("1", "2", "3", "4")));
+  }
+
+  private void setScrollNumberText(){
+    mScrollNumberText.setNumber(1000);
   }
 }
