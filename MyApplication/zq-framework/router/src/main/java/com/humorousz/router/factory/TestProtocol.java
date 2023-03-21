@@ -144,4 +144,9 @@ public class TestProtocol {
    * Live_PrePush
    */
   public static final String LIVE_PRE_PUSH = BASE + PAGE_TYPE.LIVE_PRE_PUSH + HAS_TITLE;
+
+  /**
+   * DEMO_ROOM_SIMPLE
+   */
+  public static final String DEMO_ROOM_SIMPLE = BASE + PAGE_TYPE.DEMO_ROOM_SIMPLE + HAS_TITLE;
 }

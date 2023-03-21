@@ -99,9 +99,9 @@ public class MultiScrollNumber extends LinearLayout {
       }
     } else {
       for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
+        ScrollNumberText scrollNumberText = mScrollNumbers.get(mScrollNumbers.size() - i - 1);
         int pre = mPrimaryNumbers.size() > i ? mPrimaryNumbers.get(i) : 0;
         int v = Math.abs(mTargetNumbers.get(i) - pre);
-        ScrollNumberText scrollNumberText = mScrollNumbers.get(mScrollNumbers.size() - i - 1);
         scrollNumberText.setVelocity(mVelocity * v);
         scrollNumberText.setNumber(pre, mTargetNumbers.get(i), 0);
       }

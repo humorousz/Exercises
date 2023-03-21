@@ -220,6 +220,10 @@ public class Api {
     itemModel.setTitle("异常捕获器练习");
     models.add(itemModel);
 
+    itemModel = new HomeItemModel();
+    itemModel.setLink(TestProtocol.DEMO_ROOM_SIMPLE);
+    itemModel.setTitle("demo2");
+    models.add(itemModel);
 
     return models;
   }

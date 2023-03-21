@@ -8,6 +8,7 @@ import com.humorusz.practice.coordinatorTest.fragment.AdvancedCoordinatorFragmen
 import com.humorusz.practice.coordinatorTest.fragment.CoordinatorFragment;
 import com.humorusz.practice.coordinatorTest.fragment.TestCoordinatorFragment;
 import com.humorusz.practice.dagger.DaggerFragment;
+import com.humorusz.practice.demoroom.DemoRoomSimpleFragment;
 import com.humorusz.practice.diffutil.DiffUtilFragment;
 import com.humorusz.practice.drawerLayout.DrawerLayoutFragment;
 import com.humorusz.practice.exceptionTest.UncaughtExceptionFragment;
@@ -98,6 +99,9 @@ public class TestFragmentFactory implements PageProvider {
         break;
       case DAGGER:
         fragment = new DaggerFragment();
+        break;
+      case DEMO_ROOM_SIMPLE:
+        fragment = new DemoRoomSimpleFragment();
         break;
     }
     return fragment;
