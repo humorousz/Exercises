@@ -6,11 +6,58 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   tools:ignore="MissingDefaultResource">
 
-  <TextView
+  <com.humorousz.uiutils.widget.MultiScrollNumber
+    android:id="@+id/scroll_number"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/hello_blank_fragment"
+    android:textSize="30dp"
+    android:textColor="#000000"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="300dp"/>
 
+  <EditText
+    android:id="@+id/input_num_edit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="15dp"
+    app:layout_constraintTop_toBottomOf="@id/scroll_number"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/input_button"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    android:layout_marginTop="50dp"
+    />
+  <Button
+    android:id="@+id/input_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="change"
+    android:textSize="15dp"
+    app:layout_constraintTop_toTopOf="@id/input_num_edit"
+    app:layout_constraintBottom_toBottomOf="@id/input_num_edit"
+    app:layout_constraintStart_toEndOf="@id/input_num_edit"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+  <EditText
+    android:id="@+id/input_num_add_edit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="15dp"
+    app:layout_constraintTop_toBottomOf="@id/input_num_edit"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/input_add_button"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    android:layout_marginTop="50dp"
+    />
+  <Button
+    android:id="@+id/input_add_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="加"
+    android:textSize="15dp"
+    app:layout_constraintTop_toTopOf="@id/input_num_add_edit"
+    app:layout_constraintBottom_toBottomOf="@id/input_num_add_edit"
+    app:layout_constraintStart_toEndOf="@id/input_num_add_edit"
+    app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
