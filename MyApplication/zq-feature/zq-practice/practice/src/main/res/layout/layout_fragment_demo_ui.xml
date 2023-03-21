@@ -18,16 +18,18 @@
 
       <com.humorousz.uiutils.widget.MultiScrollNumber
         android:id="@+id/scroll_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_ffffca"
+        android:textSize="10dp" />
 
       <com.humorousz.uiutils.widget.RandomTextView
         android:id="@+id/random_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
         android:gravity="center"
-        android:textColor="@color/color_ffffca"/>
+        android:textColor="@color/color_ffffca"
+        android:textSize="18sp" />
 
       <com.humorusz.practice.wigdet.SkewView
         android:id="@+id/live"

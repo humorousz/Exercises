@@ -1,41 +1,30 @@
 package com.humorousz.uiutils.widget;
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.ColorRes;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.animation.Interpolator;
+import android.widget.LinearLayout;
 import androidx.annotation.IntRange;
-import androidx.core.content.ContextCompat;
 
 import com.humorousz.uiutils.R;
 
-/**
- * Created by wuhaojie on 2016/7/19 20:39.
- */
 public class MultiScrollNumber extends LinearLayout {
-  private Context mContext;
-  private List<Integer> mTargetNumbers = new ArrayList<>();
-  private List<Integer> mPrimaryNumbers = new ArrayList<>();
-  private List<ScrollNumberText> mScrollNumbers = new ArrayList<>();
-  private int mTextSize = 130;
-
-  private int[] mTextColors = new int[]{R.color.cardview_dark_background};
-  private Interpolator mInterpolator = new DecelerateInterpolator();
-  private String mFontFileName;
-  private int mVelocity = 15;
+  private final Context mContext;
+  private final List<Integer> mTargetNumbers = new ArrayList<>();
+  private final List<Integer> mPrimaryNumbers = new ArrayList<>();
+  private final List<ScrollNumberText> mScrollNumbers = new ArrayList<>();
+  private final int mTextSize;
+  private final int mTextColor;
+  private Typeface mFontFileName;
+  private int mVelocity = 5;
 
   public MultiScrollNumber(Context context) {
     this(context, null);
@@ -49,109 +38,32 @@ public class MultiScrollNumber extends LinearLayout {
     super(context, attrs, defStyleAttr);
     mContext = context;
 
-//    TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.MultiScrollNumber);
-//    int primaryNumber = typedArray.getInteger(R.styleable.MultiScrollNumber_primary_number, 0);
-//    int targetNumber = typedArray.getInteger(R.styleable.MultiScrollNumber_target_number, 0);
-//    int numberSize = typedArray.getInteger(R.styleable.MultiScrollNumber_number_size, 130);
-
-//    setNumber(primaryNumber, targetNumber);
-    setTextSize(dp2px(19));
-    setTextColors(new int[]{R.color.cardview_dark_background});
-
-//    typedArray.recycle();
-
+    TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.MultiScrollNumber);
+    mTextSize =
+        typedArray.getDimensionPixelOffset(R.styleable.MultiScrollNumber_android_textSize, 0);
+    mTextColor =
+        typedArray.getColor(R.styleable.MultiScrollNumber_android_textColor, Color.TRANSPARENT);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      mFontFileName = typedArray.getFont(R.styleable.MultiScrollNumber_android_font);
+    }
+    typedArray.recycle();
     setOrientation(HORIZONTAL);
     setGravity(Gravity.CENTER);
-
-
-  }
-
-  public void setNumber(double num) {
-    if (num < 0) {
-      throw new IllegalArgumentException("number value should >= 0");
-    }
-    resetView();
-
-    String str = String.valueOf(num);
-    char[] charArray = str.toCharArray();
-    for (int i = charArray.length - 1; i >= 0; i--) {
-      if (Character.isDigit(charArray[i])) {
-        mTargetNumbers.add(charArray[i] - '0');
-      } else {
-        mTargetNumbers.add(-1);
-      }
-    }
-
-    for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
-      if (mTargetNumbers.get(i) != -1) {
-        ScrollNumberText scrollNumber = new ScrollNumberText(mContext);
-        scrollNumber.setTextColor(ContextCompat
-            .getColor(mContext, mTextColors[i % mTextColors.length]));
-        scrollNumber.setVelocity(mVelocity);
-        scrollNumber.setTextSize(mTextSize);
-        scrollNumber.setInterpolator(mInterpolator);
-        if (!TextUtils.isEmpty(mFontFileName)) {
-          scrollNumber.setTextFont(mFontFileName);
-        }
-        scrollNumber.setNumber(0, mTargetNumbers.get(i), i * 10);
-        mScrollNumbers.add(scrollNumber);
-        addView(scrollNumber);
-
-      } else {
-        ViewGroup.LayoutParams params =
-            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        TextView point = new TextView(mContext);
-        point.setText(" . ");
-        point.setGravity(Gravity.BOTTOM);
-        point.setTextColor(ContextCompat
-            .getColor(mContext, mTextColors[i % mTextColors.length]));
-        point.setTextSize(mTextSize / 3);
-        addView(point, params);
-      }
-    }
   }
 
   public void setNumber(int val) {
-    resetView();
-
-    int number = val;
-    while (number > 0) {
-      int i = number % 10;
-      mTargetNumbers.add(i);
-      number /= 10;
-    }
-
-    for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
-      ScrollNumberText scrollNumber = new ScrollNumberText(mContext);
-      scrollNumber.setTextColor(ContextCompat
-          .getColor(mContext, mTextColors[i % mTextColors.length]));
-      scrollNumber.setVelocity(mVelocity);
-      scrollNumber.setTextSize(mTextSize);
-      scrollNumber.setInterpolator(mInterpolator);
-      if (!TextUtils.isEmpty(mFontFileName)) {
-        scrollNumber.setTextFont(mFontFileName);
-      }
-      scrollNumber.setNumber(0, mTargetNumbers.get(i), i * 10);
-      mScrollNumbers.add(scrollNumber);
-      addView(scrollNumber);
-    }
+    setNumber(val, val, true);
   }
-
-  private void resetView() {
-    mTargetNumbers.clear();
-    mScrollNumbers.clear();
-    mPrimaryNumbers.clear();
-    removeAllViews();
-  }
-
 
   public void setNumber(int from, int to) {
-    if (to < from) {
-      throw new UnsupportedOperationException("'to' value must > 'from' value");
-    }
+    setNumber(from, to, false);
+  }
 
-    resetView();
+  public void setNumber(int from, int to, boolean force) {
+    if (to < from) {
+      from = 0;
+    }
+    resetNumber();
     // operate to
     int number = to, count = 0;
     while (number > 0) {
@@ -169,42 +81,30 @@ public class MultiScrollNumber extends LinearLayout {
       count--;
     }
 
-    for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
-      ScrollNumberText scrollNumber = new ScrollNumberText(mContext);
-      scrollNumber.setTextColor(ContextCompat
-          .getColor(mContext, mTextColors[i % mTextColors.length]));
-      scrollNumber.setTextSize(mTextSize);
-      if (!TextUtils.isEmpty(mFontFileName)) {
-        scrollNumber.setTextFont(mFontFileName);
+    if (mTargetNumbers.size() != mScrollNumbers.size() || force) {
+      clearView();
+      for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
+        ScrollNumberText scrollNumber = new ScrollNumberText(mContext);
+        scrollNumber.setTextColor(mTextColor);
+        scrollNumber.setTextSize(mTextSize);
+        if (mFontFileName != null) {
+          scrollNumber.setTextFont(mFontFileName);
+        }
+        int pre = mPrimaryNumbers.size() > i ? mPrimaryNumbers.get(i) : 0;
+        int v = Math.abs(mTargetNumbers.get(i) - pre);
+        scrollNumber.setVelocity(mVelocity * v);
+        scrollNumber.setNumber(pre, mTargetNumbers.get(i), 0);
+        mScrollNumbers.add(scrollNumber);
+        addView(scrollNumber);
       }
-      scrollNumber.setVelocity(30);
-      scrollNumber.setNumber(mPrimaryNumbers.get(i), mTargetNumbers.get(i), 0);
-      mScrollNumbers.add(scrollNumber);
-      addView(scrollNumber);
-    }
-
-  }
-
-  public void setTextColors(@ColorRes int[] textColors) {
-    if (textColors == null || textColors.length == 0) {
-      throw new IllegalArgumentException("color array couldn't be empty!");
-    }
-    mTextColors = textColors;
-    for (int i = mScrollNumbers.size() - 1; i >= 0; i--) {
-      ScrollNumberText scrollNumber = mScrollNumbers.get(i);
-      scrollNumber.setTextColor(ContextCompat
-          .getColor(mContext, mTextColors[i % mTextColors.length]));
-    }
-  }
-
-
-  public void setTextSize(int textSize) {
-    if (textSize <= 0) {
-      throw new IllegalArgumentException("text size must > 0!");
-    }
-    mTextSize = textSize;
-    for (ScrollNumberText s : mScrollNumbers) {
-      s.setTextSize(textSize);
+    } else {
+      for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
+        int pre = mPrimaryNumbers.size() > i ? mPrimaryNumbers.get(i) : 0;
+        int v = Math.abs(mTargetNumbers.get(i) - pre);
+        ScrollNumberText scrollNumberText = mScrollNumbers.get(mScrollNumbers.size() - i - 1);
+        scrollNumberText.setVelocity(mVelocity * v);
+        scrollNumberText.setNumber(pre, mTargetNumbers.get(i), 0);
+      }
     }
   }
 
@@ -212,19 +112,8 @@ public class MultiScrollNumber extends LinearLayout {
     if (interpolator == null) {
       throw new IllegalArgumentException("interpolator couldn't be null");
     }
-    mInterpolator = interpolator;
     for (ScrollNumberText s : mScrollNumbers) {
       s.setInterpolator(interpolator);
-    }
-  }
-
-  public void setTextFont(String fileName) {
-    if (TextUtils.isEmpty(fileName)) {
-      throw new IllegalArgumentException("file name is null");
-    }
-    mFontFileName = fileName;
-    for (ScrollNumberText s : mScrollNumbers) {
-      s.setTextFont(fileName);
     }
   }
 
@@ -235,15 +124,21 @@ public class MultiScrollNumber extends LinearLayout {
     }
   }
 
-
-  private int dp2px(float dpVal) {
-    return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-        dpVal, getResources().getDisplayMetrics());
+  private void resetNumber() {
+    mTargetNumbers.clear();
+    mPrimaryNumbers.clear();
   }
 
-  private int sp2px(float dpVal) {
-    return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-        dpVal, getResources().getDisplayMetrics());
+  private void clearView() {
+    mScrollNumbers.clear();
+    removeAllViews();
   }
 
+
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    resetNumber();
+    clearView();
+  }
 }

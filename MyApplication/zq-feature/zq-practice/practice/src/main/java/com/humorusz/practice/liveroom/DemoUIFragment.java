@@ -87,7 +87,7 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
     setScrollNumberText();
   }
 
-  private int last = 1000;
+  private int last = 18921;
   @Override
   public void onClick(View v) {
     if (v == lbtn) {
@@ -98,9 +98,11 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
       showTips(3);
     } else if (v == mAddButton) {
       mFlipView.smoothFlipTo(1);
-      mScrollNumberText.setNumber(last, last + 98);
-      last += 98;
+      mScrollNumberText.setNumber(last, last + 99);
+      last += 99;
     } else if (v == mReduceButton) {
+      mScrollNumberText.setNumber(1992);
+      last = 1992;
       mFlipView.smoothFlipTo(0);
     }
   }
@@ -184,6 +186,6 @@ public class DemoUIFragment extends BaseFragment implements View.OnClickListener
   }
 
   private void setScrollNumberText(){
-    mScrollNumberText.setNumber(1000);
+    mScrollNumberText.setNumber(18912);
   }
 }

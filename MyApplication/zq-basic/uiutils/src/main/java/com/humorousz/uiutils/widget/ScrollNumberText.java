@@ -5,20 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.TypedValue;
+import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 import androidx.annotation.IntRange;
 
-/**
- * Created by wuhaojie on 2016/7/15 11:36.
- */
 public class ScrollNumberText extends View {
 
   public static final String TAG = "ScrollNumber";
@@ -26,6 +19,8 @@ public class ScrollNumberText extends View {
    * default animation velocity
    */
   public static final int DEFAULT_VELOCITY = 15;
+  private final Paint mPaint;
+  private final Rect mTextBounds = new Rect();
   /**
    * number to - number from
    */
@@ -42,26 +37,17 @@ public class ScrollNumberText extends View {
    * the target number
    */
   private int mTargetNum;
-  private Context mContext;
-
   /**
    * number offset
    */
   private float mOffset;
-  private Paint mPaint;
   private Interpolator mInterpolator = new DecelerateInterpolator();
-
-
   private float mTextCenterX;
   private int mTextHeight;
-  private Rect mTextBounds = new Rect();
-  private int mTextSize = sp2px(130);
-  private int mTextColor = 0xFF000000;
-  private Typeface mTypeface;
 
 
   private int mVelocity = DEFAULT_VELOCITY;
-  private Runnable mScrollRunnable = new Runnable() {
+  private final Runnable mScrollRunnable = new Runnable() {
     @Override
     public void run() {
       float x = (float) (1 - 1.0 * (mTargetNum - mCurNum) / mDeltaNum);
@@ -85,20 +71,8 @@ public class ScrollNumberText extends View {
 
   public ScrollNumberText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-
-    mContext = context;
-
     mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mPaint.setTextAlign(Paint.Align.CENTER);
-    mPaint.setTextSize(mTextSize);
-    mPaint.setColor(mTextColor);
-
-    if (mTypeface != null) {
-      mPaint.setTypeface(mTypeface);
-    }
-
-    measureTextHeight();
-
   }
 
   public void setVelocity(@IntRange(from = 0, to = 1000) int velocity) {
@@ -123,28 +97,22 @@ public class ScrollNumberText extends View {
   }
 
   public void setTextSize(int textSize) {
-    this.mTextSize = sp2px(textSize);
-    mPaint.setTextSize(mTextSize);
+    mPaint.setTextSize(textSize);
     measureTextHeight();
     requestLayout();
     invalidate();
   }
 
-  public void setTextFont(String fileName) {
-    if (TextUtils.isEmpty(fileName)) {
-      throw new IllegalArgumentException("please check file name end with '.ttf' or '.otf'");
-    }
-    mTypeface = Typeface.createFromAsset(mContext.getAssets(), fileName);
-    if (mTypeface == null) {
+  public void setTextFont(Typeface typeface) {
+    if (typeface == null) {
       throw new RuntimeException("please check your font!");
     }
-    mPaint.setTypeface(mTypeface);
+    mPaint.setTypeface(typeface);
     requestLayout();
     invalidate();
   }
 
   public void setTextColor(int mTextColor) {
-    this.mTextColor = mTextColor;
     mPaint.setColor(mTextColor);
     invalidate();
   }
@@ -182,7 +150,7 @@ public class ScrollNumberText extends View {
         break;
     }
     result = mode == MeasureSpec.AT_MOST ? Math.min(result, val) : result;
-    return result + getPaddingTop() + getPaddingBottom() + dp2px(40);
+    return result + getPaddingTop() + getPaddingBottom();
   }
 
   private int measureWidth(int measureSpec) {
@@ -200,7 +168,7 @@ public class ScrollNumberText extends View {
         break;
     }
     result = mode == MeasureSpec.AT_MOST ? Math.min(result, val) : result;
-    return result + getPaddingLeft() + getPaddingRight() + 15;
+    return result + getPaddingLeft() + getPaddingRight();
   }
 
   @Override
@@ -233,12 +201,12 @@ public class ScrollNumberText extends View {
 
   private void drawNext(Canvas canvas) {
     float y = (float) (getMeasuredHeight() * 1.5);
-    canvas.drawText(mNextNum + "", mTextCenterX, y + mTextHeight / 2, mPaint);
+    canvas.drawText(mNextNum + "", mTextCenterX, y + mTextHeight / 2.0f, mPaint);
   }
 
   private void drawSelf(Canvas canvas) {
     int y = getMeasuredHeight() / 2;
-    canvas.drawText(mCurNum + "", mTextCenterX, y + mTextHeight / 2, mPaint);
+    canvas.drawText(mCurNum + "", mTextCenterX, y + mTextHeight / 2.0f, mPaint);
   }
 
 
@@ -247,15 +215,9 @@ public class ScrollNumberText extends View {
     invalidate();
   }
 
-  private int dp2px(float dpVal) {
-    return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-        dpVal, getResources().getDisplayMetrics());
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    removeCallbacks(mScrollRunnable);
   }
-
-  private int sp2px(float dpVal) {
-    return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-        dpVal, getResources().getDisplayMetrics());
-  }
-
-
 }
