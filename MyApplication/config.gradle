@@ -21,13 +21,14 @@ ext {
     dagger_version = "2.25"
     fresco = "1.13.0"
     viewpager2 = "1.0.0"
+    coroutines = "1.5.0"
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
     android = [
         compileSdkVersion: 30,
         buildToolsVersion: "30.0.3",
-        minSdkVersion    : 18,
+        minSdkVersion    : 21,
         targetSdkVersion : 26,
     ]
     dependencies = [
@@ -63,6 +64,8 @@ ext {
         dagger_compiler          : "com.google.dagger:dagger-compiler:$dagger_version",
         dagger_android           : "com.google.dagger:dagger-android:$dagger_version",
         dagger_android_compiler  : "com.google.dagger:dagger-android-processor:$dagger_version",
-        viewpager2               : "androidx.viewpager2:viewpager2:$viewpager2"
+        viewpager2               : "androidx.viewpager2:viewpager2:$viewpager2",
+        coroutines_core          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
+        coroutines_android       : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
     ]
 }

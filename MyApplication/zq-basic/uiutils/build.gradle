@@ -48,4 +48,6 @@ dependencies {
     implementation rootProject.ext.dependencies.AnimationSequenceDrawable
     implementation rootProject.ext.dependencies.fresco
     implementation rootProject.ext.dependencies.kotlin
+    implementation rootProject.ext.dependencies.coroutines_core
+    implementation rootProject.ext.dependencies.coroutines_android
 }

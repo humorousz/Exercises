@@ -1,63 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   tools:ignore="MissingDefaultResource">
 
   <com.humorousz.uiutils.widget.MultiScrollNumber
     android:id="@+id/scroll_number"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textSize="30dp"
+    android:layout_marginTop="50dp"
     android:textColor="#000000"
-    app:layout_constraintStart_toStartOf="parent"
+    android:textSize="30dp"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop="50dp"/>
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
   <EditText
     android:id="@+id/input_num_edit"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
     android:textSize="15dp"
-    app:layout_constraintTop_toBottomOf="@id/scroll_number"
-    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toStartOf="@id/input_button"
     app:layout_constraintHorizontal_chainStyle="packed"
-    android:layout_marginTop="50dp"
-    />
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/scroll_number" />
+
   <Button
     android:id="@+id/input_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="change"
     android:textSize="15dp"
-    app:layout_constraintTop_toTopOf="@id/input_num_edit"
     app:layout_constraintBottom_toBottomOf="@id/input_num_edit"
+    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@id/input_num_edit"
-    app:layout_constraintEnd_toEndOf="parent"/>
+    app:layout_constraintTop_toTopOf="@id/input_num_edit" />
 
   <EditText
     android:id="@+id/input_num_add_edit"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
     android:textSize="15dp"
-    app:layout_constraintTop_toBottomOf="@id/input_num_edit"
-    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toStartOf="@id/input_add_button"
     app:layout_constraintHorizontal_chainStyle="packed"
-    android:layout_marginTop="50dp"
-    />
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/input_num_edit" />
+
   <Button
     android:id="@+id/input_add_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="加"
     android:textSize="15dp"
-    app:layout_constraintTop_toTopOf="@id/input_num_add_edit"
     app:layout_constraintBottom_toBottomOf="@id/input_num_add_edit"
+    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@id/input_num_add_edit"
-    app:layout_constraintEnd_toEndOf="parent"/>
+    app:layout_constraintTop_toTopOf="@id/input_num_add_edit" />
+
+  <View
+    android:id="@+id/bezier_1"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginBottom="100dp"
+    android:layout_marginStart="100dp"
+    android:background="@color/color_ffffca"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+  <View
+    android:id="@+id/bezier_2"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginEnd="100dp"
+    android:layout_marginTop="100dp"
+    android:background="@color/color_ffffca"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <com.humorousz.uiutils.widget.MovingBitmapView
+    android:id="@+id/bezier_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
