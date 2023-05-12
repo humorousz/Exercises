@@ -15,7 +15,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop="300dp"/>
+    android:layout_marginTop="50dp"/>
 
   <EditText
     android:id="@+id/input_num_edit"
