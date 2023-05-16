@@ -86,7 +86,7 @@ class DemoRoomSimpleFragment : BaseFragment() {
       pos1 ?: return,
       pos2 ?: return,
       createRedBitmap(UIUtils.dip2px(50), UIUtils.dip2px(50), R.color.colorAccent),
-      1000
+      2000L
     )
   }
 

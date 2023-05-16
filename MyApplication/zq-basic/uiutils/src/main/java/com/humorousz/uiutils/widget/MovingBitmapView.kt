@@ -27,15 +27,14 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
     start: PointF,
     end: PointF,
     bitmap: Bitmap,
-    duration: Long = 1000L,
-    scaleEnd: Float = 0.3f
+    duration: Long = 2000L
   ) {
     val path = Path().apply {
       reset()
       moveTo(start.x, start.y);
       quadTo((start.x + end.x) / 2f, (start.y + end.y) / 2f, end.x, end.y)
     }
-    bitmapItems.add(MovingBitmapItem(bitmap, duration, path, scaleEnd))
+    bitmapItems.add(MovingBitmapItem(bitmap = bitmap, duration = duration, path = path))
     invalidate()
   }
 
@@ -54,9 +53,13 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
       pathMeasure.setPath(item.path, false)
       pathMeasure.getPosTan(pathMeasure.length * fraction, pos, tan)
 
-      val scale = (1 - fraction) * (1 - item.scaleEnd) + item.scaleEnd
       mMatrix.reset()
-      mMatrix.postScale(scale, scale, item.bitmap.width / 2f, item.bitmap.height / 2f)
+      mMatrix.postScale(
+        item.getScale(),
+        item.getScale(),
+        item.bitmap.width / 2f,
+        item.bitmap.height / 2f
+      )
       mMatrix.postTranslate(pos[0] - item.bitmap.width / 2f, pos[1] - item.bitmap.height / 2f)
 
       // 应用透明度和缩放变化效果
@@ -72,15 +75,37 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
   }
 
   private inner class MovingBitmapItem(
+    val moveDuration: Long = 875L,
+    val scale1Duration: Long = 375L,
+    val scale2Duration: Long = 1000L,
+    val scale3Duration: Long = 625L,
     val bitmap: Bitmap,
     val duration: Long,
-    val path: Path,
-    val scaleEnd: Float
+    val path: Path
   ) {
     val startTime = System.currentTimeMillis()
 
     fun isAnimationFinished(): Boolean {
       return System.currentTimeMillis() - startTime >= duration
+    }
+
+    fun currentDuration(): Long {
+      return System.currentTimeMillis() - startTime
+    }
+
+    fun getScale(): Float {
+      val currentDuration = currentDuration()
+      return if (currentDuration < scale1Duration) {
+        val fraction = currentDuration.toFloat() / scale1Duration.toFloat()
+        1f + (0.3f * fraction)
+      } else if (currentDuration < scale1Duration + scale2Duration) {
+        val fraction = (currentDuration - scale1Duration).toFloat() / scale2Duration.toFloat()
+        1.3f - (0.3f * fraction)
+      } else {
+        val fraction =
+          (currentDuration - scale1Duration - scale2Duration).toFloat() / scale3Duration.toFloat()
+        1f + (1.2f * fraction)
+      }
     }
   }
 
