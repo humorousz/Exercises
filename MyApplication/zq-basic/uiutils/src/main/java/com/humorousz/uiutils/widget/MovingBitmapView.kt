@@ -45,13 +45,9 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
       if (item.isAnimationFinished()) {
         continue
       }
-
-      val elapsedTime = System.currentTimeMillis() - item.startTime
-      val fraction = elapsedTime.toFloat() / item.duration
-
       // 计算位移后图片的位置和大小
       pathMeasure.setPath(item.path, false)
-      pathMeasure.getPosTan(pathMeasure.length * fraction, pos, tan)
+      pathMeasure.getPosTan(pathMeasure.length * item.getMoveFraction(), pos, tan)
 
       mMatrix.reset()
       mMatrix.postScale(
@@ -63,7 +59,7 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
       mMatrix.postTranslate(pos[0] - item.bitmap.width / 2f, pos[1] - item.bitmap.height / 2f)
 
       // 应用透明度和缩放变化效果
-      val alpha = (255 * (1 - fraction)).toInt()
+      val alpha = (255 * item.getAlphaFaction()).toInt()
       paint.alpha = alpha
 
       canvas.drawBitmap(item.bitmap, mMatrix, paint)
@@ -79,6 +75,8 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
     val scale1Duration: Long = 375L,
     val scale2Duration: Long = 1000L,
     val scale3Duration: Long = 625L,
+    val alpha1Duration: Long = 1375L,
+    val alpha2Duration: Long = 625L,
     val bitmap: Bitmap,
     val duration: Long,
     val path: Path
@@ -106,6 +104,22 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
           (currentDuration - scale1Duration - scale2Duration).toFloat() / scale3Duration.toFloat()
         1f + (1.2f * fraction)
       }
+    }
+
+    fun getMoveFraction(): Float {
+      val currentDuration = currentDuration()
+      if (currentDuration > moveDuration) {
+        return 1f
+      }
+      return currentDuration.toFloat() / moveDuration.toFloat()
+    }
+
+    fun getAlphaFaction(): Float {
+      val currentDuration = currentDuration()
+      if (currentDuration > alpha1Duration) {
+        return (1 - (currentDuration - alpha1Duration).toFloat() / alpha2Duration.toFloat())
+      }
+      return 1f
     }
   }
 
