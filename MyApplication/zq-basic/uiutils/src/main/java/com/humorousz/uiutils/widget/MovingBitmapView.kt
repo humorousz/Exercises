@@ -23,13 +23,19 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
 
   private val pathMeasure = PathMeasure()
 
-  fun addMovingBitmap(start: PointF, end: PointF, bitmap: Bitmap, duration: Long = 1000L) {
+  fun addMovingBitmap(
+    start: PointF,
+    end: PointF,
+    bitmap: Bitmap,
+    duration: Long = 1000L,
+    scaleEnd: Float = 0.3f
+  ) {
     val path = Path().apply {
       reset()
       moveTo(start.x, start.y);
       quadTo((start.x + end.x) / 2f, (start.y + end.y) / 2f, end.x, end.y)
     }
-    bitmapItems.add(MovingBitmapItem(bitmap, duration, path))
+    bitmapItems.add(MovingBitmapItem(bitmap, duration, path, scaleEnd))
     invalidate()
   }
 
@@ -48,7 +54,7 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
       pathMeasure.setPath(item.path, false)
       pathMeasure.getPosTan(pathMeasure.length * fraction, pos, tan)
 
-      val scale = 1 - fraction
+      val scale = (1 - fraction) * (1 - item.scaleEnd) + item.scaleEnd
       mMatrix.reset()
       mMatrix.postScale(scale, scale, item.bitmap.width / 2f, item.bitmap.height / 2f)
       mMatrix.postTranslate(pos[0] - item.bitmap.width / 2f, pos[1] - item.bitmap.height / 2f)
@@ -68,7 +74,8 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
   private inner class MovingBitmapItem(
     val bitmap: Bitmap,
     val duration: Long,
-    val path: Path
+    val path: Path,
+    val scaleEnd: Float
   ) {
     val startTime = System.currentTimeMillis()
 
