@@ -81,6 +81,25 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
+  <View
+    android:id="@+id/bezier_3"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginBottom="200dp"
+    android:layout_marginStart="100dp"
+    android:background="@color/colorAccent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+  <View
+    android:id="@+id/bezier_4"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginEnd="100dp"
+    android:background="@color/colorAccent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
   <com.humorousz.uiutils.widget.MovingBitmapView
     android:id="@+id/bezier_view"
     android:layout_width="match_parent"
