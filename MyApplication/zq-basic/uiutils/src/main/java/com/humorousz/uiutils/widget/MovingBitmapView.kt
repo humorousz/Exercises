@@ -82,6 +82,8 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
     val path: Path
   ) {
     val startTime = System.currentTimeMillis()
+    val moveInterpolator = EaseCubicInterpolator(0.26f, 1.00f, 0.48f, 1.00f)
+    val scaleInterpolator = EaseCubicInterpolator(0.26f, 1.00f, 0.48f, 1.00f)
 
     fun isAnimationFinished(): Boolean {
       return System.currentTimeMillis() - startTime >= duration
@@ -95,14 +97,14 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
       val currentDuration = currentDuration()
       return if (currentDuration < scale1Duration) {
         val fraction = currentDuration.toFloat() / scale1Duration.toFloat()
-        1f + (0.3f * fraction)
+        1f + (0.3f * scaleInterpolator.getInterpolation(fraction))
       } else if (currentDuration < scale1Duration + scale2Duration) {
         val fraction = (currentDuration - scale1Duration).toFloat() / scale2Duration.toFloat()
-        1.3f - (0.3f * fraction)
+        1.3f - (0.3f * scaleInterpolator.getInterpolation(fraction))
       } else {
         val fraction =
           (currentDuration - scale1Duration - scale2Duration).toFloat() / scale3Duration.toFloat()
-        1f + (1.2f * fraction)
+        1f + (1.2f * scaleInterpolator.getInterpolation(fraction))
       }
     }
 
@@ -111,7 +113,7 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
       if (currentDuration > moveDuration) {
         return 1f
       }
-      return currentDuration.toFloat() / moveDuration.toFloat()
+      return moveInterpolator.getInterpolation(currentDuration.toFloat() / moveDuration.toFloat())
     }
 
     fun getAlphaFaction(): Float {
