@@ -14,15 +14,22 @@ import android.view.View
 class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
   private var bitmapItems = mutableListOf<MovingBitmapItem>()
-  private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+  private val paint by lazy {
+    Paint(Paint.ANTI_ALIAS_FLAG)
+  }
   private val mMatrix = Matrix()
-  private val path = Path()
-  private val pathMeasure = PathMeasure()
   private val pos = FloatArray(2)
   private val tan = FloatArray(2)
 
+  private val pathMeasure = PathMeasure()
+
   fun addMovingBitmap(start: PointF, end: PointF, bitmap: Bitmap, duration: Long = 1000L) {
-    bitmapItems.add(MovingBitmapItem(start, end, bitmap, duration))
+    val path = Path().apply {
+      reset()
+      moveTo(start.x, start.y);
+      quadTo((start.x + end.x) / 2f, (start.y + end.y) / 2f, end.x, end.y)
+    }
+    bitmapItems.add(MovingBitmapItem(bitmap, duration, path))
     invalidate()
   }
 
@@ -34,22 +41,11 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
         continue
       }
 
-      val elapsedTime = item.getElapsedTime()
+      val elapsedTime = System.currentTimeMillis() - item.startTime
       val fraction = elapsedTime.toFloat() / item.duration
 
       // 计算位移后图片的位置和大小
-
-      path.apply {
-        reset()
-        moveTo(item.startPointF.x, item.startPointF.y);
-        quadTo(
-          (item.startPointF.x + item.endPointF.x) / 2f,
-          (item.startPointF.y + item.endPointF.y) / 2f,
-          item.endPointF.x,
-          item.endPointF.y
-        )
-      }
-      pathMeasure.setPath(path, false)
+      pathMeasure.setPath(item.path, false)
       pathMeasure.getPosTan(pathMeasure.length * fraction, pos, tan)
 
       val scale = 1 - fraction
@@ -62,23 +58,22 @@ class MovingBitmapView(context: Context, attrs: AttributeSet) : View(context, at
       paint.alpha = alpha
 
       canvas.drawBitmap(item.bitmap, mMatrix, paint)
-      invalidate() // 触发重绘以继续动画
     }
     bitmapItems.removeAll { it.isAnimationFinished() } // 移除已完成的动画
+    if (bitmapItems.isNotEmpty()) {
+      invalidate() // 触发重绘以继续动画
+    }
   }
 
   private inner class MovingBitmapItem(
-    val startPointF: PointF, val endPointF: PointF,
-    val bitmap: Bitmap, val duration: Long
+    val bitmap: Bitmap,
+    val duration: Long,
+    val path: Path
   ) {
-    private var startTime: Long = System.currentTimeMillis()
-
-    fun getElapsedTime(): Long {
-      return System.currentTimeMillis() - startTime
-    }
+    val startTime = System.currentTimeMillis()
 
     fun isAnimationFinished(): Boolean {
-      return getElapsedTime() >= duration
+      return System.currentTimeMillis() - startTime >= duration
     }
   }
 

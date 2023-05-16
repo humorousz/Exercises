@@ -81,7 +81,7 @@ class DemoRoomSimpleFragment : BaseFragment() {
 
   private fun bezierViewHandle2() {
     val pos1 = getWindowCenterPoint(posView3)
-    val pos2 = getWindowCenterPoint(posView4)
+    val pos2 = getWindowCenterTopPoint(posView4)
     bView?.addMovingBitmap(
       pos1 ?: return,
       pos2 ?: return,
@@ -159,6 +159,26 @@ class DemoRoomSimpleFragment : BaseFragment() {
     return PointF(
       location[0] - offsetX.toFloat() + view.width / 2, location[1] - offsetY.toFloat
         () + view.height / 2
+    )
+  }
+
+  fun getWindowCenterTopPoint(view: View?): PointF? {
+    if (view == null) {
+      return null
+    }
+    val location = IntArray(2)
+    view.getLocationOnScreen(location)
+    var offsetX = 0
+    var offsetY = 0
+    var parent = view.parent
+    while (parent is View) {
+      val parentView = parent as View
+      offsetX += parentView.left
+      offsetY += parentView.top
+      parent = parentView.parent
+    }
+    return PointF(
+      location[0] - offsetX.toFloat() + view.width / 2, location[1].toFloat() - offsetY.toFloat()
     )
   }
 
